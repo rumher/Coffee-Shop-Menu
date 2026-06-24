@@ -83,7 +83,7 @@
 }
 
 :root.light-mode {
-  /* Elegant Cozy Light Mode colors */
+  /* Elegant Cozy Light Mode colors with high-fidelity readability and contrast */
   --espresso: #2C1A11;
   --darkCard: #FFFFFF;
   --terracotta: #C67C4E;
@@ -426,19 +426,19 @@ img{max-width:100%;display:block}
           <div>
             <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Syrup Flavor Add-ons</label>
             <div class="grid grid-cols-2 gap-2">
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText">
                 <input type="checkbox" id="syrup-vanilla" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Vanilla (+$1)</span>
               </label>
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText">
                 <input type="checkbox" id="syrup-sorghum" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Sorghum (+$1)</span>
               </label>
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText">
                 <input type="checkbox" id="extra-shot" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Extra Espresso (+$1)</span>
               </label>
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText">
                 <input type="checkbox" id="heavy-cream" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Heavy Cream (+$2)</span>
               </label>
@@ -718,7 +718,7 @@ img{max-width:100%;display:block}
 
     <div class="border-t border-appBorder pt-4 space-y-4">
       <div class="flex justify-between items-baseline font-mono font-bold text-base">
-        <span>Subtotal Est.</span>
+        <span class="text-appText">Subtotal Est.</span>
         <span class="text-terracotta text-xl" id="cart-drawer-total">$0.00</span>
       </div>
       <button onclick="triggerCheckoutCheckout()" class="w-full bg-terracotta text-white font-serif py-3.5 rounded-xl font-bold tracking-wider hover:bg-terracotta/90 transition-all shadow-md" id="cart-action-btn" disabled>
@@ -881,18 +881,18 @@ img{max-width:100%;display:block}
   <button class="sheet-close" onclick="closeProductEditForm()"><i class="fa-solid fa-xmark"></i></button>
   <div class="sheet-content">
     <h3 class="font-serif text-xl font-bold text-appHeading mb-1" id="product-form-title">Product Editor</h3>
-    <form id="product-crud-form" class="space-y-3 mt-3 text-xs">
+    <form id="product-crud-form" class="space-y-3 mt-3 text-xs text-appText">
       <input type="hidden" id="p-form-id">
       
       <div class="flex flex-col gap-1.5">
         <label for="p-form-name">Item Name</label>
-        <input type="text" id="p-form-name" required placeholder="e.g. Smoked Salmon Bagel Box" class="bg-appBg text-appHeading p-3 rounded-xl border border-terracotta/20 text-sm">
+        <input type="text" id="p-form-name" required placeholder="e.g. Smoked Salmon Bagel Box" class="bg-appBg text-appHeading p-3 rounded-xl border border-terracotta/20 text-sm focus:outline-none focus:border-terracotta">
       </div>
 
       <div class="grid grid-cols-2 gap-3">
         <div class="flex flex-col gap-1.5">
           <label for="p-form-price">Base Price ($)</label>
-          <input type="number" id="p-form-price" step="0.01" required placeholder="5.50" class="bg-appBg text-appHeading p-3 rounded-xl border border-terracotta/20 text-sm">
+          <input type="number" id="p-form-price" step="0.01" required placeholder="5.50" class="bg-appBg text-appHeading p-3 rounded-xl border border-terracotta/20 text-sm focus:outline-none focus:border-terracotta">
         </div>
         <div class="flex flex-col gap-1.5">
           <label for="p-form-category">Category Tab</label>
@@ -962,7 +962,6 @@ img{max-width:100%;display:block}
 
 <!-- ================= SYSTEM SCRIPTS & BUSINESS LOGIC ================= -->
 <script>
-// Caching High-Frequency DOM selectors for premium performance (Eliminating redundant queries)
 const dom = {};
 function initDOMCache() {
   dom.menuSearch = document.getElementById('menu-search');
@@ -1004,6 +1003,12 @@ function toggleTheme() {
     }
     showToastNotification("Theme switched to Espresso Dark Mode 🌙");
   }
+  // Re-render components that have dynamic inline templates referencing colors
+  renderBistroMenu();
+  renderVibeBoard();
+  renderFeedbackBoard();
+  syncCartUI();
+  calculateCustomPrice();
 }
 
 // Master Fallback Image URL to recover from any broken Unsplash images gracefully
@@ -1022,7 +1027,7 @@ let masterProducts = [
   { id: 'c4', name: 'Palomino Signature Brew', price: 7.00, category: 'coffee', desc: 'Nitro cold brew custom styled with gourmet vanilla and half & half.', img: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&q=80&w=400' },
   { id: 'c5', name: 'Red Eye Shot', price: 4.30, category: 'coffee', desc: 'Double shot of house espresso topped with rich brewed coffee.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400' },
   
-  // SIGNATURE DRINKS (Flyer page 1) - Best premium images matching image_7b52ed.jpg
+  // SIGNATURE DRINKS (Flyer page 1)
   { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, category: 'signature', desc: 'Double espresso, velvet steamed milk, chocolate, vanilla, and sweet Muddy Pond Sorghum syrup.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=400', badge: 'Best Seller' },
   { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', badge: 'Barista Rec' },
   { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=400', badge: 'Classic Signature' },
@@ -1101,7 +1106,6 @@ window.onload = function() {
   }, 1500);
 };
 
-// --- Page view switcher ---
 function switchPage(pageId) {
   // Hide all screens
   const pageViews = document.querySelectorAll('.page-view');
@@ -1205,18 +1209,18 @@ function renderBistroMenu() {
 
   featuredSpecialties.forEach(item => {
     const carouselCard = document.createElement('div');
-    carouselCard.className = 'w-64 flex-shrink-0 bg-darkCard border border-terracotta/25 rounded-3xl overflow-hidden p-3 flex flex-col justify-between snap-center shadow-lg transition-transform hover:scale-[1.02]';
+    carouselCard.className = 'w-64 flex-shrink-0 bg-appCard border border-appBorder rounded-3xl overflow-hidden p-3 flex flex-col justify-between snap-center shadow-lg transition-transform hover:scale-[1.02]';
     
     carouselCard.innerHTML = `
       <div>
         <div class="relative h-44 rounded-2xl overflow-hidden mb-3.5 bg-espresso/30">
-          ${item.badge ? `<span class="absolute top-2 left-2 bg-espresso text-parchment font-mono text-[9px] uppercase px-2 py-0.5 rounded shadow z-10 border border-terracotta/20">${item.badge}</span>` : ''}
+          ${item.badge ? `<span class="absolute top-2 left-2 bg-appBg text-appText border border-appBorder font-mono text-[9px] uppercase px-2 py-0.5 rounded shadow z-10">${item.badge}</span>` : ''}
           <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" loading="lazy" onerror="handleImageError(this)">
         </div>
-        <h4 class="font-serif font-bold text-white text-base leading-snug mb-1 truncate">${item.name}</h4>
-        <p class="text-[11px] text-neutralMuted leading-normal h-12 overflow-hidden line-clamp-3">${item.desc}</p>
+        <h4 class="font-serif font-bold text-appHeading text-base leading-snug mb-1 truncate">${item.name}</h4>
+        <p class="text-[11px] text-neutralMuted leading-normal h-12 overflow-hidden line-clamp-3 font-serif">${item.desc}</p>
       </div>
-      <div class="pt-3 border-t border-terracotta/15 flex justify-between items-center mt-3">
+      <div class="pt-3 border-t border-appBorder flex justify-between items-center mt-3">
         <span class="text-terracotta font-mono font-bold text-base">$${item.price.toFixed(2)}</span>
         <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-9 h-9 rounded-full bg-terracotta text-white flex items-center justify-center hover:bg-terracotta/90 transition-all shadow" title="Add to Order">
           <i class="fa-solid fa-plus text-xs"></i>
@@ -1247,13 +1251,13 @@ function renderBistroMenu() {
 
     const groupMeta = categoryGroups[catId];
     const accordionDiv = document.createElement('div');
-    accordionDiv.className = 'border border-terracotta/15 rounded-2xl bg-darkCard/80 overflow-hidden shadow-sm transition-colors';
+    accordionDiv.className = 'border border-appBorder rounded-2xl bg-appCard overflow-hidden shadow-sm transition-colors';
     
     // Check if we should automatically expand (e.g. if category tab matches this specific category)
     const isExpanded = selectedCategory === 'all' ? false : (selectedCategory === catId);
 
     accordionDiv.innerHTML = `
-      <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center p-4 text-left font-serif font-bold text-white focus:outline-none hover:bg-espresso/20 transition-all">
+      <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center p-4 text-left font-serif font-bold text-appHeading focus:outline-none hover:bg-espresso/5 transition-all">
         <div class="flex items-center gap-2.5">
           <i class="fa-solid ${groupMeta.icon} text-terracotta text-sm"></i>
           <span class="text-sm tracking-wide">${groupMeta.title}</span>
@@ -1263,13 +1267,13 @@ function renderBistroMenu() {
       <div class="accordion-content px-4 pb-4 space-y-3 ${isExpanded ? 'expanded' : ''}" style="${isExpanded ? 'max-height: 1000px;' : 'max-height: 0px;'}">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
           ${groupItems.map(item => `
-            <div class="bg-espresso/50 border border-terracotta/10 p-3 rounded-xl flex items-center justify-between gap-3 shadow-inner">
+            <div class="bg-appBg/50 border border-appBorder p-3 rounded-xl flex items-center justify-between gap-3 shadow-inner">
               <div class="flex items-center gap-3 overflow-hidden">
-                <div class="w-12 h-12 rounded-lg overflow-hidden bg-espresso flex-shrink-0">
+                <div class="w-12 h-12 rounded-lg overflow-hidden bg-espresso/20 flex-shrink-0">
                   <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" loading="lazy" onerror="handleImageError(this)">
                 </div>
                 <div class="overflow-hidden">
-                  <h4 class="font-serif font-bold text-white text-xs leading-tight truncate">${item.name}</h4>
+                  <h4 class="font-serif font-bold text-appHeading text-xs leading-tight truncate">${item.name}</h4>
                   <p class="text-[10px] text-neutralMuted leading-normal truncate max-w-[150px] sm:max-w-xs">${item.desc}</p>
                 </div>
               </div>
@@ -1305,7 +1309,6 @@ function toggleAccordion(buttonElement) {
   }
 }
 
-// --- Cart Pre-order Logic ---
 let cart = [];
 
 function addItemToCart(id, name, price) {
@@ -1352,16 +1355,16 @@ function syncCartUI() {
       totalPrice += item.price * item.quantity;
 
       const itemRow = document.createElement('div');
-      itemRow.className = 'flex justify-between items-center bg-espresso border border-terracotta/10 p-3 rounded-xl text-xs';
+      itemRow.className = 'flex justify-between items-center bg-appBg border border-appBorder p-3 rounded-xl text-xs';
       itemRow.innerHTML = `
         <div class="flex-grow pr-2">
-          <h4 class="font-serif font-bold text-white leading-tight">${item.name}</h4>
+          <h4 class="font-serif font-bold text-appHeading leading-tight">${item.name}</h4>
           <span class="text-[10px] text-neutralMuted block mt-0.5">$${item.price.toFixed(2)} each</span>
         </div>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 text-appText">
           <button onclick="removeOneFromCart('${item.id}')" class="text-neutralMuted hover:text-terracotta p-1 text-xs"><i class="fa-solid fa-minus"></i></button>
-          <span class="font-mono font-bold text-white text-xs">${item.quantity}</span>
-          <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="text-white hover:text-terracotta p-1 text-xs"><i class="fa-solid fa-plus"></i></button>
+          <span class="font-mono font-bold text-xs">${item.quantity}</span>
+          <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="hover:text-terracotta p-1 text-xs"><i class="fa-solid fa-plus"></i></button>
         </div>
       `;
       fragment.appendChild(itemRow);
@@ -1518,7 +1521,7 @@ function renderVibeBoard() {
       frame.className = 'polaroid cursor-pointer rounded-2xl w-full max-w-[170px] mx-auto';
       frame.style.transform = `rotate(${randomAngle}deg)`;
       frame.innerHTML = `
-        <div class="relative w-full aspect-square overflow-hidden rounded-xl bg-espresso border border-terracotta/10">
+        <div class="relative w-full aspect-square overflow-hidden rounded-xl bg-appBg border border-appBorder">
           <img src="${photo.image}" alt="Community user upload pinned to board" class="w-full h-full object-cover" loading="lazy" onerror="handleImageError(this)">
         </div>
         <div class="mt-3 text-center overflow-hidden">
@@ -1530,9 +1533,9 @@ function renderVibeBoard() {
       frame.className = 'polaroid empty-slot cursor-pointer rounded-2xl w-full max-w-[170px] mx-auto';
       frame.style.transform = `rotate(${randomAngle}deg)`;
       frame.innerHTML = `
-        <div onclick="openUploadSheet()" class="flex flex-col justify-center items-center w-full aspect-square border border-dashed border-terracotta/40 bg-espresso/30 rounded-xl">
+        <div onclick="openUploadSheet()" class="flex flex-col justify-center items-center w-full aspect-square border border-dashed border-terracotta/40 bg-appBg/50 rounded-xl">
           <i class="fa-solid fa-camera text-xl text-terracotta animate-bounce mb-1"></i>
-          <p class="font-serif text-xs text-parchment font-bold">Post Vibe</p>
+          <p class="font-serif text-xs text-appHeading font-bold">Post Vibe</p>
           <p class="text-[8px] uppercase font-mono tracking-wider text-neutralMuted">Open Space</p>
         </div>
       `;
@@ -1627,14 +1630,14 @@ function renderFeedbackBoard() {
 
   communityFeedbacks.forEach(fb => {
     const card = document.createElement('div');
-    card.className = 'bg-darkCard border border-terracotta/20 p-4 rounded-2xl relative shadow-md overflow-hidden';
+    card.className = 'bg-appCard border border-terracotta/20 p-4 rounded-2xl relative shadow-md overflow-hidden';
     card.innerHTML = `
       <div class="absolute -right-2 -bottom-2 opacity-10 text-terracotta text-6xl font-serif">”</div>
       <div class="flex justify-between items-baseline mb-2 border-b border-terracotta/10 pb-1.5">
         <span class="font-serif font-bold text-terracotta text-sm">${fb.user}</span>
         <span class="font-mono text-[9px] uppercase text-neutralMuted">${fb.topic}</span>
       </div>
-      <p class="text-xs leading-relaxed text-parchment italic font-serif">"${fb.comment}"</p>
+      <p class="text-xs leading-relaxed text-appText italic font-serif">"${fb.comment}"</p>
     `;
     fragment.appendChild(card);
   });
@@ -1742,13 +1745,13 @@ function renderCMSPhotosList() {
   communityPhotos.forEach(photo => {
     const isExpired = (now - photo.timestamp) > sevenDaysLimit;
     const row = document.createElement('div');
-    row.className = 'flex items-center justify-between gap-3 p-2 bg-espresso rounded border border-terracotta/15 text-xs shadow-sm';
+    row.className = 'flex items-center justify-between gap-3 p-2 bg-appBg rounded border border-appBorder text-xs shadow-sm';
     row.innerHTML = `
       <div class="flex items-center gap-3 overflow-hidden">
         <img src="${photo.image}" class="w-10 h-10 object-cover rounded-xl flex-shrink-0" onerror="handleImageError(this)">
         <div class="overflow-hidden">
           <div class="flex items-center gap-1.5">
-            <span class="font-bold text-white">@${photo.handle}</span>
+            <span class="font-bold text-appHeading">@${photo.handle}</span>
             <span class="text-[8px] font-mono uppercase px-1 rounded ${isExpired ? 'bg-red-900/40 text-red-400' : 'bg-green-900/40 text-green-400'}">
               ${isExpired ? 'Expired' : 'Active'}
             </span>
@@ -1781,17 +1784,17 @@ function renderCMSProductsList() {
 
   masterProducts.forEach(item => {
     const row = document.createElement('div');
-    row.className = 'flex items-center justify-between gap-2 p-2 bg-espresso rounded border border-terracotta/15 text-xs shadow-sm';
+    row.className = 'flex items-center justify-between gap-2 p-2 bg-appBg rounded border border-appBorder text-xs shadow-sm';
     row.innerHTML = `
       <div class="flex items-center gap-2 overflow-hidden">
         <img src="${item.img}" class="w-8 h-8 object-cover rounded-xl flex-shrink-0" onerror="handleImageError(this)">
         <div class="overflow-hidden">
-          <span class="font-serif font-bold text-white leading-none block truncate max-w-[160px]">${item.name}</span>
+          <span class="font-serif font-bold text-appHeading leading-none block truncate max-w-[160px]">${item.name}</span>
           <span class="text-[9px] text-terracotta font-mono font-bold">$${item.price.toFixed(2)}</span>
         </div>
       </div>
       <div class="flex gap-2 flex-shrink-0">
-        <button onclick="openProductEditForm('${item.id}')" class="text-white hover:text-terracotta p-1"><i class="fa-solid fa-pen-to-square"></i></button>
+        <button onclick="openProductEditForm('${item.id}')" class="text-appText hover:text-terracotta p-1"><i class="fa-solid fa-pen-to-square"></i></button>
         <button onclick="deleteProductFromCMS('${item.id}')" class="text-terracotta hover:text-red-400 p-1"><i class="fa-solid fa-trash"></i></button>
       </div>
     `;
