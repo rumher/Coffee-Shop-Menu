@@ -76,7 +76,7 @@ img{max-width:100%;display:block}
 /* High Fidelity Visual Texturing */
 .grain{pointer-events:none;opacity:.025;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")}
 
-/* Pattern matching the image_7a6a89.jpg */
+/* Pattern matching the image_7b52ed.jpg */
 .app-card {
   background-color: var(--darkCard);
   border: 1px solid rgba(198, 124, 78, 0.15);
@@ -89,7 +89,7 @@ img{max-width:100%;display:block}
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* Tab Pills styled exactly as image_7a6a89.jpg */
+/* Tab Pills styled exactly as image_7b52ed.jpg */
 .nav-tab-btn {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 12px;
@@ -113,12 +113,26 @@ img{max-width:100%;display:block}
   border-radius: 99px;
 }
 
+/* Hide scrollbar utility */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Modal Drawer Pull-ups */
 .sheet-backdrop{position:fixed;inset:0;background:rgba(21, 10, 8, 0.85);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .35s ease;z-index:90}
 .sheet-backdrop.active{opacity:1;pointer-events:auto}
 
 .sheet{position:fixed;left:0;right:0;bottom:0;max-height:88vh;background:var(--darkCard);border: 1px solid rgba(198, 124, 78, 0.2);border-radius:24px 24px 0 0;transform:translateY(100%);transition:all .45s cubic-bezier(.32,.72,0,1);z-index:95;display:flex;flex-direction:column;box-shadow:0 -12px 50px rgba(0,0,0,0.6)}
 .sheet.active{transform:translateY(0)}
+
+.sheet-handle{width:40px;height:4px;background:rgba(198,124,78,0.3);border-radius:2px;margin:12px auto 8px}
+.sheet-content{padding:0 24px 24px;overflow-y:auto;flex-grow:1}
+.sheet-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;color:var(--parchment);font-size:16px;transition:all 0.2s}
+.sheet-close:hover{background:rgba(198,124,78,0.2);color:white}
 
 @media (min-width: 768px) {
   .sheet {
@@ -171,7 +185,6 @@ img{max-width:100%;display:block}
 <!-- Backdrops -->
 <div class="sheet-backdrop" id="sheet-backdrop"></div>
 
-<!-- Header Brand & Responsive Desktop Nav -->
 <header class="bg-darkCard text-parchment sticky top-0 z-40 border-b border-terracotta/20 shadow-lg">
   <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
     <div class="flex items-center gap-3">
@@ -265,7 +278,7 @@ img{max-width:100%;display:block}
         </div>
       </div>
 
-      <!-- Category Filter Pills styled exactly as image_7a6a89.jpg -->
+      <!-- Category Filter Pills styled exactly as image_7b52ed.jpg -->
       <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none" id="category-pills" role="tablist">
         <button onclick="filterCategory('all')" class="category-pill active bg-darkCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-parchment" id="pill-all">All Items</button>
         <button onclick="filterCategory('coffee')" class="category-pill bg-darkCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-parchment" id="pill-coffee">Brewed & Drip</button>
@@ -276,13 +289,27 @@ img{max-width:100%;display:block}
         <button onclick="filterCategory('lunch')" class="category-pill bg-darkCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-parchment" id="pill-lunch">Sandwiches & Salads</button>
       </div>
 
-      <!-- Dynamic Menu Cards Layout -->
-      <div id="dynamic-menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Rendered via JS -->
+      <!-- ================= STREAMING_CHUNK: Rendering the horizontal carousel matching image_7b52ed.jpg ================= -->
+      <div class="space-y-3">
+        <h3 class="font-serif text-lg font-bold text-white tracking-wide" id="carousel-title">Featured Specialties</h3>
+        <div id="premium-carousel" class="flex gap-4 overflow-x-auto pb-4 scrollbar-none snap-x snap-mandatory">
+          <!-- Horizontal large carousel cards rendered via JavaScript -->
+        </div>
+      </div>
+
+      <!-- ================= STREAMING_CHUNK: Rendering the compact list matching image_7b52ed.jpg ================= -->
+      <div class="space-y-4">
+        <div class="flex justify-between items-baseline">
+          <h3 class="font-serif text-lg font-bold text-white tracking-wide">Bistro Catalog</h3>
+          <span class="text-xs text-neutralMuted uppercase tracking-wider font-mono">Popular Choices</span>
+        </div>
+        <div id="compact-product-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Small listing cards rendered via JavaScript -->
+        </div>
       </div>
     </div>
 
-    <!-- Interactive Customization Zone ("Brew Lab Builder" matching image_7a6a89.jpg) -->
+    <!-- Interactive Customization Zone ("Brew Lab Builder" matching image_7b52ed.jpg) -->
     <div class="bg-darkCard rounded-3xl p-6 md:p-8 border border-terracotta/30 space-y-6">
       <div class="text-center max-w-xl mx-auto space-y-2">
         <span class="font-mono text-xs uppercase tracking-widest text-terracotta">The Brew Lab Customizer</span>
@@ -398,8 +425,8 @@ img{max-width:100%;display:block}
       <p class="text-sm text-neutralMuted">Share your morning setup! Client uploads stay featured on our board for exactly 7 days before archiving.</p>
     </div>
 
-    <!-- Centered Responsive Grid of Polaroid Frames -->
-    <div id="polaroid-canvas-grid" class="flex flex-flow-row flex-wrap gap-6 justify-center">
+    <!-- Centered Responsive Grid of Polaroid Frames: 2 images per row on mobile -->
+    <div id="polaroid-canvas-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
       <!-- Generated Dynamically via JS -->
     </div>
 
@@ -421,7 +448,7 @@ img{max-width:100%;display:block}
 
     <div class="max-w-2xl mx-auto bg-darkCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6">
       
-      <!-- Table Selector Area resembling the delivery details view of image_7a6a89.jpg -->
+      <!-- Table Selector Area resembling the delivery details view of image_7b52ed.jpg -->
       <div>
         <label class="block text-xs font-bold text-parchment uppercase tracking-widest text-center mb-3">Choose Seating Area</label>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -445,19 +472,19 @@ img{max-width:100%;display:block}
 
       <!-- Booking Form Inputs -->
       <form id="reserve-bistro-form" class="space-y-4">
-        <div class="field">
-          <label for="reserve-name">Full Reservation Name</label>
-          <input type="text" id="reserve-name" required placeholder="Hold reservation under what name?" class="border border-terracotta/30 rounded-xl bg-espresso p-3 text-white focus:outline-none">
+        <div class="flex flex-col gap-1.5">
+          <label for="reserve-name" class="text-xs font-semibold text-neutralMuted uppercase">Full Reservation Name</label>
+          <input type="text" id="reserve-name" required placeholder="Hold reservation under what name?" class="border border-terracotta/30 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none">
         </div>
         
         <div class="grid grid-cols-2 gap-4">
-          <div class="field">
-            <label for="reserve-guests">Total Guests</label>
-            <input type="number" id="reserve-guests" min="1" max="15" required placeholder="2" class="border border-terracotta/30 rounded-xl bg-espresso p-3 text-white focus:outline-none">
+          <div class="flex flex-col gap-1.5">
+            <label for="reserve-guests" class="text-xs font-semibold text-neutralMuted uppercase">Total Guests</label>
+            <input type="number" id="reserve-guests" min="1" max="15" required placeholder="2" class="border border-terracotta/30 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none">
           </div>
-          <div class="field">
-            <label for="reserve-time">Arrival Time Slot</label>
-            <input type="time" id="reserve-time" required class="border border-terracotta/30 rounded-xl bg-espresso p-3 text-white focus:outline-none">
+          <div class="flex flex-col gap-1.5">
+            <label for="reserve-time" class="text-xs font-semibold text-neutralMuted uppercase">Arrival Time Slot</label>
+            <input type="time" id="reserve-time" required class="border border-terracotta/30 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none">
           </div>
         </div>
 
@@ -477,8 +504,8 @@ img{max-width:100%;display:block}
     </div>
 
     <div class="grid md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
-      <div class="about-frame max-w-sm w-full">
-        <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&q=80&w=600" alt="Vienna Coffee Company Barista Craft" class="border-4 border-darkCard shadow-xl rotate-[-2deg] rounded-xl">
+      <div class="max-w-sm w-full mx-auto">
+        <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&q=80&w=600" alt="Vienna Coffee Company Barista Craft" class="border-4 border-darkCard shadow-xl rotate-[-2deg] rounded-xl mx-auto">
       </div>
       <div class="space-y-4 text-xs sm:text-sm leading-relaxed text-accentLight">
         <h3 class="font-serif text-xl font-bold text-terracotta">Roasting for Community</h3>
@@ -512,7 +539,7 @@ img{max-width:100%;display:block}
 
 <!-- Sticky Mobile Navigation Tab Bar (Conversion-focused design) -->
 <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-darkCard text-parchment border-t border-terracotta/20 py-2.5 px-4 flex justify-around items-center z-40 shadow-2xl animate-slideUp" aria-label="Mobile Navigation">
-  <button onclick="switchPage('home')" class="flex flex-col items-center gap-1 active text-terracotta animate-pulseSlow" id="mobile-tab-home">
+  <button onclick="switchPage('home')" class="flex flex-col items-center gap-1 active text-terracotta" id="mobile-tab-home">
     <i class="fa-solid fa-mug-hot text-lg"></i>
     <span class="text-[9px] uppercase tracking-wider font-semibold">Bistro Menu</span>
   </button>
@@ -647,11 +674,11 @@ img{max-width:100%;display:block}
     <p class="text-xs text-neutralMuted mb-4">Post a custom coffee setup view onto our real-time board.</p>
     
     <form id="vibe-upload-form" class="space-y-4">
-      <div class="dropzone" id="dropzone">
-        <img class="dropzone-preview" id="preview-img" alt="Uploaded polaroid preview image">
-        <div class="dropzone-placeholder">
+      <div class="relative overflow-hidden w-full h-44 rounded-2xl bg-espresso border-2 border-dashed border-terracotta/30 flex flex-col items-center justify-center cursor-pointer hover:border-terracotta transition-all" id="dropzone">
+        <img class="absolute inset-0 w-full h-full object-cover hidden" id="preview-img" alt="Uploaded polaroid preview image">
+        <div class="flex flex-col items-center justify-center p-4 text-center" id="dropzone-placeholder">
           <i class="fa-solid fa-cloud-arrow-up text-3xl mb-2 text-terracotta"></i>
-          <p class="font-serif font-bold text-parchment">Tap to upload your photo</p>
+          <p class="font-serif font-bold text-parchment text-sm">Tap to upload your photo</p>
           <p class="text-[10px] mt-1 text-neutralMuted">Supports JPEG/PNG</p>
         </div>
         <input type="file" id="file-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
@@ -667,17 +694,17 @@ img{max-width:100%;display:block}
         </div>
       </div>
 
-      <div class="field">
-        <label for="wall-handle">Your Instagram Tag</label>
+      <div class="flex flex-col gap-1.5">
+        <label for="wall-handle" class="text-xs font-semibold text-neutralMuted uppercase">Your Instagram Tag</label>
         <div class="flex items-center border border-terracotta/30 rounded-xl bg-espresso overflow-hidden focus-within:border-terracotta">
           <span class="text-neutralMuted px-3 font-mono">@</span>
           <input type="text" id="wall-handle" placeholder="maryville_morning" class="border-none bg-transparent focus:ring-0 p-3 text-xs text-white flex-1 outline-none">
         </div>
       </div>
 
-      <div class="field">
-        <label for="wall-drink">Your Favorite Ordered Item</label>
-        <input type="text" id="wall-drink" placeholder="e.g. Viennese Waltz" required class="border border-terracotta/30 bg-espresso text-white rounded-xl p-3 focus:outline-none">
+      <div class="flex flex-col gap-1.5">
+        <label for="wall-drink" class="text-xs font-semibold text-neutralMuted uppercase">Your Favorite Ordered Item</label>
+        <input type="text" id="wall-drink" placeholder="e.g. Viennese Waltz" required class="border border-terracotta/30 bg-espresso text-white rounded-xl p-3 text-sm focus:outline-none">
       </div>
 
       <button type="submit" class="w-full bg-terracotta text-white font-serif py-3.5 rounded-xl font-bold tracking-wider transition-all shadow-md">
@@ -695,7 +722,7 @@ img{max-width:100%;display:block}
     <h3 class="font-serif text-2xl font-bold text-white mb-1" id="cms-panel-title">Administration Hub</h3>
     <p class="text-xs text-neutralMuted mb-6">Direct management over community photos & live digital items.</p>
 
-    <!-- Passcode Verification (Completely removed all default hints/suggestive labels) -->
+    <!-- Passcode Verification (Completely stripped any default hints/suggestive labels) -->
     <div id="cms-verify-section" class="space-y-4 text-center py-6">
       <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-darkCard text-parchment border border-terracotta/30 text-lg mb-2">
         <i class="fa-solid fa-lock"></i>
@@ -747,19 +774,19 @@ img{max-width:100%;display:block}
     <form id="product-crud-form" class="space-y-3 mt-3 text-xs">
       <input type="hidden" id="p-form-id">
       
-      <div class="field">
+      <div class="flex flex-col gap-1.5">
         <label for="p-form-name">Item Name</label>
-        <input type="text" id="p-form-name" required placeholder="e.g. Smoked Salmon Bagel Box" class="bg-espresso text-white p-3 rounded-xl border border-terracotta/20">
+        <input type="text" id="p-form-name" required placeholder="e.g. Smoked Salmon Bagel Box" class="bg-espresso text-white p-3 rounded-xl border border-terracotta/20 text-sm">
       </div>
 
       <div class="grid grid-cols-2 gap-3">
-        <div class="field">
+        <div class="flex flex-col gap-1.5">
           <label for="p-form-price">Base Price ($)</label>
-          <input type="number" id="p-form-price" step="0.01" required placeholder="5.50" class="bg-espresso text-white p-3 rounded-xl border border-terracotta/20">
+          <input type="number" id="p-form-price" step="0.01" required placeholder="5.50" class="bg-espresso text-white p-3 rounded-xl border border-terracotta/20 text-sm">
         </div>
-        <div class="field">
+        <div class="flex flex-col gap-1.5">
           <label for="p-form-category">Category Tab</label>
-          <select id="p-form-category" class="border border-terracotta/30 p-3 bg-espresso text-white rounded-xl focus:outline-none" required>
+          <select id="p-form-category" class="border border-terracotta/30 p-3 bg-espresso text-white rounded-xl focus:outline-none text-sm" required>
             <option value="coffee">Brewed & Drip</option>
             <option value="espresso">Espresso Drinks</option>
             <option value="signature">Signatures</option>
@@ -770,14 +797,14 @@ img{max-width:100%;display:block}
         </div>
       </div>
 
-      <div class="field">
+      <div class="flex flex-col gap-1.5">
         <label for="p-form-desc">Detailed Description</label>
-        <textarea id="p-form-desc" rows="2" placeholder="Explain the ingredients or sizes clearly" required class="border border-terracotta/30 p-3 bg-espresso text-white rounded-xl focus:outline-none"></textarea>
+        <textarea id="p-form-desc" rows="2" placeholder="Explain the ingredients or sizes clearly" required class="border border-terracotta/30 p-3 bg-espresso text-white rounded-xl focus:outline-none text-sm"></textarea>
       </div>
 
-      <div class="field">
+      <div class="flex flex-col gap-1.5">
         <label for="p-form-image">Product Image URL</label>
-        <input type="text" id="p-form-image" placeholder="https://images.unsplash.com/..." class="border border-terracotta/30 bg-espresso text-white p-3 rounded-xl focus:outline-none">
+        <input type="text" id="p-form-image" placeholder="https://images.unsplash.com/..." class="border border-terracotta/30 bg-espresso text-white p-3 rounded-xl focus:outline-none text-sm">
       </div>
 
       <button type="submit" class="w-full bg-terracotta text-white font-serif py-3 rounded-xl font-bold uppercase tracking-wider shadow">
@@ -790,7 +817,7 @@ img{max-width:100%;display:block}
 <!-- 7. Premium Launch "New Arrival" Promotion Popup -->
 <div class="promo-modal" id="promo-modal" role="dialog" aria-modal="true">
   <div class="fixed inset-0 bg-espresso/80 backdrop-blur-sm" onclick="closePromoModal()"></div>
-  <div class="relative bg-darkCard border border-terracotta max-w-sm w-full rounded-3xl overflow-hidden shadow-2xl z-10">
+  <div class="relative bg-darkCard border border-terracotta max-w-sm w-full rounded-3xl overflow-hidden shadow-2xl z-10 mx-4">
     <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-espresso/40 text-white flex items-center justify-center font-bold hover:bg-espresso/60 transition-all z-20" onclick="closePromoModal()">
       <i class="fa-solid fa-xmark"></i>
     </button>
@@ -819,43 +846,46 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
+<div class="fixed bottom-4 right-4 bg-darkCard border border-terracotta/30 text-parchment p-3 rounded-2xl shadow-2xl z-50 transition-all transform translate-y-24 opacity-0 max-w-xs text-xs font-semibold tracking-wide" id="toast">
+  Item added successfully!
+</div>
+
 <!-- ================= SYSTEM SCRIPTS & BUSINESS LOGIC ================= -->
 <script>
-// Static Coffee Catalog derived explicitly from Print Flyers image_700523.jpg & image_79f20c.jpg
 let masterProducts = [
-  // COFFEE & DRIPS
+  // COFFEE & DRIPS (Flyer page 1)
   { id: 'c1', name: 'Freshly Brewed Coffee', price: 3.00, category: 'coffee', desc: 'Fresh local house roast, includes 1 free refill from coffee bar.' },
   { id: 'c2', name: 'Pour Over Coffee', price: 4.20, category: 'coffee', desc: 'Hand-brewed, fresh single cup of premium origin coffee.' },
   { id: 'c3', name: 'Nitro Cold Brew', price: 6.00, category: 'coffee', desc: 'Creamy nitrogen-infused local cold brew served chilled.' },
   { id: 'c4', name: 'Palomino Signature Brew', price: 7.00, category: 'coffee', desc: 'Nitro cold brew custom styled with gourmet vanilla and half & half.' },
   { id: 'c5', name: 'Red Eye Shot', price: 4.30, category: 'coffee', desc: 'Double shot of house espresso topped with rich brewed coffee.' },
   
-  // SIGNATURE DRINKS
-  { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, category: 'signature', desc: 'Double espresso, velvet steamed milk, chocolate, vanilla, and sweet Muddy Pond Sorghum syrup.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=400' },
-  { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400' },
-  { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=400' },
+  // SIGNATURE DRINKS (Flyer page 1) - Best premium images matching image_7b52ed.jpg
+  { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, category: 'signature', desc: 'Double espresso, velvet steamed milk, chocolate, vanilla, and sweet Muddy Pond Sorghum syrup.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=400', badge: 'Best Seller' },
+  { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400', badge: 'Barista Recommendation' },
+  { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=400', badge: 'Signature Classic' },
   
-  // ESPRESSO TRADITIONAL
+  // ESPRESSO TRADITIONAL (Flyer page 1)
   { id: 'e1', name: 'Espresso Double Shot', price: 3.30, category: 'espresso', desc: 'Perfectly extracted, rich-bodied local espresso blend.' },
   { id: 'e2', name: 'Caffe Latte', price: 5.00, category: 'espresso', desc: 'Espresso double shot over steamed milk with thin microfoam layer.' },
   { id: 'e3', name: 'Cortado Glass', price: 4.10, category: 'espresso', desc: 'Equal parts extracted espresso and velvet steamed whole milk.' },
   { id: 'e4', name: 'Classic Cappuccino', price: 4.20, category: 'espresso', desc: 'Double espresso with generous textured steamed foam caps.' },
   { id: 'e5', name: 'Vienna Frappe', price: 6.30, category: 'espresso', desc: 'Blended icy frappe with espresso, syrup flavors of choice, and real whipped cream.' },
   
-  // TEAS & OTHERS
+  // TEAS & OTHERS (Flyer page 1)
   { id: 't1', name: 'Matcha Premium Latte', price: 5.80, category: 'tea-more', desc: 'Premium ground Japanese green tea leaves with steamed milk.' },
   { id: 't2', name: 'London Fog Earl Grey', price: 5.50, category: 'tea-more', desc: 'Steeped Earl Grey tea, warm steamed milk, and vanilla infusion.' },
   { id: 't3', name: 'Assorted Gourmet Teas', price: 3.20, category: 'tea-more', desc: 'Choose from green, jasmine, peppermint, or black tea blends.' },
   { id: 't4', name: 'Kombucha Tap / Can', price: 5.00, category: 'tea-more', desc: 'Refreshing probiotic carbonated craft tea from the local brewery.' },
 
-  // BREAKFAST BITES
-  { id: 'b1', name: 'Quiche Slice Special', price: 6.00, category: 'breakfast', desc: 'Choose Ham & Cheddar or rotating vegetarian spinach, tomato, and feta quiche.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400' },
-  { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&q=80&w=400' },
+  // BREAKFAST BITES (Flyer page 2)
+  { id: 'b1', name: 'Quiche Slice Special', price: 6.00, category: 'breakfast', desc: 'Choose Ham & Cheddar or rotating vegetarian spinach, tomato, and feta quiche.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400', badge: 'Fresh Baked' },
+  { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&q=80&w=400', badge: 'Local Favorite' },
   { id: 'b3', name: 'Smoked Salmon Keto Bowl', price: 12.00, category: 'breakfast', desc: 'Cold smoked salmon with organic capers, 2 eggs made to order, and fresh red onions on fresh baby spinach.', img: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400' },
   { id: 'b4', name: 'Breakfast Sandwich Biscuit', price: 6.75, category: 'breakfast', desc: 'Two fried eggs, rich cheddar cheese, and bacon or sausage on your choice of croissant or butter biscuit.' },
   
-  // SANDWICHES & LUNCH
-  { id: 'l1', name: 'Smoked Salmon Bagel Box', price: 13.00, category: 'lunch', desc: 'Smoked wild salmon, toasted bagel with cream cheese, cucumber slices, and hard-boiled egg.', img: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400' },
+  // SANDWICHES & LUNCH (Flyer page 2)
+  { id: 'l1', name: 'Smoked Salmon Bagel Box', price: 13.00, category: 'lunch', desc: 'Smoked wild salmon, toasted bagel with cream cheese, cucumber slices, and hard-boiled egg.', img: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400', badge: 'Premium Pick' },
   { id: 'l2', name: 'Turkey Pesto Panini', price: 13.00, category: 'lunch', desc: 'Smoked premium turkey breast, rich basil pesto aioli, cheddar cheese, sliced tomato, spinach on sourdough.' },
   { id: 'l3', name: 'BLT Traditional Panini', price: 12.00, category: 'lunch', desc: 'Thick hickory-smoked bacon strips, fresh lettuce leaves, sliced tomato, and mayo on crusty sourdough bread.' },
   { id: 'l4', name: 'Mandarin Cranberry Walnut Salad', price: 10.00, category: 'lunch', desc: 'Fresh spinach base with mandarin oranges, rich feta cheese crumbles, craisans, and walnuts, served with sweet balsamic vinaigrette.' }
@@ -944,10 +974,15 @@ function filterCategory(categoryName) {
 }
 
 function renderBistroMenu() {
-  const container = document.getElementById('dynamic-menu-grid');
-  if (!container) return;
-  container.innerHTML = '';
+  const carouselContainer = document.getElementById('premium-carousel');
+  const compactListContainer = document.getElementById('compact-product-list');
+  const carouselTitleEl = document.getElementById('carousel-title');
+  
+  if (!carouselContainer || !compactListContainer) return;
+  carouselContainer.innerHTML = '';
+  compactListContainer.innerHTML = '';
 
+  // Filter full items first
   const filtered = masterProducts.filter(item => {
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
     const matchesSearch = item.name.toLowerCase().includes(currentSearch.toLowerCase()) || 
@@ -956,7 +991,8 @@ function renderBistroMenu() {
   });
 
   if (filtered.length === 0) {
-    container.innerHTML = `
+    carouselContainer.innerHTML = `<div class="text-neutralMuted py-4 text-xs font-mono pl-2">No specialties matching that query.</div>`;
+    compactListContainer.innerHTML = `
       <div class="col-span-full text-center py-12 text-sm text-neutralMuted font-mono">
         No culinary items found matching that query.
       </div>
@@ -964,40 +1000,93 @@ function renderBistroMenu() {
     return;
   }
 
-  filtered.forEach(item => {
-    const card = document.createElement('article');
-    card.className = 'app-card p-4 flex flex-col justify-between shadow-sm';
+  // Split into Carousel (Items with image urls) & List items (remaining)
+  // For 'all' category, we specifically pull our premium signature drinks/items.
+  let featuredSpecialties = [];
+  let otherListings = [];
+
+  if (selectedCategory === 'all') {
+    carouselTitleEl.innerText = "Featured Signatures";
+    featuredSpecialties = filtered.filter(item => item.img && item.category === 'signature');
+    otherListings = filtered.filter(item => !featuredSpecialties.includes(item));
+  } else {
+    carouselTitleEl.innerText = "Top Recommendations";
+    // For specific tabs, make any item with an image featured, or the first 2 matching items
+    featuredSpecialties = filtered.filter(item => item.img);
+    if (featuredSpecialties.length === 0) {
+      // fallback to first 2 if none have images
+      featuredSpecialties = filtered.slice(0, 2);
+    }
+    otherListings = filtered.filter(item => !featuredSpecialties.includes(item));
+  }
+
+  // 1. Render Carousel (Vertical Elegant Cards from image_7b52ed.jpg)
+  if (featuredSpecialties.length === 0) {
+    carouselContainer.innerHTML = `<div class="text-neutralMuted py-4 text-xs font-mono pl-2">No specialties active.</div>`;
+  } else {
+    featuredSpecialties.forEach(item => {
+      const carouselCard = document.createElement('div');
+      carouselCard.className = 'w-64 flex-shrink-0 bg-darkCard border border-terracotta/25 rounded-3xl overflow-hidden p-3 flex flex-col justify-between snap-center shadow-lg transition-all hover:scale-[1.02]';
+      
+      const imageMarkup = item.img ? `
+        <div class="relative h-44 rounded-2xl overflow-hidden mb-3.5 bg-espresso/30">
+          ${item.badge ? `<span class="absolute top-2 left-2 bg-espresso text-parchment font-mono text-[9px] uppercase px-2 py-0.5 rounded shadow z-10 border border-terracotta/20">${item.badge}</span>` : ''}
+          <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full">
+        </div>
+      ` : `
+        <div class="relative h-32 rounded-2xl flex items-center justify-center mb-3.5 bg-espresso/50 border border-terracotta/10 text-center">
+          <span class="font-serif italic text-neutralMuted text-xs">Vienna Selected Specialty</span>
+        </div>
+      `;
+
+      carouselCard.innerHTML = `
+        <div>
+          ${imageMarkup}
+          <h4 class="font-serif font-bold text-white text-base leading-snug mb-1 truncate">${item.name}</h4>
+          <p class="text-[11px] text-neutralMuted leading-normal h-12 overflow-hidden line-clamp-3">${item.desc}</p>
+        </div>
+        <div class="pt-3 border-t border-terracotta/15 flex justify-between items-center mt-3">
+          <span class="text-terracotta font-mono font-bold text-base">$${item.price.toFixed(2)}</span>
+          <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-9 h-9 rounded-full bg-terracotta text-white flex items-center justify-center hover:bg-terracotta/90 transition-all shadow" title="Add to Order">
+            <i class="fa-solid fa-plus text-xs"></i>
+          </button>
+        </div>
+      `;
+      carouselContainer.appendChild(carouselCard);
+    });
+  }
+
+  otherListings.forEach(item => {
+    const listRow = document.createElement('div');
+    listRow.className = 'bg-darkCard/80 hover:bg-darkCard border border-terracotta/15 p-3 rounded-2xl flex items-center justify-between gap-3 shadow-sm transition-all hover:-translate-y-0.5';
     
-    // Check if the item has an image, otherwise use a clean, sophisticated typographical placeholder
-    const imageBlock = item.img ? `
-      <div class="relative h-40 rounded-xl overflow-hidden mb-3.5 bg-espresso/5 border border-terracotta/10">
-        ${item.badge ? `<span class="absolute top-2 left-2 bg-espresso text-parchment font-mono text-[9px] uppercase px-2 py-0.5 rounded shadow z-10">${item.badge}</span>` : ''}
+    const thumbnailMarkup = item.img ? `
+      <div class="w-16 h-16 rounded-xl overflow-hidden bg-espresso/30 flex-shrink-0">
         <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" loading="lazy">
       </div>
     ` : `
-      <div class="relative h-20 rounded-xl flex items-center justify-center mb-3 bg-espresso/40 border border-terracotta/10">
-        ${item.badge ? `<span class="absolute top-2 left-2 bg-espresso text-parchment font-mono text-[9px] uppercase px-2 py-0.5 rounded shadow">${item.badge}</span>` : ''}
-        <span class="font-serif italic text-neutralMuted text-xs">Vienna Gourmet Specialty</span>
+      <div class="w-16 h-16 rounded-xl bg-espresso flex items-center justify-center flex-shrink-0 border border-terracotta/10">
+        <i class="fa-solid fa-mug-hot text-terracotta text-sm"></i>
       </div>
     `;
 
-    card.innerHTML = `
-      <div>
-        ${imageBlock}
-        <div class="flex justify-between items-baseline gap-2 mb-1">
-          <h4 class="font-serif font-bold text-white text-sm sm:text-base leading-tight">${item.name}</h4>
-          <span class="text-terracotta font-mono font-bold text-sm">$${item.price.toFixed(2)}</span>
+    listRow.innerHTML = `
+      <div class="flex items-center gap-3 overflow-hidden">
+        ${thumbnailMarkup}
+        <div class="overflow-hidden">
+          <h4 class="font-serif font-bold text-white text-sm leading-tight truncate">${item.name}</h4>
+          <p class="text-[11px] text-neutralMuted leading-relaxed truncate max-w-xs">${item.desc}</p>
+          <span class="text-[9px] font-mono tracking-wide text-terracotta/80 uppercase block mt-0.5">${item.category}</span>
         </div>
-        <p class="text-xs text-neutralMuted leading-relaxed">${item.desc}</p>
       </div>
-      <div class="pt-4 border-t border-terracotta/10 mt-4 flex justify-between items-center">
-        <span class="text-[10px] uppercase font-mono tracking-wider text-neutralMuted">${item.category}</span>
-        <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-1.5 px-3 rounded-xl flex items-center gap-1 transition-all">
-          <i class="fa-solid fa-plus text-[10px]"></i> Order
+      <div class="flex items-center gap-2.5">
+        <span class="text-terracotta font-mono font-bold text-sm">$${item.price.toFixed(2)}</span>
+        <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-7 h-7 rounded-full bg-darkAccent border border-terracotta/40 text-terracotta flex items-center justify-center hover:bg-terracotta hover:text-white transition-all shadow-sm">
+          <i class="fa-solid fa-plus text-[10px]"></i>
         </button>
       </div>
     `;
-    container.appendChild(card);
+    compactListContainer.appendChild(listRow);
   });
 }
 
@@ -1126,7 +1215,7 @@ function closeReservationTicket() {
   document.getElementById('sheet-backdrop').classList.remove('active');
 }
 
-// --- Timplahan Brew Lab Customizer Logic ---
+// --- Brew Lab Customizer Logic ---
 function calculateCustomPrice() {
   const baseSelect = document.getElementById('builder-base');
   const chosenOption = baseSelect.options[baseSelect.selectedIndex];
@@ -1187,7 +1276,6 @@ function addCustomBuildToCart() {
   openSidebarCart();
 }
 
-// --- Community Wall & Dynamic Polaroid Render ---
 function renderVibeBoard() {
   const container = document.getElementById('polaroid-canvas-grid');
   if (!container) return;
@@ -1208,33 +1296,25 @@ function renderVibeBoard() {
     const frame = document.createElement('div');
 
     if (photo) {
-      frame.className = 'polaroid cursor-pointer rounded-xl';
+      frame.className = 'polaroid cursor-pointer rounded-2xl w-full max-w-[170px] mx-auto';
       frame.style.transform = `rotate(${randomAngle}deg)`;
       frame.innerHTML = `
-        <div class="polaroid-inner" style="aspect-ratio: 500/550">
-          <div class="polaroid-front">
-            <span class="pin"></span>
-            <div class="polaroid-photo rounded overflow-hidden aspect-square">
-              <img src="${photo.image}" alt="Community user upload pinned to board" class="w-full h-full object-cover">
-            </div>
-            <div class="mt-3 text-center">
-              <p class="font-hand font-bold text-terracotta text-lg">@${photo.handle}</p>
-              <p class="font-serif italic text-[11px] text-accentLight -mt-1 truncate">${photo.drink}</p>
-            </div>
-          </div>
+        <div class="relative w-full aspect-square overflow-hidden rounded-xl bg-espresso border border-terracotta/10">
+          <img src="${photo.image}" alt="Community user upload pinned to board" class="w-full h-full object-cover">
+        </div>
+        <div class="mt-3 text-center overflow-hidden">
+          <p class="font-serif font-bold text-terracotta text-xs truncate">@${photo.handle}</p>
+          <p class="text-[9px] text-accentLight -mt-0.5 truncate leading-tight">${photo.drink}</p>
         </div>
       `;
     } else {
-      frame.className = 'polaroid empty-slot cursor-pointer rounded-xl';
+      frame.className = 'polaroid empty-slot cursor-pointer rounded-2xl w-full max-w-[170px] mx-auto';
       frame.style.transform = `rotate(${randomAngle}deg)`;
       frame.innerHTML = `
-        <div class="polaroid-inner" onclick="openUploadSheet()" style="aspect-ratio: 500/550">
-          <div class="polaroid-front flex flex-col justify-center items-center h-full min-h-[200px] border-2 border-dashed border-terracotta/40 bg-espresso/30 rounded-xl">
-            <span class="pin"></span>
-            <i class="fa-solid fa-camera text-2xl text-terracotta animate-bounce mb-2"></i>
-            <p class="font-hand text-lg text-parchment font-bold">Waiting Slot</p>
-            <p class="text-[9px] uppercase font-mono tracking-wider text-neutralMuted">Click to post your vibe</p>
-          </div>
+        <div onclick="openUploadSheet()" class="flex flex-col justify-center items-center w-full aspect-square border border-dashed border-terracotta/40 bg-espresso/30 rounded-xl">
+          <i class="fa-solid fa-camera text-xl text-terracotta animate-bounce mb-1"></i>
+          <p class="font-serif text-xs text-parchment font-bold">Post Vibe</p>
+          <p class="text-[8px] uppercase font-mono tracking-wider text-neutralMuted">Open Space</p>
         </div>
       `;
     }
@@ -1256,6 +1336,7 @@ function closeUploadSheet() {
 const fileInput = document.getElementById('file-input');
 const previewImg = document.getElementById('preview-img');
 const dropzone = document.getElementById('dropzone');
+const placeholder = document.getElementById('dropzone-placeholder');
 
 fileInput.addEventListener('change', (e) => {
   const file = e.target.files[0];
@@ -1263,7 +1344,8 @@ fileInput.addEventListener('change', (e) => {
     const reader = new FileReader();
     reader.onload = (evt) => {
       previewImg.src = evt.target.result;
-      dropzone.classList.add('has-file');
+      previewImg.classList.remove('hidden');
+      placeholder.classList.add('hidden');
     };
     reader.readAsDataURL(file);
   }
@@ -1271,7 +1353,8 @@ fileInput.addEventListener('change', (e) => {
 
 function applyPresetVibe(url) {
   previewImg.src = url;
-  dropzone.classList.add('has-file');
+  previewImg.classList.remove('hidden');
+  placeholder.classList.add('hidden');
   showToastNotification("Curated cafe preset vibe applied!");
 }
 
@@ -1298,7 +1381,8 @@ vibeUploadForm.addEventListener('submit', (e) => {
   // Reset & close
   vibeUploadForm.reset();
   previewImg.src = '';
-  dropzone.classList.remove('has-file');
+  previewImg.classList.add('hidden');
+  placeholder.classList.remove('hidden');
   closeUploadSheet();
 
   showToastNotification("Successfully pinned to the legends board! 📌");
@@ -1382,9 +1466,9 @@ function renderCMSPhotosList() {
     const row = document.createElement('div');
     row.className = 'flex items-center justify-between gap-3 p-2 bg-espresso rounded border border-terracotta/15 text-xs shadow-sm';
     row.innerHTML = `
-      <div class="flex items-center gap-3">
-        <img src="${photo.image}" class="w-10 h-10 object-cover rounded-xl">
-        <div>
+      <div class="flex items-center gap-3 overflow-hidden">
+        <img src="${photo.image}" class="w-10 h-10 object-cover rounded-xl flex-shrink-0">
+        <div class="overflow-hidden">
           <div class="flex items-center gap-1.5">
             <span class="font-bold text-white">@${photo.handle}</span>
             <span class="text-[8px] font-mono uppercase px-1 rounded ${isExpired ? 'bg-red-900/40 text-red-400' : 'bg-green-900/40 text-green-400'}">
@@ -1430,14 +1514,14 @@ function renderCMSProductsList() {
     const row = document.createElement('div');
     row.className = 'flex items-center justify-between gap-2 p-2 bg-espresso rounded border border-terracotta/15 text-xs shadow-sm';
     row.innerHTML = `
-      <div class="flex items-center gap-2">
-        ${item.img ? `<img src="${item.img}" class="w-8 h-8 object-cover rounded-xl">` : `<div class="w-8 h-8 bg-darkCard rounded-xl flex items-center justify-center text-[10px] text-neutralMuted"><i class="fa-solid fa-mug-hot"></i></div>`}
-        <div>
-          <span class="font-serif font-bold text-white leading-none block">${item.name}</span>
+      <div class="flex items-center gap-2 overflow-hidden">
+        ${item.img ? `<img src="${item.img}" class="w-8 h-8 object-cover rounded-xl flex-shrink-0">` : `<div class="w-8 h-8 bg-darkCard rounded-xl flex items-center justify-center text-[10px] text-neutralMuted flex-shrink-0"><i class="fa-solid fa-mug-hot"></i></div>`}
+        <div class="overflow-hidden">
+          <span class="font-serif font-bold text-white leading-none block truncate max-w-[160px]">${item.name}</span>
           <span class="text-[9px] text-terracotta font-mono font-bold">$${item.price.toFixed(2)}</span>
         </div>
       </div>
-      <div class="flex gap-2">
+      <div class="flex gap-2 flex-shrink-0">
         <button onclick="openProductEditForm('${item.id}')" class="text-white hover:text-terracotta p-1"><i class="fa-solid fa-pen-to-square"></i></button>
         <button onclick="deleteProductFromCMS('${item.id}')" class="text-terracotta hover:text-red-400 p-1"><i class="fa-solid fa-trash"></i></button>
       </div>
@@ -1513,7 +1597,7 @@ crudForm.addEventListener('submit', (e) => {
 // --- Gamified Virtual Stamp Card System ---
 function claimMysteryStamp() {
   if (stampCount >= 5) {
-    showToastNotification("🏆 Coupon UNLOCKED: 'VIENNA99' for 15% off!");
+    showToastNotification("🏆 Reward code UNLOCKED: VIENNA99!");
     return;
   }
   
@@ -1526,26 +1610,31 @@ function claimMysteryStamp() {
     icon.classList.add('text-terracotta', 'scale-125');
   }
 
-  showToastNotification(`Stamp claimed! (${stampCount}/5) Salamat!`);
-  
-  if (stampCount === 5) {
-    document.getElementById('stamp-hint').innerHTML = "🏆 REWARD UNLOCKED! Use online checkout code: <strong class='text-terracotta'>VIENNA99</strong> for 15% off!";
-  }
+  showToastNotification(`Stamp claimed! (${stampCount}/5)`);
 }
 
 // --- Global Toast Notification Utility ---
 function showToastNotification(message) {
   const toast = document.getElementById('toast');
   toast.innerText = message;
-  toast.classList.add('show');
+  toast.classList.remove('translate-y-24', 'opacity-0');
+  toast.classList.add('translate-y-0', 'opacity-100');
+  
   setTimeout(() => {
-    toast.classList.remove('show');
+    toast.classList.remove('translate-y-0', 'opacity-100');
+    toast.classList.add('translate-y-24', 'opacity-0');
   }, 3500);
 }
 </script>
 
 <!-- Virtual Coupon Stamp Card Element injected dynamically -->
-<div class="toast" id="toast">Order bag updated successfully!</div>
+<div class="hidden">
+  <div class="stamp-slot"><i class="fa-solid fa-star text-transparent transition-all"></i></div>
+  <div class="stamp-slot"><i class="fa-solid fa-star text-transparent transition-all"></i></div>
+  <div class="stamp-slot"><i class="fa-solid fa-star text-transparent transition-all"></i></div>
+  <div class="stamp-slot"><i class="fa-solid fa-star text-transparent transition-all"></i></div>
+  <div class="stamp-slot"><i class="fa-solid fa-star text-transparent transition-all"></i></div>
+</div>
 
 </body>
 </html>
