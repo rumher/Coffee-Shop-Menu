@@ -8,19 +8,27 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <!-- Primary SEO Meta Tags for Pour Decisions -->
-<title>Pour Decisions — Premium Roasted Coffee, European Pastries & Cozy Lounge</title>
-<meta name="title" content="Pour Decisions — Premium Roasted Coffee, European Pastries & Cozy Lounge">
-<meta name="description" content="Indulge in Muddy Pond Mocha, Viennese Waltz, and artisan breakfast boards. Pre-order online, join the local wall, and book our signature study rooms.">
-<meta name="keywords" content="Pour Decisions, Specialty coffee Maryville, Muddy Pond Mocha, Viennese Waltz, Salmon Bagel, artisan bakery">
+<title>Pour Decisions — Premium Specialty Coffee, Artisan Bistro & Community Hub</title>
+<meta name="title" content="Pour Decisions — Premium Specialty Coffee, Artisan Bistro & Community Hub">
+<meta name="description" content="Experience Maryville's finest specialty roastery. Savor Muddy Pond Mocha, Viennese Waltz, fresh breakfast wraps, and custom paninis. Pre-order online for rapid pickup.">
+<meta name="keywords" content="Pour Decisions, Specialty coffee Maryville TN, Muddy Pond Mocha, Viennese Waltz, artisan bakery, coffee shop near me, local lounge, Maryville TN bistro">
 <meta name="robots" content="index, follow">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Pour Decisions — Premium Specialty Drinks & Bistro Menu">
-<meta property="og:description" content="Pre-order freshly brewed espresso, premium lattes, and quiche slices. Experience Maryville's finest specialty roastery.">
+<meta property="og:url" content="https://pourdecisionsmaryville.com/">
+<meta property="og:title" content="Pour Decisions — Premium Specialty Coffee & Artisan Bistro">
+<meta property="og:description" content="Savor hand-roasted espresso, gourmet paninis, and European pastries. Pre-order online, collect loyalty stamps, and reserve private lounge nooks.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1200">
 
-<!-- JSON-LD Structured Data for Local Restaurant / Cafe -->
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://pourdecisionsmaryville.com/">
+<meta property="twitter:title" content="Pour Decisions — Specialty Roastery & Cozy Lounge">
+<meta property="twitter:description" content="Savor hand-roasted espresso, gourmet paninis, and European pastries. Pre-order online, collect loyalty stamps, and reserve private lounge nooks.">
+<meta property="twitter:image" content="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1200">
+
+<!-- JSON-LD Structured Data for Local Restaurant / Cafe SEO -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -31,6 +39,7 @@
   "url": "https://pourdecisionsmaryville.com/",
   "telephone": "+18659808282",
   "priceRange": "$$ ($3 - $15)",
+  "servesCuisine": "Specialty Coffee, Tea, Artisan Bakery, Bistro lunch",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "212 College Street",
@@ -49,7 +58,11 @@
     "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     "opens": "07:00",
     "closes": "15:00"
-  }
+  },
+  "sameAs": [
+    "https://www.instagram.com/pourdecisionscoffee",
+    "https://www.facebook.com/pourdecisionscoffee"
+  ]
 }
 </script>
 
@@ -65,7 +78,7 @@
 
 <style>
 :root {
-  /* Default Cozy Dark Mode colors */
+  /* Default Deep Roasted Espresso Dark Mode colors */
   --espresso: #150A08;
   --darkCard: #231511;
   --terracotta: #C67C4E;
@@ -83,7 +96,7 @@
 }
 
 :root.light-mode {
-  /* Elegant Cozy Light Mode colors with high-fidelity readability and contrast */
+  /* Elegant Cozy Light Mode colors for high-fidelity readability and contrast */
   --espresso: #2C1A11;
   --darkCard: #FFFFFF;
   --terracotta: #C67C4E;
@@ -104,14 +117,12 @@
 html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-tap-highlight-color:transparent}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:120px;transition: background-color 0.3s ease, color 0.3s ease;}
 button{font-family:inherit;cursor:pointer;background:0 0;border:none}
-input,select,textarea{font-family:inherit}
 img{max-width:100%;display:block}
 :focus-visible{outline:2px solid var(--terracotta);outline-offset:2px}
 
 /* High Fidelity Visual Texturing */
 .grain{pointer-events:none;opacity:.025;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")}
 
-/* Pattern matching the image_7b52ed.jpg */
 .app-card {
   background-color: var(--card);
   border: 1px solid var(--border);
@@ -125,7 +136,6 @@ img{max-width:100%;display:block}
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Tab Pills styled exactly as image_7b52ed.jpg */
 .nav-tab-btn {
   transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
   border-radius: 12px;
@@ -136,7 +146,7 @@ img{max-width:100%;display:block}
   box-shadow: 0 4px 14px rgba(198, 124, 78, 0.4);
 }
 
-/* Customized scrollbar for high-end look */
+/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -149,7 +159,6 @@ img{max-width:100%;display:block}
   border-radius: 99px;
 }
 
-/* Hide scrollbar utility */
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
@@ -158,17 +167,78 @@ img{max-width:100%;display:block}
   scrollbar-width: none;
 }
 
-/* Modal Drawer Pull-ups with Hardware Acceleration */
-.sheet-backdrop{position:fixed;inset:0;background:rgba(21, 10, 8, 0.5);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:90;will-change:opacity}
-.sheet-backdrop.active{opacity:1;pointer-events:auto}
+/* High fidelity blurred glassmorphism overlays */
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 7, 6, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 90;
+  will-change: opacity;
+}
+.sheet-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
 
-.sheet{position:fixed;left:0;right:0;bottom:0;max-height:88vh;background:var(--card);border: 1px solid var(--border);border-radius:24px 24px 0 0;transform:translateY(100%);transition:transform .4s cubic-bezier(.32,.72,0,1), background-color 0.3s ease;z-index:95;display:flex;flex-direction:column;box-shadow:0 -12px 50px rgba(0,0,0,0.3);will-change:transform}
-.sheet.active{transform:translateY(0)}
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 88vh;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px 24px 0 0;
+  transform: translateY(100%);
+  transition: transform .4s cubic-bezier(.32,.72,0,1), background-color 0.3s ease;
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -12px 50px rgba(0,0,0,0.45);
+  will-change: transform;
+}
+.sheet.active {
+  transform: translateY(0);
+}
 
-.sheet-handle{width:40px;height:4px;background:rgba(198,124,78,0.3);border-radius:2px;margin:12px auto 8px}
-.sheet-content{padding:0 24px 24px;overflow-y:auto;flex-grow:1}
-.sheet-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,0.05);display:flex;align-items:center;justify-content:center;color:var(--text);font-size:16px;transition:background-color 0.2s, color 0.2s}
-.sheet-close:hover{background:rgba(198,124,78,0.2);color:var(--text-heading)}
+.sheet-handle {
+  width: 40px;
+  height: 4px;
+  background: rgba(198,124,78,0.35);
+  border-radius: 2px;
+  margin: 12px auto 8px;
+}
+.sheet-content {
+  padding: 0 24px 24px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+.sheet-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  font-size: 16px;
+  z-index: 99;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+.sheet-close:hover {
+  background: rgba(198,124,78,0.25);
+  color: var(--text-heading);
+  transform: scale(1.08);
+}
 
 @media (min-width: 768px) {
   .sheet {
@@ -192,15 +262,30 @@ img{max-width:100%;display:block}
   }
 }
 
-/* Announcement Overlay */
-.promo-modal{position:fixed;inset:0;z-index:110;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity 0.3s ease;will-change:opacity}
-.promo-modal.active{opacity:1;pointer-events:auto}
+/* Announcement Overlay with Blurred Backdrop */
+.promo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+}
+.promo-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
 
-/* Polaroid Styles */
+/* Polaroid Canvas */
 .polaroid {
   background: var(--card);
   padding: 12px 12px 28px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   border: 1px solid var(--border);
   transition: transform 0.3s ease, background-color 0.3s ease;
   will-change: transform;
@@ -215,21 +300,30 @@ img{max-width:100%;display:block}
   transform: scale(1.05);
 }
 
-/* Smooth Accordion Height Transitions */
+/* Accordion Smooth Height */
 .accordion-content {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
 }
 .accordion-content.expanded {
-  max-height: 1000px; /* high fallback value for smooth transition */
+  max-height: 1000px;
+}
+
+/* Embedded Google Maps container styles */
+.map-responsive {
+  overflow:hidden;
+  position:relative;
+  height:0;
+  border-radius:18px;
+  border: 1px solid var(--border);
 }
 </style>
 </head>
 <body class="bg-appBg text-appText flex flex-col min-h-screen">
 
 <!-- High-fidelity custom texture layout overlay -->
-<div class="grain fixed inset-0 z-50 pointer-events-none"></div>
+<div class="grain fixed inset-0 z-50 pointer-events-none" aria-hidden="true"></div>
 
 <!-- Backdrops -->
 <div class="sheet-backdrop" id="sheet-backdrop"></div>
@@ -255,20 +349,17 @@ img{max-width:100%;display:block}
       <button onclick="switchPage('heritage')" class="nav-tab-btn px-3 py-2 text-[11px] tracking-wider uppercase text-neutralMuted" id="tab-heritage">Our Heritage</button>
     </nav>
 
-    <!-- Header Actions (Cart count, Theme toggle and Admin trigger) -->
+    <!-- Header Actions (Theme toggle, Cart, and Admin trigger) -->
     <div class="flex items-center gap-2">
       <!-- Theme Toggle Switcher -->
       <button onclick="toggleTheme()" class="p-2 text-terracotta hover:text-terracotta/80 transition-all rounded-xl" id="theme-toggle-btn" aria-label="Toggle Light/Dark Theme">
         <i class="fa-solid fa-moon text-base" id="theme-toggle-icon"></i>
       </button>
-      <button onclick="openFlyerModal()" class="border border-terracotta/40 text-terracotta text-[10px] py-1.5 px-3 rounded-xl hover:bg-terracotta hover:text-white transition-all font-semibold" title="View actual print menu board">
-        <i class="fa-solid fa-map"></i> <span class="hidden sm:inline">Original Menu Board</span>
-      </button>
       <button onclick="openSidebarCart()" class="relative p-2 text-terracotta hover:text-terracotta/80 transition-all" aria-label="Shopping Cart">
         <i class="fa-solid fa-bag-shopping text-xl"></i>
         <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow animate-pulse" id="desktop-cart-badge">0</span>
       </button>
-      <button onclick="openCMSPanel()" class="text-neutralMuted hover:text-terracotta p-1 rounded transition-all text-sm" aria-label="Manage content">
+      <button onclick="openCMSPanel()" class="text-neutralMuted hover:text-terracotta p-1 rounded transition-all text-sm" aria-label="Open CMS panel">
         <i class="fa-solid fa-lock"></i>
       </button>
     </div>
@@ -290,7 +381,7 @@ img{max-width:100%;display:block}
         <span class="bg-terracotta/10 text-terracotta font-mono text-xs uppercase px-3 py-1 rounded-full border border-terracotta/35">Est. Maryville, TN</span>
         <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">Every cup, a beautiful mistake.</h2>
         <p class="text-sm text-accentLight leading-relaxed">
-          Order premium freshly-roasted coffee, European artisan pastries, and signature bistro lunches for rapid local curbside pick-up.
+          Order premium freshly-roasted specialty coffee, European artisan pastries, and signature bistro lunches for rapid local curbside pick-up.
         </p>
         <div class="flex flex-wrap gap-3 pt-2">
           <button onclick="scrollIntoSection('menu-categories')" class="bg-terracotta hover:bg-terracotta/90 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-all shadow-md">Browse Catalog</button>
@@ -639,6 +730,26 @@ img{max-width:100%;display:block}
         </div>
       </div>
     </div>
+
+    <!-- Google Maps Location Module directly centered in Heritage view for extreme local SEO authority -->
+    <div class="max-w-4xl mx-auto space-y-4 pt-6 border-t border-appBorder">
+      <div class="text-center">
+        <h3 class="font-serif text-xl font-bold text-appHeading">Find Our Cozy Sanctuary</h3>
+        <p class="text-xs text-neutralMuted">212 College Street, Maryville, TN 37804 | Phone: (865) 980-8282</p>
+      </div>
+      <div class="map-responsive h-64 sm:h-80 w-full">
+        <!-- Secure Embedded Google Maps focusing directly on the College Street location in Maryville -->
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0x885ea2c6326e5e8f%3A0xc3f58eef7be3be28!2s212%20College%20St%2C%20Maryville%2C%20TN%2037804!5m2!1sen!2sus" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
   </section>
 
 </main>
@@ -680,31 +791,7 @@ img{max-width:100%;display:block}
 
 <!-- ================= MODALS & OVERLAYS ================= -->
 
-<!-- 1. Flyer PDF/Board Image Overlay Gallery (Referencing provided images verbatim) -->
-<div class="sheet" id="flyer-sheet" role="dialog" aria-modal="true" aria-labelledby="flyer-title">
-  <div class="sheet-handle"></div>
-  <button class="sheet-close" onclick="closeFlyerModal()" aria-label="Close flyer overlay"><i class="fa-solid fa-xmark"></i></button>
-  <div class="sheet-content">
-    <h3 class="font-serif text-xl font-bold text-appHeading mb-1" id="flyer-title">Original Print Menus</h3>
-    <p class="text-xs text-neutralMuted mb-4">View the high-resolution board layouts from downtown College Street.</p>
-    
-    <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-1">
-      <div class="border border-terracotta/30 rounded-2xl overflow-hidden p-1 bg-appBg">
-        <span class="text-[10px] font-mono font-bold block mb-1 text-appText uppercase text-center bg-appCard py-1 rounded-t-xl">Beverage Board Flyer</span>
-        <img src="image_700523.jpg" alt="Pour Decisions Drink Menu image_700523.jpg" class="w-full rounded-xl">
-      </div>
-      <div class="border border-terracotta/30 rounded-2xl overflow-hidden p-1 bg-appBg">
-        <span class="text-[10px] font-mono font-bold block mb-1 text-appText uppercase text-center bg-appCard py-1 rounded-t-xl">Food Board Flyer</span>
-        <img src="image_79f20c.jpg" alt="Pour Decisions Food Menu image_79f20c.jpg" class="w-full rounded-xl">
-      </div>
-    </div>
-    <div class="mt-4 pt-4 border-t border-appBorder">
-      <button onclick="closeFlyerModal()" class="w-full bg-appBg text-appText py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all border border-terracotta/30">Close Flyer View</button>
-    </div>
-  </div>
-</div>
-
-<!-- 2. Shopping Cart Slide Drawer -->
+<!-- 1. Shopping Cart Slide Drawer -->
 <div class="sheet" id="cart-sheet" role="dialog" aria-modal="true" aria-labelledby="cart-title">
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeSidebarCart()" aria-label="Close Shopping Cart"><i class="fa-solid fa-xmark"></i></button>
@@ -728,7 +815,7 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<!-- 3. Dynamic Seating Entry Pass Passport -->
+<!-- 2. Dynamic Seating Entry Pass Passport -->
 <div class="sheet" id="ticket-sheet" role="dialog" aria-modal="true">
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeReservationTicket()" aria-label="Close entry ticket"><i class="fa-solid fa-xmark"></i></button>
@@ -775,7 +862,7 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<!-- 4. Community Upload Form Drawer -->
+<!-- 3. Community Upload Form Drawer -->
 <div class="sheet" id="upload-sheet" role="dialog" aria-modal="true" aria-labelledby="upload-title">
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeUploadSheet()" aria-label="Close upload menu"><i class="fa-solid fa-xmark"></i></button>
@@ -824,7 +911,7 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<!-- 5. Secure Hidden-Passcode Admin CMS Sheet -->
+<!-- 4. Secure Hidden-Passcode Admin CMS Sheet -->
 <div class="sheet" id="admin-cms-sheet" role="dialog" aria-modal="true" aria-labelledby="cms-panel-title">
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeCMSPanel()" aria-label="Close CMS Window"><i class="fa-solid fa-xmark"></i></button>
@@ -850,10 +937,13 @@ img{max-width:100%;display:block}
     <div id="cms-authenticated-view" class="hidden space-y-4">
       <div class="flex border-b border-appBorder mb-4 text-xs font-bold">
         <button class="flex-1 pb-2 text-terracotta border-b-2 border-terracotta" id="tab-cms-photos" onclick="switchCMSTab('photos')">
-          📸 Uploaded Photos
+          📸 Uploads
         </button>
         <button class="flex-1 pb-2 text-neutralMuted border-b-2 border-transparent" id="tab-cms-products" onclick="switchCMSTab('products')">
-          ☕ Products Catalog
+          ☕ Products
+        </button>
+        <button class="flex-1 pb-2 text-neutralMuted border-b-2 border-transparent" id="tab-cms-analytics" onclick="switchCMSTab('analytics')">
+          📊 Telemetry
         </button>
       </div>
 
@@ -871,11 +961,31 @@ img{max-width:100%;display:block}
           <!-- JS dynamic lists -->
         </div>
       </div>
+
+      <!-- CMS Sub-Panel 3: Real-Time Event Telemetry Dashboard -->
+      <div id="cms-analytics-subview" class="space-y-4 hidden max-h-[50vh] overflow-y-auto font-mono text-[10px] text-accentLight bg-appBg p-4 rounded-xl border border-appBorder">
+        <div class="grid grid-cols-2 gap-2 text-center text-xs font-bold text-appHeading pb-2 border-b border-appBorder">
+          <div class="bg-appCard p-2 rounded border border-appBorder">
+            <span class="text-[9px] text-neutralMuted uppercase block">Conversions</span>
+            <span id="telemetry-conversions-count" class="text-terracotta text-base">0</span>
+          </div>
+          <div class="bg-appCard p-2 rounded border border-appBorder">
+            <span class="text-[9px] text-neutralMuted uppercase block">Stamps Claimed</span>
+            <span id="telemetry-stamps-count" class="text-terracotta text-base">0</span>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold text-appHeading mb-2 uppercase">Real-Time Event Logs</h4>
+          <div id="telemetry-logs-wrapper" class="space-y-1 max-h-[25vh] overflow-y-auto">
+            <!-- Dynamically logged telemetry events -->
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- 6. CMS Product Modification Sub-Modal -->
+<!-- 5. CMS Product Modification Sub-Modal -->
 <div class="sheet" id="product-modal-sheet" role="dialog" aria-modal="true">
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeProductEditForm()"><i class="fa-solid fa-xmark"></i></button>
@@ -924,9 +1034,10 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<!-- 7. Premium Launch "New Arrival" Promotion Popup -->
+<!-- 6. Premium Launch "New Arrival" Promotion Popup with Blurred Backdrop -->
 <div class="promo-modal" id="promo-modal" role="dialog" aria-modal="true">
-  <div class="fixed inset-0 bg-espresso/80 backdrop-blur-sm" onclick="closePromoModal()"></div>
+  <!-- Dynamic click-dismiss overlay utilizing ultra premium backdrop blur -->
+  <div class="fixed inset-0 bg-[#150A08]/80 backdrop-blur-md transition-opacity duration-300" onclick="closePromoModal()"></div>
   <div class="relative bg-appCard border border-terracotta max-w-sm w-full rounded-3xl overflow-hidden shadow-2xl z-10 mx-4 transition-colors">
     <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-espresso/40 text-white flex items-center justify-center font-bold hover:bg-espresso/60 transition-all z-20" onclick="closePromoModal()">
       <i class="fa-solid fa-xmark"></i>
@@ -956,6 +1067,36 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
+<!-- 7. Premium QR Menu Upgrade Suggestion Modal (Triggers at exactly 40 seconds) -->
+<div class="promo-modal" id="qr-upgrade-modal" role="dialog" aria-modal="true">
+  <div class="fixed inset-0 bg-[#150A08]/85 backdrop-blur-md transition-opacity duration-300" onclick="closeQrUpgradeModal()"></div>
+  <div class="relative bg-appCard border border-terracotta max-w-md w-full rounded-3xl overflow-hidden shadow-2xl z-50 mx-4 transition-colors p-6 sm:p-8 space-y-6">
+    <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-espresso/40 text-appText flex items-center justify-center font-bold hover:bg-espresso/60 transition-all z-20" onclick="closeQrUpgradeModal()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="text-center space-y-3">
+      <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-terracotta/20 text-terracotta text-3xl mb-1">
+        <i class="fa-solid fa-qrcode"></i>
+      </div>
+      <h3 class="font-serif text-2xl font-bold text-appHeading">Upgrade to a Premium Digital Menu System</h3>
+      <p class="text-xs text-accentLight leading-relaxed">
+        Loved the fluid transitions, interactive customizer, live feedback board, and responsive dark/light mode designs in this app? This is a preview of our premium <strong>Interactive QR Menu & Digital Ordering Ecosystem</strong>.
+      </p>
+      <p class="text-[11px] text-neutralMuted leading-relaxed">
+        Elevate your restaurant, bistro, or cafe operations with synchronized online checkout, live kitchen display integrations, real-time analytics dashboards, and contactless QR-table scans.
+      </p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-2.5 pt-2">
+      <button onclick="contactForQrUpgrade()" class="flex-grow bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-3 px-4 rounded-xl transition-all shadow text-center">
+        Get Your Custom QR Menu Build
+      </button>
+      <button onclick="closeQrUpgradeModal()" class="bg-darkAccent border border-terracotta/25 hover:bg-terracotta/10 text-terracotta text-xs font-bold py-3 px-4 rounded-xl transition-all text-center">
+        Maybe Later
+      </button>
+    </div>
+  </div>
+</div>
+
 <div class="fixed bottom-4 right-4 bg-appCard border border-terracotta/30 text-appText p-3 rounded-2xl shadow-2xl z-50 transition-all transform translate-y-24 opacity-0 max-w-xs text-xs font-semibold tracking-wide" id="toast">
   Item added successfully!
 </div>
@@ -963,6 +1104,34 @@ img{max-width:100%;display:block}
 <!-- ================= SYSTEM SCRIPTS & BUSINESS LOGIC ================= -->
 <script>
 const dom = {};
+// Real-time custom analytical log arrays
+let telemetryConversions = 0;
+let telemetryStamps = 0;
+const telemetryLogs = [];
+
+function logTelemetryEvent(eventName, eventDetails) {
+  const timestamp = new Date().toLocaleTimeString();
+  const logMessage = `[${timestamp}] ${eventName}: ${JSON.stringify(eventDetails)}`;
+  telemetryLogs.unshift(logMessage);
+
+  if (eventName === 'checkout_confirmed' || eventName === 'promo_added_to_order' || eventName === 'qr_upgrade_cta_clicked') {
+    telemetryConversions++;
+  } else if (eventName === 'loyalty_stamp_claimed') {
+    telemetryStamps++;
+  }
+
+  // Live render to CMS telemetry panels if unlocked
+  const conversionsLabel = document.getElementById('telemetry-conversions-count');
+  const stampsLabel = document.getElementById('telemetry-stamps-count');
+  const logsWrapper = document.getElementById('telemetry-logs-wrapper');
+
+  if (conversionsLabel) conversionsLabel.innerText = telemetryConversions;
+  if (stampsLabel) stampsLabel.innerText = telemetryStamps;
+  if (logsWrapper) {
+    logsWrapper.innerHTML = telemetryLogs.map(log => `<div class="py-1 border-b border-appBorder/40">${log}</div>`).join('');
+  }
+}
+
 function initDOMCache() {
   dom.menuSearch = document.getElementById('menu-search');
   dom.premiumCarousel = document.getElementById('premium-carousel');
@@ -995,6 +1164,7 @@ function toggleTheme() {
       themeIcon.className = 'fa-solid fa-sun text-base text-terracotta';
     }
     showToastNotification("Theme switched to Light Boutique Mode ☕");
+    logTelemetryEvent('theme_toggled', { theme: 'light' });
   } else {
     root.classList.remove('light-mode');
     currentTheme = 'dark';
@@ -1002,6 +1172,7 @@ function toggleTheme() {
       themeIcon.className = 'fa-solid fa-moon text-base text-terracotta';
     }
     showToastNotification("Theme switched to Espresso Dark Mode 🌙");
+    logTelemetryEvent('theme_toggled', { theme: 'dark' });
   }
   // Re-render components that have dynamic inline templates referencing colors
   renderBistroMenu();
@@ -1023,7 +1194,7 @@ let masterProducts = [
   // COFFEE & DRIPS (Flyer page 1)
   { id: 'c1', name: 'Freshly Brewed Coffee', price: 3.00, category: 'coffee', desc: 'Fresh local house roast, includes 1 free refill from coffee bar.', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400' },
   { id: 'c2', name: 'Pour Over Coffee', price: 4.20, category: 'coffee', desc: 'Hand-brewed, fresh single cup of premium origin coffee.', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400' },
-  { id: 'c3', name: 'Nitro Cold Brew', price: 6.00, category: 'coffee', desc: 'Creamy nitrogen-infused local cold brew served chilled.', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400' },
+  { id: 'c3', name: 'Nitro Cold Brew', price: 5.50, category: 'coffee', desc: 'Creamy nitrogen-infused local cold brew served chilled.', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400' },
   { id: 'c4', name: 'Palomino Signature Brew', price: 7.00, category: 'coffee', desc: 'Nitro cold brew custom styled with gourmet vanilla and half & half.', img: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&q=80&w=400' },
   { id: 'c5', name: 'Red Eye Shot', price: 4.30, category: 'coffee', desc: 'Double shot of house espresso topped with rich brewed coffee.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400' },
   
@@ -1097,6 +1268,7 @@ window.onload = function() {
     dom.menuSearch.addEventListener('input', debounce(function(e) {
       currentSearch = e.target.value;
       renderBistroMenu();
+      logTelemetryEvent('catalog_searched', { query: currentSearch });
     }, 200));
   }
 
@@ -1104,6 +1276,11 @@ window.onload = function() {
   setTimeout(() => {
     openPromoModal();
   }, 1500);
+
+  // Launch Premium QR Menu Promotion after exactly 40 seconds of site exploration
+  setTimeout(() => {
+    openQrUpgradeModal();
+  }, 40000);
 };
 
 function switchPage(pageId) {
@@ -1135,6 +1312,7 @@ function switchPage(pageId) {
   if (activeMobileTab) activeMobileTab.classList.add('text-terracotta');
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  logTelemetryEvent('page_navigated', { page: pageId });
 }
 
 function scrollIntoSection(id) {
@@ -1145,6 +1323,7 @@ function scrollIntoSection(id) {
 // --- Promo Modal Controls ---
 function openPromoModal() {
   document.getElementById('promo-modal').classList.add('active');
+  logTelemetryEvent('promo_modal_opened', {});
 }
 function closePromoModal() {
   document.getElementById('promo-modal').classList.remove('active');
@@ -1153,6 +1332,21 @@ function addPromoToOrder() {
   addItemToCart('s3', 'Viennese Waltz', 5.80);
   closePromoModal();
   openSidebarCart();
+  logTelemetryEvent('promo_added_to_order', { id: 's3', name: 'Viennese Waltz' });
+}
+
+// --- Premium QR Upgrade Modal Controls ---
+function openQrUpgradeModal() {
+  document.getElementById('qr-upgrade-modal').classList.add('active');
+  logTelemetryEvent('qr_upgrade_modal_opened', {});
+}
+function closeQrUpgradeModal() {
+  document.getElementById('qr-upgrade-modal').classList.remove('active');
+}
+function contactForQrUpgrade() {
+  closeQrUpgradeModal();
+  showToastNotification("Contact simulated! Upgrade proposal triggered. 🚀");
+  logTelemetryEvent('qr_upgrade_cta_clicked', {});
 }
 
 // --- Menu Rendering & Category Filters ---
@@ -1171,6 +1365,7 @@ function filterCategory(categoryName) {
   }
   
   renderBistroMenu();
+  logTelemetryEvent('category_filtered', { category: categoryName });
 }
 
 function renderBistroMenu() {
@@ -1320,6 +1515,7 @@ function addItemToCart(id, name, price) {
   }
   syncCartUI();
   showToastNotification(`Added ${name} to your Order Bag!`);
+  logTelemetryEvent('item_added_to_cart', { id, name, price });
 }
 
 function removeOneFromCart(id) {
@@ -1332,6 +1528,7 @@ function removeOneFromCart(id) {
     }
   }
   syncCartUI();
+  logTelemetryEvent('item_removed_from_cart', { id });
 }
 
 function syncCartUI() {
@@ -1386,6 +1583,7 @@ function syncCartUI() {
 function openSidebarCart() {
   document.getElementById('cart-sheet').classList.add('active');
   document.getElementById('sheet-backdrop').classList.add('active');
+  logTelemetryEvent('cart_opened', {});
 }
 function closeSidebarCart() {
   document.getElementById('cart-sheet').classList.remove('active');
@@ -1395,6 +1593,7 @@ function closeSidebarCart() {
 function triggerCheckoutCheckout() {
   closeSidebarCart();
   showToastNotification("Pre-order confirmed! We'll notify you when it's ready.");
+  logTelemetryEvent('checkout_confirmed', { cartSize: cart.length });
   cart = [];
   syncCartUI();
 }
@@ -1409,6 +1608,7 @@ function selectReserveZone(element, name, description) {
     zoneBtns[i].classList.remove('selected', 'border-terracotta');
   }
   element.classList.add('selected', 'border-terracotta');
+  logTelemetryEvent('lounge_zone_selected', { zone: name });
 }
 
 const reservationForm = document.getElementById('reserve-bistro-form');
@@ -1427,6 +1627,7 @@ reservationForm.addEventListener('submit', (e) => {
   document.getElementById('ticket-sheet').classList.add('active');
   document.getElementById('sheet-backdrop').classList.add('active');
 
+  logTelemetryEvent('reservation_created', { name: holder, guests, time, zone: selectedLoungeZone });
   reservationForm.reset();
 });
 
@@ -1496,6 +1697,7 @@ function addCustomBuildToCart() {
   
   addItemToCart('custom-' + Date.now(), customName, customPrice);
   openSidebarCart();
+  logTelemetryEvent('custom_mix_added_to_cart', { name: customName, price: customPrice });
 }
 
 function renderVibeBoard() {
@@ -1611,6 +1813,7 @@ if (vibeUploadForm) {
     closeUploadSheet();
 
     showToastNotification("Successfully pinned to the legends board! 📌");
+    logTelemetryEvent('vibe_pinned', { handle: handle, item: orderedItem });
   });
 }
 
@@ -1666,20 +1869,10 @@ if (suggestionsForm) {
 
     suggestionsForm.reset();
     showToastNotification("Feedback received and queued for review! 🛡️");
+    logTelemetryEvent('feedback_submitted', { user, topic });
   });
 }
 
-// --- Flyer Modal Controls ---
-function openFlyerModal() {
-  document.getElementById('flyer-sheet').classList.add('active');
-  document.getElementById('sheet-backdrop').classList.add('active');
-}
-function closeFlyerModal() {
-  document.getElementById('flyer-sheet').classList.remove('active');
-  document.getElementById('sheet-backdrop').classList.remove('active');
-}
-
-// --- CMS Panel Administration (Password: pour, barako or vienna) ---
 function openCMSPanel() {
   document.getElementById('admin-cms-sheet').classList.add('active');
   document.getElementById('sheet-backdrop').classList.add('active');
@@ -1703,8 +1896,10 @@ function verifyAdministrativePasscode() {
     showToastNotification("Authorized Access Approved! 🛡️");
     renderCMSPhotosList();
     renderCMSProductsList();
+    logTelemetryEvent('cms_authenticated', { success: true });
   } else {
     showToastNotification("Invalid Passcode. Access Denied.");
+    logTelemetryEvent('cms_authenticated', { success: false });
   }
 }
 
@@ -1712,19 +1907,30 @@ function verifyAdministrativePasscode() {
 function switchCMSTab(tabName) {
   const pBtn = document.getElementById('tab-cms-photos');
   const prodBtn = document.getElementById('tab-cms-products');
+  const analytBtn = document.getElementById('tab-cms-analytics');
+  
   const photosContainer = document.getElementById('cms-photos-subview');
   const productsContainer = document.getElementById('cms-products-subview');
+  const analytContainer = document.getElementById('cms-analytics-subview');
+
+  // Reset states
+  pBtn.className = "flex-1 pb-2 text-neutralMuted border-b-2 border-transparent";
+  prodBtn.className = "flex-1 pb-2 text-neutralMuted border-b-2 border-transparent";
+  analytBtn.className = "flex-1 pb-2 text-neutralMuted border-b-2 border-transparent";
+  
+  photosContainer.classList.add('hidden');
+  productsContainer.classList.add('hidden');
+  analytContainer.classList.add('hidden');
 
   if (tabName === 'photos') {
     pBtn.className = "flex-1 pb-2 text-terracotta border-b-2 border-terracotta";
-    prodBtn.className = "flex-1 pb-2 text-neutralMuted border-b-2 border-transparent";
     photosContainer.classList.remove('hidden');
-    productsContainer.classList.add('hidden');
-  } else {
+  } else if (tabName === 'products') {
     prodBtn.className = "flex-1 pb-2 text-terracotta border-b-2 border-terracotta";
-    pBtn.className = "flex-1 pb-2 text-neutralMuted border-b-2 border-transparent";
     productsContainer.classList.remove('hidden');
-    photosContainer.classList.add('hidden');
+  } else {
+    analytBtn.className = "flex-1 pb-2 text-terracotta border-b-2 border-terracotta";
+    analytContainer.classList.remove('hidden');
   }
 }
 
@@ -1773,6 +1979,7 @@ function deleteVibePhoto(id) {
   renderCMSPhotosList();
   renderVibeBoard();
   showToastNotification("Memory removed from corkboard gallery!");
+  logTelemetryEvent('vibe_removed_by_admin', { id });
 }
 
 function renderCMSProductsList() {
@@ -1808,6 +2015,7 @@ function deleteProductFromCMS(id) {
   renderCMSProductsList();
   renderBistroMenu();
   showToastNotification("Catalog item removed from menu!");
+  logTelemetryEvent('product_deleted_by_admin', { id });
 }
 
 function openProductEditForm(id = '') {
@@ -1856,9 +2064,11 @@ if (crudForm) {
     if (id) {
       masterProducts = masterProducts.map(p => p.id === id ? payload : p);
       showToastNotification("Catalog item updated successfully!");
+      logTelemetryEvent('product_updated_by_admin', { id, name });
     } else {
       masterProducts.push(payload);
       showToastNotification("New catalog option published to menu!");
+      logTelemetryEvent('product_added_by_admin', { name, category });
     }
 
     closeProductEditForm();
@@ -1884,6 +2094,7 @@ function claimMysteryStamp() {
   }
 
   showToastNotification(`Stamp claimed! (${stampCount}/5)`);
+  logTelemetryEvent('loyalty_stamp_claimed', { count: stampCount });
 }
 
 // --- Global Toast Notification Utility ---
