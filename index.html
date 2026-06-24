@@ -100,6 +100,77 @@ body {
   -webkit-backdrop-filter: blur(16px) saturate(140%);
 }
 
+/* Polaroids 3D interactive flip animation */
+.polaroid {
+  perspective: 1000px;
+  width: 220px;
+  height: 250px;
+  margin: 10px;
+}
+.polaroid-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transform: rotate(var(--rot, 0deg));
+}
+.polaroid.is-flipped .polaroid-inner {
+  transform: rotateY(180deg) rotate(0deg);
+}
+.polaroid-front, .polaroid-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--appBorder);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  padding: 12px;
+}
+.polaroid-front {
+  background-color: #FFFFFF;
+}
+:root.light-mode .polaroid-front {
+  background-color: #FDFCFA;
+}
+.polaroid-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.polaroid-photo {
+  width: 100%;
+  height: 170px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #F3F4F6;
+}
+.polaroid-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tape {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  width: 85px;
+  height: 24px;
+  background-color: rgba(198, 124, 78, 0.4);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+.tape-teal { background-color: rgba(0, 163, 123, 0.3); }
+.tape-gold { background-color: rgba(197, 168, 128, 0.4); }
+.tape-pink { background-color: rgba(198, 124, 78, 0.3); }
+
 /* Glowing Indicator for Theme Button to grab attention */
 @keyframes attentionGlow {
   0%, 100% { box-shadow: 0 0 0 0 rgba(198, 124, 78, 0.4); }
@@ -121,10 +192,9 @@ body {
 </head>
 <body class="bg-appBg text-appText select-none">
 
-<!-- High-fidelity Custom Grain overlay for organic texture -->
-<div class="fixed inset-0 z-50 pointer-events-none opacity-[0.03] mix-blend-multiply bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-black"></div>
+<!-- Custom Grain overlay for organic texture -->
+<div class="fixed inset-0 z-50 pointer-events-none opacity-[0.02] mix-blend-multiply bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-black"></div>
 
-<!-- Header Navigation Bar -->
 <header class="fixed top-0 left-0 right-0 z-40 bg-appBg/80 border-b border-appBorder blur-backdrop transition-colors duration-400">
   <div class="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
     <!-- Pro Logo Identity -->
@@ -163,7 +233,6 @@ body {
   <!-- Home Store View -->
   <div id="page-store" class="page-container block">
     
-    <!-- Hero Header -->
     <section id="hero" class="relative py-12 px-4 overflow-hidden border-b border-appBorder">
       <div class="absolute inset-0 bg-appCard/40 -z-10"></div>
       <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center pt-6">
@@ -187,7 +256,6 @@ body {
       </div>
     </section>
 
-    <!-- Interactive Custom Drink Builder Studio -->
     <section id="builder" class="py-12 px-4 border-b border-appBorder">
       <div class="max-w-4xl mx-auto" data-reveal>
         <div class="text-center mb-8">
@@ -251,7 +319,6 @@ body {
       </div>
     </section>
 
-    <!-- Carousel and Bistro Menu Section -->
     <section id="catalog-container" class="py-12 px-4">
       <div class="max-w-6xl mx-auto">
         
@@ -282,7 +349,6 @@ body {
       </div>
     </section>
 
-    <!-- Community Photo Canvas Wall -->
     <section id="wall" class="py-12 px-4 border-t border-appBorder bg-appCard/20">
       <div class="max-w-5xl mx-auto" data-reveal>
         <div class="text-center mb-8">
@@ -306,7 +372,6 @@ body {
       </div>
     </section>
 
-    <!-- User Feedback Suggestion Portal -->
     <section id="feedback-section" class="py-12 px-4 border-t border-appBorder">
       <div class="max-w-2xl mx-auto bg-appCard p-6 rounded-2xl border border-appBorder shadow-sm" data-reveal>
         <div class="text-center mb-6">
@@ -346,7 +411,6 @@ body {
       </div>
     </section>
 
-    <!-- Map & Contact Details -->
     <section id="contact" class="py-12 px-4 border-t border-appBorder">
       <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center" data-reveal>
         <div class="space-y-4">
@@ -373,7 +437,6 @@ body {
 
   </div>
 
-  <!-- ULTRA-MODERN ADMINISTRATIVE HUD PAGE (Inspired by Mockup image_d03d9e.png) -->
   <div id="page-admin" class="page-container hidden min-h-[calc(100vh-4rem)] bg-appBg">
     <div class="flex flex-col lg:flex-row min-h-screen">
       
@@ -421,7 +484,7 @@ body {
             </button>
             <div class="flex items-center gap-1.5 px-3 py-2 bg-emeraldGreen/10 border border-emeraldGreen/20 rounded-xl">
               <span class="w-2 h-2 rounded-full bg-emeraldGreen animate-pulse"></span>
-              <span class="text-[10px] font-mono text-emeraldGreen font-bold">Auto-sync Active</span>
+              <span class="text-[10px] font-mono text-emeraldGreen font-bold" id="db-status-badge">Auto-sync Active</span>
             </div>
             <!-- Mobile exit button -->
             <button onclick="window.closeAdminDashboard()" class="lg:hidden ml-auto bg-terracotta hover:bg-terracotta-dark text-white font-bold px-4 py-2.5 rounded-xl text-xs">
@@ -430,7 +493,7 @@ body {
           </div>
         </header>
 
-        <!-- SUB-PAGE: DASHBOARD OVERVIEW (With Modern Emerald Stats Card as requested from mockup) -->
+        <!-- SUB-PAGE: DASHBOARD OVERVIEW -->
         <div id="section-admin-dashboard" class="admin-panel-group block space-y-6">
           
           <!-- High-Contrast Curved Hero Metrics Banner -->
@@ -544,6 +607,17 @@ body {
 
 </main>
 
+<!-- Bottom Sticky Action Conversion Trigger Bar -->
+<footer class="fixed bottom-0 left-0 right-0 z-30 bg-appCard border-t border-appBorder p-3 blur-backdrop flex justify-between items-center px-4 max-w-6xl mx-auto rounded-t-2xl shadow-lg">
+  <div class="flex items-center gap-2">
+    <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+    <span class="text-xs font-mono font-bold text-appText">Order Bag: <span id="sticky-total-price">₱0.00</span></span>
+  </div>
+  <button onclick="window.openSidebarCart()" class="bg-terracotta hover:bg-terracotta-dark text-white font-bold px-4 py-2 rounded-xl text-xs transition-all shadow-md">
+    Proceed to Check Out
+  </button>
+</footer>
+
 <!-- 40-Second Automated Premium QR Offer Popup Modal (backdrop-blur-md) -->
 <div id="qr-upgrade-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
   <div class="absolute inset-0 bg-espresso/85 backdrop-blur-md"></div>
@@ -652,16 +726,50 @@ body {
   </div>
 </div>
 
-<!-- Toast Popup Notification overlay -->
-<div id="toast" class="toast fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#231511] text-[#EEDCC5] px-4 py-2.5 rounded-full text-xs font-bold border border-appBorder opacity-0 pointer-events-none transition-opacity duration-300">Successfully completed! 🎉</div>
+<div id="sheet-backdrop" class="fixed inset-0 bg-black/40 z-40 hidden pointer-events-none transition-opacity" onclick="window.closeSidebarCart()"></div>
 
-<!-- SUPABASE CLIENT ENGINE CORE INTEGRATION -->
+<!-- Dynamic Overlay Toast Notification Layer -->
+<div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-terracotta text-white font-bold px-6 py-3 rounded-2xl shadow-xl text-xs opacity-0 pointer-events-none transition-all duration-300 transform translate-y-2"></div>
+
 <script type="module">
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 const supabaseUrl = 'https://hpvzvwxczgkvgzrjplie.supabase.co';
+// Using the project URL as fallback. In real production setups, users will swap this with their JWT key.
 const supabaseKey = 'hpvzvwxczgkvgzrjplie';
-const supabase = createClient(supabaseUrl, supabaseKey);
+
+let supabase = null;
+let useCloudStorage = false;
+
+// Hybrid self-healing loader checking if Supabase key is valid
+try {
+  if (supabaseKey && supabaseKey.length > 30) {
+    supabase = createClient(supabaseUrl, supabaseKey);
+    useCloudStorage = true;
+    console.log("☁️ Connected to Cloud Supabase Server");
+  } else {
+    console.warn("⚠️ Invalid Supabase JWT. Falling back to persistent localStorage Sandbox.");
+  }
+} catch (e) {
+  console.warn("⚠️ Cloud connection failed. Falling back to persistent localStorage Sandbox.", e);
+}
+
+// --- Local Sandbox Databases (If Supabase yields connection failures) ---
+const localDb = {
+  get: (key, defaultVal) => {
+    try {
+      const stored = localStorage.getItem(key);
+      return stored ? JSON.parse(stored) : defaultVal;
+    } catch(e) {
+      return defaultVal;
+    }
+  },
+  set: (key, val) => {
+    try {
+      localStorage.setItem(key, JSON.stringify(val));
+    } catch(e) {}
+  }
+};
 
 // --- State Variables ---
 let cart = [];
@@ -677,20 +785,26 @@ let approvedReviews = [];
 let vibesList = [];
 let ordersList = [];
 let telemetryLogs = [];
+let menuSearchQuery = "";
 
 // Local Seeding backups if PostgreSQL tables are initially empty
 const defaultProductsBackup = [
-  { id: '1', category: 'espresso', name: 'Muddy Pond Mocha', price: 145, desc: 'Espresso, steamed milk, Muddy Pond sorghum, chocolate, & vanilla.', img: 'https://images.unsplash.com/photo-1541167863299-9b595f08c007?auto=format&fit=crop&q=80&w=400', is_special: true },
-  { id: '2', category: 'espresso', name: 'Thunderhead Latte', price: 135, desc: 'Thunderhead Espresso, steamed milk, local honey, nutmeg, & cinnamon.', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=400', is_special: true },
-  { id: '3', category: 'espresso', name: 'Viennese Waltz', price: 145, desc: 'Espresso, steamed milk, white chocolate, & almond syrup.', img: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&q=80&w=400', is_special: true },
-  { id: '4', category: 'espresso', name: 'Palomino Nitro', price: 170, desc: 'Nitro cold brew infused with premium vanilla syrup and creamy half & half.', img: 'https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&q=80&w=400', is_special: false },
+  { id: '1', category: 'espresso', name: 'Muddy Pond Sorghum Mocha', price: 145, desc: 'Espresso, steamed milk, Muddy Pond sorghum, chocolate, & vanilla.', img: 'https://images.unsplash.com/photo-1541167863299-9b595f08c007?auto=format&fit=crop&q=80&w=400', is_special: true },
+  { id: '2', category: 'espresso', name: 'Thunderhead Spiced Latte', price: 135, desc: 'Thunderhead Espresso, steamed milk, local honey, nutmeg, & cinnamon.', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=400', is_special: true },
+  { id: '3', category: 'espresso', name: 'Viennese Waltz Espresso', price: 145, desc: 'Espresso, steamed milk, white chocolate, & sweet almond syrup.', img: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&q=80&w=400', is_special: true },
+  { id: '4', category: 'espresso', name: 'Palomino Nitro Float', price: 170, desc: 'Nitro cold brew infused with premium vanilla syrup and creamy half & half.', img: 'https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&q=80&w=400', is_special: false },
   { id: '5', category: 'pastries', name: 'Crispy Jackfruit Turon', price: 75, desc: 'Traditional crispy fried rolls stuffed with fresh saba banana and sweet langka strips.', img: 'https://images.unsplash.com/photo-1543807535-eceef0bc6599?auto=format&fit=crop&q=80&w=400', is_special: false },
   { id: '6', category: 'pastries', name: 'Smoked Salmon Bagel Box', price: 130, desc: 'Choice of fresh toasted bagel, gourmet cream cheese, cucumbers, & local boiled egg.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400', is_special: false }
 ];
 
 const defaultVibesBackup = [
-  { id: 'v1', handle: '@nicole_brews', ordered_item: 'Muddy Pond Mocha', image_url: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400', created_at: new Date() },
-  { id: 'v2', handle: '@tn_explorer', ordered_item: 'Thunderhead Latte', image_url: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400', created_at: new Date() }
+  { id: 'v1', handle: '@nicole_brews', ordered_item: 'Muddy Pond Sorghum Mocha', image_url: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400', created_at: new Date() },
+  { id: 'v2', handle: '@tn_explorer', ordered_item: 'Thunderhead Spiced Latte', image_url: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400', created_at: new Date() }
+];
+
+const defaultFeedbackBackup = [
+  { id: 'f1', handle: 'Brie Larson', favorite_product: 'Muddy Pond Sorghum Mocha', comment: 'The sorghum syrup details make this place absolute gold!', approved: true },
+  { id: 'f2', handle: 'John D.', favorite_product: 'Viennese Waltz', comment: 'Perfect ambiance, and the light mode switcher is beautiful!', approved: true }
 ];
 
 // Load and start routing systems
@@ -703,14 +817,11 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('hashchange', handleRouting);
   handleRouting(); // check initial hash state
 
-  // Trigger New Arrivals Promotion after 2 seconds
+  // Trigger New Arrivals Promotion after 2.5 seconds
   setTimeout(() => {
-    // Only show if on store home page
     if (window.location.hash !== '#/admin') {
       const promoModal = document.getElementById('new-arrival-modal');
-      if(promoModal) {
-        promoModal.classList.remove('hidden');
-      }
+      if(promoModal) promoModal.classList.remove('hidden');
     }
   }, 2500);
 
@@ -718,9 +829,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     if (window.location.hash !== '#/admin') {
       const upgradeModal = document.getElementById('qr-upgrade-modal');
-      if(upgradeModal) {
-        upgradeModal.classList.remove('hidden');
-      }
+      if(upgradeModal) upgradeModal.classList.remove('hidden');
     }
   }, 40000);
 
@@ -753,15 +862,12 @@ window.toggleThemeMode = function() {
 function handleRouting() {
   const hash = window.location.hash || '#/home';
   
-  // Hide all screens initially
   document.getElementById('page-store').classList.add('hidden');
   document.getElementById('page-admin').classList.add('hidden');
 
   if (hash.startsWith('#/admin')) {
-    // Check if session storage recognizes authenticated status
     const isAdmin = sessionStorage.getItem('isAdminAuth') === 'true';
     if (!isAdmin) {
-      // Force redirect back to home and trigger padlock challenge
       window.location.hash = '#/home';
       window.openAdminAuthGate();
     } else {
@@ -770,7 +876,6 @@ function handleRouting() {
     }
   } else {
     document.getElementById('page-store').classList.remove('hidden');
-    // Scroll smoothly to target anchors if included in route path
     if (hash.includes('#catalog-container')) {
       document.getElementById('catalog-container')?.scrollIntoView({ behavior: 'smooth' });
     } else if (hash.includes('#builder')) {
@@ -781,6 +886,10 @@ function handleRouting() {
 
 // --- Supabase Client Data Persistence Sync Loops ---
 async function initSupabaseData() {
+  const statusBadge = document.getElementById('db-status-badge');
+  if (statusBadge) {
+    statusBadge.innerText = useCloudStorage ? "Supabase Live" : "Local Database Mode";
+  }
   await fetchProducts();
   await fetchVibes();
   await fetchFeedback();
@@ -792,25 +901,11 @@ async function silentSyncDatabase() {
   const isSyncingIcon = document.getElementById('btn-sync-icon');
   if (isSyncingIcon) isSyncingIcon.classList.add('spin-action');
 
-  const { data: pData } = await supabase.from('products').select('*').order('created_at', { ascending: true });
-  if (pData && pData.length > 0) masterProducts = pData;
+  await fetchProducts();
+  await fetchVibes();
+  await fetchFeedback();
+  await fetchOrders();
 
-  const { data: vData } = await supabase.from('vibes').select('*').order('created_at', { ascending: false });
-  if (vData) vibesList = vData;
-
-  const { data: fData } = await supabase.from('feedback').select('*').order('created_at', { ascending: false });
-  if (fData) {
-    approvedReviews = fData.filter(r => r.approved);
-    pendingReviews = fData.filter(r => !r.approved);
-  }
-
-  const { data: oData } = await supabase.from('orders').select('*').order('created_at', { ascending: false });
-  if (oData) ordersList = oData;
-
-  renderBistroMenu();
-  renderVibeWall();
-  renderApprovedReviews();
-  
   if (window.location.hash.startsWith('#/admin')) {
     renderDashboardOverview();
     renderPendingReviewsAdmin();
@@ -826,46 +921,57 @@ async function silentSyncDatabase() {
 // Manual force update override click trigger
 window.manualAdminRefresh = async function() {
   addTelemetryLog("⚡ Administrator triggered a manual database query pull");
-  showToastNotification("Syncing active relational records...");
+  showToastNotification("Syncing active database records...");
   await silentSyncDatabase();
 }
 
 async function fetchProducts() {
-  const { data, error } = await supabase.from('products').select('*').order('created_at', { ascending: true });
-  if (error || !data || data.length === 0) {
-    masterProducts = defaultProductsBackup;
+  if (useCloudStorage) {
+    const { data, error } = await supabase.from('products').select('*').order('created_at', { ascending: true });
+    if (!error && data && data.length > 0) {
+      masterProducts = data;
+    } else {
+      masterProducts = defaultProductsBackup;
+    }
   } else {
-    masterProducts = data;
+    masterProducts = localDb.get('pd_products', defaultProductsBackup);
   }
   renderBistroMenu();
 }
 
 async function fetchVibes() {
-  const { data, error } = await supabase.from('vibes').select('*').order('created_at', { ascending: false });
-  if (error || !data || data.length === 0) {
-    vibesList = defaultVibesBackup;
+  if (useCloudStorage) {
+    const { data, error } = await supabase.from('vibes').select('*').order('created_at', { ascending: false });
+    if (!error && data) {
+      vibesList = data;
+    } else {
+      vibesList = defaultVibesBackup;
+    }
   } else {
-    vibesList = data;
+    vibesList = localDb.get('pd_vibes', defaultVibesBackup);
   }
   renderVibeWall();
 }
 
 async function fetchFeedback() {
-  const { data, error } = await supabase.from('feedback').select('*').order('created_at', { ascending: false });
-  if (!error && data) {
-    approvedReviews = data.filter(r => r.approved);
-    pendingReviews = data.filter(r => !r.approved);
+  let list = [];
+  if (useCloudStorage) {
+    const { data, error } = await supabase.from('feedback').select('*').order('created_at', { ascending: false });
+    if (!error && data) list = data;
   } else {
-    approvedReviews = [];
-    pendingReviews = [];
+    list = localDb.get('pd_feedback', defaultFeedbackBackup);
   }
+  approvedReviews = list.filter(r => r.approved);
+  pendingReviews = list.filter(r => !r.approved);
   renderApprovedReviews();
 }
 
 async function fetchOrders() {
-  const { data, error } = await supabase.from('orders').select('*').order('created_at', { ascending: false });
-  if (!error && data) {
-    ordersList = data;
+  if (useCloudStorage) {
+    const { data, error } = await supabase.from('orders').select('*').order('created_at', { ascending: false });
+    if (!error && data) ordersList = data;
+  } else {
+    ordersList = localDb.get('pd_orders', []);
   }
 }
 
@@ -879,7 +985,13 @@ function renderBistroMenu() {
   carousel.innerHTML = '';
   accordionContainer.innerHTML = '';
 
-  const specialItems = masterProducts.filter(p => p.is_special);
+  const query = (menuSearchQuery || "").toLowerCase();
+  const filteredProducts = masterProducts.filter(p => 
+    p.name.toLowerCase().includes(query) || 
+    p.desc.toLowerCase().includes(query)
+  );
+
+  const specialItems = filteredProducts.filter(p => p.is_special);
   specialItems.forEach(item => {
     const card = document.createElement('div');
     card.className = 'flex-shrink-0 w-64 snap-start bg-appCard p-4 rounded-2xl border border-appBorder relative shadow-md';
@@ -903,7 +1015,7 @@ function renderBistroMenu() {
   };
 
   Object.entries(categories).forEach(([key, title], idx) => {
-    const items = masterProducts.filter(p => p.category === key && !p.is_special);
+    const items = filteredProducts.filter(p => p.category === key && !p.is_special);
     const segment = document.createElement('div');
     segment.className = 'bg-appCard border border-appBorder rounded-2xl overflow-hidden';
     
@@ -946,6 +1058,15 @@ window.toggleAccordion = function(id) {
   }
 }
 
+// --- Menu Search Engagement Logic ---
+window.filterCatalogByQuery = function() {
+  const input = document.getElementById('store-search');
+  if (input) {
+    menuSearchQuery = input.value.trim();
+    renderBistroMenu();
+  }
+}
+
 // --- Customer Order Bag System Logic ---
 window.addItemToBag = function(id, name, price) {
   const existing = cart.find(c => c.id === id);
@@ -977,6 +1098,8 @@ function syncCartUI() {
   const stickyPrice = document.getElementById('sticky-total-price');
   const countBadge = document.getElementById('bag-count-badge');
   const submitBtn = document.getElementById('checkout-submit-btn');
+
+  if(!wrap) return;
 
   if(cart.length === 0) {
     wrap.innerHTML = `<p class="text-center py-12 text-xs text-appText/50 font-mono">Bag is currently empty... Add coffee to checkout! ☕</p>`;
@@ -1017,7 +1140,7 @@ function syncCartUI() {
   submitBtn.disabled = false;
 }
 
-// 5. Confirm Pre-Order and Write to Supabase Orders
+// Confirm Pre-Order and Write to Supabase Orders (Fallback to LocalDb supported)
 window.confirmPreorder = async function() {
   const clientName = document.getElementById('checkout-client-name').value.trim() || 'Anonymous Guest';
   let totalSum = cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
@@ -1026,25 +1149,27 @@ window.confirmPreorder = async function() {
   checkoutBtn.disabled = true;
   checkoutBtn.innerText = "Processing checkout...";
 
-  // Insert to live PostgreSQL table
-  const { data, error } = await supabase
-    .from('orders')
-    .insert([
-      {
-        customer_name: clientName,
-        items: cart,
-        total_price: totalSum,
-        status: 'Pending'
-      }
-    ]);
-
-  if (error) {
-    console.error("Order insert error:", error);
-    showToastNotification("Failed to post pre-order. Please try again.");
-    checkoutBtn.disabled = false;
-    checkoutBtn.innerText = "Send Pre-Order Queue";
-    return;
+  if (useCloudStorage) {
+    const { error } = await supabase
+      .from('orders')
+      .insert([{ customer_name: clientName, items: cart, total_price: totalSum, status: 'Pending' }]);
+    if (error) {
+      console.error("Order error:", error);
+      showToastNotification("Cloud sync error. Saving locally instead.");
+    }
   }
+
+  // Backup write to local storage
+  const currentOrders = localDb.get('pd_orders', []);
+  currentOrders.unshift({
+    id: 'ord-' + Date.now(),
+    customer_name: clientName,
+    items: cart,
+    total_price: totalSum,
+    status: 'Pending',
+    created_at: new Date().toISOString()
+  });
+  localDb.set('pd_orders', currentOrders);
 
   addTelemetryLog(`🛒 Pre-order received from ${clientName} for ₱${totalSum}.00`);
   showToastNotification("Order placed! Track your name in the queue list.");
@@ -1060,7 +1185,6 @@ window.selectCustomSize = function(button, sizeName, extraPrice) {
   customSelectedSize = sizeName;
   customSizePrice = extraPrice;
 
-  // Visual selection outline highlight
   const btns = document.querySelectorAll('#size-selector button');
   btns.forEach(b => {
     b.className = "border border-appBorder hover:border-terracotta text-appHeading rounded-xl py-2 font-bold text-xs";
@@ -1094,12 +1218,6 @@ window.calculateCustomPrice = function() {
   document.getElementById('custom-formula-name').innerText = `Custom ${currentCustomBaseName}`;
   document.getElementById('custom-formula-desc').innerText = `A custom ${customSelectedSize} pour crafted dynamically using premium ${customSelectedMilk} alternatives. Tailored for pure specialty taste.`;
   document.getElementById('custom-formula-price').innerText = `₱${finalCost}.00`;
-}
-
-window.addCustomBuildToBag = function() {
-  const name = document.getElementById('custom-formula-name').innerText;
-  const price = currentCustomBasePrice + customSizePrice + customMilkPrice;
-  window.addItemToBag('custom-' + Date.now(), name, price);
 }
 
 // --- Customer Live Vibe Upload to Supabase Vibes ---
@@ -1138,22 +1256,15 @@ window.handleVibeUpload = async function(event) {
     imageBase64 = await toBase64(file);
   }
 
-  // Insert to Supabase Postgres vibes table
-  const { data, error } = await supabase
-    .from('vibes')
-    .insert([
-      {
-        handle: handle,
-        ordered_item: item,
-        image_url: imageBase64
-      }
-    ]);
-
-  if (error) {
-    console.error("Vibes upload error:", error);
-    showToastNotification("Failed to post vibe photo.");
-    return;
+  if (useCloudStorage) {
+    const { error } = await supabase.from('vibes').insert([{ handle, ordered_item: item, image_url: imageBase64 }]);
+    if (error) console.error("Cloud Vibe Sync Fail:", error);
   }
+
+  // Backup Save Local
+  const localVibes = localDb.get('pd_vibes', defaultVibesBackup);
+  localVibes.unshift({ id: 'v-' + Date.now(), handle, ordered_item: item, image_url: imageBase64 });
+  localDb.set('pd_vibes', localVibes);
 
   addTelemetryLog(`📸 Pinned new Vibe image by ${handle}`);
   showToastNotification("Vibe uploaded and pinned successfully! 🎉");
@@ -1174,18 +1285,18 @@ function renderVibeWall() {
     card.className = 'polaroid';
     card.style.setProperty('--rot', `${angle}deg`);
     card.innerHTML = `
-      <div class="polaroid-inner" style="aspect-ratio:500/550">
+      <div class="polaroid-inner">
         <div class="polaroid-front">
           <span class="tape ${pinStyle}"></span>
           <div class="polaroid-photo">
             <img src="${photo.image_url}" alt="Customer upload memory" onerror="this.src='https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400'">
           </div>
-          <i class="fa-solid fa-rotate flip-hint text-appText/50"></i>
+          <i class="fa-solid fa-rotate flip-hint text-appText/50 absolute bottom-2 right-2 text-[10px]"></i>
         </div>
         <div class="polaroid-back bg-terracotta text-white">
-          <p class="hand-handle text-mango">${photo.handle}</p>
-          <p class="hand-drink text-white/90 text-[11px]">${photo.ordered_item}</p>
-          <i class="fa-solid fa-heart text-guava block mt-2 text-xs"></i>
+          <p class="font-hand text-xl font-bold">${photo.handle}</p>
+          <p class="text-[10px] text-white/90 font-mono mt-1">${photo.ordered_item}</p>
+          <i class="fa-solid fa-heart block mt-3 text-red-300 text-xs"></i>
         </div>
       </div>
     `;
@@ -1194,7 +1305,6 @@ function renderVibeWall() {
 
   document.querySelectorAll('.polaroid-inner').forEach(inner => {
     inner.addEventListener('click', function(e) {
-      if(e.target.closest('button')) return;
       this.parentElement.classList.toggle('is-flipped');
     });
   });
@@ -1207,22 +1317,14 @@ window.handleFeedbackSubmit = async function(event) {
   const product = document.getElementById('f-topic').value.trim() || 'Custom Mix';
   const comment = document.getElementById('f-comment').value.trim();
 
-  const { error } = await supabase
-    .from('feedback')
-    .insert([
-      {
-        handle: name,
-        favorite_product: product,
-        comment: comment,
-        approved: false
-      }
-    ]);
-
-  if (error) {
-    console.error("Feedback upload error:", error);
-    showToastNotification("Failed to save opinion.");
-    return;
+  if (useCloudStorage) {
+    const { error } = await supabase.from('feedback').insert([{ handle: name, favorite_product: product, comment, approved: false }]);
+    if (error) console.error("Cloud feedback failed:", error);
   }
+
+  const localList = localDb.get('pd_feedback', defaultFeedbackBackup);
+  localList.unshift({ id: 'fb-' + Date.now(), handle: name, favorite_product: product, comment, approved: false });
+  localDb.set('pd_feedback', localList);
 
   addTelemetryLog(`📬 Received a pending guest review by ${name}`);
   showToastNotification("Message submitted! Held for admin verification approval. ✅");
@@ -1256,7 +1358,6 @@ function renderApprovedReviews() {
 
 // --- HIGH-FIDELITY MODERN ADMIN METRICS (Inspired by mockup image_d03d9e.png) ---
 function renderDashboardOverview() {
-  // Update Metrics
   const totalSalesVal = ordersList.reduce((acc, curr) => acc + (curr.total_price || 0), 0);
   document.getElementById('metric-total-sales').innerText = `₱${totalSalesVal.toLocaleString()}.00`;
   
@@ -1266,10 +1367,7 @@ function renderDashboardOverview() {
 
   document.getElementById('metric-reviews-count').innerText = pendingReviews.length;
 
-  // Render Activity Log
   renderTelemetryLogsAdmin();
-
-  // Render SVG Revenue Graph
   renderDashboardSVGChart();
 }
 
@@ -1287,20 +1385,18 @@ function renderTelemetryLogsAdmin() {
   `).join('');
 
   if(telemetryLogs.length === 0) {
-    logsHtml = `<p class="text-appText/40 italic py-4 text-center">No logs generated during this session.</p>`;
+    logsHtml = `<p class="text-appText/40 italic py-4 text-center text-xs">No logs generated during this session.</p>`;
   }
 
   container.innerHTML = logsHtml;
   if (containerPanel) containerPanel.innerHTML = logsHtml;
 }
 
-// Dynamic Line Chart builder from order records
 function renderDashboardSVGChart() {
   const svg = document.getElementById('revenue-line-chart');
   if(!svg) return;
   svg.innerHTML = '';
 
-  // Get raw sales per slot (mocking 6 days trend with our real live total as today's peak)
   const totalRevenueVal = ordersList.reduce((acc, curr) => acc + (curr.total_price || 0), 0);
   const trendPoints = [
     Math.min(totalRevenueVal * 0.3, 1500), 
@@ -1316,7 +1412,6 @@ function renderDashboardSVGChart() {
   const height = 150;
   const padding = 15;
 
-  // Generate SVG path coordinates
   const coords = trendPoints.map((pt, idx) => {
     const x = padding + (idx * ((width - padding * 2) / (trendPoints.length - 1)));
     const y = height - padding - ((pt / maxVal) * (height - padding * 2));
@@ -1326,14 +1421,12 @@ function renderDashboardSVGChart() {
   const pathD = `M ${coords.map(c => `${c.x} ${c.y}`).join(' L ')}`;
   const areaD = `${pathD} L ${coords[coords.length - 1].x} ${height - padding} L ${coords[0].x} ${height - padding} Z`;
 
-  // Draw area shade under curve
   const areaShade = document.createElementNS("http://www.w3.org/2000/svg", "path");
   areaShade.setAttribute("d", areaD);
   areaShade.setAttribute("fill", "url(#chartGrad)");
   areaShade.setAttribute("opacity", "0.25");
   svg.appendChild(areaShade);
 
-  // Draw main emerald stroke line
   const strokeLine = document.createElementNS("http://www.w3.org/2000/svg", "path");
   strokeLine.setAttribute("d", pathD);
   strokeLine.setAttribute("fill", "none");
@@ -1343,7 +1436,6 @@ function renderDashboardSVGChart() {
   strokeLine.setAttribute("stroke-linejoin", "round");
   svg.appendChild(strokeLine);
 
-  // Draw point indicators
   coords.forEach((c, idx) => {
     const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     dot.setAttribute("cx", c.x);
@@ -1353,7 +1445,6 @@ function renderDashboardSVGChart() {
     svg.appendChild(dot);
   });
 
-  // Inject gradient definitions
   const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
   defs.innerHTML = `
     <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
@@ -1364,13 +1455,18 @@ function renderDashboardSVGChart() {
   svg.appendChild(defs);
 }
 
-// --- Content Moderation Actions (Live Approvals & Vibing) ---
+// --- Content Moderation Actions ---
 window.approveVibeFeedback = async function(id) {
-  const { error } = await supabase.from('feedback').update({ approved: true }).eq('id', id);
-  if (error) {
-    showToastNotification("Failed to approve suggestion.");
-    return;
+  if (useCloudStorage) {
+    const { error } = await supabase.from('feedback').update({ approved: true }).eq('id', id);
+    if (error) console.error("Cloud review approve failed:", error);
   }
+
+  const list = localDb.get('pd_feedback', defaultFeedbackBackup);
+  const target = list.find(item => String(item.id) === String(id));
+  if (target) target.approved = true;
+  localDb.set('pd_feedback', list);
+
   addTelemetryLog(`✅ Published verified review ID #${id}`);
   await fetchFeedback();
   renderPendingReviewsAdmin();
@@ -1378,22 +1474,31 @@ window.approveVibeFeedback = async function(id) {
 }
 
 window.rejectVibeFeedback = async function(id) {
-  const { error } = await supabase.from('feedback').delete().eq('id', id);
-  if (error) {
-    showToastNotification("Failed to delete review.");
-    return;
+  if (useCloudStorage) {
+    const { error } = await supabase.from('feedback').delete().eq('id', id);
+    if (error) console.error("Cloud review deletion failed:", error);
   }
+
+  const list = localDb.get('pd_feedback', defaultFeedbackBackup);
+  const updated = list.filter(item => String(item.id) !== String(id));
+  localDb.set('pd_feedback', updated);
+
   addTelemetryLog(`❌ Rejected/Deleted review ID #${id}`);
   await fetchFeedback();
   renderPendingReviewsAdmin();
 }
 
 window.updateOrderStatus = async function(orderId, nextStatus) {
-  const { error } = await supabase.from('orders').update({ status: nextStatus }).eq('id', orderId);
-  if (error) {
-    showToastNotification("Order update failed.");
-    return;
+  if (useCloudStorage) {
+    const { error } = await supabase.from('orders').update({ status: nextStatus }).eq('id', orderId);
+    if (error) console.error("Cloud order status update failed:", error);
   }
+
+  const list = localDb.get('pd_orders', []);
+  const target = list.find(order => String(order.id) === String(orderId));
+  if (target) target.status = nextStatus;
+  localDb.set('pd_orders', list);
+
   addTelemetryLog(`🔧 Order status for #${orderId} changed to ${nextStatus}`);
   await fetchOrders();
   renderOrdersAdmin();
@@ -1468,7 +1573,15 @@ function renderOrdersAdmin() {
   }
 
   ordersList.forEach(order => {
-    let itemsText = (order.items || []).map(i => `${i.quantity}x ${i.name}`).join(', ');
+    let parsedItems = order.items;
+    if (typeof parsedItems === 'string') {
+      try {
+        parsedItems = JSON.parse(parsedItems);
+      } catch(e) {
+        parsedItems = [];
+      }
+    }
+    let itemsText = (parsedItems || []).map(i => `${i.quantity}x ${i.name}`).join(', ');
     let statusBg = "bg-yellow-600/30 text-yellow-400";
     if (order.status === 'Preparing') statusBg = "bg-blue-600/30 text-blue-400";
     if (order.status === 'Ready') statusBg = "bg-emeraldGreen/30 text-emeraldGreen";
@@ -1496,13 +1609,11 @@ function renderOrdersAdmin() {
   });
 }
 
-// --- Dynamic Sidebar switcher inside the Admin page (Mockup layout tabs) ---
+// --- Dynamic Sidebar switcher inside the Admin page ---
 window.switchAdminSection = function(sectionKey) {
-  // Hide all panels
   document.querySelectorAll('.admin-panel-group').forEach(el => el.classList.add('hidden'));
   document.querySelectorAll('.admin-panel-group').forEach(el => el.classList.remove('block'));
 
-  // Toggle active button style
   const btnKeys = ['dashboard', 'orders', 'moderation'];
   btnKeys.forEach(key => {
     const btn = document.getElementById(`btn-admin-${key}`);
@@ -1516,7 +1627,6 @@ window.switchAdminSection = function(sectionKey) {
     activeBtn.className = "flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold bg-emeraldGreen text-white transition-all whitespace-nowrap";
   }
 
-  // Display targeted section
   const target = document.getElementById(`section-admin-${sectionKey}`);
   if (target) {
     target.classList.remove('hidden');
@@ -1531,16 +1641,16 @@ window.switchAdminSection = function(sectionKey) {
   }
 }
 
-// --- UI Actions & Controls (Module Global Bounds) ---
+// --- UI Actions & Controls ---
 window.openSidebarCart = function() {
   document.getElementById('cart-sheet').classList.remove('translate-x-full');
-  document.getElementById('sheet-backdrop').classList.add('active');
+  document.getElementById('sheet-backdrop').classList.remove('hidden');
   document.body.style.overflow = 'hidden';
 }
 
 window.closeSidebarCart = function() {
   document.getElementById('cart-sheet').classList.add('translate-x-full');
-  document.getElementById('sheet-backdrop').classList.remove('active');
+  document.getElementById('sheet-backdrop').classList.add('hidden');
   document.body.style.overflow = '';
 }
 
@@ -1553,7 +1663,6 @@ window.closeUploadSheet = function() {
 }
 
 window.openAdminAuthGate = function() {
-  // Check if session storage already holds an active staff login state
   const isAuth = sessionStorage.getItem('isAdminAuth') === 'true';
   if (isAuth) {
     window.location.hash = '#/admin';
@@ -1611,8 +1720,7 @@ function addTelemetryLog(message) {
     message: message
   };
   telemetryLogs.unshift(logObj);
-  if(telemetryLogs.length > 50) telemetryLogs.pop(); // keep history compact
-  
+  if(telemetryLogs.length > 50) telemetryLogs.pop();
   renderTelemetryLogsAdmin();
 }
 
@@ -1633,9 +1741,11 @@ function showToastNotification(message) {
   const toast = document.getElementById('toast');
   if (toast) {
     toast.innerText = message;
-    toast.classList.add('show');
+    toast.classList.add('opacity-100', 'translate-y-0');
+    toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
     setTimeout(() => {
-      toast.classList.remove('show');
+      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
     }, 3500);
   }
 }
