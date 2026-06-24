@@ -1112,9 +1112,12 @@ img{max-width:100%;display:block}
 
 <!-- ================= SYSTEM SCRIPTS & BUSINESS LOGIC ================= -->
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, addDoc, updateDoc, deleteDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+// Initialize the live connection
+const supabaseUrl = 'https://hpvzvwxczgkvgzrjplie.supabase.co'; // Replace with your Project URL
+const supabaseKey = 'hpvzvwxczgkvgzrjplie';              // Replace with your Public Anon Key
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Global operational objects
 let db = null;
@@ -1228,32 +1231,22 @@ function initDOMCache() {
 // --- CLOUD CONTROLLER (FIREBASE IMPLEMENTATION) ---
 async function initCloudEngine() {
   try {
-    if (typeof __firebase_config === 'undefined') {
-      console.warn("Firebase credentials not detected. Falling back to secure in-memory browser session.");
-      renderBistroMenu();
-      renderVibeBoard();
-      renderFeedbackBoard();
-      loadStoredCart();
-      return;
-    }
+    // Load initial datasets from Supabase
+    await loadMenuProducts();
+    await loadVibes();
+    await loadFeedbacks();
+    await loadOrders();
 
-    const config = JSON.parse(__firebase_config);
-    const app = initializeApp(config);
-    db = getFirestore(app);
-    auth = getAuth(app);
+    // Load theme preference if present
+    try {
+      const { data: themeData, error: themeErr } = await supabase.from('settings').select('*').eq('key', 'theme_preference').limit(1);
+      if (!themeErr && themeData && themeData.length > 0) {
+        const mode = themeData[0].value;
+        if (mode && mode !== currentTheme) applyTheme(mode);
+      }
+    } catch (e) { console.warn('Failed to read theme preference:', e); }
 
-    // Rule 3: Secure Auth Before Querying
-    let userSession;
-    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-      userSession = await signInWithCustomToken(auth, __initial_auth_token);
-    } else {
-      userSession = await signInAnonymously(auth);
-    }
-
-    userId = userSession.user.uid || crypto.randomUUID();
-    isFirebaseReady = true;
-
-    // Trigger Real-Time sync pipelines
+    // Start realtime listeners
     subscribeRealTimeCollections();
     loadStoredCart();
   } catch (err) {
@@ -1266,77 +1259,158 @@ async function initCloudEngine() {
 }
 
 function subscribeRealTimeCollections() {
-  if (!db || !isFirebaseReady) return;
+  // Load initial values (no-op if already loaded)
+  // Realtime: subscribe to Postgres changes via Supabase Realtime
+  try {
+    const channel = supabase.channel('public-all');
 
-  // Paths governed strictly by Rule 1
-  const productsPath = collection(db, 'artifacts', appId, 'public', 'data', 'products');
-  const vibesPath = collection(db, 'artifacts', appId, 'public', 'data', 'vibes');
-  const feedbackPath = collection(db, 'artifacts', appId, 'public', 'data', 'feedback');
-  const ordersPath = collection(db, 'artifacts', appId, 'public', 'data', 'orders');
-  const settingsPath = collection(db, 'artifacts', appId, 'public', 'data', 'settings');
+    channel.on('postgres_changes', { event: '*', schema: 'public', table: 'products' }, () => {
+      loadMenuProducts();
+    });
 
-  // 1. Theme Configuration Persistence
-  onSnapshot(settingsPath, (snap) => {
-    snap.forEach(doc => {
-      if (doc.id === 'theme_preference') {
-        const targetTheme = doc.data().mode;
-        if (targetTheme && targetTheme !== currentTheme) {
-          applyTheme(targetTheme);
-        }
+    channel.on('postgres_changes', { event: '*', schema: 'public', table: 'vibes' }, () => {
+      loadVibes();
+    });
+
+    channel.on('postgres_changes', { event: '*', schema: 'public', table: 'feedback' }, () => {
+      loadFeedbacks();
+    });
+
+    channel.on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, () => {
+      loadOrders();
+    });
+
+    channel.on('postgres_changes', { event: '*', schema: 'public', table: 'settings' }, (payload) => {
+      // when theme preference changes
+      if (payload && payload.record && payload.record.key === 'theme_preference') {
+        const mode = payload.record.value;
+        if (mode && mode !== currentTheme) applyTheme(mode);
       }
     });
-  }, (err) => console.error("Theme preference read error:", err));
 
-  // 2. Real-Time Products Catalog Sync
-  onSnapshot(productsPath, (snap) => {
-    const cloudProducts = [];
-    snap.forEach(doc => {
-      cloudProducts.push({ id: doc.id, ...doc.data() });
-    });
-    if (cloudProducts.length > 0) {
-      masterProducts = cloudProducts;
-    } else {
-      // Seed default menu if empty
-      masterProducts.forEach(async (prod) => {
-        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', prod.id), prod);
-      });
+    channel.subscribe();
+  } catch (e) {
+    console.warn('Realtime subscription error:', e);
+  }
+}
+
+// --- Supabase-backed data loaders & writers ---
+async function loadMenuProducts() {
+  try {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*')
+      .order('created_at', { ascending: true });
+
+    if (error) {
+      console.error("Error loading products:", error);
+      return;
     }
-    renderBistroMenu();
-    renderCMSProductsList();
-  }, (err) => console.error("Catalog read error:", err));
+    
+    if (data && data.length > 0) {
+      masterProducts = data;
+      renderBistroMenu();
+      if (typeof renderCMSProductsList === 'function') renderCMSProductsList();
+    }
+  } catch (e) { console.error('loadMenuProducts error:', e); }
+}
 
-  // 3. Real-Time Polaroid Vibe Board Sync
-  onSnapshot(vibesPath, (snap) => {
-    const cloudVibes = [];
-    snap.forEach(doc => {
-      cloudVibes.push({ id: doc.id, ...doc.data() });
-    });
-    communityPhotos = cloudVibes.sort((a,b) => b.timestamp - a.timestamp);
-    renderVibeBoard();
-    renderCMSPhotosList();
-  }, (err) => console.error("Vibe board read error:", err));
+async function loadVibes() {
+  try {
+    const { data, error } = await supabase
+      .from('vibes')
+      .select('*')
+      .order('timestamp', { ascending: false });
 
-  // 4. Real-Time Customer Notes & Approvals Sync
-  onSnapshot(feedbackPath, (snap) => {
-    const cloudFeedback = [];
-    snap.forEach(doc => {
-      cloudFeedback.push({ id: doc.id, ...doc.data() });
-    });
-    communityFeedbacks = cloudFeedback.sort((a,b) => b.timestamp - a.timestamp);
-    renderFeedbackBoard();
-    renderCMSFeedbackModerationList();
-  }, (err) => console.error("Feedback read error:", err));
+    if (error) {
+      console.error('Error loading vibes:', error);
+      return;
+    }
+    if (data) {
+      communityPhotos = data.sort((a,b) => b.timestamp - a.timestamp);
+      renderVibeBoard();
+      if (typeof renderCMSPhotosList === 'function') renderCMSPhotosList();
+    }
+  } catch (e) { console.error('loadVibes error:', e); }
+}
 
-  // 5. Real-Time Orders Stream (Direct to Admin Dashboard)
-  onSnapshot(ordersPath, (snap) => {
-    const cloudOrders = [];
-    snap.forEach(doc => {
-      cloudOrders.push({ id: doc.id, ...doc.data() });
-    });
-    activeOrders = cloudOrders.sort((a,b) => b.timestamp - a.timestamp);
-    renderCMSOrdersPipeline();
-    updateDashboardMetrics();
-  }, (err) => console.error("Orders read error:", err));
+async function loadFeedbacks() {
+  try {
+    const { data, error } = await supabase
+      .from('feedback')
+      .select('*')
+      .order('timestamp', { ascending: false });
+
+    if (error) {
+      console.error('Feedback load error:', error);
+      return;
+    }
+    if (data) {
+      communityFeedbacks = data.sort((a,b) => b.timestamp - a.timestamp);
+      renderFeedbackBoard();
+      if (typeof renderCMSFeedbackModerationList === 'function') renderCMSFeedbackModerationList();
+    }
+  } catch (e) { console.error('loadFeedbacks error:', e); }
+}
+
+async function loadOrders() {
+  try {
+    const { data, error } = await supabase
+      .from('orders')
+      .select('*')
+      .order('timestamp', { ascending: false });
+
+    if (error) {
+      console.error('Orders load error:', error);
+      return;
+    }
+    if (data) {
+      activeOrders = data.sort((a,b) => b.timestamp - a.timestamp);
+      if (typeof renderCMSOrdersPipeline === 'function') renderCMSOrdersPipeline();
+      if (typeof updateDashboardMetrics === 'function') updateDashboardMetrics();
+    }
+  } catch (e) { console.error('loadOrders error:', e); }
+}
+
+async function saveVibePhoto(newPhoto) {
+  try {
+    const payload = {
+      handle: newPhoto.handle,
+      ordered_item: newPhoto.drink,
+      image_url: newPhoto.image,
+      timestamp: newPhoto.timestamp || Date.now()
+    };
+    const { error } = await supabase.from('vibes').insert([payload]);
+    if (error) console.error('Error saving vibe:', error);
+  } catch (e) { console.error('saveVibePhoto error:', e); }
+}
+
+async function submitFeedback(feedbackPayload) {
+  try {
+    const payload = {
+      handle: feedbackPayload.user,
+      favorite_product: feedbackPayload.topic,
+      comment: feedbackPayload.comment,
+      approved: false,
+      timestamp: Date.now()
+    };
+    const { error } = await supabase.from('feedback').insert([payload]);
+    if (error) console.error('submitFeedback error:', error);
+  } catch (e) { console.error('submitFeedback error:', e); }
+}
+
+async function approveFeedback(id) {
+  try {
+    const { error } = await supabase.from('feedback').update({ approved: true }).eq('id', id);
+    if (error) console.error('approveFeedback error:', error);
+  } catch (e) { console.error('approveFeedback error:', e); }
+}
+
+async function deleteFeedback(id) {
+  try {
+    const { error } = await supabase.from('feedback').delete().eq('id', id);
+    if (error) console.error('deleteFeedback error:', error);
+  } catch (e) { console.error('deleteFeedback error:', e); }
 }
 
 // --- LOGGING AND TELEMETRY CONTROLLERS ---
