@@ -14,58 +14,6 @@
 <meta name="keywords" content="Pour Decisions, Specialty coffee Maryville TN, Muddy Pond Mocha, Viennese Waltz, artisan bakery, coffee shop near me, local lounge, Maryville TN bistro">
 <meta name="robots" content="index, follow">
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://pourdecisionsmaryville.com/">
-<meta property="og:title" content="Pour Decisions — Premium Specialty Coffee & Artisan Bistro">
-<meta property="og:description" content="Savor hand-roasted espresso, gourmet paninis, and European pastries. Pre-order online, collect loyalty stamps, and reserve private lounge nooks.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1200">
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://pourdecisionsmaryville.com/">
-<meta property="twitter:title" content="Pour Decisions — Specialty Roastery & Cozy Lounge">
-<meta property="twitter:description" content="Savor hand-roasted espresso, gourmet paninis, and European pastries. Pre-order online, collect loyalty stamps, and reserve private lounge nooks.">
-<meta property="twitter:image" content="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1200">
-
-<!-- JSON-LD Structured Data for Local Restaurant / Cafe SEO -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CafeOrCoffeeShop",
-  "name": "Pour Decisions Coffee Company",
-  "image": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=600",
-  "@id": "https://pourdecisionsmaryville.com/#about",
-  "url": "https://pourdecisionsmaryville.com/",
-  "telephone": "+18659808282",
-  "priceRange": "$$ ($3 - $15)",
-  "servesCuisine": "Specialty Coffee, Tea, Artisan Bakery, Bistro lunch",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "212 College Street",
-    "addressLocality": "Maryville",
-    "addressRegion": "TN",
-    "postalCode": "37804",
-    "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 35.7565,
-    "longitude": -83.9702
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    "opens": "07:00",
-    "closes": "15:00"
-  },
-  "sameAs": [
-    "https://www.instagram.com/pourdecisionscoffee",
-    "https://www.facebook.com/pourdecisionscoffee"
-  ]
-}
-</script>
-
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☕%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -101,14 +49,14 @@
   --darkCard: #FFFFFF;
   --terracotta: #C67C4E;
   --parchment: #150A08;
-  --accentLight: #3D2924;
-  --darkAccent: #F2ECE4;
+  --accentLight: #4A3B32;
+  --darkAccent: #F3EFE9;
   --neutralMuted: #7A6E6D;
   
-  --bg: #F9F5F0;
+  --bg: #FAF6F0;
   --card: #FFFFFF;
-  --text: #2C1A11;
-  --text-heading: #150A08;
+  --text: #3A2312;
+  --text-heading: #1F1005;
   --border: rgba(198, 124, 78, 0.25);
   --glass-overlay: rgba(255, 255, 255, 0.95);
 }
@@ -318,6 +266,16 @@ img{max-width:100%;display:block}
   border-radius:18px;
   border: 1px solid var(--border);
 }
+
+/* Heartbeat notification trigger aura for theme toggler */
+@keyframes heartglowing {
+  0% { box-shadow: 0 0 0 0 rgba(198, 124, 78, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(198, 124, 78, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(198, 124, 78, 0); }
+}
+.theme-glowing-aura {
+  animation: heartglowing 2s infinite;
+}
 </style>
 </head>
 <body class="bg-appBg text-appText flex flex-col min-h-screen">
@@ -331,12 +289,17 @@ img{max-width:100%;display:block}
 <header class="bg-appCard text-appText sticky top-0 z-40 border-b border-appBorder shadow-lg transition-colors">
   <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-full border border-terracotta flex items-center justify-center bg-appBg">
-        <span class="font-serif text-terracotta font-bold text-lg">PD</span>
+      <!-- Made-Up Premium Professional Logo -->
+      <div class="w-11 h-11 flex items-center justify-center bg-appBg rounded-xl border border-terracotta/30 shadow-inner">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-7 h-7 fill-none stroke-terracotta" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20h40a4 4 0 0 1 4 4v4a20 20 0 0 1-20 20H28A20 20 0 0 1 8 28v-4a4 4 0 0 1 4-4Z" />
+          <path d="M18 20V12a6 6 0 0 1 12 0v8M34 20v-5a3 3 0 0 1 6 0v5" />
+          <path d="M26 48c0 4 6 10 6 10s6-6 6-10" />
+        </svg>
       </div>
       <div>
-        <h1 class="font-serif font-extrabold text-lg tracking-wide uppercase text-appHeading">Pour Decisions</h1>
-        <p class="font-mono text-[9px] uppercase tracking-widest text-terracotta -mt-1">Coffee Company</p>
+        <h1 class="font-serif font-extrabold text-lg tracking-wide uppercase text-appHeading leading-tight">Pour Decisions</h1>
+        <p class="font-mono text-[9px] uppercase tracking-widest text-terracotta -mt-1 font-bold">Coffee Company</p>
       </div>
     </div>
 
@@ -351,15 +314,16 @@ img{max-width:100%;display:block}
 
     <!-- Header Actions (Theme toggle, Cart, and Admin trigger) -->
     <div class="flex items-center gap-2">
-      <!-- Theme Toggle Switcher -->
-      <button onclick="toggleTheme()" class="p-2 text-terracotta hover:text-terracotta/80 transition-all rounded-xl" id="theme-toggle-btn" aria-label="Toggle Light/Dark Theme">
+      <!-- Theme Toggle Switcher with High-Contrast Prompt Indicator -->
+      <button onclick="toggleTheme()" class="theme-glowing-aura p-2.5 bg-darkAccent hover:bg-terracotta/10 text-terracotta rounded-xl transition-all border border-terracotta/20 relative" id="theme-toggle-btn" aria-label="Toggle Light/Dark Theme">
         <i class="fa-solid fa-moon text-base" id="theme-toggle-icon"></i>
+        <span class="absolute -top-1 -right-1 bg-terracotta w-2.5 h-2.5 rounded-full ring-2 ring-appCard"></span>
       </button>
       <button onclick="openSidebarCart()" class="relative p-2 text-terracotta hover:text-terracotta/80 transition-all" aria-label="Shopping Cart">
         <i class="fa-solid fa-bag-shopping text-xl"></i>
         <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow animate-pulse" id="desktop-cart-badge">0</span>
       </button>
-      <button onclick="openCMSPanel()" class="text-neutralMuted hover:text-terracotta p-1 rounded transition-all text-sm" aria-label="Open CMS panel">
+      <button onclick="openCMSPage()" class="text-neutralMuted hover:text-terracotta p-1 rounded transition-all text-sm" aria-label="Open Admin Control Panel">
         <i class="fa-solid fa-lock"></i>
       </button>
     </div>
@@ -731,16 +695,16 @@ img{max-width:100%;display:block}
       </div>
     </div>
 
-    <!-- Google Maps Location Module directly centered in Heritage view for extreme local SEO authority -->
+    <!-- Google Maps Location Module directly centered in Heritage view with updated specific coords -->
     <div class="max-w-4xl mx-auto space-y-4 pt-6 border-t border-appBorder">
       <div class="text-center">
         <h3 class="font-serif text-xl font-bold text-appHeading">Find Our Cozy Sanctuary</h3>
         <p class="text-xs text-neutralMuted">212 College Street, Maryville, TN 37804 | Phone: (865) 980-8282</p>
       </div>
       <div class="map-responsive h-64 sm:h-80 w-full">
-        <!-- Secure Embedded Google Maps focusing directly on the College Street location in Maryville -->
+        <!-- Secure Embedded Google Maps pointing directly to 212 College St, Maryville -->
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0x885ea2c6326e5e8f%3A0xc3f58eef7be3be28!2s212%20College%20St%2C%20Maryville%2C%20TN%2037804!5m2!1sen!2sus" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0x885e9fd17dc1399d%3A0x5741a0a616c080cb!2s212%20College%20St%2C%20Maryville%2C%20TN%2037804!5m2!1sen!2sus" 
           width="100%" 
           height="100%" 
           style="border:0;" 
@@ -749,6 +713,129 @@ img{max-width:100%;display:block}
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 6: EXCLUSIVE ADMIN HUB (FULL-PAGE DASHBOARD VIEW) ================= -->
+  <section id="page-admin" class="page-view hidden space-y-8 animate-fadeIn">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-appBorder pb-4">
+      <div>
+        <h2 class="font-serif text-2xl font-bold text-appHeading">Admin Control & Operations</h2>
+        <p class="text-xs text-neutralMuted mt-0.5">Manage pending approvals, view real-time orders, and modify menu items</p>
+      </div>
+      <button onclick="switchPage('home')" class="bg-terracotta hover:bg-terracotta/90 text-white font-semibold px-4 py-2.5 rounded-xl text-xs transition-all flex items-center gap-2 shadow-md">
+        <i class="fa-solid fa-store"></i> Back to Storefront
+      </button>
+    </div>
+
+    <!-- Passcode Verification View (Without hints or suggestive labels) -->
+    <div id="cms-verify-section" class="bg-appCard border border-appBorder rounded-3xl p-8 max-w-md mx-auto text-center space-y-6">
+      <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-darkAccent border border-terracotta/30 text-2xl text-terracotta">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <div>
+        <h3 class="font-serif text-lg font-bold text-appHeading">Administrative Access Required</h3>
+        <p class="text-xs text-neutralMuted mt-1">Please enter your system passcode to unlock the dashboard.</p>
+      </div>
+      <div class="space-y-3">
+        <input type="password" id="cms-passcode-input" placeholder="Password..." class="w-full text-center bg-appBg border border-terracotta/30 rounded-xl p-3 text-sm text-appHeading focus:outline-none focus:border-terracotta">
+        <button onclick="verifyAdministrativePasscode()" class="w-full bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-3 rounded-xl transition-all">
+          Authorize Session
+        </button>
+      </div>
+    </div>
+
+    <!-- Authenticated Full-Page Admin Dashboard view -->
+    <div id="cms-authenticated-view" class="hidden space-y-8">
+      
+      <!-- Premium Metrics Overview -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
+          <span class="text-[10px] text-neutralMuted font-mono uppercase tracking-wider">Live Revenue (Simulated)</span>
+          <span id="metrics-revenue" class="text-2xl font-serif font-bold text-terracotta mt-2">$0.00</span>
+        </div>
+        <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
+          <span class="text-[10px] text-neutralMuted font-mono uppercase tracking-wider">Active Orders Count</span>
+          <span id="metrics-orders-active" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
+        </div>
+        <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
+          <span class="text-[10px] text-neutralMuted font-mono uppercase tracking-wider">Pending Feedback Moderation</span>
+          <span id="metrics-feedback-pending" class="text-2xl font-serif font-bold text-yellow-500 mt-2">0</span>
+        </div>
+        <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
+          <span class="text-[10px] text-neutralMuted font-mono uppercase tracking-wider">Total Corkboard Photos</span>
+          <span id="metrics-vibes-count" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
+        </div>
+      </div>
+
+      <!-- Live Dashboard Tabs -->
+      <div class="flex border-b border-appBorder text-xs font-bold gap-4">
+        <button class="pb-2.5 text-terracotta border-b-2 border-terracotta transition-colors" id="tab-cms-orders" onclick="switchCMSTab('orders')">
+          🛍️ Live Orders Pipeline
+        </button>
+        <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent transition-colors" id="tab-cms-feedback" onclick="switchCMSTab('feedback')">
+          🛡️ Review Moderation
+        </button>
+        <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent transition-colors" id="tab-cms-photos" onclick="switchCMSTab('photos')">
+          📸 Vibe Archives
+        </button>
+        <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent transition-colors" id="tab-cms-products" onclick="switchCMSTab('products')">
+          ☕ Catalog Editor
+        </button>
+        <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent transition-colors" id="tab-cms-analytics" onclick="switchCMSTab('analytics')">
+          📊 Business Telemetry
+        </button>
+      </div>
+
+      <!-- CMS Sub-Panel 1: Live Orders Pipeline -->
+      <div id="cms-orders-subview" class="space-y-4">
+        <div class="flex justify-between items-center">
+          <h4 class="font-serif text-lg font-bold text-appHeading">Simulated Real-Time Orders</h4>
+          <span class="text-[10px] font-mono uppercase tracking-wider text-neutralMuted">Updated Instantly</span>
+        </div>
+        <div id="admin-orders-container" class="grid gap-4 md:grid-cols-2">
+          <!-- Dynamically populated via Real-Time Cloud Subscription -->
+        </div>
+      </div>
+
+      <!-- CMS Sub-Panel 2: Review/Feedback Moderation -->
+      <div id="cms-feedback-subview" class="space-y-4 hidden">
+        <h4 class="font-serif text-lg font-bold text-appHeading">Pending Customer Notes Approvals</h4>
+        <div id="admin-feedback-moderation-list" class="grid gap-4">
+          <!-- Dynamic moderation rows -->
+        </div>
+      </div>
+
+      <!-- CMS Sub-Panel 3: Vibe Archives (Downloadable list) -->
+      <div id="cms-photos-subview" class="space-y-4 hidden">
+        <h4 class="font-serif text-lg font-bold text-appHeading">Client Polaroid Archive Moderation</h4>
+        <div id="admin-photos-moderation-grid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+          <!-- Dynamic vibe rows with download buttons -->
+        </div>
+      </div>
+
+      <!-- CMS Sub-Panel 4: Menu Catalog Editor -->
+      <div id="cms-products-subview" class="space-y-4 hidden">
+        <div class="flex justify-between items-center">
+          <h4 class="font-serif text-lg font-bold text-appHeading">Manage Store Products</h4>
+          <button onclick="openProductEditForm()" class="bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow">
+            <i class="fa-solid fa-circle-plus"></i> Add New Product Option
+          </button>
+        </div>
+        <div id="cms-products-listing-wrapper" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Dynamic products lists -->
+        </div>
+      </div>
+
+      <!-- CMS Sub-Panel 5: Real-Time Event Telemetry Feed -->
+      <div id="cms-analytics-subview" class="space-y-4 hidden">
+        <h4 class="font-serif text-lg font-bold text-appHeading">Business Event Telemetry Logs</h4>
+        <p class="text-xs text-neutralMuted">A non-technical, human-readable log of visitor engagements in our Maryville boutique app.</p>
+        <div class="bg-appBg border border-appBorder rounded-2xl p-4 font-sans text-xs space-y-2.5 max-h-96 overflow-y-auto" id="telemetry-logs-wrapper">
+          <!-- Cozy business event logs -->
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -797,7 +884,7 @@ img{max-width:100%;display:block}
   <button class="sheet-close" onclick="closeSidebarCart()" aria-label="Close Shopping Cart"><i class="fa-solid fa-xmark"></i></button>
   <div class="sheet-content">
     <h3 class="font-serif text-2xl font-bold text-appHeading mb-1" id="cart-title">Your Order Bag</h3>
-    <p class="text-xs text-neutralMuted mb-6">Simulated curbside pickup ordering pipeline</p>
+    <p class="text-xs text-neutralMuted mb-6">Real-Time curbside pickup ordering pipeline</p>
     
     <div id="cart-items-wrapper" class="space-y-4 mb-6 max-h-[50vh] overflow-y-auto">
       <!-- Dynamic list loaded via JS -->
@@ -908,80 +995,6 @@ img{max-width:100%;display:block}
         Publish On Cork Board 📌
       </button>
     </form>
-  </div>
-</div>
-
-<!-- 4. Secure Hidden-Passcode Admin CMS Sheet -->
-<div class="sheet" id="admin-cms-sheet" role="dialog" aria-modal="true" aria-labelledby="cms-panel-title">
-  <div class="sheet-handle"></div>
-  <button class="sheet-close" onclick="closeCMSPanel()" aria-label="Close CMS Window"><i class="fa-solid fa-xmark"></i></button>
-  <div class="sheet-content">
-    <h3 class="font-serif text-2xl font-bold text-appHeading mb-1" id="cms-panel-title">Administration Hub</h3>
-    <p class="text-xs text-neutralMuted mb-6">Direct management over community photos & live digital items.</p>
-
-    <!-- Passcode Verification (Completely stripped any default hints/suggestive labels) -->
-    <div id="cms-verify-section" class="space-y-4 text-center py-6">
-      <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-appCard text-appText border border-terracotta/30 text-lg mb-2">
-        <i class="fa-solid fa-lock"></i>
-      </div>
-      <p class="text-xs font-semibold uppercase tracking-wider text-appText">Enterprise Authentication Required</p>
-      <div class="max-w-xs mx-auto">
-        <input type="password" id="cms-passcode-input" placeholder="Enter credentials..." class="text-center tracking-widest bg-appBg border border-terracotta/30 rounded-xl p-3 text-xs w-full text-appHeading focus:outline-none focus:border-terracotta">
-      </div>
-      <button onclick="verifyAdministrativePasscode()" class="bg-terracotta text-white text-xs font-bold px-6 py-3 rounded-xl hover:bg-terracotta/90 transition-all">
-        Authenticate Credentials
-      </button>
-    </div>
-
-    <!-- Authenticated CMS Layout Container -->
-    <div id="cms-authenticated-view" class="hidden space-y-4">
-      <div class="flex border-b border-appBorder mb-4 text-xs font-bold">
-        <button class="flex-1 pb-2 text-terracotta border-b-2 border-terracotta" id="tab-cms-photos" onclick="switchCMSTab('photos')">
-          📸 Uploads
-        </button>
-        <button class="flex-1 pb-2 text-neutralMuted border-b-2 border-transparent" id="tab-cms-products" onclick="switchCMSTab('products')">
-          ☕ Products
-        </button>
-        <button class="flex-1 pb-2 text-neutralMuted border-b-2 border-transparent" id="tab-cms-analytics" onclick="switchCMSTab('analytics')">
-          📊 Telemetry
-        </button>
-      </div>
-
-      <!-- CMS Sub-Panel 1: Community Photos -->
-      <div id="cms-photos-subview" class="space-y-3 max-h-[50vh] overflow-y-auto">
-        <!-- JS Loaded Dynamic list -->
-      </div>
-
-      <!-- CMS Sub-Panel 2: Products Catalog -->
-      <div id="cms-products-subview" class="space-y-3 hidden max-h-[50vh] overflow-y-auto">
-        <button onclick="openProductEditForm()" class="w-full bg-terracotta text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-1.5 shadow">
-          <i class="fa-solid fa-circle-plus"></i> Add New Product Option
-        </button>
-        <div id="cms-products-listing-wrapper" class="space-y-2 mt-2">
-          <!-- JS dynamic lists -->
-        </div>
-      </div>
-
-      <!-- CMS Sub-Panel 3: Real-Time Event Telemetry Dashboard -->
-      <div id="cms-analytics-subview" class="space-y-4 hidden max-h-[50vh] overflow-y-auto font-mono text-[10px] text-accentLight bg-appBg p-4 rounded-xl border border-appBorder">
-        <div class="grid grid-cols-2 gap-2 text-center text-xs font-bold text-appHeading pb-2 border-b border-appBorder">
-          <div class="bg-appCard p-2 rounded border border-appBorder">
-            <span class="text-[9px] text-neutralMuted uppercase block">Conversions</span>
-            <span id="telemetry-conversions-count" class="text-terracotta text-base">0</span>
-          </div>
-          <div class="bg-appCard p-2 rounded border border-appBorder">
-            <span class="text-[9px] text-neutralMuted uppercase block">Stamps Claimed</span>
-            <span id="telemetry-stamps-count" class="text-terracotta text-base">0</span>
-          </div>
-        </div>
-        <div>
-          <h4 class="text-xs font-bold text-appHeading mb-2 uppercase">Real-Time Event Logs</h4>
-          <div id="telemetry-logs-wrapper" class="space-y-1 max-h-[25vh] overflow-y-auto">
-            <!-- Dynamically logged telemetry events -->
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -1102,35 +1115,92 @@ img{max-width:100%;display:block}
 </div>
 
 <!-- ================= SYSTEM SCRIPTS & BUSINESS LOGIC ================= -->
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, addDoc, updateDoc, deleteDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+// Global operational objects
+let db = null;
+let auth = null;
+let userId = null;
+let isFirebaseReady = false;
+
+// Application ID
+const appId = typeof __app_id !== 'undefined' ? __app_id : 'pour-decisions';
+
+// Seeding Default Menu Options (drink images from image_700523.jpg, food from image_79f20c.jpg)
+let masterProducts = [
+  { id: 'c1', name: 'Freshly Brewed Coffee', price: 3.00, category: 'coffee', desc: 'Fresh local house roast, includes 1 free refill from coffee bar.', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400' },
+  { id: 'c2', name: 'Pour Over Coffee', price: 4.20, category: 'coffee', desc: 'Hand-brewed, fresh single cup of premium origin coffee.', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400' },
+  { id: 'c3', name: 'Nitro Cold Brew', price: 5.50, category: 'coffee', desc: 'Creamy nitrogen-infused local cold brew served chilled.', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400' },
+  { id: 'c4', name: 'Palomino Signature Brew', price: 7.00, category: 'coffee', desc: 'Nitro cold brew custom styled with gourmet vanilla and half & half.', img: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&q=80&w=400' },
+  { id: 'c5', name: 'Red Eye Shot', price: 4.30, category: 'coffee', desc: 'Double shot of house espresso topped with rich brewed coffee.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400' },
+  
+  { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, category: 'signature', desc: 'Double espresso, velvet steamed milk, chocolate, vanilla, and sweet Muddy Pond Sorghum syrup.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=400', badge: 'Best Seller' },
+  { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', badge: 'Barista Rec' },
+  { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=400', badge: 'Classic Signature' },
+  
+  { id: 'e1', name: 'Espresso Double Shot', price: 3.30, category: 'espresso', desc: 'Perfectly extracted, rich-bodied local espresso blend.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400' },
+  { id: 'e2', name: 'Caffe Latte', price: 5.00, category: 'espresso', desc: 'Espresso double shot over steamed milk with thin microfoam layer.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400' },
+  { id: 'e3', name: 'Cortado Glass', price: 4.10, category: 'espresso', desc: 'Equal parts extracted espresso and velvet steamed whole milk.', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&q=80&w=400' },
+  
+  { id: 'b1', name: 'Quiche Slice Special', price: 6.00, category: 'breakfast', desc: 'Choose Ham & Cheddar or rotating vegetarian spinach, tomato, and feta quiche.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400', badge: 'Fresh Baked' },
+  { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1626700051175-6518c4793f06?auto=format&fit=crop&q=80&w=400', badge: 'Local Fav' },
+  { id: 'l1', name: 'Smoked Salmon Bagel Box', price: 13.00, category: 'lunch', desc: 'Smoked wild salmon, toasted bagel with cream cheese, cucumber slices, and hard-boiled egg.', img: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400', badge: 'Premium Pick' }
+];
+
+// Local state elements (if cloud connectivity is delayed/missing)
+let communityPhotos = [
+  { id: 'w1', handle: 'maryville_academic', drink: 'Viennese Waltz & quiche slice', image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400', timestamp: Date.now() - 100000 },
+  { id: 'w2', handle: 'college_st_designer', drink: 'Muddy Pond Mocha with extra shot', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400', timestamp: Date.now() - 400000000 }
+];
+
+let communityFeedbacks = [
+  { id: 'f1', user: '@maryville_local', topic: 'Muddy Pond Mocha', comment: 'The Sorghum syrup in the mocha is absolutely life-changing. Perfect study fuel for College Street.', approved: true, timestamp: Date.now() - 500000 }
+];
+
+let activeOrders = [];
+let telemetryLogs = [
+  "☕ Pour Decisions boutique online storefront initialized.",
+  "🟢 Theme preset initialized to cozy Dark Espresso."
+];
+
+let selectedCategory = 'all';
+let currentSearch = '';
+let selectedLoungeZone = 'Library Hearth Nook';
+let stampCount = 0;
+let cart = [];
+
+// DOM caching container
 const dom = {};
-// Real-time custom analytical log arrays
-let telemetryConversions = 0;
-let telemetryStamps = 0;
-const telemetryLogs = [];
 
-function logTelemetryEvent(eventName, eventDetails) {
-  const timestamp = new Date().toLocaleTimeString();
-  const logMessage = `[${timestamp}] ${eventName}: ${JSON.stringify(eventDetails)}`;
-  telemetryLogs.unshift(logMessage);
+// Initial Theme Loading from Session Persistence (Strictly avoiding localStorage per guidelines)
+let currentTheme = 'dark';
 
-  if (eventName === 'checkout_confirmed' || eventName === 'promo_added_to_order' || eventName === 'qr_upgrade_cta_clicked') {
-    telemetryConversions++;
-  } else if (eventName === 'loyalty_stamp_claimed') {
-    telemetryStamps++;
+// --- SYSTEM INITIALIZATION ---
+window.onload = function() {
+  initDOMCache();
+  
+  // Initialize Cloud Database Pipeline
+  initCloudEngine();
+
+  // Load customizers and theme configurations
+  calculateCustomPrice();
+
+  // Attach search event
+  if (dom.menuSearch) {
+    dom.menuSearch.addEventListener('input', debounce(function(e) {
+      currentSearch = e.target.value;
+      renderBistroMenu();
+      logTelemetryEvent('catalog_searched', { query: currentSearch });
+    }, 200));
   }
 
-  // Live render to CMS telemetry panels if unlocked
-  const conversionsLabel = document.getElementById('telemetry-conversions-count');
-  const stampsLabel = document.getElementById('telemetry-stamps-count');
-  const logsWrapper = document.getElementById('telemetry-logs-wrapper');
-
-  if (conversionsLabel) conversionsLabel.innerText = telemetryConversions;
-  if (stampsLabel) stampsLabel.innerText = telemetryStamps;
-  if (logsWrapper) {
-    logsWrapper.innerHTML = telemetryLogs.map(log => `<div class="py-1 border-b border-appBorder/40">${log}</div>`).join('');
-  }
-}
+  // Promotion modals and timed QR upgrader triggers
+  setTimeout(() => openPromoModal(), 1500);
+  setTimeout(() => openQrUpgradeModal(), 40000);
+};
 
 function initDOMCache() {
   dom.menuSearch = document.getElementById('menu-search');
@@ -1151,147 +1221,223 @@ function initDOMCache() {
   dom.feedbackBoardCards = document.getElementById('feedback-board-cards');
 }
 
-// Master Theme Toggler Controller (Dark to Light Boutique Mode)
-let currentTheme = 'dark';
+// --- CLOUD CONTROLLER (FIREBASE IMPLEMENTATION) ---
+async function initCloudEngine() {
+  try {
+    if (typeof __firebase_config === 'undefined') {
+      console.warn("Firebase credentials not detected. Falling back to secure in-memory browser session.");
+      renderBistroMenu();
+      renderVibeBoard();
+      renderFeedbackBoard();
+      loadStoredCart();
+      return;
+    }
+
+    const config = JSON.parse(__firebase_config);
+    const app = initializeApp(config);
+    db = getFirestore(app);
+    auth = getAuth(app);
+
+    // Rule 3: Secure Auth Before Querying
+    let userSession;
+    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+      userSession = await signInWithCustomToken(auth, __initial_auth_token);
+    } else {
+      userSession = await signInAnonymously(auth);
+    }
+
+    userId = userSession.user.uid || crypto.randomUUID();
+    isFirebaseReady = true;
+
+    // Trigger Real-Time sync pipelines
+    subscribeRealTimeCollections();
+    loadStoredCart();
+  } catch (err) {
+    console.error("Cloud Database failed to initialize:", err);
+    renderBistroMenu();
+    renderVibeBoard();
+    renderFeedbackBoard();
+    loadStoredCart();
+  }
+}
+
+function subscribeRealTimeCollections() {
+  if (!db || !isFirebaseReady) return;
+
+  // Paths governed strictly by Rule 1
+  const productsPath = collection(db, 'artifacts', appId, 'public', 'data', 'products');
+  const vibesPath = collection(db, 'artifacts', appId, 'public', 'data', 'vibes');
+  const feedbackPath = collection(db, 'artifacts', appId, 'public', 'data', 'feedback');
+  const ordersPath = collection(db, 'artifacts', appId, 'public', 'data', 'orders');
+  const settingsPath = collection(db, 'artifacts', appId, 'public', 'data', 'settings');
+
+  // 1. Theme Configuration Persistence
+  onSnapshot(settingsPath, (snap) => {
+    snap.forEach(doc => {
+      if (doc.id === 'theme_preference') {
+        const targetTheme = doc.data().mode;
+        if (targetTheme && targetTheme !== currentTheme) {
+          applyTheme(targetTheme);
+        }
+      }
+    });
+  }, (err) => console.error("Theme preference read error:", err));
+
+  // 2. Real-Time Products Catalog Sync
+  onSnapshot(productsPath, (snap) => {
+    const cloudProducts = [];
+    snap.forEach(doc => {
+      cloudProducts.push({ id: doc.id, ...doc.data() });
+    });
+    if (cloudProducts.length > 0) {
+      masterProducts = cloudProducts;
+    } else {
+      // Seed default menu if empty
+      masterProducts.forEach(async (prod) => {
+        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', prod.id), prod);
+      });
+    }
+    renderBistroMenu();
+    renderCMSProductsList();
+  }, (err) => console.error("Catalog read error:", err));
+
+  // 3. Real-Time Polaroid Vibe Board Sync
+  onSnapshot(vibesPath, (snap) => {
+    const cloudVibes = [];
+    snap.forEach(doc => {
+      cloudVibes.push({ id: doc.id, ...doc.data() });
+    });
+    communityPhotos = cloudVibes.sort((a,b) => b.timestamp - a.timestamp);
+    renderVibeBoard();
+    renderCMSPhotosList();
+  }, (err) => console.error("Vibe board read error:", err));
+
+  // 4. Real-Time Customer Notes & Approvals Sync
+  onSnapshot(feedbackPath, (snap) => {
+    const cloudFeedback = [];
+    snap.forEach(doc => {
+      cloudFeedback.push({ id: doc.id, ...doc.data() });
+    });
+    communityFeedbacks = cloudFeedback.sort((a,b) => b.timestamp - a.timestamp);
+    renderFeedbackBoard();
+    renderCMSFeedbackModerationList();
+  }, (err) => console.error("Feedback read error:", err));
+
+  // 5. Real-Time Orders Stream (Direct to Admin Dashboard)
+  onSnapshot(ordersPath, (snap) => {
+    const cloudOrders = [];
+    snap.forEach(doc => {
+      cloudOrders.push({ id: doc.id, ...doc.data() });
+    });
+    activeOrders = cloudOrders.sort((a,b) => b.timestamp - a.timestamp);
+    renderCMSOrdersPipeline();
+    updateDashboardMetrics();
+  }, (err) => console.error("Orders read error:", err));
+}
+
+// --- LOGGING AND TELEMETRY CONTROLLERS ---
+function logTelemetryEvent(eventName, eventDetails) {
+  let logText = "";
+  const timestamp = new Date().toLocaleTimeString();
+
+  switch(eventName) {
+    case 'catalog_searched':
+      logText = `🔍 Client searched catalog for: "${eventDetails.query}"`;
+      break;
+    case 'item_added_to_cart':
+      logText = `🟢 ${eventDetails.name} added to client order bag ($${eventDetails.price.toFixed(2)})`;
+      break;
+    case 'custom_mix_added_to_cart':
+      logText = `☕ Custom ${eventDetails.name} crafted in Mix Studio ($${eventDetails.price.toFixed(2)})`;
+      break;
+    case 'order_placed':
+      logText = `🛍️ New Curbside Pre-Order Placed for ${eventDetails.itemCount} items!`;
+      break;
+    case 'reservation_created':
+      logText = `🎫 Seating booked: ${eventDetails.zone} for ${eventDetails.guests} guests`;
+      break;
+    case 'feedback_submitted':
+      logText = `✨ Review submitted by ${eventDetails.user} - Held for moderation`;
+      break;
+    case 'loyalty_stamp_claimed':
+      logText = `🎯 Mystery Stamp claimed! (${eventDetails.count}/5 completed)`;
+      break;
+    case 'theme_toggled':
+      logText = `🌗 Storefront design switched to ${eventDetails.theme} mode`;
+      break;
+    default:
+      logText = `⚡ User action: ${eventName}`;
+  }
+
+  telemetryLogs.unshift(`[${timestamp}] ${logText}`);
+  
+  const logsWrapper = document.getElementById('telemetry-logs-wrapper');
+  if (logsWrapper) {
+    logsWrapper.innerHTML = telemetryLogs.map(log => `
+      <div class="py-2 border-b border-appBorder/40 flex gap-2">
+        <span class="text-terracotta select-none">▶</span>
+        <span>${log}</span>
+      </div>
+    `).join('');
+  }
+}
+
+// --- STATE PROTECTION AND OFFLINE CACHE ---
+function loadStoredCart() {
+  // Safe persistent storage across page loads using local variables
+  try {
+    const cachedCart = sessionStorage.getItem('pd_active_order_bag');
+    if (cachedCart) {
+      cart = JSON.parse(cachedCart);
+      syncCartUI();
+    }
+  } catch(e) { console.warn("Cart cache recovery failed.", e); }
+}
+
+function saveCartToStorage() {
+  try {
+    sessionStorage.setItem('pd_active_order_bag', JSON.stringify(cart));
+  } catch(e) { console.warn("Cart cache save failed.", e); }
+}
+
+// --- LIGHT/DARK TRIPLE GUARD CONTROLLERS ---
 function toggleTheme() {
+  const targetTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+  applyTheme(targetTheme);
+
+  // Persist preference to database for device sync
+  if (db && isFirebaseReady) {
+    const themeRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'theme_preference');
+    setDoc(themeRef, { mode: targetTheme }).catch(err => console.error("Theme save failed:", err));
+  }
+  logTelemetryEvent('theme_toggled', { theme: targetTheme });
+}
+
+function applyTheme(theme) {
   const root = document.documentElement;
   const themeIcon = document.getElementById('theme-toggle-icon');
   
-  if (currentTheme === 'dark') {
+  if (theme === 'light') {
     root.classList.add('light-mode');
     currentTheme = 'light';
-    if (themeIcon) {
-      themeIcon.className = 'fa-solid fa-sun text-base text-terracotta';
-    }
-    showToastNotification("Theme switched to Light Boutique Mode ☕");
-    logTelemetryEvent('theme_toggled', { theme: 'light' });
+    if (themeIcon) themeIcon.className = 'fa-solid fa-sun text-base text-terracotta';
   } else {
     root.classList.remove('light-mode');
     currentTheme = 'dark';
-    if (themeIcon) {
-      themeIcon.className = 'fa-solid fa-moon text-base text-terracotta';
-    }
-    showToastNotification("Theme switched to Espresso Dark Mode 🌙");
-    logTelemetryEvent('theme_toggled', { theme: 'dark' });
+    if (themeIcon) themeIcon.className = 'fa-solid fa-moon text-base text-terracotta';
   }
-  // Re-render components that have dynamic inline templates referencing colors
   renderBistroMenu();
-  renderVibeBoard();
-  renderFeedbackBoard();
-  syncCartUI();
-  calculateCustomPrice();
 }
 
-// Master Fallback Image URL to recover from any broken Unsplash images gracefully
-const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400';
-
-function handleImageError(imageElement) {
-  imageElement.onerror = null;
-  imageElement.src = FALLBACK_IMAGE;
-}
-
-let masterProducts = [
-  // COFFEE & DRIPS (Flyer page 1)
-  { id: 'c1', name: 'Freshly Brewed Coffee', price: 3.00, category: 'coffee', desc: 'Fresh local house roast, includes 1 free refill from coffee bar.', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400' },
-  { id: 'c2', name: 'Pour Over Coffee', price: 4.20, category: 'coffee', desc: 'Hand-brewed, fresh single cup of premium origin coffee.', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400' },
-  { id: 'c3', name: 'Nitro Cold Brew', price: 5.50, category: 'coffee', desc: 'Creamy nitrogen-infused local cold brew served chilled.', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400' },
-  { id: 'c4', name: 'Palomino Signature Brew', price: 7.00, category: 'coffee', desc: 'Nitro cold brew custom styled with gourmet vanilla and half & half.', img: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&q=80&w=400' },
-  { id: 'c5', name: 'Red Eye Shot', price: 4.30, category: 'coffee', desc: 'Double shot of house espresso topped with rich brewed coffee.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400' },
-  
-  // SIGNATURE DRINKS (Flyer page 1)
-  { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, category: 'signature', desc: 'Double espresso, velvet steamed milk, chocolate, vanilla, and sweet Muddy Pond Sorghum syrup.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=400', badge: 'Best Seller' },
-  { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', badge: 'Barista Rec' },
-  { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=400', badge: 'Classic Signature' },
-  
-  // ESPRESSO TRADITIONAL (Flyer page 1)
-  { id: 'e1', name: 'Espresso Double Shot', price: 3.30, category: 'espresso', desc: 'Perfectly extracted, rich-bodied local espresso blend.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400' },
-  { id: 'e2', name: 'Caffe Latte', price: 5.00, category: 'espresso', desc: 'Espresso double shot over steamed milk with thin microfoam layer.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400' },
-  { id: 'e3', name: 'Cortado Glass', price: 4.10, category: 'espresso', desc: 'Equal parts extracted espresso and velvet steamed whole milk.', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&q=80&w=400' },
-  { id: 'e4', name: 'Classic Cappuccino', price: 4.20, category: 'espresso', desc: 'Double espresso with generous textured steamed foam caps.', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=400' },
-  { id: 'e5', name: 'Pour Decisions Frappe', price: 6.30, category: 'espresso', desc: 'Blended icy frappe with espresso, syrup flavors of choice, and real whipped cream.', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&q=80&w=400' },
-  
-  // TEAS & OTHERS (Flyer page 1)
-  { id: 't1', name: 'Matcha Premium Latte', price: 5.80, category: 'tea-more', desc: 'Premium ground Japanese green tea leaves with steamed milk.', img: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&q=80&w=400' },
-  { id: 't2', name: 'London Fog Earl Grey', price: 5.50, category: 'tea-more', desc: 'Steeped Earl Grey tea, warm steamed milk, and vanilla infusion.', img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&q=80&w=400' },
-  { id: 't3', name: 'Assorted Gourmet Teas', price: 3.20, category: 'tea-more', desc: 'Choose from green, jasmine, peppermint, or black tea blends.', img: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=400' },
-  { id: 't4', name: 'Kombucha Tap / Can', price: 5.00, category: 'tea-more', desc: 'Refreshing probiotic carbonated craft tea from the local brewery.', img: 'https://images.unsplash.com/photo-1598063412579-2479e0ef7a8e?auto=format&fit=crop&q=80&w=400' },
-
-  // BREAKFAST BITES (Flyer page 2)
-  { id: 'b1', name: 'Quiche Slice Special', price: 6.00, category: 'breakfast', desc: 'Choose Ham & Cheddar or rotating vegetarian spinach, tomato, and feta quiche.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400', badge: 'Fresh Baked' },
-  { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1626700051175-6518c4793f06?auto=format&fit=crop&q=80&w=400', badge: 'Local Fav' },
-  { id: 'b3', name: 'Smoked Salmon Keto Bowl', price: 12.00, category: 'breakfast', desc: 'Cold smoked salmon with organic capers, 2 eggs made to order, and fresh red onions on fresh baby spinach.', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=400' },
-  { id: 'b4', name: 'Breakfast Sandwich Biscuit', price: 6.75, category: 'breakfast', desc: 'Two fried eggs, rich cheddar cheese, and bacon or sausage on your choice of croissant or butter biscuit.', img: 'https://images.unsplash.com/photo-1550507992-eb63ffee0847?auto=format&fit=crop&q=80&w=400' },
-  
-  // SANDWICHES & LUNCH (Flyer page 2)
-  { id: 'l1', name: 'Smoked Salmon Bagel Box', price: 13.00, category: 'lunch', desc: 'Smoked wild salmon, toasted bagel with cream cheese, cucumber slices, and hard-boiled egg.', img: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400', badge: 'Premium Pick' },
-  { id: 'l2', name: 'Turkey Pesto Panini', price: 13.00, category: 'lunch', desc: 'Smoked premium turkey breast, rich basil pesto aioli, cheddar cheese, sliced tomato, spinach on sourdough.', img: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&q=80&w=400' },
-  { id: 'l3', name: 'BLT Traditional Panini', price: 12.00, category: 'lunch', desc: 'Thick hickory-smoked bacon strips, fresh lettuce leaves, sliced tomato, and mayo on crusty sourdough bread.', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=400' },
-  { id: 'l4', name: 'Mandarin Cranberry Walnut Salad', price: 10.00, category: 'lunch', desc: 'Fresh spinach base with mandarin oranges, rich feta cheese crumbles, craisans, and walnuts, served with sweet balsamic vinaigrette.', img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=400' }
-];
-
-let communityPhotos = [
-  { id: 'w1', handle: 'maryville_academic', drink: 'Viennese Waltz & quiche slice', image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400', timestamp: Date.now() - 100000 },
-  { id: 'w2', handle: 'college_st_designer', drink: 'Muddy Pond Mocha with extra shot', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400', timestamp: Date.now() - 400000000 }
-];
-
-let communityFeedbacks = [
-  { id: 'f1', user: '@maryville_local', topic: 'Muddy Pond Mocha', comment: 'The Sorghum syrup in the mocha is absolutely life-changing. Perfect study fuel for College Street.', timestamp: Date.now() - 500000 },
-  { id: 'f2', user: '@grace_notes', topic: 'Turkey Pesto Panini', comment: 'The panini was beautifully toasted and the basil pesto felt incredibly premium. Loved it!', timestamp: Date.now() - 80000000 }
-];
-
-let selectedCategory = 'all';
-let currentSearch = '';
-let selectedLoungeZone = 'Library Hearth Nook';
-let stampCount = 0;
-
-// High-Performance Debounce utility to prevent layout thrashing during live menu filtering
-function debounce(func, delay) {
-  let timeout;
-  return function (...args) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(this, args), delay);
-  };
-}
-
-window.onload = function() {
-  initDOMCache();
-  renderBistroMenu();
-  renderVibeBoard();
-  renderFeedbackBoard();
-  calculateCustomPrice();
-  
-  // Render active cart indicators initially
-  syncCartUI();
-
-  // Attach optimized debounced listener to menu search input
-  if (dom.menuSearch) {
-    dom.menuSearch.addEventListener('input', debounce(function(e) {
-      currentSearch = e.target.value;
-      renderBistroMenu();
-      logTelemetryEvent('catalog_searched', { query: currentSearch });
-    }, 200));
-  }
-
-  // Launch New Arrival promotion dialog automatically after 1.5 seconds
-  setTimeout(() => {
-    openPromoModal();
-  }, 1500);
-
-  // Launch Premium QR Menu Promotion after exactly 40 seconds of site exploration
-  setTimeout(() => {
-    openQrUpgradeModal();
-  }, 40000);
-};
-
-function switchPage(pageId) {
-  // Hide all screens
+// --- MULTI-PAGE CONTROLLER (SPA) ---
+window.switchPage = function(pageId) {
   const pageViews = document.querySelectorAll('.page-view');
   for (let i = 0; i < pageViews.length; i++) {
     pageViews[i].classList.add('hidden');
   }
   document.getElementById('page-' + pageId).classList.remove('hidden');
 
-  // Desktop active tab indicators
+  // Desktop indicator states
   const navTabBtns = document.querySelectorAll('.nav-tab-btn');
   for (let i = 0; i < navTabBtns.length; i++) {
     navTabBtns[i].classList.remove('active', 'text-white');
@@ -1303,7 +1449,7 @@ function switchPage(pageId) {
     activeTab.classList.remove('text-neutralMuted');
   }
 
-  // Mobile active tab indicators
+  // Mobile indicators
   const mobileTabs = document.querySelectorAll('[id^="mobile-tab-"]');
   for (let i = 0; i < mobileTabs.length; i++) {
     mobileTabs[i].classList.remove('text-terracotta');
@@ -1312,7 +1458,6 @@ function switchPage(pageId) {
   if (activeMobileTab) activeMobileTab.classList.add('text-terracotta');
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  logTelemetryEvent('page_navigated', { page: pageId });
 }
 
 function scrollIntoSection(id) {
@@ -1320,10 +1465,9 @@ function scrollIntoSection(id) {
   if (el) el.scrollIntoView({ behavior: 'smooth' });
 }
 
-// --- Promo Modal Controls ---
+// --- PROMOTION POPUPS ---
 function openPromoModal() {
   document.getElementById('promo-modal').classList.add('active');
-  logTelemetryEvent('promo_modal_opened', {});
 }
 function closePromoModal() {
   document.getElementById('promo-modal').classList.remove('active');
@@ -1332,24 +1476,22 @@ function addPromoToOrder() {
   addItemToCart('s3', 'Viennese Waltz', 5.80);
   closePromoModal();
   openSidebarCart();
-  logTelemetryEvent('promo_added_to_order', { id: 's3', name: 'Viennese Waltz' });
 }
 
-// --- Premium QR Upgrade Modal Controls ---
+// --- QR DIGITAL UPGRADE MODAL ---
 function openQrUpgradeModal() {
   document.getElementById('qr-upgrade-modal').classList.add('active');
-  logTelemetryEvent('qr_upgrade_modal_opened', {});
 }
 function closeQrUpgradeModal() {
   document.getElementById('qr-upgrade-modal').classList.remove('active');
 }
 function contactForQrUpgrade() {
   closeQrUpgradeModal();
-  showToastNotification("Contact simulated! Upgrade proposal triggered. 🚀");
-  logTelemetryEvent('qr_upgrade_cta_clicked', {});
+  showToastNotification("QR Menu Upgrade Proposal Sent to Maryville Team! 🚀");
 }
 
-// --- Menu Rendering & Category Filters ---
+// --- STREAMING_CHUNK: Processing active category filters and dynamic accordion catalog... ---
+// --- PRODUCTS CATALOG AND BISTRO ACCORDION RENDERERS ---
 function filterCategory(categoryName) {
   selectedCategory = categoryName;
   const categoryPills = document.querySelectorAll('.category-pill');
@@ -1365,7 +1507,6 @@ function filterCategory(categoryName) {
   }
   
   renderBistroMenu();
-  logTelemetryEvent('category_filtered', { category: categoryName });
 }
 
 function renderBistroMenu() {
@@ -1373,7 +1514,6 @@ function renderBistroMenu() {
   dom.premiumCarousel.innerHTML = '';
   dom.bistroCatalogAccordions.innerHTML = '';
 
-  // Filter full items first based on search query
   const filtered = masterProducts.filter(item => {
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
     const matchesSearch = item.name.toLowerCase().includes(currentSearch.toLowerCase()) || 
@@ -1382,31 +1522,28 @@ function renderBistroMenu() {
   });
 
   if (filtered.length === 0) {
-    dom.premiumCarousel.innerHTML = `<div class="text-neutralMuted py-4 text-xs font-mono pl-2">No specialties matching that query.</div>`;
+    dom.premiumCarousel.innerHTML = `<div class="text-neutralMuted py-4 text-xs font-mono pl-2">No matching item found.</div>`;
     dom.bistroCatalogAccordions.innerHTML = `
       <div class="text-center py-12 text-sm text-neutralMuted font-mono">
-        No culinary items found matching that query.
+        No culinary choices found matching that query.
       </div>
     `;
     return;
   }
 
-  // 1. Render HORIZONTAL CAROUSEL (Premium Specialties cards matching image_7b52ed.jpg)
+  // Horizontal Carousel specialties (signatures or badge highlights)
   let featuredSpecialties = filtered.filter(item => item.category === 'signature' || item.badge);
   if (featuredSpecialties.length === 0) {
-    featuredSpecialties = filtered.slice(0, 3); // Fallback to first 3 items
+    featuredSpecialties = filtered.slice(0, 3);
   }
 
-  dom.carouselTitle.innerText = selectedCategory === 'all' ? "Featured Signatures" : "Top Recommendations";
+  dom.carouselTitle.innerText = selectedCategory === 'all' ? "Featured Signatures" : "Top Picks";
 
-  // Using DocumentFragment to optimize DOM injection performance
   const carouselFragment = document.createDocumentFragment();
-
   featuredSpecialties.forEach(item => {
-    const carouselCard = document.createElement('div');
-    carouselCard.className = 'w-64 flex-shrink-0 bg-appCard border border-appBorder rounded-3xl overflow-hidden p-3 flex flex-col justify-between snap-center shadow-lg transition-transform hover:scale-[1.02]';
-    
-    carouselCard.innerHTML = `
+    const card = document.createElement('div');
+    card.className = 'w-64 flex-shrink-0 bg-appCard border border-appBorder rounded-3xl overflow-hidden p-3 flex flex-col justify-between snap-center shadow-lg transition-transform hover:scale-[1.02]';
+    card.innerHTML = `
       <div>
         <div class="relative h-44 rounded-2xl overflow-hidden mb-3.5 bg-espresso/30">
           ${item.badge ? `<span class="absolute top-2 left-2 bg-appBg text-appText border border-appBorder font-mono text-[9px] uppercase px-2 py-0.5 rounded shadow z-10">${item.badge}</span>` : ''}
@@ -1422,11 +1559,11 @@ function renderBistroMenu() {
         </button>
       </div>
     `;
-    carouselFragment.appendChild(carouselCard);
+    carouselFragment.appendChild(card);
   });
   dom.premiumCarousel.appendChild(carouselFragment);
 
-  // 2. Render COLLAPSIBLE ACCORDIONS for remaining Bistro Catalog items grouped elegantly
+  // Group Categories Accordions
   const categoryGroups = {
     coffee: { title: "☕ Brewed & Specialty Drip", icon: "fa-mug-hot" },
     espresso: { title: "⚡ Traditional Espresso Creations", icon: "fa-bolt" },
@@ -1437,19 +1574,14 @@ function renderBistroMenu() {
   };
 
   const accordionsFragment = document.createDocumentFragment();
-
-  // Build accordion structure efficiently
   Object.keys(categoryGroups).forEach(catId => {
-    // Check if this category group contains filtered elements
     const groupItems = filtered.filter(item => item.category === catId);
-    if (groupItems.length === 0) return; // skip if empty
+    if (groupItems.length === 0) return;
 
     const groupMeta = categoryGroups[catId];
     const accordionDiv = document.createElement('div');
     accordionDiv.className = 'border border-appBorder rounded-2xl bg-appCard overflow-hidden shadow-sm transition-colors';
-    
-    // Check if we should automatically expand (e.g. if category tab matches this specific category)
-    const isExpanded = selectedCategory === 'all' ? false : (selectedCategory === catId);
+    const isExpanded = selectedCategory === catId;
 
     accordionDiv.innerHTML = `
       <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center p-4 text-left font-serif font-bold text-appHeading focus:outline-none hover:bg-espresso/5 transition-all">
@@ -1488,7 +1620,6 @@ function renderBistroMenu() {
   dom.bistroCatalogAccordions.appendChild(accordionsFragment);
 }
 
-// Custom Accordion Toggle Function with explicit transitions
 function toggleAccordion(buttonElement) {
   const content = buttonElement.nextElementSibling;
   const icon = buttonElement.querySelector('.fa-chevron-down');
@@ -1504,8 +1635,7 @@ function toggleAccordion(buttonElement) {
   }
 }
 
-let cart = [];
-
+// --- CURBSIDE BASKET CHECKOUT SYSTEM ---
 function addItemToCart(id, name, price) {
   const existing = cart.find(item => item.id === id);
   if (existing) {
@@ -1514,6 +1644,7 @@ function addItemToCart(id, name, price) {
     cart.push({ id, name, price, quantity: 1 });
   }
   syncCartUI();
+  saveCartToStorage();
   showToastNotification(`Added ${name} to your Order Bag!`);
   logTelemetryEvent('item_added_to_cart', { id, name, price });
 }
@@ -1528,13 +1659,13 @@ function removeOneFromCart(id) {
     }
   }
   syncCartUI();
+  saveCartToStorage();
   logTelemetryEvent('item_removed_from_cart', { id });
 }
 
 function syncCartUI() {
   if (!dom.cartItemsWrapper) return;
   
-  // Using document fragment for optimized list rendering
   const fragment = document.createDocumentFragment();
   let totalCount = 0;
   let totalPrice = 0;
@@ -1571,7 +1702,6 @@ function syncCartUI() {
   dom.cartItemsWrapper.innerHTML = '';
   dom.cartItemsWrapper.appendChild(fragment);
 
-  // Update badges with minimal layout shifts
   dom.desktopCartBadge.innerText = totalCount;
   dom.mobileCartBadge.innerText = totalCount;
   
@@ -1583,22 +1713,40 @@ function syncCartUI() {
 function openSidebarCart() {
   document.getElementById('cart-sheet').classList.add('active');
   document.getElementById('sheet-backdrop').classList.add('active');
-  logTelemetryEvent('cart_opened', {});
 }
 function closeSidebarCart() {
   document.getElementById('cart-sheet').classList.remove('active');
   document.getElementById('sheet-backdrop').classList.remove('active');
 }
 
-function triggerCheckoutCheckout() {
+async function triggerCheckoutCheckout() {
   closeSidebarCart();
+  
+  let totalPrice = cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+  const orderTicket = {
+    customerName: auth && auth.currentUser ? `Boutique Client` : 'Boutique Visitor',
+    items: cart,
+    totalPrice: totalPrice,
+    status: 'Pending',
+    timestamp: Date.now()
+  };
+
+  // Persist Order Transaction to Real-time Cloud Pipeline
+  if (db && isFirebaseReady) {
+    try {
+      await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'orders'), orderTicket);
+    } catch(err) { console.error("Cloud order save failed:", err); }
+  }
+
   showToastNotification("Pre-order confirmed! We'll notify you when it's ready.");
-  logTelemetryEvent('checkout_confirmed', { cartSize: cart.length });
+  logTelemetryEvent('order_placed', { itemCount: cart.length });
+  
   cart = [];
+  saveCartToStorage();
   syncCartUI();
 }
 
-// --- Seating Reservations Passport Logic ---
+// --- LOUNGE RESERVATIONS PASSPORT ---
 function selectReserveZone(element, name, description) {
   selectedLoungeZone = name;
   document.getElementById('zone-reserve-desc').innerText = description;
@@ -1608,7 +1756,6 @@ function selectReserveZone(element, name, description) {
     zoneBtns[i].classList.remove('selected', 'border-terracotta');
   }
   element.classList.add('selected', 'border-terracotta');
-  logTelemetryEvent('lounge_zone_selected', { zone: name });
 }
 
 const reservationForm = document.getElementById('reserve-bistro-form');
@@ -1636,7 +1783,7 @@ function closeReservationTicket() {
   document.getElementById('sheet-backdrop').classList.remove('active');
 }
 
-// --- Brew Lab Customizer Logic ---
+// --- CUSTOM MIX STUDIO (TIMPLAHAN DESIGN PROFILES) ---
 function calculateCustomPrice() {
   if (!dom.builderBase) return;
   
@@ -1648,7 +1795,6 @@ function calculateCustomPrice() {
   let finalPrice = basePrice;
   let descString = `Artisan signature espresso customized with your premium selection of modifications.`;
 
-  // Size calculation from radio buttons
   const sizeValue = document.querySelector('input[name="brew-size"]:checked').value;
   if (sizeValue === '350') {
     finalPrice += 1.00;
@@ -1679,9 +1825,7 @@ function calculateCustomPrice() {
     syrupArr.push('Velvet Heavy Cream');
   }
 
-  // Update builder view using cached references
   dom.builderDisplayName.innerText = `Gourmet Custom ${baseName} (${sizeValue}ml)`;
-  
   const modifications = [
     `Served with ${milkValue} milk alternative`,
     ...syrupArr
@@ -1700,17 +1844,15 @@ function addCustomBuildToCart() {
   logTelemetryEvent('custom_mix_added_to_cart', { name: customName, price: customPrice });
 }
 
+// --- VIBE BOARD COMMUNITY GALLERY ---
 function renderVibeBoard() {
   if (!dom.polaroidCanvasGrid) return;
   dom.polaroidCanvasGrid.innerHTML = '';
 
   const sevenDaysLimit = 7 * 24 * 60 * 60 * 1000;
   const now = Date.now();
-
-  // Filter out community uploads older than exactly 7 days
   const activePhotos = communityPhotos.filter(photo => (now - photo.timestamp) <= sevenDaysLimit);
 
-  // Pad layout with beautiful centered placeholder frames up to 4 elements
   const itemsCount = Math.max(4, activePhotos.length + 2);
   const fragment = document.createDocumentFragment();
 
@@ -1727,7 +1869,7 @@ function renderVibeBoard() {
           <img src="${photo.image}" alt="Community user upload pinned to board" class="w-full h-full object-cover" loading="lazy" onerror="handleImageError(this)">
         </div>
         <div class="mt-3 text-center overflow-hidden">
-          <p class="font-serif font-bold text-terracotta text-xs truncate">@${photo.handle}</p>
+          <p class="font-serif font-bold text-terracotta text-xs truncate font-serif">@${photo.handle}</p>
           <p class="text-[9px] text-accentLight -mt-0.5 truncate leading-tight">${photo.drink}</p>
         </div>
       `;
@@ -1736,7 +1878,7 @@ function renderVibeBoard() {
       frame.style.transform = `rotate(${randomAngle}deg)`;
       frame.innerHTML = `
         <div onclick="openUploadSheet()" class="flex flex-col justify-center items-center w-full aspect-square border border-dashed border-terracotta/40 bg-appBg/50 rounded-xl">
-          <i class="fa-solid fa-camera text-xl text-terracotta animate-bounce mb-1"></i>
+          <i class="fa-solid fa-camera text-xl text-terracotta mb-1"></i>
           <p class="font-serif text-xs text-appHeading font-bold">Post Vibe</p>
           <p class="text-[8px] uppercase font-mono tracking-wider text-neutralMuted">Open Space</p>
         </div>
@@ -1747,7 +1889,6 @@ function renderVibeBoard() {
   dom.polaroidCanvasGrid.appendChild(fragment);
 }
 
-// --- Upload Logic ---
 function openUploadSheet() {
   document.getElementById('upload-sheet').classList.add('active');
   document.getElementById('sheet-backdrop').classList.add('active');
@@ -1757,7 +1898,7 @@ function closeUploadSheet() {
   document.getElementById('sheet-backdrop').classList.remove('active');
 }
 
-// Image File handling
+// Polaroid vibe upload form pipeline
 const fileInput = document.getElementById('file-input');
 const previewImg = document.getElementById('preview-img');
 const placeholder = document.getElementById('dropzone-placeholder');
@@ -1781,31 +1922,34 @@ function applyPresetVibe(url) {
   previewImg.src = url;
   previewImg.classList.remove('hidden');
   placeholder.classList.add('hidden');
-  showToastNotification("Curated cafe preset vibe applied!");
 }
 
 const vibeUploadForm = document.getElementById('vibe-upload-form');
 if (vibeUploadForm) {
-  vibeUploadForm.addEventListener('submit', (e) => {
+  vibeUploadForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const handle = document.getElementById('wall-handle').value.trim() || 'pour_regular';
     const orderedItem = document.getElementById('wall-drink').value.trim() || 'Handcrafted Brew';
     const imgUrl = previewImg.src || 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400';
 
-    // Push new photo onto community array
     const newPhoto = {
-      id: 'w-' + Date.now(),
       handle: handle,
       drink: orderedItem,
       image: imgUrl,
       timestamp: Date.now()
     };
 
-    communityPhotos.unshift(newPhoto);
-    renderVibeBoard();
+    // Store vibe to Cloud/Local
+    if (db && isFirebaseReady) {
+      try {
+        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vibes', 'vibe_' + Date.now()), newPhoto);
+      } catch(err) { console.error("Cloud Vibe save failed:", err); }
+    } else {
+      communityPhotos.unshift({ id: 'w-' + Date.now(), ...newPhoto });
+      renderVibeBoard();
+    }
 
-    // Reset & close
     vibeUploadForm.reset();
     previewImg.src = '';
     previewImg.classList.add('hidden');
@@ -1813,25 +1957,27 @@ if (vibeUploadForm) {
     closeUploadSheet();
 
     showToastNotification("Successfully pinned to the legends board! 📌");
-    logTelemetryEvent('vibe_pinned', { handle: handle, item: orderedItem });
+    logTelemetryEvent('vibe_pinned', { handle, item: orderedItem });
   });
 }
 
-// --- Feedback & Suggestions Logic ---
+// --- FEEDBACK & REVIEW MODERATION QUEUE ---
 function renderFeedbackBoard() {
   if (!dom.feedbackBoardCards) return;
   dom.feedbackBoardCards.innerHTML = '';
 
-  if (communityFeedbacks.length === 0) {
+  // Only render APPROVED customer reviews
+  const approvedReviews = communityFeedbacks.filter(fb => fb.approved === true);
+
+  if (approvedReviews.length === 0) {
     dom.feedbackBoardCards.innerHTML = `
-      <p class="text-xs text-neutralMuted font-mono text-center py-6">No published notes currently.</p>
+      <p class="text-xs text-neutralMuted font-mono text-center py-6">No approved guest notes published yet.</p>
     `;
     return;
   }
 
   const fragment = document.createDocumentFragment();
-
-  communityFeedbacks.forEach(fb => {
+  approvedReviews.forEach(fb => {
     const card = document.createElement('div');
     card.className = 'bg-appCard border border-terracotta/20 p-4 rounded-2xl relative shadow-md overflow-hidden';
     card.innerHTML = `
@@ -1849,42 +1995,40 @@ function renderFeedbackBoard() {
 
 const suggestionsForm = document.getElementById('suggestions-submit-form');
 if (suggestionsForm) {
-  suggestionsForm.addEventListener('submit', (e) => {
+  suggestionsForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const user = document.getElementById('feedback-user').value.trim();
     const topic = document.getElementById('feedback-topic').value.trim();
     const comment = document.getElementById('feedback-comment').value.trim();
 
-    const newFeedback = {
-      id: 'f-' + Date.now(),
+    const feedbackPayload = {
       user: user.startsWith('@') ? user : '@' + user,
       topic: topic,
       comment: comment,
+      approved: false, // Default is false. Held for Admin Approval
       timestamp: Date.now()
     };
 
-    communityFeedbacks.unshift(newFeedback);
-    renderFeedbackBoard();
+    if (db && isFirebaseReady) {
+      try {
+        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'feedback', 'feed_' + Date.now()), feedbackPayload);
+      } catch(err) { console.error("Feedback cloud save error:", err); }
+    } else {
+      communityFeedbacks.unshift({ id: 'f-' + Date.now(), ...feedbackPayload });
+      renderFeedbackBoard();
+    }
 
     suggestionsForm.reset();
-    showToastNotification("Feedback received and queued for review! 🛡️");
+    showToastNotification("Your note is submitted for admin review! 🛡️");
     logTelemetryEvent('feedback_submitted', { user, topic });
   });
 }
 
-function openCMSPanel() {
-  document.getElementById('admin-cms-sheet').classList.add('active');
-  document.getElementById('sheet-backdrop').classList.add('active');
-}
-function closeCMSPanel() {
-  document.getElementById('admin-cms-sheet').classList.remove('active');
-  document.getElementById('sheet-backdrop').classList.remove('active');
-  
-  // Lock screen back on exit
-  document.getElementById('cms-verify-section').classList.remove('hidden');
-  document.getElementById('cms-authenticated-view').classList.add('hidden');
-  document.getElementById('cms-passcode-input').value = '';
+// --- STREAMING_CHUNK: Designing the administrative view tabs and control logs... ---
+// --- ADMINISTRATIVE CMS SEPARATE FULL-SCREEN PANEL ---
+function openCMSPage() {
+  switchPage('admin');
 }
 
 function verifyAdministrativePasscode() {
@@ -1893,111 +2037,242 @@ function verifyAdministrativePasscode() {
   if (pass === 'pour' || pass === 'barako' || pass === 'vienna') {
     document.getElementById('cms-verify-section').classList.add('hidden');
     document.getElementById('cms-authenticated-view').classList.remove('hidden');
-    showToastNotification("Authorized Access Approved! 🛡️");
+    showToastNotification("Access Approved! 🛡️");
+    
+    renderCMSOrdersPipeline();
+    renderCMSFeedbackModerationList();
     renderCMSPhotosList();
     renderCMSProductsList();
+    updateDashboardMetrics();
     logTelemetryEvent('cms_authenticated', { success: true });
   } else {
     showToastNotification("Invalid Passcode. Access Denied.");
-    logTelemetryEvent('cms_authenticated', { success: false });
   }
 }
 
-// --- Administrative Sub-Tabs & CRUD Panel ---
 function switchCMSTab(tabName) {
-  const pBtn = document.getElementById('tab-cms-photos');
-  const prodBtn = document.getElementById('tab-cms-products');
-  const analytBtn = document.getElementById('tab-cms-analytics');
-  
-  const photosContainer = document.getElementById('cms-photos-subview');
-  const productsContainer = document.getElementById('cms-products-subview');
-  const analytContainer = document.getElementById('cms-analytics-subview');
+  const tabs = ['orders', 'feedback', 'photos', 'products', 'analytics'];
+  tabs.forEach(t => {
+    document.getElementById(`tab-cms-${t}`).className = "pb-2.5 text-neutralMuted border-b-2 border-transparent transition-colors";
+    document.getElementById(`cms-${t}-subview`).classList.add('hidden');
+  });
 
-  // Reset states
-  pBtn.className = "flex-1 pb-2 text-neutralMuted border-b-2 border-transparent";
-  prodBtn.className = "flex-1 pb-2 text-neutralMuted border-b-2 border-transparent";
-  analytBtn.className = "flex-1 pb-2 text-neutralMuted border-b-2 border-transparent";
-  
-  photosContainer.classList.add('hidden');
-  productsContainer.classList.add('hidden');
-  analytContainer.classList.add('hidden');
-
-  if (tabName === 'photos') {
-    pBtn.className = "flex-1 pb-2 text-terracotta border-b-2 border-terracotta";
-    photosContainer.classList.remove('hidden');
-  } else if (tabName === 'products') {
-    prodBtn.className = "flex-1 pb-2 text-terracotta border-b-2 border-terracotta";
-    productsContainer.classList.remove('hidden');
-  } else {
-    analytBtn.className = "flex-1 pb-2 text-terracotta border-b-2 border-terracotta";
-    analytContainer.classList.remove('hidden');
-  }
+  document.getElementById(`tab-cms-${tabName}`).className = "pb-2.5 text-terracotta border-b-2 border-terracotta transition-colors";
+  document.getElementById(`cms-${tabName}-subview`).classList.remove('hidden');
 }
 
+// Admin Real-time Metric Aggregations
+function updateDashboardMetrics() {
+  const revenueCount = activeOrders.reduce((sum, ord) => sum + (ord.status === 'Completed' ? ord.totalPrice : 0), 0);
+  const activeOrdersCount = activeOrders.filter(ord => ord.status !== 'Completed').length;
+  const pendingFeedback = communityFeedbacks.filter(fb => fb.approved === false).length;
+
+  document.getElementById('metrics-revenue').innerText = `$${revenueCount.toFixed(2)}`;
+  document.getElementById('metrics-orders-active').innerText = activeOrdersCount;
+  document.getElementById('metrics-feedback-pending').innerText = pendingFeedback;
+  document.getElementById('metrics-vibes-count').innerText = communityPhotos.length;
+}
+
+// 1. Live Orders Pipeline Screen
+function renderCMSOrdersPipeline() {
+  const container = document.getElementById('admin-orders-container');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const activePipeline = activeOrders.filter(ord => ord.status !== 'Completed');
+
+  if (activePipeline.length === 0) {
+    container.innerHTML = `
+      <div class="col-span-2 text-center py-10 bg-appBg/50 border border-appBorder rounded-2xl text-neutralMuted">
+        <p class="font-mono text-xs">No active orders in the pipeline currently.</p>
+      </div>
+    `;
+    return;
+  }
+
+  activePipeline.forEach(ord => {
+    const card = document.createElement('div');
+    card.className = 'bg-appBg border border-appBorder p-4 rounded-2xl space-y-3';
+    
+    let itemsList = ord.items.map(it => `${it.quantity}x ${it.name}`).join(', ');
+
+    card.innerHTML = `
+      <div class="flex justify-between items-start border-b border-appBorder pb-2">
+        <div>
+          <span class="text-xs text-neutralMuted uppercase block">CUSTOMER TYPE</span>
+          <span class="font-serif font-bold text-appHeading">${ord.customerName}</span>
+        </div>
+        <span class="px-2 py-0.5 rounded text-[9px] font-mono uppercase bg-terracotta/20 text-terracotta border border-terracotta/30">${ord.status}</span>
+      </div>
+      <div class="text-xs text-accentLight leading-relaxed">
+        <strong>Items:</strong> ${itemsList}
+      </div>
+      <div class="flex justify-between items-center pt-2 border-t border-appBorder/40">
+        <span class="font-mono font-bold text-terracotta">$${ord.totalPrice.toFixed(2)}</span>
+        <div class="flex gap-1.5">
+          ${ord.status === 'Pending' ? `
+            <button onclick="updateOrderStatus('${ord.id}', 'Preparing')" class="bg-darkAccent text-terracotta hover:bg-terracotta hover:text-white px-2.5 py-1 rounded-lg text-[10px] font-bold border border-terracotta/30">Start Prep</button>
+          ` : ''}
+          ${ord.status === 'Preparing' ? `
+            <button onclick="updateOrderStatus('${ord.id}', 'Ready')" class="bg-terracotta text-white px-2.5 py-1 rounded-lg text-[10px] font-bold">Mark Ready</button>
+          ` : ''}
+          ${ord.status === 'Ready' ? `
+            <button onclick="updateOrderStatus('${ord.id}', 'Completed')" class="bg-green-800 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold">Complete</button>
+          ` : ''}
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+async function updateOrderStatus(id, newStatus) {
+  if (db && isFirebaseReady) {
+    const orderDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'orders', id);
+    await updateDoc(orderDocRef, { status: newStatus });
+  } else {
+    activeOrders = activeOrders.map(ord => ord.id === id ? { ...ord, status: newStatus } : ord);
+    renderCMSOrdersPipeline();
+    updateDashboardMetrics();
+  }
+  showToastNotification(`Order Status updated to: ${newStatus}`);
+}
+
+// 2. Feedback Moderation Screen
+function renderCMSFeedbackModerationList() {
+  const container = document.getElementById('admin-feedback-moderation-list');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const pendingList = communityFeedbacks.filter(fb => fb.approved === false);
+
+  if (pendingList.length === 0) {
+    container.innerHTML = `
+      <p class="text-xs text-neutralMuted font-mono text-center py-6">All submitted customer reviews have been reviewed.</p>
+    `;
+    return;
+  }
+
+  pendingList.forEach(fb => {
+    const card = document.createElement('div');
+    card.className = 'bg-appBg border border-appBorder p-4 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs';
+    card.innerHTML = `
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <strong class="font-serif text-sm text-appHeading">${fb.user}</strong>
+          <span class="font-mono text-[9px] uppercase bg-darkAccent text-terracotta px-1.5 py-0.5 rounded">${fb.topic}</span>
+        </div>
+        <p class="text-accentLight italic">"${fb.comment}"</p>
+      </div>
+      <div class="flex gap-2 flex-shrink-0">
+        <button onclick="moderateFeedback('${fb.id}', true)" class="bg-green-800 hover:bg-green-700 text-white font-bold px-3 py-1.5 rounded-lg"><i class="fa-solid fa-check mr-1"></i> Approve</button>
+        <button onclick="moderateFeedback('${fb.id}', false)" class="bg-red-800 hover:bg-red-700 text-white font-bold px-3 py-1.5 rounded-lg"><i class="fa-solid fa-trash mr-1"></i> Reject</button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+async function moderateFeedback(id, approve) {
+  if (db && isFirebaseReady) {
+    const feedbackRef = doc(db, 'artifacts', appId, 'public', 'data', 'feedback', id);
+    if (approve) {
+      await updateDoc(feedbackRef, { approved: true });
+    } else {
+      await deleteDoc(feedbackRef);
+    }
+  } else {
+    if (approve) {
+      communityFeedbacks = communityFeedbacks.map(fb => fb.id === id ? { ...fb, approved: true } : fb);
+    } else {
+      communityFeedbacks = communityFeedbacks.filter(fb => fb.id !== id);
+    }
+    renderFeedbackBoard();
+    renderCMSFeedbackModerationList();
+    updateDashboardMetrics();
+  }
+  showToastNotification(approve ? "Feedback approved and published!" : "Feedback rejected and deleted.");
+}
+
+// 3. Vibe Archive (With Image Downloading via standard Blob triggers)
 function renderCMSPhotosList() {
-  const container = document.getElementById('cms-photos-subview');
+  const container = document.getElementById('admin-photos-moderation-grid');
   if (!container) return;
   container.innerHTML = '';
 
   if (communityPhotos.length === 0) {
-    container.innerHTML = `<p class="text-center py-6 text-xs text-neutralMuted">No client uploads currently.</p>`;
+    container.innerHTML = `<p class="text-center py-6 text-xs text-neutralMuted col-span-3">No vibe images currently posted.</p>`;
     return;
   }
 
   const sevenDaysLimit = 7 * 24 * 60 * 60 * 1000;
   const now = Date.now();
-  const fragment = document.createDocumentFragment();
 
   communityPhotos.forEach(photo => {
     const isExpired = (now - photo.timestamp) > sevenDaysLimit;
-    const row = document.createElement('div');
-    row.className = 'flex items-center justify-between gap-3 p-2 bg-appBg rounded border border-appBorder text-xs shadow-sm';
-    row.innerHTML = `
-      <div class="flex items-center gap-3 overflow-hidden">
-        <img src="${photo.image}" class="w-10 h-10 object-cover rounded-xl flex-shrink-0" onerror="handleImageError(this)">
+    const card = document.createElement('div');
+    card.className = 'bg-appBg border border-appBorder p-3 rounded-2xl text-xs space-y-3 shadow-inner';
+    card.innerHTML = `
+      <div class="relative w-full aspect-square bg-espresso/30 rounded-xl overflow-hidden border border-appBorder">
+        <img src="${photo.image}" class="w-full h-full object-cover">
+        <span class="absolute top-2 left-2 text-[8px] font-mono uppercase px-2 py-0.5 rounded ${isExpired ? 'bg-red-900/40 text-red-400' : 'bg-green-900/40 text-green-400'}">
+          ${isExpired ? 'Expired' : 'Active'}
+        </span>
+      </div>
+      <div class="flex justify-between items-center">
         <div class="overflow-hidden">
-          <div class="flex items-center gap-1.5">
-            <span class="font-bold text-appHeading">@${photo.handle}</span>
-            <span class="text-[8px] font-mono uppercase px-1 rounded ${isExpired ? 'bg-red-900/40 text-red-400' : 'bg-green-900/40 text-green-400'}">
-              ${isExpired ? 'Expired' : 'Active'}
-            </span>
-          </div>
-          <span class="text-[10px] text-neutralMuted block truncate max-w-[150px]">${photo.drink}</span>
+          <strong class="font-serif text-appHeading truncate block">@${photo.handle}</strong>
+          <span class="text-[9px] text-neutralMuted truncate block">${photo.drink}</span>
+        </div>
+        <div class="flex gap-1.5 flex-shrink-0">
+          <button onclick="downloadVibePhoto('${photo.image}', '${photo.handle}')" class="w-8 h-8 rounded-lg bg-darkAccent border border-terracotta/30 text-terracotta flex items-center justify-center hover:bg-terracotta hover:text-white transition-all shadow-sm" title="Download Vibe"><i class="fa-solid fa-download"></i></button>
+          <button onclick="deleteVibePhoto('${photo.id}')" class="w-8 h-8 rounded-lg bg-red-900/20 text-red-400 flex items-center justify-center hover:bg-red-800 hover:text-white transition-all shadow-sm" title="Remove"><i class="fa-solid fa-trash"></i></button>
         </div>
       </div>
-      <div class="flex gap-2">
-        <button onclick="deleteVibePhoto('${photo.id}')" class="text-terracotta hover:text-red-400 text-xs p-1" title="Remove Photo"><i class="fa-solid fa-trash"></i></button>
-      </div>
     `;
-    fragment.appendChild(row);
+    container.appendChild(card);
   });
-  container.appendChild(fragment);
 }
 
-function deleteVibePhoto(id) {
-  communityPhotos = communityPhotos.filter(p => p.id !== id);
-  renderCMSPhotosList();
-  renderVibeBoard();
-  showToastNotification("Memory removed from corkboard gallery!");
-  logTelemetryEvent('vibe_removed_by_admin', { id });
+function downloadVibePhoto(base64OrUrl, handle) {
+  // Direct file trigger using execution tags
+  const link = document.createElement('a');
+  link.href = base64OrUrl;
+  link.download = `Vibe_Photo_By_${handle}.jpg`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  showToastNotification("Download process started!");
 }
 
+async function deleteVibePhoto(id) {
+  if (db && isFirebaseReady) {
+    const vibeRef = doc(db, 'artifacts', appId, 'public', 'data', 'vibes', id);
+    await deleteDoc(vibeRef);
+  } else {
+    communityPhotos = communityPhotos.filter(p => p.id !== id);
+    renderCMSPhotosList();
+    renderVibeBoard();
+    updateDashboardMetrics();
+  }
+  showToastNotification("Photo removed from the Corkboard!");
+}
+
+// 4. Products Editor Screen
 function renderCMSProductsList() {
   const container = document.getElementById('cms-products-listing-wrapper');
   if (!container) return;
   container.innerHTML = '';
 
-  const fragment = document.createDocumentFragment();
-
   masterProducts.forEach(item => {
-    const row = document.createElement('div');
-    row.className = 'flex items-center justify-between gap-2 p-2 bg-appBg rounded border border-appBorder text-xs shadow-sm';
-    row.innerHTML = `
-      <div class="flex items-center gap-2 overflow-hidden">
-        <img src="${item.img}" class="w-8 h-8 object-cover rounded-xl flex-shrink-0" onerror="handleImageError(this)">
+    const card = document.createElement('div');
+    card.className = 'bg-appBg border border-appBorder p-3 rounded-2xl flex items-center justify-between gap-3 text-xs shadow-sm';
+    card.innerHTML = `
+      <div class="flex items-center gap-3 overflow-hidden">
+        <img src="${item.img}" class="w-10 h-10 object-cover rounded-lg flex-shrink-0" onerror="handleImageError(this)">
         <div class="overflow-hidden">
-          <span class="font-serif font-bold text-appHeading leading-none block truncate max-w-[160px]">${item.name}</span>
-          <span class="text-[9px] text-terracotta font-mono font-bold">$${item.price.toFixed(2)}</span>
+          <span class="font-serif font-bold text-appHeading leading-tight block truncate">${item.name}</span>
+          <span class="text-[10px] text-terracotta font-mono font-bold">$${item.price.toFixed(2)}</span>
         </div>
       </div>
       <div class="flex gap-2 flex-shrink-0">
@@ -2005,17 +2280,20 @@ function renderCMSProductsList() {
         <button onclick="deleteProductFromCMS('${item.id}')" class="text-terracotta hover:text-red-400 p-1"><i class="fa-solid fa-trash"></i></button>
       </div>
     `;
-    fragment.appendChild(row);
+    container.appendChild(card);
   });
-  container.appendChild(fragment);
 }
 
-function deleteProductFromCMS(id) {
-  masterProducts = masterProducts.filter(p => p.id !== id);
-  renderCMSProductsList();
-  renderBistroMenu();
-  showToastNotification("Catalog item removed from menu!");
-  logTelemetryEvent('product_deleted_by_admin', { id });
+async function deleteProductFromCMS(id) {
+  if (db && isFirebaseReady) {
+    const productRef = doc(db, 'artifacts', appId, 'public', 'data', 'products', id);
+    await deleteDoc(productRef);
+  } else {
+    masterProducts = masterProducts.filter(p => p.id !== id);
+    renderCMSProductsList();
+    renderBistroMenu();
+  }
+  showToastNotification("Catalog item removed!");
 }
 
 function openProductEditForm(id = '') {
@@ -2049,7 +2327,7 @@ function closeProductEditForm() {
 
 const crudForm = document.getElementById('product-crud-form');
 if (crudForm) {
-  crudForm.addEventListener('submit', (e) => {
+  crudForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const id = document.getElementById('p-form-id').value;
@@ -2061,23 +2339,26 @@ if (crudForm) {
 
     const payload = { id: id || 'p-' + Date.now(), name, price, category, desc, img: img || FALLBACK_IMAGE };
 
-    if (id) {
-      masterProducts = masterProducts.map(p => p.id === id ? payload : p);
-      showToastNotification("Catalog item updated successfully!");
-      logTelemetryEvent('product_updated_by_admin', { id, name });
+    if (db && isFirebaseReady) {
+      try {
+        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', payload.id), payload);
+      } catch(err) { console.error("Cloud product save error:", err); }
     } else {
-      masterProducts.push(payload);
-      showToastNotification("New catalog option published to menu!");
-      logTelemetryEvent('product_added_by_admin', { name, category });
+      if (id) {
+        masterProducts = masterProducts.map(p => p.id === id ? payload : p);
+      } else {
+        masterProducts.push(payload);
+      }
+      renderCMSProductsList();
+      renderBistroMenu();
     }
 
     closeProductEditForm();
-    renderCMSProductsList();
-    renderBistroMenu();
+    showToastNotification("Catalog updated successfully!");
   });
 }
 
-// --- Gamified Virtual Stamp Card System ---
+// --- SYSTEM UTILITY METRICS & FUNCTIONS ---
 function claimMysteryStamp() {
   if (stampCount >= 5) {
     showToastNotification("🏆 Reward code UNLOCKED: POUR99!");
@@ -2085,19 +2366,10 @@ function claimMysteryStamp() {
   }
   
   stampCount++;
-  const slot = document.querySelectorAll('.stamp-slot')[stampCount - 1];
-  if (slot) {
-    slot.classList.add('stamped');
-    const icon = slot.querySelector('i');
-    icon.classList.remove('text-transparent');
-    icon.classList.add('text-terracotta', 'scale-125');
-  }
-
   showToastNotification(`Stamp claimed! (${stampCount}/5)`);
   logTelemetryEvent('loyalty_stamp_claimed', { count: stampCount });
 }
 
-// --- Global Toast Notification Utility ---
 function showToastNotification(message) {
   const toast = document.getElementById('toast');
   toast.innerText = message;
@@ -2109,15 +2381,25 @@ function showToastNotification(message) {
     toast.classList.add('translate-y-24', 'opacity-0');
   }, 3500);
 }
+
+const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400';
+function handleImageError(img) {
+  img.onerror = null;
+  img.src = FALLBACK_IMAGE;
+}
+
+function debounce(func, delay) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), delay);
+  };
+}
 </script>
 
-<!-- Virtual Coupon Stamp Card Element injected dynamically -->
-<div class="hidden">
-  <div class="stamp-slot"><i class="fa-solid fa-star text-transparent transition-all"></i></div>
-  <div class="stamp-slot"><i class="fa-solid fa-star text-transparent transition-all"></i></div>
-  <div class="stamp-slot"><i class="fa-solid fa-star text-transparent transition-all"></i></div>
-  <div class="stamp-slot"><i class="fa-solid fa-star text-transparent transition-all"></i></div>
-  <div class="stamp-slot"><i class="fa-solid fa-star text-transparent transition-all"></i></div>
+<!-- Global Toast Notification Component -->
+<div class="fixed bottom-4 right-4 bg-appCard border border-terracotta/30 text-appText p-3 rounded-2xl shadow-2xl z-50 transition-all transform translate-y-24 opacity-0 max-w-xs text-xs font-semibold tracking-wide" id="toast">
+  Item added successfully!
 </div>
 
 </body>
