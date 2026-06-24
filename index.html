@@ -175,6 +175,16 @@ img{max-width:100%;display:block}
   border-color: var(--terracotta);
   transform: scale(1.05);
 }
+
+/* Smooth Accordion Height Transitions */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease;
+}
+.accordion-content.expanded {
+  max-height: 1000px; /* high fallback value for smooth transition */
+}
 </style>
 </head>
 <body class="bg-espresso text-parchment flex flex-col min-h-screen">
@@ -198,23 +208,24 @@ img{max-width:100%;display:block}
     </div>
 
     <!-- Main Navigation Pages Controller -->
-    <nav class="hidden md:flex items-center gap-6 font-serif" aria-label="Desktop Navigation">
-      <button onclick="switchPage('home')" class="nav-tab-btn active px-4 py-2 text-sm tracking-wider uppercase text-neutralMuted" id="tab-home">Online Menu</button>
-      <button onclick="switchPage('wall')" class="nav-tab-btn px-4 py-2 text-sm tracking-wider uppercase text-neutralMuted" id="tab-wall">Vibe Board</button>
-      <button onclick="switchPage('booking')" class="nav-tab-btn px-4 py-2 text-sm tracking-wider uppercase text-neutralMuted" id="tab-booking">Lounge Booking</button>
-      <button onclick="switchPage('heritage')" class="nav-tab-btn px-4 py-2 text-sm tracking-wider uppercase text-neutralMuted" id="tab-heritage">Our Heritage</button>
+    <nav class="hidden md:flex items-center gap-5 font-serif" aria-label="Desktop Navigation">
+      <button onclick="switchPage('home')" class="nav-tab-btn active px-3 py-2 text-[11px] tracking-wider uppercase text-neutralMuted" id="tab-home">Online Menu</button>
+      <button onclick="switchPage('wall')" class="nav-tab-btn px-3 py-2 text-[11px] tracking-wider uppercase text-neutralMuted" id="tab-wall">Vibe Board</button>
+      <button onclick="switchPage('booking')" class="nav-tab-btn px-3 py-2 text-[11px] tracking-wider uppercase text-neutralMuted" id="tab-booking">Lounge Booking</button>
+      <button onclick="switchPage('feedback')" class="nav-tab-btn px-3 py-2 text-[11px] tracking-wider uppercase text-neutralMuted" id="tab-feedback">Feedback</button>
+      <button onclick="switchPage('heritage')" class="nav-tab-btn px-3 py-2 text-[11px] tracking-wider uppercase text-neutralMuted" id="tab-heritage">Our Heritage</button>
     </nav>
 
     <!-- Header Actions (Cart count and Admin trigger) -->
-    <div class="flex items-center gap-3">
-      <button onclick="openFlyerModal()" class="border border-terracotta/40 text-terracotta text-xs py-1.5 px-3 rounded-xl hover:bg-terracotta hover:text-white transition-all font-semibold" title="View actual print menu board">
+    <div class="flex items-center gap-2.5">
+      <button onclick="openFlyerModal()" class="border border-terracotta/40 text-terracotta text-[10px] py-1.5 px-3 rounded-xl hover:bg-terracotta hover:text-white transition-all font-semibold" title="View actual print menu board">
         <i class="fa-solid fa-map"></i> <span class="hidden sm:inline">Original Menu Board</span>
       </button>
       <button onclick="openSidebarCart()" class="relative p-2 text-terracotta hover:text-white transition-all" aria-label="Shopping Cart">
         <i class="fa-solid fa-bag-shopping text-xl"></i>
         <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow" id="desktop-cart-badge">0</span>
       </button>
-      <button onclick="openCMSPanel()" class="text-neutralMuted hover:text-terracotta p-1.5 rounded transition-all text-sm" aria-label="Manage content">
+      <button onclick="openCMSPanel()" class="text-neutralMuted hover:text-terracotta p-1 rounded transition-all text-sm" aria-label="Manage content">
         <i class="fa-solid fa-lock"></i>
       </button>
     </div>
@@ -297,14 +308,16 @@ img{max-width:100%;display:block}
         </div>
       </div>
 
-      <!-- ================= STREAMING_CHUNK: Rendering the compact list matching image_7b52ed.jpg ================= -->
+      <!-- ================= STREAMING_CHUNK: Bistro Catalog Group Accordions... ================= -->
       <div class="space-y-4">
         <div class="flex justify-between items-baseline">
           <h3 class="font-serif text-lg font-bold text-white tracking-wide">Bistro Catalog</h3>
-          <span class="text-xs text-neutralMuted uppercase tracking-wider font-mono">Popular Choices</span>
+          <span class="text-xs text-neutralMuted uppercase tracking-wider font-mono">Tap to Expand Group</span>
         </div>
-        <div id="compact-product-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Small listing cards rendered via JavaScript -->
+        
+        <!-- Accordion Collapsible Wrapper to keep page extremely clean and avoid long scroll page -->
+        <div id="bistro-catalog-accordions" class="space-y-4">
+          <!-- Dynamically populated via JS categories -->
         </div>
       </div>
     </div>
@@ -495,7 +508,59 @@ img{max-width:100%;display:block}
     </div>
   </section>
 
-  <!-- ================= PAGE 4: OUR HERITAGE (ABOUT US) ================= -->
+  <!-- ================= PAGE 4: FEEDBACK & SUGGESTIONS ================= -->
+  <section id="page-feedback" class="page-view hidden space-y-8 animate-fadeIn">
+    <div class="text-center max-w-xl mx-auto space-y-2">
+      <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Tell Us Your Thoughts</span>
+      <h2 class="font-serif text-3xl font-bold text-white">Community Feedback</h2>
+      <p class="text-sm text-neutralMuted">We strive for culinary excellence. Submit suggestions, constructive advice, or happy coffee notes below.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
+      <!-- Feedback input panel -->
+      <div class="bg-darkCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5">
+        <div class="p-4 bg-terracotta/10 border-l-4 border-terracotta rounded-xl text-xs leading-relaxed text-accentLight">
+          <p class="font-serif font-bold text-white mb-1">📢 Important Community Note</p>
+          To maintain a warm, welcoming, and friendly neighborhood cafe connection in Maryville, some submitted suggestions and comments will be selected and published directly below on this board! Thank you for sharing your journey.
+        </div>
+
+        <form id="suggestions-submit-form" class="space-y-4">
+          <div class="flex flex-col gap-1.5 text-xs">
+            <label for="feedback-user" class="font-semibold text-neutralMuted uppercase tracking-wider">Your Handle / Name</label>
+            <input type="text" id="feedback-user" required placeholder="e.g. @maryville_regular" class="border border-terracotta/25 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none">
+          </div>
+
+          <div class="flex flex-col gap-1.5 text-xs">
+            <label for="feedback-topic" class="font-semibold text-neutralMuted uppercase tracking-wider">Favorite Vienna Product</label>
+            <input type="text" id="feedback-topic" required placeholder="e.g. Thunderhead Latte" class="border border-terracotta/25 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none">
+          </div>
+
+          <div class="flex flex-col gap-1.5 text-xs">
+            <label for="feedback-comment" class="font-semibold text-neutralMuted uppercase tracking-wider">Constructive Suggestion or Review</label>
+            <textarea id="feedback-comment" rows="4" required placeholder="Let us know how to make your next visit extraordinary..." class="border border-terracotta/25 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none"></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif py-3.5 rounded-xl shadow-md transition-all font-bold tracking-wider">
+            Publish Suggestion
+          </button>
+        </form>
+      </div>
+
+      <!-- Published Feedbacks list board -->
+      <div class="space-y-5">
+        <div class="flex justify-between items-baseline border-b border-terracotta/20 pb-2">
+          <h3 class="font-serif text-lg font-bold text-white tracking-wide">Featured Guest Notes</h3>
+          <span class="text-xs text-neutralMuted uppercase tracking-wider font-mono">Maryville, TN</span>
+        </div>
+
+        <div id="feedback-board-cards" class="grid gap-4">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 5: OUR HERITAGE (ABOUT US) ================= -->
   <section id="page-heritage" class="page-view hidden space-y-12 animate-fadeIn">
     <div class="text-center max-w-xl mx-auto space-y-2">
       <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Est. 1999 — Tennessee</span>
@@ -550,6 +615,10 @@ img{max-width:100%;display:block}
   <button onclick="switchPage('booking')" class="flex flex-col items-center gap-1 text-neutralMuted hover:text-terracotta" id="mobile-tab-booking">
     <i class="fa-regular fa-calendar-check text-lg"></i>
     <span class="text-[9px] uppercase tracking-wider font-semibold">Reserve</span>
+  </button>
+  <button onclick="switchPage('feedback')" class="flex flex-col items-center gap-1 text-neutralMuted hover:text-terracotta" id="mobile-tab-feedback">
+    <i class="fa-solid fa-comment-dots text-lg"></i>
+    <span class="text-[9px] uppercase tracking-wider font-semibold">Feedback</span>
   </button>
   <button onclick="switchPage('heritage')" class="flex flex-col items-center gap-1 text-neutralMuted hover:text-terracotta" id="mobile-tab-heritage">
     <i class="fa-solid fa-circle-info text-lg"></i>
@@ -854,46 +923,51 @@ img{max-width:100%;display:block}
 <script>
 let masterProducts = [
   // COFFEE & DRIPS (Flyer page 1)
-  { id: 'c1', name: 'Freshly Brewed Coffee', price: 3.00, category: 'coffee', desc: 'Fresh local house roast, includes 1 free refill from coffee bar.' },
-  { id: 'c2', name: 'Pour Over Coffee', price: 4.20, category: 'coffee', desc: 'Hand-brewed, fresh single cup of premium origin coffee.' },
-  { id: 'c3', name: 'Nitro Cold Brew', price: 6.00, category: 'coffee', desc: 'Creamy nitrogen-infused local cold brew served chilled.' },
-  { id: 'c4', name: 'Palomino Signature Brew', price: 7.00, category: 'coffee', desc: 'Nitro cold brew custom styled with gourmet vanilla and half & half.' },
-  { id: 'c5', name: 'Red Eye Shot', price: 4.30, category: 'coffee', desc: 'Double shot of house espresso topped with rich brewed coffee.' },
+  { id: 'c1', name: 'Freshly Brewed Coffee', price: 3.00, category: 'coffee', desc: 'Fresh local house roast, includes 1 free refill from coffee bar.', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400' },
+  { id: 'c2', name: 'Pour Over Coffee', price: 4.20, category: 'coffee', desc: 'Hand-brewed, fresh single cup of premium origin coffee.', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400' },
+  { id: 'c3', name: 'Nitro Cold Brew', price: 6.00, category: 'coffee', desc: 'Creamy nitrogen-infused local cold brew served chilled.', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400' },
+  { id: 'c4', name: 'Palomino Signature Brew', price: 7.00, category: 'coffee', desc: 'Nitro cold brew custom styled with gourmet vanilla and half & half.', img: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&q=80&w=400' },
+  { id: 'c5', name: 'Red Eye Shot', price: 4.30, category: 'coffee', desc: 'Double shot of house espresso topped with rich brewed coffee.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400' },
   
   // SIGNATURE DRINKS (Flyer page 1) - Best premium images matching image_7b52ed.jpg
   { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, category: 'signature', desc: 'Double espresso, velvet steamed milk, chocolate, vanilla, and sweet Muddy Pond Sorghum syrup.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=400', badge: 'Best Seller' },
-  { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400', badge: 'Barista Recommendation' },
+  { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', badge: 'Barista Recommendation' },
   { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=400', badge: 'Signature Classic' },
   
   // ESPRESSO TRADITIONAL (Flyer page 1)
-  { id: 'e1', name: 'Espresso Double Shot', price: 3.30, category: 'espresso', desc: 'Perfectly extracted, rich-bodied local espresso blend.' },
-  { id: 'e2', name: 'Caffe Latte', price: 5.00, category: 'espresso', desc: 'Espresso double shot over steamed milk with thin microfoam layer.' },
-  { id: 'e3', name: 'Cortado Glass', price: 4.10, category: 'espresso', desc: 'Equal parts extracted espresso and velvet steamed whole milk.' },
-  { id: 'e4', name: 'Classic Cappuccino', price: 4.20, category: 'espresso', desc: 'Double espresso with generous textured steamed foam caps.' },
-  { id: 'e5', name: 'Vienna Frappe', price: 6.30, category: 'espresso', desc: 'Blended icy frappe with espresso, syrup flavors of choice, and real whipped cream.' },
+  { id: 'e1', name: 'Espresso Double Shot', price: 3.30, category: 'espresso', desc: 'Perfectly extracted, rich-bodied local espresso blend.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400' },
+  { id: 'e2', name: 'Caffe Latte', price: 5.00, category: 'espresso', desc: 'Espresso double shot over steamed milk with thin microfoam layer.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400' },
+  { id: 'e3', name: 'Cortado Glass', price: 4.10, category: 'espresso', desc: 'Equal parts extracted espresso and velvet steamed whole milk.', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&q=80&w=400' },
+  { id: 'e4', name: 'Classic Cappuccino', price: 4.20, category: 'espresso', desc: 'Double espresso with generous textured steamed foam caps.', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=400' },
+  { id: 'e5', name: 'Vienna Frappe', price: 6.30, category: 'espresso', desc: 'Blended icy frappe with espresso, syrup flavors of choice, and real whipped cream.', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&q=80&w=400' },
   
   // TEAS & OTHERS (Flyer page 1)
-  { id: 't1', name: 'Matcha Premium Latte', price: 5.80, category: 'tea-more', desc: 'Premium ground Japanese green tea leaves with steamed milk.' },
-  { id: 't2', name: 'London Fog Earl Grey', price: 5.50, category: 'tea-more', desc: 'Steeped Earl Grey tea, warm steamed milk, and vanilla infusion.' },
-  { id: 't3', name: 'Assorted Gourmet Teas', price: 3.20, category: 'tea-more', desc: 'Choose from green, jasmine, peppermint, or black tea blends.' },
-  { id: 't4', name: 'Kombucha Tap / Can', price: 5.00, category: 'tea-more', desc: 'Refreshing probiotic carbonated craft tea from the local brewery.' },
+  { id: 't1', name: 'Matcha Premium Latte', price: 5.80, category: 'tea-more', desc: 'Premium ground Japanese green tea leaves with steamed milk.', img: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&q=80&w=400' },
+  { id: 't2', name: 'London Fog Earl Grey', price: 5.50, category: 'tea-more', desc: 'Steeped Earl Grey tea, warm steamed milk, and vanilla infusion.', img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&q=80&w=400' },
+  { id: 't3', name: 'Assorted Gourmet Teas', price: 3.20, category: 'tea-more', desc: 'Choose from green, jasmine, peppermint, or black tea blends.', img: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=400' },
+  { id: 't4', name: 'Kombucha Tap / Can', price: 5.00, category: 'tea-more', desc: 'Refreshing probiotic carbonated craft tea from the local brewery.', img: 'https://images.unsplash.com/photo-1598063412579-2479e0ef7a8e?auto=format&fit=crop&q=80&w=400' },
 
   // BREAKFAST BITES (Flyer page 2)
   { id: 'b1', name: 'Quiche Slice Special', price: 6.00, category: 'breakfast', desc: 'Choose Ham & Cheddar or rotating vegetarian spinach, tomato, and feta quiche.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400', badge: 'Fresh Baked' },
-  { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&q=80&w=400', badge: 'Local Favorite' },
-  { id: 'b3', name: 'Smoked Salmon Keto Bowl', price: 12.00, category: 'breakfast', desc: 'Cold smoked salmon with organic capers, 2 eggs made to order, and fresh red onions on fresh baby spinach.', img: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400' },
-  { id: 'b4', name: 'Breakfast Sandwich Biscuit', price: 6.75, category: 'breakfast', desc: 'Two fried eggs, rich cheddar cheese, and bacon or sausage on your choice of croissant or butter biscuit.' },
+  { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1626700051175-6518c4793f06?auto=format&fit=crop&q=80&w=400', badge: 'Local Favorite' },
+  { id: 'b3', name: 'Smoked Salmon Keto Bowl', price: 12.00, category: 'breakfast', desc: 'Cold smoked salmon with organic capers, 2 eggs made to order, and fresh red onions on fresh baby spinach.', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=400' },
+  { id: 'b4', name: 'Breakfast Sandwich Biscuit', price: 6.75, category: 'breakfast', desc: 'Two fried eggs, rich cheddar cheese, and bacon or sausage on your choice of croissant or butter biscuit.', img: 'https://images.unsplash.com/photo-1550507992-eb63ffee0847?auto=format&fit=crop&q=80&w=400' },
   
   // SANDWICHES & LUNCH (Flyer page 2)
   { id: 'l1', name: 'Smoked Salmon Bagel Box', price: 13.00, category: 'lunch', desc: 'Smoked wild salmon, toasted bagel with cream cheese, cucumber slices, and hard-boiled egg.', img: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400', badge: 'Premium Pick' },
-  { id: 'l2', name: 'Turkey Pesto Panini', price: 13.00, category: 'lunch', desc: 'Smoked premium turkey breast, rich basil pesto aioli, cheddar cheese, sliced tomato, spinach on sourdough.' },
-  { id: 'l3', name: 'BLT Traditional Panini', price: 12.00, category: 'lunch', desc: 'Thick hickory-smoked bacon strips, fresh lettuce leaves, sliced tomato, and mayo on crusty sourdough bread.' },
-  { id: 'l4', name: 'Mandarin Cranberry Walnut Salad', price: 10.00, category: 'lunch', desc: 'Fresh spinach base with mandarin oranges, rich feta cheese crumbles, craisans, and walnuts, served with sweet balsamic vinaigrette.' }
+  { id: 'l2', name: 'Turkey Pesto Panini', price: 13.00, category: 'lunch', desc: 'Smoked premium turkey breast, rich basil pesto aioli, cheddar cheese, sliced tomato, spinach on sourdough.', img: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&q=80&w=400' },
+  { id: 'l3', name: 'BLT Traditional Panini', price: 12.00, category: 'lunch', desc: 'Thick hickory-smoked bacon strips, fresh lettuce leaves, sliced tomato, and mayo on crusty sourdough bread.', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=400' },
+  { id: 'l4', name: 'Mandarin Cranberry Walnut Salad', price: 10.00, category: 'lunch', desc: 'Fresh spinach base with mandarin oranges, rich feta cheese crumbles, craisans, and walnuts, served with sweet balsamic vinaigrette.', img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=400' }
 ];
 
 let communityPhotos = [
   { id: 'w1', handle: 'maryville_academic', drink: 'Viennese Waltz & quiche slice', image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400', timestamp: Date.now() - 100000 },
   { id: 'w2', handle: 'college_st_designer', drink: 'Muddy Pond Mocha with extra shot', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400', timestamp: Date.now() - 400000000 }
+];
+
+let communityFeedbacks = [
+  { id: 'f1', user: '@maryville_local', topic: 'Muddy Pond Mocha', comment: 'The Sorghum syrup in the mocha is absolutely life-changing. Perfect study fuel for College Street.', timestamp: Date.now() - 500000 },
+  { id: 'f2', user: '@grace_notes', topic: 'Turkey Pesto Panini', comment: 'The panini was beautifully toasted and the basil pesto felt incredibly premium. Loved it!', timestamp: Date.now() - 80000000 }
 ];
 
 let selectedCategory = 'all';
@@ -904,6 +978,7 @@ let stampCount = 0;
 window.onload = function() {
   renderBistroMenu();
   renderVibeBoard();
+  renderFeedbackBoard();
   calculateCustomPrice();
   
   // Render active cart indicators initially
@@ -975,14 +1050,14 @@ function filterCategory(categoryName) {
 
 function renderBistroMenu() {
   const carouselContainer = document.getElementById('premium-carousel');
-  const compactListContainer = document.getElementById('compact-product-list');
+  const accordionContainer = document.getElementById('bistro-catalog-accordions');
   const carouselTitleEl = document.getElementById('carousel-title');
   
-  if (!carouselContainer || !compactListContainer) return;
+  if (!carouselContainer || !accordionContainer) return;
   carouselContainer.innerHTML = '';
-  compactListContainer.innerHTML = '';
+  accordionContainer.innerHTML = '';
 
-  // Filter full items first
+  // Filter full items first based on search
   const filtered = masterProducts.filter(item => {
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
     const matchesSearch = item.name.toLowerCase().includes(currentSearch.toLowerCase()) || 
@@ -992,102 +1067,118 @@ function renderBistroMenu() {
 
   if (filtered.length === 0) {
     carouselContainer.innerHTML = `<div class="text-neutralMuted py-4 text-xs font-mono pl-2">No specialties matching that query.</div>`;
-    compactListContainer.innerHTML = `
-      <div class="col-span-full text-center py-12 text-sm text-neutralMuted font-mono">
+    accordionContainer.innerHTML = `
+      <div class="text-center py-12 text-sm text-neutralMuted font-mono">
         No culinary items found matching that query.
       </div>
     `;
     return;
   }
 
-  // Split into Carousel (Items with image urls) & List items (remaining)
-  // For 'all' category, we specifically pull our premium signature drinks/items.
-  let featuredSpecialties = [];
-  let otherListings = [];
-
-  if (selectedCategory === 'all') {
-    carouselTitleEl.innerText = "Featured Signatures";
-    featuredSpecialties = filtered.filter(item => item.img && item.category === 'signature');
-    otherListings = filtered.filter(item => !featuredSpecialties.includes(item));
-  } else {
-    carouselTitleEl.innerText = "Top Recommendations";
-    // For specific tabs, make any item with an image featured, or the first 2 matching items
-    featuredSpecialties = filtered.filter(item => item.img);
-    if (featuredSpecialties.length === 0) {
-      // fallback to first 2 if none have images
-      featuredSpecialties = filtered.slice(0, 2);
-    }
-    otherListings = filtered.filter(item => !featuredSpecialties.includes(item));
+  // 1. Render HORIZONTAL CAROUSEL (Vertical Premium Specialties cards matching image_7b52ed.jpg)
+  let featuredSpecialties = filtered.filter(item => item.category === 'signature' || item.badge);
+  if (featuredSpecialties.length === 0) {
+    featuredSpecialties = filtered.slice(0, 3); // Fallback to first 3 items
   }
 
-  // 1. Render Carousel (Vertical Elegant Cards from image_7b52ed.jpg)
-  if (featuredSpecialties.length === 0) {
-    carouselContainer.innerHTML = `<div class="text-neutralMuted py-4 text-xs font-mono pl-2">No specialties active.</div>`;
-  } else {
-    featuredSpecialties.forEach(item => {
-      const carouselCard = document.createElement('div');
-      carouselCard.className = 'w-64 flex-shrink-0 bg-darkCard border border-terracotta/25 rounded-3xl overflow-hidden p-3 flex flex-col justify-between snap-center shadow-lg transition-all hover:scale-[1.02]';
-      
-      const imageMarkup = item.img ? `
+  carouselTitleEl.innerText = selectedCategory === 'all' ? "Featured Signatures" : "Top Recommendations";
+
+  featuredSpecialties.forEach(item => {
+    const carouselCard = document.createElement('div');
+    carouselCard.className = 'w-64 flex-shrink-0 bg-darkCard border border-terracotta/25 rounded-3xl overflow-hidden p-3 flex flex-col justify-between snap-center shadow-lg transition-all hover:scale-[1.02]';
+    
+    carouselCard.innerHTML = `
+      <div>
         <div class="relative h-44 rounded-2xl overflow-hidden mb-3.5 bg-espresso/30">
           ${item.badge ? `<span class="absolute top-2 left-2 bg-espresso text-parchment font-mono text-[9px] uppercase px-2 py-0.5 rounded shadow z-10 border border-terracotta/20">${item.badge}</span>` : ''}
           <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full">
         </div>
-      ` : `
-        <div class="relative h-32 rounded-2xl flex items-center justify-center mb-3.5 bg-espresso/50 border border-terracotta/10 text-center">
-          <span class="font-serif italic text-neutralMuted text-xs">Vienna Selected Specialty</span>
-        </div>
-      `;
-
-      carouselCard.innerHTML = `
-        <div>
-          ${imageMarkup}
-          <h4 class="font-serif font-bold text-white text-base leading-snug mb-1 truncate">${item.name}</h4>
-          <p class="text-[11px] text-neutralMuted leading-normal h-12 overflow-hidden line-clamp-3">${item.desc}</p>
-        </div>
-        <div class="pt-3 border-t border-terracotta/15 flex justify-between items-center mt-3">
-          <span class="text-terracotta font-mono font-bold text-base">$${item.price.toFixed(2)}</span>
-          <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-9 h-9 rounded-full bg-terracotta text-white flex items-center justify-center hover:bg-terracotta/90 transition-all shadow" title="Add to Order">
-            <i class="fa-solid fa-plus text-xs"></i>
-          </button>
-        </div>
-      `;
-      carouselContainer.appendChild(carouselCard);
-    });
-  }
-
-  otherListings.forEach(item => {
-    const listRow = document.createElement('div');
-    listRow.className = 'bg-darkCard/80 hover:bg-darkCard border border-terracotta/15 p-3 rounded-2xl flex items-center justify-between gap-3 shadow-sm transition-all hover:-translate-y-0.5';
-    
-    const thumbnailMarkup = item.img ? `
-      <div class="w-16 h-16 rounded-xl overflow-hidden bg-espresso/30 flex-shrink-0">
-        <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" loading="lazy">
+        <h4 class="font-serif font-bold text-white text-base leading-snug mb-1 truncate">${item.name}</h4>
+        <p class="text-[11px] text-neutralMuted leading-normal h-12 overflow-hidden line-clamp-3">${item.desc}</p>
       </div>
-    ` : `
-      <div class="w-16 h-16 rounded-xl bg-espresso flex items-center justify-center flex-shrink-0 border border-terracotta/10">
-        <i class="fa-solid fa-mug-hot text-terracotta text-sm"></i>
-      </div>
-    `;
-
-    listRow.innerHTML = `
-      <div class="flex items-center gap-3 overflow-hidden">
-        ${thumbnailMarkup}
-        <div class="overflow-hidden">
-          <h4 class="font-serif font-bold text-white text-sm leading-tight truncate">${item.name}</h4>
-          <p class="text-[11px] text-neutralMuted leading-relaxed truncate max-w-xs">${item.desc}</p>
-          <span class="text-[9px] font-mono tracking-wide text-terracotta/80 uppercase block mt-0.5">${item.category}</span>
-        </div>
-      </div>
-      <div class="flex items-center gap-2.5">
-        <span class="text-terracotta font-mono font-bold text-sm">$${item.price.toFixed(2)}</span>
-        <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-7 h-7 rounded-full bg-darkAccent border border-terracotta/40 text-terracotta flex items-center justify-center hover:bg-terracotta hover:text-white transition-all shadow-sm">
-          <i class="fa-solid fa-plus text-[10px]"></i>
+      <div class="pt-3 border-t border-terracotta/15 flex justify-between items-center mt-3">
+        <span class="text-terracotta font-mono font-bold text-base">$${item.price.toFixed(2)}</span>
+        <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-9 h-9 rounded-full bg-terracotta text-white flex items-center justify-center hover:bg-terracotta/90 transition-all shadow" title="Add to Order">
+          <i class="fa-solid fa-plus text-xs"></i>
         </button>
       </div>
     `;
-    compactListContainer.appendChild(listRow);
+    carouselContainer.appendChild(carouselCard);
   });
+
+  // 2. Render COLLAPSIBLE ACCORDIONS for remaining Bistro Catalog items grouped elegantly
+  const categoryGroups = {
+    coffee: { title: "☕ Brewed & Specialty Drip", icon: "fa-mug-hot" },
+    espresso: { title: "⚡ Traditional Espresso Creations", icon: "fa-bolt" },
+    signature: { title: "🌟 Vienna Signature Specialties", icon: "fa-star" },
+    'tea-more': { title: "🍃 Organic Teas & Infusions", icon: "fa-leaf" },
+    breakfast: { title: "🥐 Farm-Fresh Breakfast Bites", icon: "fa-egg" },
+    lunch: { title: "🥪 Rustic Paninis & Lunch Greens", icon: "fa-bread-slice" }
+  };
+
+  // Build accordion structure
+  Object.keys(categoryGroups).forEach(catId => {
+    // Check if this category group contains filtered elements
+    const groupItems = filtered.filter(item => item.category === catId);
+    if (groupItems.length === 0) return; // skip if empty
+
+    const groupMeta = categoryGroups[catId];
+    const accordionDiv = document.createElement('div');
+    accordionDiv.className = 'border border-terracotta/15 rounded-2xl bg-darkCard/80 overflow-hidden shadow-sm transition-all';
+    
+    // Check if we should automatically expand (e.g. if category tab matches this specific category)
+    const isExpanded = selectedCategory === 'all' ? false : (selectedCategory === catId);
+
+    accordionDiv.innerHTML = `
+      <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center p-4 text-left font-serif font-bold text-white focus:outline-none hover:bg-espresso/20 transition-all">
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid ${groupMeta.icon} text-terracotta text-sm"></i>
+          <span class="text-sm tracking-wide">${groupMeta.title}</span>
+        </div>
+        <i class="fa-solid fa-chevron-down text-neutralMuted text-xs transition-transform duration-300 ${isExpanded ? 'rotate-185' : ''}"></i>
+      </button>
+      <div class="accordion-content px-4 pb-4 space-y-3 ${isExpanded ? 'expanded' : ''}" style="${isExpanded ? 'max-height: 1000px;' : 'max-height: 0px;'}">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+          ${groupItems.map(item => `
+            <div class="bg-espresso/50 border border-terracotta/10 p-3 rounded-xl flex items-center justify-between gap-3 shadow-inner">
+              <div class="flex items-center gap-3 overflow-hidden">
+                <div class="w-12 h-12 rounded-lg overflow-hidden bg-espresso flex-shrink-0">
+                  <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" loading="lazy">
+                </div>
+                <div class="overflow-hidden">
+                  <h4 class="font-serif font-bold text-white text-xs leading-tight truncate">${item.name}</h4>
+                  <p class="text-[10px] text-neutralMuted leading-normal truncate max-w-[150px] sm:max-w-xs">${item.desc}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0">
+                <span class="text-terracotta font-mono font-bold text-xs">$${item.price.toFixed(2)}</span>
+                <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-7 h-7 rounded-full bg-darkAccent border border-terracotta/40 text-terracotta flex items-center justify-center hover:bg-terracotta hover:text-white transition-all shadow-sm">
+                  <i class="fa-solid fa-plus text-[10px]"></i>
+                </button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+    accordionContainer.appendChild(accordionDiv);
+  });
+}
+
+// Custom Accordion Toggle Function
+function toggleAccordion(buttonElement) {
+  const content = buttonElement.nextElementSibling;
+  const icon = buttonElement.querySelector('.fa-chevron-down');
+  
+  if (content.classList.contains('expanded')) {
+    content.classList.remove('expanded');
+    content.style.maxHeight = '0px';
+    icon.classList.remove('rotate-180');
+  } else {
+    content.classList.add('expanded');
+    content.style.maxHeight = '1000px';
+    icon.classList.add('rotate-180');
+  }
 }
 
 function filterMenuBySearch() {
@@ -1322,7 +1413,7 @@ function renderVibeBoard() {
   }
 }
 
-// --- Upload Logic & Local Append (No Cloud necessary for core flow) ---
+// --- Upload Logic ---
 function openUploadSheet() {
   document.getElementById('upload-sheet').classList.add('active');
   document.getElementById('sheet-backdrop').classList.add('active');
@@ -1388,6 +1479,57 @@ vibeUploadForm.addEventListener('submit', (e) => {
   showToastNotification("Successfully pinned to the legends board! 📌");
 });
 
+// --- Feedback & Suggestions Logic ---
+function renderFeedbackBoard() {
+  const wrapper = document.getElementById('feedback-board-cards');
+  if (!wrapper) return;
+  wrapper.innerHTML = '';
+
+  if (communityFeedbacks.length === 0) {
+    wrapper.innerHTML = `
+      <p class="text-xs text-neutralMuted font-mono text-center py-6">No published notes currently.</p>
+    `;
+    return;
+  }
+
+  communityFeedbacks.forEach(fb => {
+    const card = document.createElement('div');
+    card.className = 'bg-darkCard border border-terracotta/20 p-4 rounded-2xl relative shadow-md overflow-hidden';
+    card.innerHTML = `
+      <div class="absolute -right-2 -bottom-2 opacity-10 text-terracotta text-6xl font-serif">”</div>
+      <div class="flex justify-between items-baseline mb-2 border-b border-terracotta/10 pb-1.5">
+        <span class="font-serif font-bold text-terracotta text-sm">${fb.user}</span>
+        <span class="font-mono text-[9px] uppercase text-neutralMuted">${fb.topic}</span>
+      </div>
+      <p class="text-xs leading-relaxed text-parchment italic font-serif">"${fb.comment}"</p>
+    `;
+    wrapper.appendChild(card);
+  });
+}
+
+const suggestionsForm = document.getElementById('suggestions-submit-form');
+suggestionsForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const user = document.getElementById('feedback-user').value.trim();
+  const topic = document.getElementById('feedback-topic').value.trim();
+  const comment = document.getElementById('feedback-comment').value.trim();
+
+  const newFeedback = {
+    id: 'f-' + Date.now(),
+    user: user.startsWith('@') ? user : '@' + user,
+    topic: topic,
+    comment: comment,
+    timestamp: Date.now()
+  };
+
+  communityFeedbacks.unshift(newFeedback);
+  renderFeedbackBoard();
+
+  suggestionsForm.reset();
+  showToastNotification("Feedback received and queued for review! 🛡️");
+});
+
 // --- Flyer Modal Controls ---
 function openFlyerModal() {
   document.getElementById('flyer-sheet').classList.add('active');
@@ -1407,7 +1549,7 @@ function closeCMSPanel() {
   document.getElementById('admin-cms-sheet').classList.remove('active');
   document.getElementById('sheet-backdrop').classList.remove('active');
   
-  // Lock screen back on dialog exit
+  // Lock screen back on exit
   document.getElementById('cms-verify-section').classList.remove('hidden');
   document.getElementById('cms-authenticated-view').classList.add('hidden');
   document.getElementById('cms-passcode-input').value = '';
@@ -1416,7 +1558,6 @@ function closeCMSPanel() {
 function verifyAdministrativePasscode() {
   const pass = document.getElementById('cms-passcode-input').value.trim().toLowerCase();
   
-  // Validate passcode securely (Passcode is: barako or vienna)
   if (pass === 'barako' || pass === 'vienna') {
     document.getElementById('cms-verify-section').classList.add('hidden');
     document.getElementById('cms-authenticated-view').classList.remove('hidden');
@@ -1454,7 +1595,7 @@ function renderCMSPhotosList() {
   container.innerHTML = '';
 
   if (communityPhotos.length === 0) {
-    container.innerHTML = `<p class="text-center py-6 text-xs text-neutralMuted">No client uploads on the cork board currently.</p>`;
+    container.innerHTML = `<p class="text-center py-6 text-xs text-neutralMuted">No client uploads currently.</p>`;
     return;
   }
 
@@ -1479,7 +1620,6 @@ function renderCMSPhotosList() {
         </div>
       </div>
       <div class="flex gap-2">
-        <button onclick="downloadVibePhoto('${photo.image}', '${photo.handle}')" class="text-white hover:text-terracotta text-xs p-1" title="Download Image"><i class="fa-solid fa-download"></i></button>
         <button onclick="deleteVibePhoto('${photo.id}')" class="text-terracotta hover:text-red-400 text-xs p-1" title="Remove Photo"><i class="fa-solid fa-trash"></i></button>
       </div>
     `;
@@ -1494,17 +1634,6 @@ function deleteVibePhoto(id) {
   showToastNotification("Memory removed from corkboard gallery!");
 }
 
-function downloadVibePhoto(base64Image, handle) {
-  const anchor = document.createElement('a');
-  anchor.href = base64Image;
-  anchor.download = `VCC_Vibe_@${handle}.jpg`;
-  document.body.appendChild(anchor);
-  anchor.click();
-  document.body.removeChild(anchor);
-  showToastNotification("Downloading high-resolution picture...");
-}
-
-// --- CMS Culinary Menu Catalog Modifiers ---
 function renderCMSProductsList() {
   const container = document.getElementById('cms-products-listing-wrapper');
   if (!container) return;
@@ -1515,7 +1644,7 @@ function renderCMSProductsList() {
     row.className = 'flex items-center justify-between gap-2 p-2 bg-espresso rounded border border-terracotta/15 text-xs shadow-sm';
     row.innerHTML = `
       <div class="flex items-center gap-2 overflow-hidden">
-        ${item.img ? `<img src="${item.img}" class="w-8 h-8 object-cover rounded-xl flex-shrink-0">` : `<div class="w-8 h-8 bg-darkCard rounded-xl flex items-center justify-center text-[10px] text-neutralMuted flex-shrink-0"><i class="fa-solid fa-mug-hot"></i></div>`}
+        <img src="${item.img}" class="w-8 h-8 object-cover rounded-xl flex-shrink-0">
         <div class="overflow-hidden">
           <span class="font-serif font-bold text-white leading-none block truncate max-w-[160px]">${item.name}</span>
           <span class="text-[9px] text-terracotta font-mono font-bold">$${item.price.toFixed(2)}</span>
@@ -1580,11 +1709,9 @@ crudForm.addEventListener('submit', (e) => {
   const payload = { id: id || 'p-' + Date.now(), name, price, category, desc, img };
 
   if (id) {
-    // Edit existing
     masterProducts = masterProducts.map(p => p.id === id ? payload : p);
     showToastNotification("Catalog item updated successfully!");
   } else {
-    // Add new
     masterProducts.push(payload);
     showToastNotification("New catalog option published to menu!");
   }
