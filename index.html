@@ -7,16 +7,16 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<!-- Primary SEO Meta Tags for Vienna Coffee Co. -->
-<title>Vienna Coffee Co. — Premium Roasted Coffee, European Pastries & Cozy Lounge</title>
-<meta name="title" content="Vienna Coffee Co. — Premium Roasted Coffee, European Pastries & Cozy Lounge">
+<!-- Primary SEO Meta Tags for Pour Decisions -->
+<title>Pour Decisions — Premium Roasted Coffee, European Pastries & Cozy Lounge</title>
+<meta name="title" content="Pour Decisions — Premium Roasted Coffee, European Pastries & Cozy Lounge">
 <meta name="description" content="Indulge in Muddy Pond Mocha, Viennese Waltz, and artisan breakfast boards. Pre-order online, join the local wall, and book our signature study rooms.">
-<meta name="keywords" content="Vienna Coffee Company, Specialty coffee Maryville, Muddy Pond Mocha, Viennese Waltz, Salmon Bagel, artisan bakery">
+<meta name="keywords" content="Pour Decisions, Specialty coffee Maryville, Muddy Pond Mocha, Viennese Waltz, Salmon Bagel, artisan bakery">
 <meta name="robots" content="index, follow">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Vienna Coffee Co. — Premium Specialty Drinks & Bistro Menu">
+<meta property="og:title" content="Pour Decisions — Premium Specialty Drinks & Bistro Menu">
 <meta property="og:description" content="Pre-order freshly brewed espresso, premium lattes, and quiche slices. Experience Maryville's finest specialty roastery.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1200">
 
@@ -25,10 +25,10 @@
 {
   "@context": "https://schema.org",
   "@type": "CafeOrCoffeeShop",
-  "name": "Vienna Coffee Company",
+  "name": "Pour Decisions Coffee Company",
   "image": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=600",
-  "@id": "https://viennacoffeecompany.com/#about",
-  "url": "https://viennacoffeecompany.com/",
+  "@id": "https://pourdecisionsmaryville.com/#about",
+  "url": "https://pourdecisionsmaryville.com/",
   "telephone": "+18659808282",
   "priceRange": "$$ ($3 - $15)",
   "address": {
@@ -81,7 +81,8 @@ img{max-width:100%;display:block}
   background-color: var(--darkCard);
   border: 1px solid rgba(198, 124, 78, 0.15);
   border-radius: 24px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+  will-change: transform;
 }
 .app-card:hover {
   transform: translateY(-4px);
@@ -91,7 +92,7 @@ img{max-width:100%;display:block}
 
 /* Tab Pills styled exactly as image_7b52ed.jpg */
 .nav-tab-btn {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
   border-radius: 12px;
 }
 .nav-tab-btn.active {
@@ -122,16 +123,16 @@ img{max-width:100%;display:block}
   scrollbar-width: none;
 }
 
-/* Modal Drawer Pull-ups */
-.sheet-backdrop{position:fixed;inset:0;background:rgba(21, 10, 8, 0.85);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .35s ease;z-index:90}
+/* Modal Drawer Pull-ups with Hardware Acceleration */
+.sheet-backdrop{position:fixed;inset:0;background:rgba(21, 10, 8, 0.85);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:90;will-change:opacity}
 .sheet-backdrop.active{opacity:1;pointer-events:auto}
 
-.sheet{position:fixed;left:0;right:0;bottom:0;max-height:88vh;background:var(--darkCard);border: 1px solid rgba(198, 124, 78, 0.2);border-radius:24px 24px 0 0;transform:translateY(100%);transition:all .45s cubic-bezier(.32,.72,0,1);z-index:95;display:flex;flex-direction:column;box-shadow:0 -12px 50px rgba(0,0,0,0.6)}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-height:88vh;background:var(--darkCard);border: 1px solid rgba(198, 124, 78, 0.2);border-radius:24px 24px 0 0;transform:translateY(100%);transition:transform .4s cubic-bezier(.32,.72,0,1);z-index:95;display:flex;flex-direction:column;box-shadow:0 -12px 50px rgba(0,0,0,0.6);will-change:transform}
 .sheet.active{transform:translateY(0)}
 
 .sheet-handle{width:40px;height:4px;background:rgba(198,124,78,0.3);border-radius:2px;margin:12px auto 8px}
 .sheet-content{padding:0 24px 24px;overflow-y:auto;flex-grow:1}
-.sheet-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;color:var(--parchment);font-size:16px;transition:all 0.2s}
+.sheet-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;color:var(--parchment);font-size:16px;transition:background-color 0.2s, color 0.2s}
 .sheet-close:hover{background:rgba(198,124,78,0.2);color:white}
 
 @media (min-width: 768px) {
@@ -146,6 +147,8 @@ img{max-width:100%;display:block}
     border-radius: 24px;
     opacity: 0;
     pointer-events: none;
+    transition: transform 0.3s cubic-bezier(.32,.72,0,1), opacity 0.3s ease;
+    will-change: transform, opacity;
   }
   .sheet.active {
     transform: translate(-50%, -50%) scale(1);
@@ -155,7 +158,7 @@ img{max-width:100%;display:block}
 }
 
 /* Announcement Overlay */
-.promo-modal{position:fixed;inset:0;z-index:110;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:all 0.4s ease}
+.promo-modal{position:fixed;inset:0;z-index:110;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity 0.3s ease;will-change:opacity}
 .promo-modal.active{opacity:1;pointer-events:auto}
 
 /* Polaroid Styles */
@@ -164,7 +167,8 @@ img{max-width:100%;display:block}
   padding: 12px 12px 28px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(198, 124, 78, 0.15);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
+  will-change: transform;
 }
 .polaroid:hover {
   transform: rotate(0deg) scale(1.03);
@@ -180,7 +184,7 @@ img{max-width:100%;display:block}
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-out, padding 0.3s ease;
+  transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
 }
 .accordion-content.expanded {
   max-height: 1000px; /* high fallback value for smooth transition */
@@ -199,10 +203,10 @@ img{max-width:100%;display:block}
   <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 rounded-full border border-terracotta flex items-center justify-center bg-espresso">
-        <span class="font-serif text-terracotta font-bold text-lg">V</span>
+        <span class="font-serif text-terracotta font-bold text-lg">PD</span>
       </div>
       <div>
-        <h1 class="font-serif font-extrabold text-lg tracking-wide uppercase text-white">Vienna</h1>
+        <h1 class="font-serif font-extrabold text-lg tracking-wide uppercase text-white">Pour Decisions</h1>
         <p class="font-mono text-[9px] uppercase tracking-widest text-terracotta -mt-1">Coffee Company</p>
       </div>
     </div>
@@ -223,7 +227,7 @@ img{max-width:100%;display:block}
       </button>
       <button onclick="openSidebarCart()" class="relative p-2 text-terracotta hover:text-white transition-all" aria-label="Shopping Cart">
         <i class="fa-solid fa-bag-shopping text-xl"></i>
-        <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow" id="desktop-cart-badge">0</span>
+        <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow animate-pulse" id="desktop-cart-badge">0</span>
       </button>
       <button onclick="openCMSPanel()" class="text-neutralMuted hover:text-terracotta p-1 rounded transition-all text-sm" aria-label="Manage content">
         <i class="fa-solid fa-lock"></i>
@@ -245,7 +249,7 @@ img{max-width:100%;display:block}
       
       <div class="relative z-10 max-w-lg space-y-4">
         <span class="bg-terracotta/20 text-terracotta font-mono text-xs uppercase px-3 py-1 rounded-full border border-terracotta/40">Est. Maryville, TN</span>
-        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">Every cup, a handcrafted waltz.</h2>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">Every cup, a beautiful mistake.</h2>
         <p class="text-sm text-accentLight leading-relaxed">
           Order premium freshly-roasted coffee, European artisan pastries, and signature bistro lunches for rapid local curbside pick-up.
         </p>
@@ -260,7 +264,7 @@ img{max-width:100%;display:block}
       <!-- Visual Highlight Card (The Viennese Waltz Showcase) -->
       <div class="relative z-10 mt-8 md:mt-0 bg-darkCard/95 p-5 rounded-2xl border border-terracotta/20 max-w-xs w-full shadow-xl">
         <div class="relative rounded-xl overflow-hidden h-40 bg-gray-900 mb-4">
-          <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600" alt="Viennese Waltz Premium Drink" class="object-cover w-full h-full">
+          <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600" alt="Viennese Waltz Premium Drink" class="object-cover w-full h-full" loading="lazy" onerror="handleImageError(this)">
           <span class="absolute top-2 right-2 bg-terracotta text-white font-mono text-[9px] font-bold uppercase px-2 py-0.5 rounded shadow">Popular</span>
         </div>
         <div class="flex justify-between items-baseline">
@@ -282,9 +286,9 @@ img{max-width:100%;display:block}
           <p class="text-xs text-neutralMuted mt-0.5">Filter items by category or search below</p>
         </div>
         
-        <!-- Live Search Field -->
+        <!-- Live Search Field with Debounced Listener -->
         <div class="relative w-full md:w-80">
-          <input type="text" id="menu-search" placeholder="Search coffee, bagels, quiche..." class="w-full bg-darkCard border border-terracotta/30 rounded-xl px-4 py-2.5 pl-10 text-xs text-white focus:outline-none focus:border-terracotta transition-all" oninput="filterMenuBySearch()">
+          <input type="text" id="menu-search" placeholder="Search coffee, bagels, quiche..." class="w-full bg-darkCard border border-terracotta/30 rounded-xl px-4 py-2.5 pl-10 text-xs text-white focus:outline-none focus:border-terracotta transition-all">
           <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-neutralMuted text-xs"></i>
         </div>
       </div>
@@ -300,7 +304,6 @@ img{max-width:100%;display:block}
         <button onclick="filterCategory('lunch')" class="category-pill bg-darkCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-parchment" id="pill-lunch">Sandwiches & Salads</button>
       </div>
 
-      <!-- ================= STREAMING_CHUNK: Rendering the horizontal carousel matching image_7b52ed.jpg ================= -->
       <div class="space-y-3">
         <h3 class="font-serif text-lg font-bold text-white tracking-wide" id="carousel-title">Featured Specialties</h3>
         <div id="premium-carousel" class="flex gap-4 overflow-x-auto pb-4 scrollbar-none snap-x snap-mandatory">
@@ -308,7 +311,6 @@ img{max-width:100%;display:block}
         </div>
       </div>
 
-      <!-- ================= STREAMING_CHUNK: Bistro Catalog Group Accordions... ================= -->
       <div class="space-y-4">
         <div class="flex justify-between items-baseline">
           <h3 class="font-serif text-lg font-bold text-white tracking-wide">Bistro Catalog</h3>
@@ -434,7 +436,7 @@ img{max-width:100%;display:block}
   <section id="page-wall" class="page-view hidden space-y-8 animate-fadeIn">
     <div class="text-center max-w-xl mx-auto space-y-2">
       <span class="font-mono text-xs uppercase tracking-widest text-terracotta">The Community Corkboard</span>
-      <h2 class="font-serif text-3xl font-bold text-white">Vienna Vibe Board</h2>
+      <h2 class="font-serif text-3xl font-bold text-white">Pour Decisions Vibe Board</h2>
       <p class="text-sm text-neutralMuted">Share your morning setup! Client uploads stay featured on our board for exactly 7 days before archiving.</p>
     </div>
 
@@ -531,8 +533,8 @@ img{max-width:100%;display:block}
           </div>
 
           <div class="flex flex-col gap-1.5 text-xs">
-            <label for="feedback-topic" class="font-semibold text-neutralMuted uppercase tracking-wider">Favorite Vienna Product</label>
-            <input type="text" id="feedback-topic" required placeholder="e.g. Thunderhead Latte" class="border border-terracotta/25 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none">
+            <label for="feedback-topic" class="font-semibold text-neutralMuted uppercase tracking-wider">Favorite Specialty Product</label>
+            <input type="text" id="feedback-topic" required placeholder="e.g. Muddy Pond Mocha" class="border border-terracotta/25 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none">
           </div>
 
           <div class="flex flex-col gap-1.5 text-xs">
@@ -564,18 +566,18 @@ img{max-width:100%;display:block}
   <section id="page-heritage" class="page-view hidden space-y-12 animate-fadeIn">
     <div class="text-center max-w-xl mx-auto space-y-2">
       <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Est. 1999 — Tennessee</span>
-      <h2 class="font-serif text-3xl font-bold text-white">The Vienna Heritage Story</h2>
+      <h2 class="font-serif text-3xl font-bold text-white">The Pour Decisions Story</h2>
       <p class="text-sm text-neutralMuted">Crafting cozy memories, strong local alliances, and roasted profiles from our family to yours.</p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
       <div class="max-w-sm w-full mx-auto">
-        <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&q=80&w=600" alt="Vienna Coffee Company Barista Craft" class="border-4 border-darkCard shadow-xl rotate-[-2deg] rounded-xl mx-auto">
+        <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&q=80&w=600" alt="Pour Decisions Barista Craft" class="border-4 border-darkCard shadow-xl rotate-[-2deg] rounded-xl mx-auto" loading="lazy" onerror="handleImageError(this)">
       </div>
       <div class="space-y-4 text-xs sm:text-sm leading-relaxed text-accentLight">
         <h3 class="font-serif text-xl font-bold text-terracotta">Roasting for Community</h3>
         <p>
-          Founded on the cornerstone of absolute ethical sourcing, **Vienna Coffee Company** works hand-in-hand with individual shade-grown farms globally to secure unmatched grade quality.
+          Founded on the cornerstone of absolute ethical sourcing, **Pour Decisions** works hand-in-hand with individual shade-grown farms globally to secure unmatched grade quality.
         </p>
         <p>
           Our Maryville hub serves as a cultural anchor, where college students, downtown workers, and neighborhood families convene to discuss the day over handcrafted pour overs and quiche.
@@ -650,11 +652,11 @@ img{max-width:100%;display:block}
     <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-1">
       <div class="border border-terracotta/30 rounded-2xl overflow-hidden p-1 bg-espresso">
         <span class="text-[10px] font-mono font-bold block mb-1 text-parchment uppercase text-center bg-darkCard py-1 rounded-t-xl">Beverage Board Flyer</span>
-        <img src="image_700523.jpg" alt="Vienna Coffee Company Drink Menu image_700523.jpg" class="w-full rounded-xl">
+        <img src="image_700523.jpg" alt="Pour Decisions Drink Menu image_700523.jpg" class="w-full rounded-xl">
       </div>
       <div class="border border-terracotta/30 rounded-2xl overflow-hidden p-1 bg-espresso">
         <span class="text-[10px] font-mono font-bold block mb-1 text-parchment uppercase text-center bg-darkCard py-1 rounded-t-xl">Food Board Flyer</span>
-        <img src="image_79f20c.jpg" alt="Vienna Coffee Company Food Menu image_79f20c.jpg" class="w-full rounded-xl">
+        <img src="image_79f20c.jpg" alt="Pour Decisions Food Menu image_79f20c.jpg" class="w-full rounded-xl">
       </div>
     </div>
     <div class="mt-4 pt-4 border-t border-terracotta/20">
@@ -687,7 +689,7 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<!-- 3. Dynamic Seating Entry Pass Passport (No Browser Alerts allowed) -->
+<!-- 3. Dynamic Seating Entry Pass Passport -->
 <div class="sheet" id="ticket-sheet" role="dialog" aria-modal="true">
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeReservationTicket()" aria-label="Close entry ticket"><i class="fa-solid fa-xmark"></i></button>
@@ -703,8 +705,8 @@ img{max-width:100%;display:block}
       <div class="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-espresso"></div>
       
       <div class="flex justify-between border-b border-terracotta/20 pb-2">
-        <span class="font-bold text-terracotta">VIENNA LOUNGE PASS</span>
-        <span class="text-neutralMuted">#VCC-2026</span>
+        <span class="font-bold text-terracotta">POUR DECISIONS LOUNGE PASS</span>
+        <span class="text-neutralMuted">#PD-2026</span>
       </div>
       <div class="grid grid-cols-2 gap-y-3 pt-2 text-parchment">
         <div>
@@ -728,7 +730,7 @@ img{max-width:100%;display:block}
         <div class="inline-block bg-espresso text-parchment px-4 py-2 text-xs font-mono tracking-widest font-bold shadow">
           ||||| ||| |||| || |||| |||
         </div>
-        <p class="text-[8px] text-neutralMuted mt-1">MARYVILLE COFFEE CO.</p>
+        <p class="text-[8px] text-neutralMuted mt-1">POUR DECISIONS COFFEE CO.</p>
       </div>
     </div>
   </div>
@@ -767,7 +769,7 @@ img{max-width:100%;display:block}
         <label for="wall-handle" class="text-xs font-semibold text-neutralMuted uppercase">Your Instagram Tag</label>
         <div class="flex items-center border border-terracotta/30 rounded-xl bg-espresso overflow-hidden focus-within:border-terracotta">
           <span class="text-neutralMuted px-3 font-mono">@</span>
-          <input type="text" id="wall-handle" placeholder="maryville_morning" class="border-none bg-transparent focus:ring-0 p-3 text-xs text-white flex-1 outline-none">
+          <input type="text" id="wall-handle" placeholder="pourdecisions_morning" class="border-none bg-transparent focus:ring-0 p-3 text-xs text-white flex-1 outline-none">
         </div>
       </div>
 
@@ -798,7 +800,7 @@ img{max-width:100%;display:block}
       </div>
       <p class="text-xs font-semibold uppercase tracking-wider text-parchment">Enterprise Authentication Required</p>
       <div class="max-w-xs mx-auto">
-        <input type="password" id="cms-passcode-input" placeholder="Enter administrative passcode..." class="text-center tracking-widest bg-espresso border border-terracotta/30 rounded-xl p-3 text-xs w-full text-white focus:outline-none focus:border-terracotta">
+        <input type="password" id="cms-passcode-input" placeholder="Enter credentials..." class="text-center tracking-widest bg-espresso border border-terracotta/30 rounded-xl p-3 text-xs w-full text-white focus:outline-none focus:border-terracotta">
       </div>
       <button onclick="verifyAdministrativePasscode()" class="bg-terracotta text-white text-xs font-bold px-6 py-3 rounded-xl hover:bg-terracotta/90 transition-all">
         Authenticate Credentials
@@ -868,7 +870,7 @@ img{max-width:100%;display:block}
 
       <div class="flex flex-col gap-1.5">
         <label for="p-form-desc">Detailed Description</label>
-        <textarea id="p-form-desc" rows="2" placeholder="Explain the ingredients or sizes clearly" required class="border border-terracotta/30 p-3 bg-espresso text-white rounded-xl focus:outline-none text-sm"></textarea>
+        <textarea id="p-form-desc" rows="2" placeholder="Explain ingredients or sizes clearly" required class="border border-terracotta/30 p-3 bg-espresso text-white rounded-xl focus:outline-none text-sm"></textarea>
       </div>
 
       <div class="flex flex-col gap-1.5">
@@ -891,7 +893,7 @@ img{max-width:100%;display:block}
       <i class="fa-solid fa-xmark"></i>
     </button>
     <div class="relative h-44 bg-gray-900">
-      <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600" alt="Viennese Waltz Premium Drink Highlight" class="object-cover w-full h-full">
+      <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600" alt="Viennese Waltz Premium Drink Highlight" class="object-cover w-full h-full" onerror="handleImageError(this)">
       <div class="absolute inset-0 bg-gradient-to-t from-espresso to-transparent"></div>
       <div class="absolute bottom-4 left-4">
         <span class="bg-terracotta text-white font-mono text-[9px] font-bold uppercase px-2 py-0.5 rounded shadow block w-max mb-1">New Signature</span>
@@ -921,6 +923,35 @@ img{max-width:100%;display:block}
 
 <!-- ================= SYSTEM SCRIPTS & BUSINESS LOGIC ================= -->
 <script>
+// Caching High-Frequency DOM selectors for premium performance (Eliminating redundant queries)
+const dom = {};
+function initDOMCache() {
+  dom.menuSearch = document.getElementById('menu-search');
+  dom.premiumCarousel = document.getElementById('premium-carousel');
+  dom.bistroCatalogAccordions = document.getElementById('bistro-catalog-accordions');
+  dom.carouselTitle = document.getElementById('carousel-title');
+  dom.cartItemsWrapper = document.getElementById('cart-items-wrapper');
+  dom.desktopCartBadge = document.getElementById('desktop-cart-badge');
+  dom.mobileCartBadge = document.getElementById('mobile-cart-badge');
+  dom.mobileCartTotal = document.getElementById('mobile-cart-total');
+  dom.cartDrawerTotal = document.getElementById('cart-drawer-total');
+  dom.cartActionBtn = document.getElementById('cart-action-btn');
+  dom.builderBase = document.getElementById('builder-base');
+  dom.builderDisplayName = document.getElementById('builder-display-name');
+  dom.builderDisplayDesc = document.getElementById('builder-display-desc');
+  dom.builderDisplayPrice = document.getElementById('builder-display-price');
+  dom.polaroidCanvasGrid = document.getElementById('polaroid-canvas-grid');
+  dom.feedbackBoardCards = document.getElementById('feedback-board-cards');
+}
+
+// Master Fallback Image URL to recover from any broken Unsplash images gracefully
+const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400';
+
+function handleImageError(imageElement) {
+  imageElement.onerror = null;
+  imageElement.src = FALLBACK_IMAGE;
+}
+
 let masterProducts = [
   // COFFEE & DRIPS (Flyer page 1)
   { id: 'c1', name: 'Freshly Brewed Coffee', price: 3.00, category: 'coffee', desc: 'Fresh local house roast, includes 1 free refill from coffee bar.', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400' },
@@ -931,15 +962,15 @@ let masterProducts = [
   
   // SIGNATURE DRINKS (Flyer page 1) - Best premium images matching image_7b52ed.jpg
   { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, category: 'signature', desc: 'Double espresso, velvet steamed milk, chocolate, vanilla, and sweet Muddy Pond Sorghum syrup.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=400', badge: 'Best Seller' },
-  { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', badge: 'Barista Recommendation' },
-  { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=400', badge: 'Signature Classic' },
+  { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', badge: 'Barista Rec' },
+  { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=400', badge: 'Classic Signature' },
   
   // ESPRESSO TRADITIONAL (Flyer page 1)
   { id: 'e1', name: 'Espresso Double Shot', price: 3.30, category: 'espresso', desc: 'Perfectly extracted, rich-bodied local espresso blend.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400' },
   { id: 'e2', name: 'Caffe Latte', price: 5.00, category: 'espresso', desc: 'Espresso double shot over steamed milk with thin microfoam layer.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400' },
   { id: 'e3', name: 'Cortado Glass', price: 4.10, category: 'espresso', desc: 'Equal parts extracted espresso and velvet steamed whole milk.', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&q=80&w=400' },
   { id: 'e4', name: 'Classic Cappuccino', price: 4.20, category: 'espresso', desc: 'Double espresso with generous textured steamed foam caps.', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=400' },
-  { id: 'e5', name: 'Vienna Frappe', price: 6.30, category: 'espresso', desc: 'Blended icy frappe with espresso, syrup flavors of choice, and real whipped cream.', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&q=80&w=400' },
+  { id: 'e5', name: 'Pour Decisions Frappe', price: 6.30, category: 'espresso', desc: 'Blended icy frappe with espresso, syrup flavors of choice, and real whipped cream.', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&q=80&w=400' },
   
   // TEAS & OTHERS (Flyer page 1)
   { id: 't1', name: 'Matcha Premium Latte', price: 5.80, category: 'tea-more', desc: 'Premium ground Japanese green tea leaves with steamed milk.', img: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&q=80&w=400' },
@@ -949,7 +980,7 @@ let masterProducts = [
 
   // BREAKFAST BITES (Flyer page 2)
   { id: 'b1', name: 'Quiche Slice Special', price: 6.00, category: 'breakfast', desc: 'Choose Ham & Cheddar or rotating vegetarian spinach, tomato, and feta quiche.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400', badge: 'Fresh Baked' },
-  { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1626700051175-6518c4793f06?auto=format&fit=crop&q=80&w=400', badge: 'Local Favorite' },
+  { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1626700051175-6518c4793f06?auto=format&fit=crop&q=80&w=400', badge: 'Local Fav' },
   { id: 'b3', name: 'Smoked Salmon Keto Bowl', price: 12.00, category: 'breakfast', desc: 'Cold smoked salmon with organic capers, 2 eggs made to order, and fresh red onions on fresh baby spinach.', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=400' },
   { id: 'b4', name: 'Breakfast Sandwich Biscuit', price: 6.75, category: 'breakfast', desc: 'Two fried eggs, rich cheddar cheese, and bacon or sausage on your choice of croissant or butter biscuit.', img: 'https://images.unsplash.com/photo-1550507992-eb63ffee0847?auto=format&fit=crop&q=80&w=400' },
   
@@ -975,7 +1006,17 @@ let currentSearch = '';
 let selectedLoungeZone = 'Library Hearth Nook';
 let stampCount = 0;
 
+// High-Performance Debounce utility to prevent layout thrashing during live menu filtering
+function debounce(func, delay) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
 window.onload = function() {
+  initDOMCache();
   renderBistroMenu();
   renderVibeBoard();
   renderFeedbackBoard();
@@ -983,6 +1024,14 @@ window.onload = function() {
   
   // Render active cart indicators initially
   syncCartUI();
+
+  // Attach optimized debounced listener to menu search input
+  if (dom.menuSearch) {
+    dom.menuSearch.addEventListener('input', debounce(function(e) {
+      currentSearch = e.target.value;
+      renderBistroMenu();
+    }, 200));
+  }
 
   // Launch New Arrival promotion dialog automatically after 1.5 seconds
   setTimeout(() => {
@@ -993,12 +1042,18 @@ window.onload = function() {
 // --- Page view switcher ---
 function switchPage(pageId) {
   // Hide all screens
-  document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
+  const pageViews = document.querySelectorAll('.page-view');
+  for (let i = 0; i < pageViews.length; i++) {
+    pageViews[i].classList.add('hidden');
+  }
   document.getElementById('page-' + pageId).classList.remove('hidden');
 
   // Desktop active tab indicators
-  document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active', 'text-white'));
-  document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.add('text-neutralMuted'));
+  const navTabBtns = document.querySelectorAll('.nav-tab-btn');
+  for (let i = 0; i < navTabBtns.length; i++) {
+    navTabBtns[i].classList.remove('active', 'text-white');
+    navTabBtns[i].classList.add('text-neutralMuted');
+  }
   const activeTab = document.getElementById('tab-' + pageId);
   if (activeTab) {
     activeTab.classList.add('active', 'text-white');
@@ -1006,7 +1061,10 @@ function switchPage(pageId) {
   }
 
   // Mobile active tab indicators
-  document.querySelectorAll('[id^="mobile-tab-"]').forEach(btn => btn.classList.remove('text-terracotta'));
+  const mobileTabs = document.querySelectorAll('[id^="mobile-tab-"]');
+  for (let i = 0; i < mobileTabs.length; i++) {
+    mobileTabs[i].classList.remove('text-terracotta');
+  }
   const activeMobileTab = document.getElementById('mobile-tab-' + pageId);
   if (activeMobileTab) activeMobileTab.classList.add('text-terracotta');
 
@@ -1034,10 +1092,11 @@ function addPromoToOrder() {
 // --- Menu Rendering & Category Filters ---
 function filterCategory(categoryName) {
   selectedCategory = categoryName;
-  document.querySelectorAll('.category-pill').forEach(btn => {
-    btn.classList.remove('bg-terracotta', 'text-white');
-    btn.classList.add('bg-darkCard', 'text-parchment');
-  });
+  const categoryPills = document.querySelectorAll('.category-pill');
+  for (let i = 0; i < categoryPills.length; i++) {
+    categoryPills[i].classList.remove('bg-terracotta', 'text-white');
+    categoryPills[i].classList.add('bg-darkCard', 'text-parchment');
+  }
   
   const currentPill = document.getElementById('pill-' + categoryName);
   if (currentPill) {
@@ -1049,15 +1108,11 @@ function filterCategory(categoryName) {
 }
 
 function renderBistroMenu() {
-  const carouselContainer = document.getElementById('premium-carousel');
-  const accordionContainer = document.getElementById('bistro-catalog-accordions');
-  const carouselTitleEl = document.getElementById('carousel-title');
-  
-  if (!carouselContainer || !accordionContainer) return;
-  carouselContainer.innerHTML = '';
-  accordionContainer.innerHTML = '';
+  if (!dom.premiumCarousel || !dom.bistroCatalogAccordions) return;
+  dom.premiumCarousel.innerHTML = '';
+  dom.bistroCatalogAccordions.innerHTML = '';
 
-  // Filter full items first based on search
+  // Filter full items first based on search query
   const filtered = masterProducts.filter(item => {
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
     const matchesSearch = item.name.toLowerCase().includes(currentSearch.toLowerCase()) || 
@@ -1066,8 +1121,8 @@ function renderBistroMenu() {
   });
 
   if (filtered.length === 0) {
-    carouselContainer.innerHTML = `<div class="text-neutralMuted py-4 text-xs font-mono pl-2">No specialties matching that query.</div>`;
-    accordionContainer.innerHTML = `
+    dom.premiumCarousel.innerHTML = `<div class="text-neutralMuted py-4 text-xs font-mono pl-2">No specialties matching that query.</div>`;
+    dom.bistroCatalogAccordions.innerHTML = `
       <div class="text-center py-12 text-sm text-neutralMuted font-mono">
         No culinary items found matching that query.
       </div>
@@ -1075,23 +1130,26 @@ function renderBistroMenu() {
     return;
   }
 
-  // 1. Render HORIZONTAL CAROUSEL (Vertical Premium Specialties cards matching image_7b52ed.jpg)
+  // 1. Render HORIZONTAL CAROUSEL (Premium Specialties cards matching image_7b52ed.jpg)
   let featuredSpecialties = filtered.filter(item => item.category === 'signature' || item.badge);
   if (featuredSpecialties.length === 0) {
     featuredSpecialties = filtered.slice(0, 3); // Fallback to first 3 items
   }
 
-  carouselTitleEl.innerText = selectedCategory === 'all' ? "Featured Signatures" : "Top Recommendations";
+  dom.carouselTitle.innerText = selectedCategory === 'all' ? "Featured Signatures" : "Top Recommendations";
+
+  // Using DocumentFragment to optimize DOM injection performance
+  const carouselFragment = document.createDocumentFragment();
 
   featuredSpecialties.forEach(item => {
     const carouselCard = document.createElement('div');
-    carouselCard.className = 'w-64 flex-shrink-0 bg-darkCard border border-terracotta/25 rounded-3xl overflow-hidden p-3 flex flex-col justify-between snap-center shadow-lg transition-all hover:scale-[1.02]';
+    carouselCard.className = 'w-64 flex-shrink-0 bg-darkCard border border-terracotta/25 rounded-3xl overflow-hidden p-3 flex flex-col justify-between snap-center shadow-lg transition-transform hover:scale-[1.02]';
     
     carouselCard.innerHTML = `
       <div>
         <div class="relative h-44 rounded-2xl overflow-hidden mb-3.5 bg-espresso/30">
           ${item.badge ? `<span class="absolute top-2 left-2 bg-espresso text-parchment font-mono text-[9px] uppercase px-2 py-0.5 rounded shadow z-10 border border-terracotta/20">${item.badge}</span>` : ''}
-          <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full">
+          <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" loading="lazy" onerror="handleImageError(this)">
         </div>
         <h4 class="font-serif font-bold text-white text-base leading-snug mb-1 truncate">${item.name}</h4>
         <p class="text-[11px] text-neutralMuted leading-normal h-12 overflow-hidden line-clamp-3">${item.desc}</p>
@@ -1103,20 +1161,23 @@ function renderBistroMenu() {
         </button>
       </div>
     `;
-    carouselContainer.appendChild(carouselCard);
+    carouselFragment.appendChild(carouselCard);
   });
+  dom.premiumCarousel.appendChild(carouselFragment);
 
   // 2. Render COLLAPSIBLE ACCORDIONS for remaining Bistro Catalog items grouped elegantly
   const categoryGroups = {
     coffee: { title: "☕ Brewed & Specialty Drip", icon: "fa-mug-hot" },
     espresso: { title: "⚡ Traditional Espresso Creations", icon: "fa-bolt" },
-    signature: { title: "🌟 Vienna Signature Specialties", icon: "fa-star" },
+    signature: { title: "🌟 Premium Pour Signatures", icon: "fa-star" },
     'tea-more': { title: "🍃 Organic Teas & Infusions", icon: "fa-leaf" },
     breakfast: { title: "🥐 Farm-Fresh Breakfast Bites", icon: "fa-egg" },
     lunch: { title: "🥪 Rustic Paninis & Lunch Greens", icon: "fa-bread-slice" }
   };
 
-  // Build accordion structure
+  const accordionsFragment = document.createDocumentFragment();
+
+  // Build accordion structure efficiently
   Object.keys(categoryGroups).forEach(catId => {
     // Check if this category group contains filtered elements
     const groupItems = filtered.filter(item => item.category === catId);
@@ -1124,7 +1185,7 @@ function renderBistroMenu() {
 
     const groupMeta = categoryGroups[catId];
     const accordionDiv = document.createElement('div');
-    accordionDiv.className = 'border border-terracotta/15 rounded-2xl bg-darkCard/80 overflow-hidden shadow-sm transition-all';
+    accordionDiv.className = 'border border-terracotta/15 rounded-2xl bg-darkCard/80 overflow-hidden shadow-sm transition-colors';
     
     // Check if we should automatically expand (e.g. if category tab matches this specific category)
     const isExpanded = selectedCategory === 'all' ? false : (selectedCategory === catId);
@@ -1135,7 +1196,7 @@ function renderBistroMenu() {
           <i class="fa-solid ${groupMeta.icon} text-terracotta text-sm"></i>
           <span class="text-sm tracking-wide">${groupMeta.title}</span>
         </div>
-        <i class="fa-solid fa-chevron-down text-neutralMuted text-xs transition-transform duration-300 ${isExpanded ? 'rotate-185' : ''}"></i>
+        <i class="fa-solid fa-chevron-down text-neutralMuted text-xs transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}"></i>
       </button>
       <div class="accordion-content px-4 pb-4 space-y-3 ${isExpanded ? 'expanded' : ''}" style="${isExpanded ? 'max-height: 1000px;' : 'max-height: 0px;'}">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
@@ -1143,7 +1204,7 @@ function renderBistroMenu() {
             <div class="bg-espresso/50 border border-terracotta/10 p-3 rounded-xl flex items-center justify-between gap-3 shadow-inner">
               <div class="flex items-center gap-3 overflow-hidden">
                 <div class="w-12 h-12 rounded-lg overflow-hidden bg-espresso flex-shrink-0">
-                  <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" loading="lazy">
+                  <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" loading="lazy" onerror="handleImageError(this)">
                 </div>
                 <div class="overflow-hidden">
                   <h4 class="font-serif font-bold text-white text-xs leading-tight truncate">${item.name}</h4>
@@ -1161,11 +1222,12 @@ function renderBistroMenu() {
         </div>
       </div>
     `;
-    accordionContainer.appendChild(accordionDiv);
+    accordionsFragment.appendChild(accordionDiv);
   });
+  dom.bistroCatalogAccordions.appendChild(accordionsFragment);
 }
 
-// Custom Accordion Toggle Function
+// Custom Accordion Toggle Function with explicit transitions
 function toggleAccordion(buttonElement) {
   const content = buttonElement.nextElementSibling;
   const icon = buttonElement.querySelector('.fa-chevron-down');
@@ -1179,11 +1241,6 @@ function toggleAccordion(buttonElement) {
     content.style.maxHeight = '1000px';
     icon.classList.add('rotate-180');
   }
-}
-
-function filterMenuBySearch() {
-  currentSearch = document.getElementById('menu-search').value;
-  renderBistroMenu();
 }
 
 // --- Cart Pre-order Logic ---
@@ -1213,20 +1270,21 @@ function removeOneFromCart(id) {
 }
 
 function syncCartUI() {
-  const wrapper = document.getElementById('cart-items-wrapper');
-  if (!wrapper) return;
-  wrapper.innerHTML = '';
-
+  if (!dom.cartItemsWrapper) return;
+  
+  // Using document fragment for optimized list rendering
+  const fragment = document.createDocumentFragment();
   let totalCount = 0;
   let totalPrice = 0;
 
   if (cart.length === 0) {
-    wrapper.innerHTML = `
-      <p class="text-center py-10 text-xs text-neutralMuted font-mono">Your order bag is currently empty.</p>
-    `;
-    document.getElementById('cart-action-btn').disabled = true;
+    const emptyMsg = document.createElement('p');
+    emptyMsg.className = 'text-center py-10 text-xs text-neutralMuted font-mono';
+    emptyMsg.innerText = 'Your order bag is currently empty.';
+    fragment.appendChild(emptyMsg);
+    dom.cartActionBtn.disabled = true;
   } else {
-    document.getElementById('cart-action-btn').disabled = false;
+    dom.cartActionBtn.disabled = false;
     cart.forEach(item => {
       totalCount += item.quantity;
       totalPrice += item.price * item.quantity;
@@ -1244,17 +1302,20 @@ function syncCartUI() {
           <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="text-white hover:text-terracotta p-1 text-xs"><i class="fa-solid fa-plus"></i></button>
         </div>
       `;
-      wrapper.appendChild(itemRow);
+      fragment.appendChild(itemRow);
     });
   }
 
-  // Update badges
-  document.getElementById('desktop-cart-badge').innerText = totalCount;
-  document.getElementById('mobile-cart-badge').innerText = totalCount;
+  dom.cartItemsWrapper.innerHTML = '';
+  dom.cartItemsWrapper.appendChild(fragment);
+
+  // Update badges with minimal layout shifts
+  dom.desktopCartBadge.innerText = totalCount;
+  dom.mobileCartBadge.innerText = totalCount;
   
   const formattedTotal = `$${totalPrice.toFixed(2)}`;
-  document.getElementById('mobile-cart-total').innerText = formattedTotal;
-  document.getElementById('cart-drawer-total').innerText = formattedTotal;
+  dom.mobileCartTotal.innerText = formattedTotal;
+  dom.cartDrawerTotal.innerText = formattedTotal;
 }
 
 function openSidebarCart() {
@@ -1278,7 +1339,10 @@ function selectReserveZone(element, name, description) {
   selectedLoungeZone = name;
   document.getElementById('zone-reserve-desc').innerText = description;
   
-  document.querySelectorAll('.zone-btn').forEach(btn => btn.classList.remove('selected', 'border-terracotta'));
+  const zoneBtns = document.querySelectorAll('.zone-btn');
+  for (let i = 0; i < zoneBtns.length; i++) {
+    zoneBtns[i].classList.remove('selected', 'border-terracotta');
+  }
   element.classList.add('selected', 'border-terracotta');
 }
 
@@ -1308,7 +1372,9 @@ function closeReservationTicket() {
 
 // --- Brew Lab Customizer Logic ---
 function calculateCustomPrice() {
-  const baseSelect = document.getElementById('builder-base');
+  if (!dom.builderBase) return;
+  
+  const baseSelect = dom.builderBase;
   const chosenOption = baseSelect.options[baseSelect.selectedIndex];
   const basePrice = parseFloat(chosenOption.dataset.price);
   const baseName = chosenOption.value;
@@ -1347,30 +1413,29 @@ function calculateCustomPrice() {
     syrupArr.push('Velvet Heavy Cream');
   }
 
-  // Update builder view
-  document.getElementById('builder-display-name').innerText = `Gourmet Custom ${baseName} (${sizeValue}ml)`;
+  // Update builder view using cached references
+  dom.builderDisplayName.innerText = `Gourmet Custom ${baseName} (${sizeValue}ml)`;
   
   const modifications = [
     `Served with ${milkValue} milk alternative`,
     ...syrupArr
   ].join(', ');
   
-  document.getElementById('builder-display-desc').innerText = modifications ? `Brew modified with: ${modifications}.` : descString;
-  document.getElementById('builder-display-price').innerText = `$${finalPrice.toFixed(2)}`;
+  dom.builderDisplayDesc.innerText = modifications ? `Brew modified with: ${modifications}.` : descString;
+  dom.builderDisplayPrice.innerText = `$${finalPrice.toFixed(2)}`;
 }
 
 function addCustomBuildToCart() {
-  const customName = document.getElementById('builder-display-name').innerText;
-  const customPrice = parseFloat(document.getElementById('builder-display-price').innerText.replace('$', ''));
+  const customName = dom.builderDisplayName.innerText;
+  const customPrice = parseFloat(dom.builderDisplayPrice.innerText.replace('$', ''));
   
   addItemToCart('custom-' + Date.now(), customName, customPrice);
   openSidebarCart();
 }
 
 function renderVibeBoard() {
-  const container = document.getElementById('polaroid-canvas-grid');
-  if (!container) return;
-  container.innerHTML = '';
+  if (!dom.polaroidCanvasGrid) return;
+  dom.polaroidCanvasGrid.innerHTML = '';
 
   const sevenDaysLimit = 7 * 24 * 60 * 60 * 1000;
   const now = Date.now();
@@ -1380,6 +1445,7 @@ function renderVibeBoard() {
 
   // Pad layout with beautiful centered placeholder frames up to 4 elements
   const itemsCount = Math.max(4, activePhotos.length + 2);
+  const fragment = document.createDocumentFragment();
 
   for (let i = 0; i < itemsCount; i++) {
     const photo = activePhotos[i];
@@ -1391,7 +1457,7 @@ function renderVibeBoard() {
       frame.style.transform = `rotate(${randomAngle}deg)`;
       frame.innerHTML = `
         <div class="relative w-full aspect-square overflow-hidden rounded-xl bg-espresso border border-terracotta/10">
-          <img src="${photo.image}" alt="Community user upload pinned to board" class="w-full h-full object-cover">
+          <img src="${photo.image}" alt="Community user upload pinned to board" class="w-full h-full object-cover" loading="lazy" onerror="handleImageError(this)">
         </div>
         <div class="mt-3 text-center overflow-hidden">
           <p class="font-serif font-bold text-terracotta text-xs truncate">@${photo.handle}</p>
@@ -1409,8 +1475,9 @@ function renderVibeBoard() {
         </div>
       `;
     }
-    container.appendChild(frame);
+    fragment.appendChild(frame);
   }
+  dom.polaroidCanvasGrid.appendChild(fragment);
 }
 
 // --- Upload Logic ---
@@ -1426,21 +1493,22 @@ function closeUploadSheet() {
 // Image File handling
 const fileInput = document.getElementById('file-input');
 const previewImg = document.getElementById('preview-img');
-const dropzone = document.getElementById('dropzone');
 const placeholder = document.getElementById('dropzone-placeholder');
 
-fileInput.addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (evt) => {
-      previewImg.src = evt.target.result;
-      previewImg.classList.remove('hidden');
-      placeholder.classList.add('hidden');
-    };
-    reader.readAsDataURL(file);
-  }
-});
+if (fileInput) {
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        previewImg.src = evt.target.result;
+        previewImg.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+}
 
 function applyPresetVibe(url) {
   previewImg.src = url;
@@ -1450,47 +1518,50 @@ function applyPresetVibe(url) {
 }
 
 const vibeUploadForm = document.getElementById('vibe-upload-form');
-vibeUploadForm.addEventListener('submit', (e) => {
-  e.preventDefault();
+if (vibeUploadForm) {
+  vibeUploadForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  const handle = document.getElementById('wall-handle').value.trim() || 'maryville_local';
-  const orderedItem = document.getElementById('wall-drink').value.trim() || 'Handcrafted Brew';
-  const imgUrl = previewImg.src || 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400';
+    const handle = document.getElementById('wall-handle').value.trim() || 'pour_regular';
+    const orderedItem = document.getElementById('wall-drink').value.trim() || 'Handcrafted Brew';
+    const imgUrl = previewImg.src || 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400';
 
-  // Push new photo onto community array
-  const newPhoto = {
-    id: 'w-' + Date.now(),
-    handle: handle,
-    drink: orderedItem,
-    image: imgUrl,
-    timestamp: Date.now()
-  };
+    // Push new photo onto community array
+    const newPhoto = {
+      id: 'w-' + Date.now(),
+      handle: handle,
+      drink: orderedItem,
+      image: imgUrl,
+      timestamp: Date.now()
+    };
 
-  communityPhotos.unshift(newPhoto);
-  renderVibeBoard();
+    communityPhotos.unshift(newPhoto);
+    renderVibeBoard();
 
-  // Reset & close
-  vibeUploadForm.reset();
-  previewImg.src = '';
-  previewImg.classList.add('hidden');
-  placeholder.classList.remove('hidden');
-  closeUploadSheet();
+    // Reset & close
+    vibeUploadForm.reset();
+    previewImg.src = '';
+    previewImg.classList.add('hidden');
+    placeholder.classList.remove('hidden');
+    closeUploadSheet();
 
-  showToastNotification("Successfully pinned to the legends board! 📌");
-});
+    showToastNotification("Successfully pinned to the legends board! 📌");
+  });
+}
 
 // --- Feedback & Suggestions Logic ---
 function renderFeedbackBoard() {
-  const wrapper = document.getElementById('feedback-board-cards');
-  if (!wrapper) return;
-  wrapper.innerHTML = '';
+  if (!dom.feedbackBoardCards) return;
+  dom.feedbackBoardCards.innerHTML = '';
 
   if (communityFeedbacks.length === 0) {
-    wrapper.innerHTML = `
+    dom.feedbackBoardCards.innerHTML = `
       <p class="text-xs text-neutralMuted font-mono text-center py-6">No published notes currently.</p>
     `;
     return;
   }
+
+  const fragment = document.createDocumentFragment();
 
   communityFeedbacks.forEach(fb => {
     const card = document.createElement('div');
@@ -1503,32 +1574,35 @@ function renderFeedbackBoard() {
       </div>
       <p class="text-xs leading-relaxed text-parchment italic font-serif">"${fb.comment}"</p>
     `;
-    wrapper.appendChild(card);
+    fragment.appendChild(card);
   });
+  dom.feedbackBoardCards.appendChild(fragment);
 }
 
 const suggestionsForm = document.getElementById('suggestions-submit-form');
-suggestionsForm.addEventListener('submit', (e) => {
-  e.preventDefault();
+if (suggestionsForm) {
+  suggestionsForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  const user = document.getElementById('feedback-user').value.trim();
-  const topic = document.getElementById('feedback-topic').value.trim();
-  const comment = document.getElementById('feedback-comment').value.trim();
+    const user = document.getElementById('feedback-user').value.trim();
+    const topic = document.getElementById('feedback-topic').value.trim();
+    const comment = document.getElementById('feedback-comment').value.trim();
 
-  const newFeedback = {
-    id: 'f-' + Date.now(),
-    user: user.startsWith('@') ? user : '@' + user,
-    topic: topic,
-    comment: comment,
-    timestamp: Date.now()
-  };
+    const newFeedback = {
+      id: 'f-' + Date.now(),
+      user: user.startsWith('@') ? user : '@' + user,
+      topic: topic,
+      comment: comment,
+      timestamp: Date.now()
+    };
 
-  communityFeedbacks.unshift(newFeedback);
-  renderFeedbackBoard();
+    communityFeedbacks.unshift(newFeedback);
+    renderFeedbackBoard();
 
-  suggestionsForm.reset();
-  showToastNotification("Feedback received and queued for review! 🛡️");
-});
+    suggestionsForm.reset();
+    showToastNotification("Feedback received and queued for review! 🛡️");
+  });
+}
 
 // --- Flyer Modal Controls ---
 function openFlyerModal() {
@@ -1540,7 +1614,7 @@ function closeFlyerModal() {
   document.getElementById('sheet-backdrop').classList.remove('active');
 }
 
-// --- CMS Panel Administration (Password: barako or vienna) ---
+// --- CMS Panel Administration (Password: pour, barako or vienna) ---
 function openCMSPanel() {
   document.getElementById('admin-cms-sheet').classList.add('active');
   document.getElementById('sheet-backdrop').classList.add('active');
@@ -1558,7 +1632,7 @@ function closeCMSPanel() {
 function verifyAdministrativePasscode() {
   const pass = document.getElementById('cms-passcode-input').value.trim().toLowerCase();
   
-  if (pass === 'barako' || pass === 'vienna') {
+  if (pass === 'pour' || pass === 'barako' || pass === 'vienna') {
     document.getElementById('cms-verify-section').classList.add('hidden');
     document.getElementById('cms-authenticated-view').classList.remove('hidden');
     showToastNotification("Authorized Access Approved! 🛡️");
@@ -1601,6 +1675,7 @@ function renderCMSPhotosList() {
 
   const sevenDaysLimit = 7 * 24 * 60 * 60 * 1000;
   const now = Date.now();
+  const fragment = document.createDocumentFragment();
 
   communityPhotos.forEach(photo => {
     const isExpired = (now - photo.timestamp) > sevenDaysLimit;
@@ -1608,7 +1683,7 @@ function renderCMSPhotosList() {
     row.className = 'flex items-center justify-between gap-3 p-2 bg-espresso rounded border border-terracotta/15 text-xs shadow-sm';
     row.innerHTML = `
       <div class="flex items-center gap-3 overflow-hidden">
-        <img src="${photo.image}" class="w-10 h-10 object-cover rounded-xl flex-shrink-0">
+        <img src="${photo.image}" class="w-10 h-10 object-cover rounded-xl flex-shrink-0" onerror="handleImageError(this)">
         <div class="overflow-hidden">
           <div class="flex items-center gap-1.5">
             <span class="font-bold text-white">@${photo.handle}</span>
@@ -1623,8 +1698,9 @@ function renderCMSPhotosList() {
         <button onclick="deleteVibePhoto('${photo.id}')" class="text-terracotta hover:text-red-400 text-xs p-1" title="Remove Photo"><i class="fa-solid fa-trash"></i></button>
       </div>
     `;
-    container.appendChild(row);
+    fragment.appendChild(row);
   });
+  container.appendChild(fragment);
 }
 
 function deleteVibePhoto(id) {
@@ -1639,12 +1715,14 @@ function renderCMSProductsList() {
   if (!container) return;
   container.innerHTML = '';
 
+  const fragment = document.createDocumentFragment();
+
   masterProducts.forEach(item => {
     const row = document.createElement('div');
     row.className = 'flex items-center justify-between gap-2 p-2 bg-espresso rounded border border-terracotta/15 text-xs shadow-sm';
     row.innerHTML = `
       <div class="flex items-center gap-2 overflow-hidden">
-        <img src="${item.img}" class="w-8 h-8 object-cover rounded-xl flex-shrink-0">
+        <img src="${item.img}" class="w-8 h-8 object-cover rounded-xl flex-shrink-0" onerror="handleImageError(this)">
         <div class="overflow-hidden">
           <span class="font-serif font-bold text-white leading-none block truncate max-w-[160px]">${item.name}</span>
           <span class="text-[9px] text-terracotta font-mono font-bold">$${item.price.toFixed(2)}</span>
@@ -1655,8 +1733,9 @@ function renderCMSProductsList() {
         <button onclick="deleteProductFromCMS('${item.id}')" class="text-terracotta hover:text-red-400 p-1"><i class="fa-solid fa-trash"></i></button>
       </div>
     `;
-    container.appendChild(row);
+    fragment.appendChild(row);
   });
+  container.appendChild(fragment);
 }
 
 function deleteProductFromCMS(id) {
@@ -1696,35 +1775,37 @@ function closeProductEditForm() {
 }
 
 const crudForm = document.getElementById('product-crud-form');
-crudForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  
-  const id = document.getElementById('p-form-id').value;
-  const name = document.getElementById('p-form-name').value.trim();
-  const price = parseFloat(document.getElementById('p-form-price').value);
-  const category = document.getElementById('p-form-category').value;
-  const desc = document.getElementById('p-form-desc').value.trim();
-  const img = document.getElementById('p-form-image').value.trim();
+if (crudForm) {
+  crudForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const id = document.getElementById('p-form-id').value;
+    const name = document.getElementById('p-form-name').value.trim();
+    const price = parseFloat(document.getElementById('p-form-price').value);
+    const category = document.getElementById('p-form-category').value;
+    const desc = document.getElementById('p-form-desc').value.trim();
+    const img = document.getElementById('p-form-image').value.trim();
 
-  const payload = { id: id || 'p-' + Date.now(), name, price, category, desc, img };
+    const payload = { id: id || 'p-' + Date.now(), name, price, category, desc, img: img || FALLBACK_IMAGE };
 
-  if (id) {
-    masterProducts = masterProducts.map(p => p.id === id ? payload : p);
-    showToastNotification("Catalog item updated successfully!");
-  } else {
-    masterProducts.push(payload);
-    showToastNotification("New catalog option published to menu!");
-  }
+    if (id) {
+      masterProducts = masterProducts.map(p => p.id === id ? payload : p);
+      showToastNotification("Catalog item updated successfully!");
+    } else {
+      masterProducts.push(payload);
+      showToastNotification("New catalog option published to menu!");
+    }
 
-  closeProductEditForm();
-  renderCMSProductsList();
-  renderBistroMenu();
-});
+    closeProductEditForm();
+    renderCMSProductsList();
+    renderBistroMenu();
+  });
+}
 
 // --- Gamified Virtual Stamp Card System ---
 function claimMysteryStamp() {
   if (stampCount >= 5) {
-    showToastNotification("🏆 Reward code UNLOCKED: VIENNA99!");
+    showToastNotification("🏆 Reward code UNLOCKED: POUR99!");
     return;
   }
   
