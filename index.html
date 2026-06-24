@@ -60,14 +60,49 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-  tailwind.config={theme:{extend:{colors:{espresso:'#150A08',darkCard:'#231511',terracotta:'#C67C4E',parchment:'#EEDCC5',accentLight:'#EDD6C8',darkAccent:'#342420',neutralMuted:'#9B8D8B'},fontFamily:{serif:['Fraunces','serif'],display:['Playfair Display','serif'],sans:['Inter','sans-serif'],mono:['Space Mono','monospace']}}}}
+  tailwind.config={theme:{extend:{colors:{espresso:'var(--espresso)',darkCard:'var(--darkCard)',terracotta:'var(--terracotta)',parchment:'var(--parchment)',accentLight:'var(--accentLight)',darkAccent:'var(--darkAccent)',neutralMuted:'var(--neutralMuted)',appBg:'var(--bg)',appCard:'var(--card)',appText:'var(--text)',appHeading:'var(--text-heading)',appBorder:'var(--border)',appGlass:'var(--glass-overlay)'},fontFamily:{serif:['Fraunces','serif'],display:['Playfair Display','serif'],sans:['Inter','sans-serif'],mono:['Space Mono','monospace']}}}}
 </script>
 
 <style>
-:root{--espresso:#150A08;--darkCard:#231511;--terracotta:#C67C4E;--parchment:#EEDCC5;--accentLight:#EDD6C8}
+:root {
+  /* Default Cozy Dark Mode colors */
+  --espresso: #150A08;
+  --darkCard: #231511;
+  --terracotta: #C67C4E;
+  --parchment: #EEDCC5;
+  --accentLight: #EDD6C8;
+  --darkAccent: #342420;
+  --neutralMuted: #9B8D8B;
+  
+  --bg: #150A08;
+  --card: #231511;
+  --text: #EEDCC5;
+  --text-heading: #ffffff;
+  --border: rgba(198, 124, 78, 0.15);
+  --glass-overlay: rgba(35, 21, 17, 0.95);
+}
+
+:root.light-mode {
+  /* Elegant Cozy Light Mode colors */
+  --espresso: #2C1A11;
+  --darkCard: #FFFFFF;
+  --terracotta: #C67C4E;
+  --parchment: #150A08;
+  --accentLight: #3D2924;
+  --darkAccent: #F2ECE4;
+  --neutralMuted: #7A6E6D;
+  
+  --bg: #F9F5F0;
+  --card: #FFFFFF;
+  --text: #2C1A11;
+  --text-heading: #150A08;
+  --border: rgba(198, 124, 78, 0.25);
+  --glass-overlay: rgba(255, 255, 255, 0.95);
+}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-tap-highlight-color:transparent}
-body{font-family:'Inter',sans-serif;background:var(--espresso);color:var(--parchment);-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:120px}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:120px;transition: background-color 0.3s ease, color 0.3s ease;}
 button{font-family:inherit;cursor:pointer;background:0 0;border:none}
 input,select,textarea{font-family:inherit}
 img{max-width:100%;display:block}
@@ -78,16 +113,16 @@ img{max-width:100%;display:block}
 
 /* Pattern matching the image_7b52ed.jpg */
 .app-card {
-  background-color: var(--darkCard);
-  border: 1px solid rgba(198, 124, 78, 0.15);
+  background-color: var(--card);
+  border: 1px solid var(--border);
   border-radius: 24px;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
   will-change: transform;
 }
 .app-card:hover {
   transform: translateY(-4px);
   border-color: rgba(198, 124, 78, 0.4);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Tab Pills styled exactly as image_7b52ed.jpg */
@@ -97,7 +132,7 @@ img{max-width:100%;display:block}
 }
 .nav-tab-btn.active {
   background-color: var(--terracotta);
-  color: #ffffff;
+  color: #ffffff !important;
   box-shadow: 0 4px 14px rgba(198, 124, 78, 0.4);
 }
 
@@ -107,7 +142,7 @@ img{max-width:100%;display:block}
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--espresso);
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--terracotta);
@@ -124,16 +159,16 @@ img{max-width:100%;display:block}
 }
 
 /* Modal Drawer Pull-ups with Hardware Acceleration */
-.sheet-backdrop{position:fixed;inset:0;background:rgba(21, 10, 8, 0.85);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:90;will-change:opacity}
+.sheet-backdrop{position:fixed;inset:0;background:rgba(21, 10, 8, 0.5);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:90;will-change:opacity}
 .sheet-backdrop.active{opacity:1;pointer-events:auto}
 
-.sheet{position:fixed;left:0;right:0;bottom:0;max-height:88vh;background:var(--darkCard);border: 1px solid rgba(198, 124, 78, 0.2);border-radius:24px 24px 0 0;transform:translateY(100%);transition:transform .4s cubic-bezier(.32,.72,0,1);z-index:95;display:flex;flex-direction:column;box-shadow:0 -12px 50px rgba(0,0,0,0.6);will-change:transform}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-height:88vh;background:var(--card);border: 1px solid var(--border);border-radius:24px 24px 0 0;transform:translateY(100%);transition:transform .4s cubic-bezier(.32,.72,0,1), background-color 0.3s ease;z-index:95;display:flex;flex-direction:column;box-shadow:0 -12px 50px rgba(0,0,0,0.3);will-change:transform}
 .sheet.active{transform:translateY(0)}
 
 .sheet-handle{width:40px;height:4px;background:rgba(198,124,78,0.3);border-radius:2px;margin:12px auto 8px}
 .sheet-content{padding:0 24px 24px;overflow-y:auto;flex-grow:1}
-.sheet-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;color:var(--parchment);font-size:16px;transition:background-color 0.2s, color 0.2s}
-.sheet-close:hover{background:rgba(198,124,78,0.2);color:white}
+.sheet-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,0.05);display:flex;align-items:center;justify-content:center;color:var(--text);font-size:16px;transition:background-color 0.2s, color 0.2s}
+.sheet-close:hover{background:rgba(198,124,78,0.2);color:var(--text-heading)}
 
 @media (min-width: 768px) {
   .sheet {
@@ -147,7 +182,7 @@ img{max-width:100%;display:block}
     border-radius: 24px;
     opacity: 0;
     pointer-events: none;
-    transition: transform 0.3s cubic-bezier(.32,.72,0,1), opacity 0.3s ease;
+    transition: transform 0.3s cubic-bezier(.32,.72,0,1), opacity 0.3s ease, background-color 0.3s ease;
     will-change: transform, opacity;
   }
   .sheet.active {
@@ -163,11 +198,11 @@ img{max-width:100%;display:block}
 
 /* Polaroid Styles */
 .polaroid {
-  background: #2E1E1A;
+  background: var(--card);
   padding: 12px 12px 28px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(198, 124, 78, 0.15);
-  transition: transform 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease, background-color 0.3s ease;
   will-change: transform;
 }
 .polaroid:hover {
@@ -175,7 +210,7 @@ img{max-width:100%;display:block}
 }
 
 .stamp-slot.stamped {
-  background: #342420;
+  background: var(--darkAccent);
   border-color: var(--terracotta);
   transform: scale(1.05);
 }
@@ -191,7 +226,7 @@ img{max-width:100%;display:block}
 }
 </style>
 </head>
-<body class="bg-espresso text-parchment flex flex-col min-h-screen">
+<body class="bg-appBg text-appText flex flex-col min-h-screen">
 
 <!-- High-fidelity custom texture layout overlay -->
 <div class="grain fixed inset-0 z-50 pointer-events-none"></div>
@@ -199,14 +234,14 @@ img{max-width:100%;display:block}
 <!-- Backdrops -->
 <div class="sheet-backdrop" id="sheet-backdrop"></div>
 
-<header class="bg-darkCard text-parchment sticky top-0 z-40 border-b border-terracotta/20 shadow-lg">
+<header class="bg-appCard text-appText sticky top-0 z-40 border-b border-appBorder shadow-lg transition-colors">
   <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-full border border-terracotta flex items-center justify-center bg-espresso">
+      <div class="w-10 h-10 rounded-full border border-terracotta flex items-center justify-center bg-appBg">
         <span class="font-serif text-terracotta font-bold text-lg">PD</span>
       </div>
       <div>
-        <h1 class="font-serif font-extrabold text-lg tracking-wide uppercase text-white">Pour Decisions</h1>
+        <h1 class="font-serif font-extrabold text-lg tracking-wide uppercase text-appHeading">Pour Decisions</h1>
         <p class="font-mono text-[9px] uppercase tracking-widest text-terracotta -mt-1">Coffee Company</p>
       </div>
     </div>
@@ -220,12 +255,16 @@ img{max-width:100%;display:block}
       <button onclick="switchPage('heritage')" class="nav-tab-btn px-3 py-2 text-[11px] tracking-wider uppercase text-neutralMuted" id="tab-heritage">Our Heritage</button>
     </nav>
 
-    <!-- Header Actions (Cart count and Admin trigger) -->
-    <div class="flex items-center gap-2.5">
+    <!-- Header Actions (Cart count, Theme toggle and Admin trigger) -->
+    <div class="flex items-center gap-2">
+      <!-- Theme Toggle Switcher -->
+      <button onclick="toggleTheme()" class="p-2 text-terracotta hover:text-terracotta/80 transition-all rounded-xl" id="theme-toggle-btn" aria-label="Toggle Light/Dark Theme">
+        <i class="fa-solid fa-moon text-base" id="theme-toggle-icon"></i>
+      </button>
       <button onclick="openFlyerModal()" class="border border-terracotta/40 text-terracotta text-[10px] py-1.5 px-3 rounded-xl hover:bg-terracotta hover:text-white transition-all font-semibold" title="View actual print menu board">
         <i class="fa-solid fa-map"></i> <span class="hidden sm:inline">Original Menu Board</span>
       </button>
-      <button onclick="openSidebarCart()" class="relative p-2 text-terracotta hover:text-white transition-all" aria-label="Shopping Cart">
+      <button onclick="openSidebarCart()" class="relative p-2 text-terracotta hover:text-terracotta/80 transition-all" aria-label="Shopping Cart">
         <i class="fa-solid fa-bag-shopping text-xl"></i>
         <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow animate-pulse" id="desktop-cart-badge">0</span>
       </button>
@@ -243,32 +282,32 @@ img{max-width:100%;display:block}
   <section id="page-home" class="page-view space-y-10">
     
     <!-- Premium Interactive Hero Section -->
-    <div class="relative rounded-3xl overflow-hidden bg-darkCard text-white py-12 px-6 sm:px-12 shadow-2xl flex flex-col md:flex-row items-center justify-between border border-terracotta/20">
-      <div class="absolute inset-0 bg-cover bg-center opacity-15" style="background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1200');"></div>
-      <div class="absolute inset-0 bg-gradient-to-r from-espresso via-espresso/90 to-transparent"></div>
+    <div class="relative rounded-3xl overflow-hidden bg-appCard text-appHeading py-12 px-6 sm:px-12 shadow-2xl flex flex-col md:flex-row items-center justify-between border border-appBorder transition-colors">
+      <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1200');"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-appBg via-appBg/90 to-transparent"></div>
       
       <div class="relative z-10 max-w-lg space-y-4">
-        <span class="bg-terracotta/20 text-terracotta font-mono text-xs uppercase px-3 py-1 rounded-full border border-terracotta/40">Est. Maryville, TN</span>
+        <span class="bg-terracotta/10 text-terracotta font-mono text-xs uppercase px-3 py-1 rounded-full border border-terracotta/35">Est. Maryville, TN</span>
         <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">Every cup, a beautiful mistake.</h2>
         <p class="text-sm text-accentLight leading-relaxed">
           Order premium freshly-roasted coffee, European artisan pastries, and signature bistro lunches for rapid local curbside pick-up.
         </p>
         <div class="flex flex-wrap gap-3 pt-2">
           <button onclick="scrollIntoSection('menu-categories')" class="bg-terracotta hover:bg-terracotta/90 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-all shadow-md">Browse Catalog</button>
-          <button onclick="claimMysteryStamp()" class="bg-darkAccent hover:bg-darkAccent/90 text-terracotta font-semibold px-5 py-2.5 rounded-xl text-sm transition-all shadow-md flex items-center gap-2 border border-terracotta/20">
+          <button onclick="claimMysteryStamp()" class="bg-darkAccent hover:bg-terracotta hover:text-white text-terracotta font-semibold px-5 py-2.5 rounded-xl text-sm transition-all shadow-md flex items-center gap-2 border border-terracotta/20">
             <i class="fa-solid fa-gift"></i> Virtual Stamp Card
           </button>
         </div>
       </div>
       
       <!-- Visual Highlight Card (The Viennese Waltz Showcase) -->
-      <div class="relative z-10 mt-8 md:mt-0 bg-darkCard/95 p-5 rounded-2xl border border-terracotta/20 max-w-xs w-full shadow-xl">
+      <div class="relative z-10 mt-8 md:mt-0 bg-appCard p-5 rounded-2xl border border-appBorder max-w-xs w-full shadow-xl transition-colors">
         <div class="relative rounded-xl overflow-hidden h-40 bg-gray-900 mb-4">
           <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600" alt="Viennese Waltz Premium Drink" class="object-cover w-full h-full" loading="lazy" onerror="handleImageError(this)">
           <span class="absolute top-2 right-2 bg-terracotta text-white font-mono text-[9px] font-bold uppercase px-2 py-0.5 rounded shadow">Popular</span>
         </div>
         <div class="flex justify-between items-baseline">
-          <h3 class="font-serif font-bold text-white">Viennese Waltz</h3>
+          <h3 class="font-serif font-bold text-appHeading">Viennese Waltz</h3>
           <span class="text-terracotta font-mono text-sm">$5.80</span>
         </div>
         <p class="text-[11px] text-accentLight mt-1">Rich Espresso, velvet steamed milk, premium white chocolate, and sweet almond syrup.</p>
@@ -280,32 +319,32 @@ img{max-width:100%;display:block}
 
     <!-- Menu Section (Categories, Search & Items Display) -->
     <div id="menu-categories" class="space-y-6 pt-4">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-terracotta/20 pb-4">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-appBorder pb-4">
         <div>
-          <h2 class="font-serif text-2xl font-bold text-white">The Bistro Culinary Menu</h2>
+          <h2 class="font-serif text-2xl font-bold text-appHeading">The Bistro Culinary Menu</h2>
           <p class="text-xs text-neutralMuted mt-0.5">Filter items by category or search below</p>
         </div>
         
         <!-- Live Search Field with Debounced Listener -->
         <div class="relative w-full md:w-80">
-          <input type="text" id="menu-search" placeholder="Search coffee, bagels, quiche..." class="w-full bg-darkCard border border-terracotta/30 rounded-xl px-4 py-2.5 pl-10 text-xs text-white focus:outline-none focus:border-terracotta transition-all">
+          <input type="text" id="menu-search" placeholder="Search coffee, bagels, quiche..." class="w-full bg-appCard border border-terracotta/30 rounded-xl px-4 py-2.5 pl-10 text-xs text-appHeading focus:outline-none focus:border-terracotta transition-all">
           <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-neutralMuted text-xs"></i>
         </div>
       </div>
 
       <!-- Category Filter Pills styled exactly as image_7b52ed.jpg -->
       <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none" id="category-pills" role="tablist">
-        <button onclick="filterCategory('all')" class="category-pill active bg-darkCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-parchment" id="pill-all">All Items</button>
-        <button onclick="filterCategory('coffee')" class="category-pill bg-darkCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-parchment" id="pill-coffee">Brewed & Drip</button>
-        <button onclick="filterCategory('espresso')" class="category-pill bg-darkCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-parchment" id="pill-espresso">Espresso Drinks</button>
-        <button onclick="filterCategory('signature')" class="category-pill bg-darkCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-parchment" id="pill-signature">Signatures</button>
-        <button onclick="filterCategory('tea-more')" class="category-pill bg-darkCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-parchment" id="pill-tea-more">Tea & Other</button>
-        <button onclick="filterCategory('breakfast')" class="category-pill bg-darkCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-parchment" id="pill-breakfast">Breakfast Bites</button>
-        <button onclick="filterCategory('lunch')" class="category-pill bg-darkCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-parchment" id="pill-lunch">Sandwiches & Salads</button>
+        <button onclick="filterCategory('all')" class="category-pill active bg-appCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-appText" id="pill-all">All Items</button>
+        <button onclick="filterCategory('coffee')" class="category-pill bg-appCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-appText" id="pill-coffee">Brewed & Drip</button>
+        <button onclick="filterCategory('espresso')" class="category-pill bg-appCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-appText" id="pill-espresso">Espresso Drinks</button>
+        <button onclick="filterCategory('signature')" class="category-pill bg-appCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-appText" id="pill-signature">Signatures</button>
+        <button onclick="filterCategory('tea-more')" class="category-pill bg-appCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-appText" id="pill-tea-more">Tea & Other</button>
+        <button onclick="filterCategory('breakfast')" class="category-pill bg-appCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-appText" id="pill-breakfast">Breakfast Bites</button>
+        <button onclick="filterCategory('lunch')" class="category-pill bg-appCard border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all text-appText" id="pill-lunch">Sandwiches & Salads</button>
       </div>
 
       <div class="space-y-3">
-        <h3 class="font-serif text-lg font-bold text-white tracking-wide" id="carousel-title">Featured Specialties</h3>
+        <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide" id="carousel-title">Featured Specialties</h3>
         <div id="premium-carousel" class="flex gap-4 overflow-x-auto pb-4 scrollbar-none snap-x snap-mandatory">
           <!-- Horizontal large carousel cards rendered via JavaScript -->
         </div>
@@ -313,7 +352,7 @@ img{max-width:100%;display:block}
 
       <div class="space-y-4">
         <div class="flex justify-between items-baseline">
-          <h3 class="font-serif text-lg font-bold text-white tracking-wide">Bistro Catalog</h3>
+          <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide">Bistro Catalog</h3>
           <span class="text-xs text-neutralMuted uppercase tracking-wider font-mono">Tap to Expand Group</span>
         </div>
         
@@ -325,19 +364,19 @@ img{max-width:100%;display:block}
     </div>
 
     <!-- Interactive Customization Zone ("Brew Lab Builder" matching image_7b52ed.jpg) -->
-    <div class="bg-darkCard rounded-3xl p-6 md:p-8 border border-terracotta/30 space-y-6">
+    <div class="bg-appCard rounded-3xl p-6 md:p-8 border border-terracotta/30 space-y-6 transition-colors">
       <div class="text-center max-w-xl mx-auto space-y-2">
         <span class="font-mono text-xs uppercase tracking-widest text-terracotta">The Brew Lab Customizer</span>
-        <h3 class="font-serif text-2xl font-bold text-white">Customize Your Perfect Brew</h3>
+        <h3 class="font-serif text-2xl font-bold text-appHeading">Customize Your Perfect Brew</h3>
         <p class="text-xs text-neutralMuted">Configure size proportions, milk alternatives, and signature flavor toppings.</p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-8 items-center bg-espresso p-6 rounded-2xl border border-terracotta/15">
+      <div class="grid md:grid-cols-2 gap-8 items-center bg-appBg p-6 rounded-2xl border border-appBorder transition-colors">
         <!-- Custom Controls -->
         <div class="space-y-4 text-xs">
           <div>
-            <label class="block font-bold text-parchment uppercase tracking-wider mb-1.5">Select Base Drink</label>
-            <select id="builder-base" class="w-full border border-terracotta/30 bg-darkCard rounded-xl p-2.5 text-white focus:outline-none" onchange="calculateCustomPrice()">
+            <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Select Base Drink</label>
+            <select id="builder-base" class="w-full border border-terracotta/30 bg-appCard rounded-xl p-2.5 text-appHeading focus:outline-none transition-colors" onchange="calculateCustomPrice()">
               <option value="Cold Brew" data-price="5.50">Cold Brew Coffee ($5.50)</option>
               <option value="Latte" data-price="5.00">Premium Caffe Latte ($5.00)</option>
               <option value="Viennese Waltz" data-price="5.80">Viennese Waltz ($5.80)</option>
@@ -346,38 +385,38 @@ img{max-width:100%;display:block}
           </div>
 
           <div>
-            <label class="block font-bold text-parchment uppercase tracking-wider mb-1.5">Size Portion (ml)</label>
+            <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Size Portion (ml)</label>
             <div class="grid grid-cols-3 gap-2">
-              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-darkCard text-center">
+              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center">
                 <input type="radio" name="brew-size" value="250" checked class="sr-only" onchange="calculateCustomPrice()">
-                <span class="text-sm font-bold block text-white">250</span>
+                <span class="text-sm font-bold block text-appHeading">250</span>
                 <span class="text-[9px] text-neutralMuted">Small</span>
               </label>
-              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-darkCard text-center">
+              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center">
                 <input type="radio" name="brew-size" value="350" class="sr-only" onchange="calculateCustomPrice()">
-                <span class="text-sm font-bold block text-white">350</span>
+                <span class="text-sm font-bold block text-appHeading">350</span>
                 <span class="text-[9px] text-neutralMuted">Medium (+$1)</span>
               </label>
-              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-darkCard text-center">
+              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center">
                 <input type="radio" name="brew-size" value="450" class="sr-only" onchange="calculateCustomPrice()">
-                <span class="text-sm font-bold block text-white">450</span>
+                <span class="text-sm font-bold block text-appHeading">450</span>
                 <span class="text-[9px] text-neutralMuted">Large (+$2)</span>
               </label>
             </div>
           </div>
 
           <div>
-            <label class="block font-bold text-parchment uppercase tracking-wider mb-1.5">Milk Alternative</label>
+            <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Milk Alternative</label>
             <div class="grid grid-cols-3 gap-2">
-              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-darkCard">
+              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard">
                 <input type="radio" name="milk" value="Regular" checked class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Whole</span>
               </label>
-              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-darkCard">
+              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard">
                 <input type="radio" name="milk" value="Oat Milk" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Oat (+$1)</span>
               </label>
-              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-darkCard">
+              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard">
                 <input type="radio" name="milk" value="Almond Milk" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Almond (+$1)</span>
               </label>
@@ -385,21 +424,21 @@ img{max-width:100%;display:block}
           </div>
 
           <div>
-            <label class="block font-bold text-parchment uppercase tracking-wider mb-1.5">Syrup Flavor Add-ons</label>
+            <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Syrup Flavor Add-ons</label>
             <div class="grid grid-cols-2 gap-2">
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-darkCard">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard">
                 <input type="checkbox" id="syrup-vanilla" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Vanilla (+$1)</span>
               </label>
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-darkCard">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard">
                 <input type="checkbox" id="syrup-sorghum" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Sorghum (+$1)</span>
               </label>
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-darkCard">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard">
                 <input type="checkbox" id="extra-shot" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Extra Espresso (+$1)</span>
               </label>
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-darkCard">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard">
                 <input type="checkbox" id="heavy-cream" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Heavy Cream (+$2)</span>
               </label>
@@ -408,7 +447,7 @@ img{max-width:100%;display:block}
         </div>
 
         <!-- Custom Output Card -->
-        <div class="bg-darkCard text-white p-6 rounded-2xl h-full flex flex-col justify-between border border-terracotta/30">
+        <div class="bg-appCard text-appHeading p-6 rounded-2xl h-full flex flex-col justify-between border border-terracotta/30 transition-colors">
           <div>
             <span class="text-terracotta font-mono text-[9px] uppercase tracking-widest block mb-1">Interactive Custom Build</span>
             <h4 id="builder-display-name" class="font-serif text-lg font-bold">Custom Cold Brew</h4>
@@ -417,7 +456,7 @@ img{max-width:100%;display:block}
             </p>
           </div>
           
-          <div class="mt-6 pt-4 border-t border-terracotta/20 flex justify-between items-center">
+          <div class="mt-6 pt-4 border-t border-appBorder flex justify-between items-center">
             <div>
               <span class="text-[10px] text-neutralMuted block uppercase tracking-wider">Total Est.</span>
               <span id="builder-display-price" class="text-terracotta font-mono text-xl font-bold">$5.50</span>
@@ -436,7 +475,7 @@ img{max-width:100%;display:block}
   <section id="page-wall" class="page-view hidden space-y-8 animate-fadeIn">
     <div class="text-center max-w-xl mx-auto space-y-2">
       <span class="font-mono text-xs uppercase tracking-widest text-terracotta">The Community Corkboard</span>
-      <h2 class="font-serif text-3xl font-bold text-white">Pour Decisions Vibe Board</h2>
+      <h2 class="font-serif text-3xl font-bold text-appHeading">Pour Decisions Vibe Board</h2>
       <p class="text-sm text-neutralMuted">Share your morning setup! Client uploads stay featured on our board for exactly 7 days before archiving.</p>
     </div>
 
@@ -447,7 +486,7 @@ img{max-width:100%;display:block}
 
     <!-- Centered Call to Action Trigger -->
     <div class="text-center pt-4">
-      <button onclick="openUploadSheet()" class="btn-stamp bg-darkCard hover:bg-darkCard/90 text-white font-serif px-6 py-3 rounded-xl shadow-lg transition-all border border-terracotta/30">
+      <button onclick="openUploadSheet()" class="btn-stamp bg-appCard hover:bg-appCard/90 text-appHeading font-serif px-6 py-3 rounded-xl shadow-lg transition-all border border-terracotta/30">
         <i class="fa-solid fa-camera mr-2"></i> Pin Your Vibe on the Board
       </button>
     </div>
@@ -457,25 +496,25 @@ img{max-width:100%;display:block}
   <section id="page-booking" class="page-view hidden space-y-8 animate-fadeIn">
     <div class="text-center max-w-xl mx-auto space-y-2">
       <span class="font-mono text-xs uppercase tracking-widest text-terracotta">College Street Lounge Space</span>
-      <h2 class="font-serif text-3xl font-bold text-white">Reserve a Lounge Table</h2>
+      <h2 class="font-serif text-3xl font-bold text-appHeading">Reserve a Lounge Table</h2>
       <p class="text-sm text-neutralMuted">Book high-speed study rooms, cozy window niches, or rustic community harvest tables ahead of time.</p>
     </div>
 
-    <div class="max-w-2xl mx-auto bg-darkCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6">
+    <div class="max-w-2xl mx-auto bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 transition-colors">
       
       <!-- Table Selector Area resembling the delivery details view of image_7b52ed.jpg -->
       <div>
-        <label class="block text-xs font-bold text-parchment uppercase tracking-widest text-center mb-3">Choose Seating Area</label>
+        <label class="block text-xs font-bold text-appText uppercase tracking-widest text-center mb-3">Choose Seating Area</label>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <button type="button" class="zone-btn text-white p-4 rounded-xl bg-espresso border border-terracotta/20 selected" onclick="selectReserveZone(this, 'Library Hearth Nook', '📚 Book-lined room with warm brick fireplaces, wingback leather chairs, and low coffee tables.')">
+          <button type="button" class="zone-btn text-appHeading p-4 rounded-xl bg-appBg border border-terracotta/20 selected" onclick="selectReserveZone(this, 'Library Hearth Nook', '📚 Book-lined room with warm brick fireplaces, wingback leather chairs, and low coffee tables.')">
             <span class="block text-terracotta font-serif font-bold text-sm">Hearth Nook</span>
             <span class="text-[10px] text-neutralMuted">Cozy & Quiet</span>
           </button>
-          <button type="button" class="zone-btn text-white p-4 rounded-xl bg-espresso border border-terracotta/20" onclick="selectReserveZone(this, 'Window Street niche', '🪟 Bright, sun-drenched oak window bar overlooking College Street. Power sockets available.')">
+          <button type="button" class="zone-btn text-appHeading p-4 rounded-xl bg-appBg border border-terracotta/20" onclick="selectReserveZone(this, 'Window Street niche', '🪟 Bright, sun-drenched oak window bar overlooking College Street. Power sockets available.')">
             <span class="block text-terracotta font-serif font-bold text-sm">College Street Niche</span>
             <span class="text-[10px] text-neutralMuted">Sunny & Powered</span>
           </button>
-          <button type="button" class="zone-btn text-white p-4 rounded-xl bg-espresso border border-terracotta/20" onclick="selectReserveZone(this, 'Upstairs Harvest Room', '🪵 Large rustic chestnut harvest tables perfect for business meetings or group study sessions.')">
+          <button type="button" class="zone-btn text-appHeading p-4 rounded-xl bg-appBg border border-terracotta/20" onclick="selectReserveZone(this, 'Upstairs Harvest Room', '🪵 Large rustic chestnut harvest tables perfect for business meetings or group study sessions.')">
             <span class="block text-terracotta font-serif font-bold text-sm">Harvest Room</span>
             <span class="text-[10px] text-neutralMuted">Group Spaces</span>
           </button>
@@ -489,17 +528,17 @@ img{max-width:100%;display:block}
       <form id="reserve-bistro-form" class="space-y-4">
         <div class="flex flex-col gap-1.5">
           <label for="reserve-name" class="text-xs font-semibold text-neutralMuted uppercase">Full Reservation Name</label>
-          <input type="text" id="reserve-name" required placeholder="Hold reservation under what name?" class="border border-terracotta/30 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none">
+          <input type="text" id="reserve-name" required placeholder="Hold reservation under what name?" class="border border-terracotta/30 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
         </div>
         
         <div class="grid grid-cols-2 gap-4">
           <div class="flex flex-col gap-1.5">
             <label for="reserve-guests" class="text-xs font-semibold text-neutralMuted uppercase">Total Guests</label>
-            <input type="number" id="reserve-guests" min="1" max="15" required placeholder="2" class="border border-terracotta/30 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none">
+            <input type="number" id="reserve-guests" min="1" max="15" required placeholder="2" class="border border-terracotta/30 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
           </div>
           <div class="flex flex-col gap-1.5">
             <label for="reserve-time" class="text-xs font-semibold text-neutralMuted uppercase">Arrival Time Slot</label>
-            <input type="time" id="reserve-time" required class="border border-terracotta/30 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none">
+            <input type="time" id="reserve-time" required class="border border-terracotta/30 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
           </div>
         </div>
 
@@ -514,32 +553,32 @@ img{max-width:100%;display:block}
   <section id="page-feedback" class="page-view hidden space-y-8 animate-fadeIn">
     <div class="text-center max-w-xl mx-auto space-y-2">
       <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Tell Us Your Thoughts</span>
-      <h2 class="font-serif text-3xl font-bold text-white">Community Feedback</h2>
+      <h2 class="font-serif text-3xl font-bold text-appHeading">Community Feedback</h2>
       <p class="text-sm text-neutralMuted">We strive for culinary excellence. Submit suggestions, constructive advice, or happy coffee notes below.</p>
     </div>
 
     <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
       <!-- Feedback input panel -->
-      <div class="bg-darkCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5">
+      <div class="bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 transition-colors">
         <div class="p-4 bg-terracotta/10 border-l-4 border-terracotta rounded-xl text-xs leading-relaxed text-accentLight">
-          <p class="font-serif font-bold text-white mb-1">📢 Important Community Note</p>
+          <p class="font-serif font-bold text-appHeading mb-1">📢 Important Community Note</p>
           To maintain a warm, welcoming, and friendly neighborhood cafe connection in Maryville, some submitted suggestions and comments will be selected and published directly below on this board! Thank you for sharing your journey.
         </div>
 
         <form id="suggestions-submit-form" class="space-y-4">
           <div class="flex flex-col gap-1.5 text-xs">
             <label for="feedback-user" class="font-semibold text-neutralMuted uppercase tracking-wider">Your Handle / Name</label>
-            <input type="text" id="feedback-user" required placeholder="e.g. @maryville_regular" class="border border-terracotta/25 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none">
+            <input type="text" id="feedback-user" required placeholder="e.g. @maryville_regular" class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
           </div>
 
           <div class="flex flex-col gap-1.5 text-xs">
             <label for="feedback-topic" class="font-semibold text-neutralMuted uppercase tracking-wider">Favorite Specialty Product</label>
-            <input type="text" id="feedback-topic" required placeholder="e.g. Muddy Pond Mocha" class="border border-terracotta/25 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none">
+            <input type="text" id="feedback-topic" required placeholder="e.g. Muddy Pond Mocha" class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
           </div>
 
           <div class="flex flex-col gap-1.5 text-xs">
             <label for="feedback-comment" class="font-semibold text-neutralMuted uppercase tracking-wider">Constructive Suggestion or Review</label>
-            <textarea id="feedback-comment" rows="4" required placeholder="Let us know how to make your next visit extraordinary..." class="border border-terracotta/25 rounded-xl bg-espresso p-3 text-sm text-white focus:outline-none"></textarea>
+            <textarea id="feedback-comment" rows="4" required placeholder="Let us know how to make your next visit extraordinary..." class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors"></textarea>
           </div>
 
           <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif py-3.5 rounded-xl shadow-md transition-all font-bold tracking-wider">
@@ -550,8 +589,8 @@ img{max-width:100%;display:block}
 
       <!-- Published Feedbacks list board -->
       <div class="space-y-5">
-        <div class="flex justify-between items-baseline border-b border-terracotta/20 pb-2">
-          <h3 class="font-serif text-lg font-bold text-white tracking-wide">Featured Guest Notes</h3>
+        <div class="flex justify-between items-baseline border-b border-appBorder pb-2">
+          <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide">Featured Guest Notes</h3>
           <span class="text-xs text-neutralMuted uppercase tracking-wider font-mono">Maryville, TN</span>
         </div>
 
@@ -566,13 +605,13 @@ img{max-width:100%;display:block}
   <section id="page-heritage" class="page-view hidden space-y-12 animate-fadeIn">
     <div class="text-center max-w-xl mx-auto space-y-2">
       <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Est. 1999 — Tennessee</span>
-      <h2 class="font-serif text-3xl font-bold text-white">The Pour Decisions Story</h2>
+      <h2 class="font-serif text-3xl font-bold text-appHeading">The Pour Decisions Story</h2>
       <p class="text-sm text-neutralMuted">Crafting cozy memories, strong local alliances, and roasted profiles from our family to yours.</p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
       <div class="max-w-sm w-full mx-auto">
-        <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&q=80&w=600" alt="Pour Decisions Barista Craft" class="border-4 border-darkCard shadow-xl rotate-[-2deg] rounded-xl mx-auto" loading="lazy" onerror="handleImageError(this)">
+        <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&q=80&w=600" alt="Pour Decisions Barista Craft" class="border-4 border-appCard shadow-xl rotate-[-2deg] rounded-xl mx-auto" loading="lazy" onerror="handleImageError(this)">
       </div>
       <div class="space-y-4 text-xs sm:text-sm leading-relaxed text-accentLight">
         <h3 class="font-serif text-xl font-bold text-terracotta">Roasting for Community</h3>
@@ -584,7 +623,7 @@ img{max-width:100%;display:block}
         </p>
         
         <!-- Local Metrics -->
-        <div class="grid grid-cols-3 gap-4 pt-4 text-center font-serif text-parchment border-t border-terracotta/30">
+        <div class="grid grid-cols-3 gap-4 pt-4 text-center font-serif text-appText border-t border-appBorder">
           <div>
             <span class="block text-2xl font-bold text-terracotta">100%</span>
             Shade-Grown
@@ -605,7 +644,7 @@ img{max-width:100%;display:block}
 </main>
 
 <!-- Sticky Mobile Navigation Tab Bar (Conversion-focused design) -->
-<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-darkCard text-parchment border-t border-terracotta/20 py-2.5 px-4 flex justify-around items-center z-40 shadow-2xl animate-slideUp" aria-label="Mobile Navigation">
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-appCard text-appText border-t border-appBorder py-2.5 px-4 flex justify-around items-center z-40 shadow-2xl animate-slideUp transition-colors" aria-label="Mobile Navigation">
   <button onclick="switchPage('home')" class="flex flex-col items-center gap-1 active text-terracotta" id="mobile-tab-home">
     <i class="fa-solid fa-mug-hot text-lg"></i>
     <span class="text-[9px] uppercase tracking-wider font-semibold">Bistro Menu</span>
@@ -646,21 +685,21 @@ img{max-width:100%;display:block}
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeFlyerModal()" aria-label="Close flyer overlay"><i class="fa-solid fa-xmark"></i></button>
   <div class="sheet-content">
-    <h3 class="font-serif text-xl font-bold text-white mb-1" id="flyer-title">Original Print Menus</h3>
+    <h3 class="font-serif text-xl font-bold text-appHeading mb-1" id="flyer-title">Original Print Menus</h3>
     <p class="text-xs text-neutralMuted mb-4">View the high-resolution board layouts from downtown College Street.</p>
     
     <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-1">
-      <div class="border border-terracotta/30 rounded-2xl overflow-hidden p-1 bg-espresso">
-        <span class="text-[10px] font-mono font-bold block mb-1 text-parchment uppercase text-center bg-darkCard py-1 rounded-t-xl">Beverage Board Flyer</span>
+      <div class="border border-terracotta/30 rounded-2xl overflow-hidden p-1 bg-appBg">
+        <span class="text-[10px] font-mono font-bold block mb-1 text-appText uppercase text-center bg-appCard py-1 rounded-t-xl">Beverage Board Flyer</span>
         <img src="image_700523.jpg" alt="Pour Decisions Drink Menu image_700523.jpg" class="w-full rounded-xl">
       </div>
-      <div class="border border-terracotta/30 rounded-2xl overflow-hidden p-1 bg-espresso">
-        <span class="text-[10px] font-mono font-bold block mb-1 text-parchment uppercase text-center bg-darkCard py-1 rounded-t-xl">Food Board Flyer</span>
+      <div class="border border-terracotta/30 rounded-2xl overflow-hidden p-1 bg-appBg">
+        <span class="text-[10px] font-mono font-bold block mb-1 text-appText uppercase text-center bg-appCard py-1 rounded-t-xl">Food Board Flyer</span>
         <img src="image_79f20c.jpg" alt="Pour Decisions Food Menu image_79f20c.jpg" class="w-full rounded-xl">
       </div>
     </div>
-    <div class="mt-4 pt-4 border-t border-terracotta/20">
-      <button onclick="closeFlyerModal()" class="w-full bg-espresso text-parchment py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all border border-terracotta/30">Close Flyer View</button>
+    <div class="mt-4 pt-4 border-t border-appBorder">
+      <button onclick="closeFlyerModal()" class="w-full bg-appBg text-appText py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all border border-terracotta/30">Close Flyer View</button>
     </div>
   </div>
 </div>
@@ -670,14 +709,14 @@ img{max-width:100%;display:block}
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeSidebarCart()" aria-label="Close Shopping Cart"><i class="fa-solid fa-xmark"></i></button>
   <div class="sheet-content">
-    <h3 class="font-serif text-2xl font-bold text-white mb-1" id="cart-title">Your Order Bag</h3>
+    <h3 class="font-serif text-2xl font-bold text-appHeading mb-1" id="cart-title">Your Order Bag</h3>
     <p class="text-xs text-neutralMuted mb-6">Simulated curbside pickup ordering pipeline</p>
     
     <div id="cart-items-wrapper" class="space-y-4 mb-6 max-h-[50vh] overflow-y-auto">
       <!-- Dynamic list loaded via JS -->
     </div>
 
-    <div class="border-t border-terracotta/20 pt-4 space-y-4">
+    <div class="border-t border-appBorder pt-4 space-y-4">
       <div class="flex justify-between items-baseline font-mono font-bold text-base">
         <span>Subtotal Est.</span>
         <span class="text-terracotta text-xl" id="cart-drawer-total">$0.00</span>
@@ -697,37 +736,37 @@ img{max-width:100%;display:block}
     <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-terracotta/20 text-terracotta text-3xl mb-4">
       <i class="fa-solid fa-circle-check"></i>
     </div>
-    <h3 class="font-serif text-2xl font-bold text-white mb-1">Lounge Pass Generated</h3>
+    <h3 class="font-serif text-2xl font-bold text-appHeading mb-1">Lounge Pass Generated</h3>
     <p class="text-xs text-neutralMuted mb-6">Please show this boarding coupon pass to the barista at Maryville.</p>
     
-    <div class="bg-darkCard border-2 border-dashed border-terracotta/50 p-6 rounded-2xl text-left font-mono text-[11px] space-y-3 relative overflow-hidden max-w-sm mx-auto shadow-inner">
-      <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-espresso"></div>
-      <div class="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-espresso"></div>
+    <div class="bg-appCard border-2 border-dashed border-terracotta/50 p-6 rounded-2xl text-left font-mono text-[11px] space-y-3 relative overflow-hidden max-w-sm mx-auto shadow-inner transition-colors">
+      <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-appBg"></div>
+      <div class="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-appBg"></div>
       
-      <div class="flex justify-between border-b border-terracotta/20 pb-2">
+      <div class="flex justify-between border-b border-appBorder pb-2">
         <span class="font-bold text-terracotta">POUR DECISIONS LOUNGE PASS</span>
         <span class="text-neutralMuted">#PD-2026</span>
       </div>
-      <div class="grid grid-cols-2 gap-y-3 pt-2 text-parchment">
+      <div class="grid grid-cols-2 gap-y-3 pt-2 text-appText">
         <div>
           <span class="text-neutralMuted block text-[9px] uppercase">HOLDER</span>
-          <span class="font-bold text-xs" id="ticket-holder-name">-</span>
+          <span class="font-bold text-xs text-appHeading" id="ticket-holder-name">-</span>
         </div>
         <div>
           <span class="text-neutralMuted block text-[9px] uppercase">GUESTS</span>
-          <span class="font-bold text-xs" id="ticket-holder-guests">-</span>
+          <span class="font-bold text-xs text-appHeading" id="ticket-holder-guests">-</span>
         </div>
         <div>
           <span class="text-neutralMuted block text-[9px] uppercase">ARRIVAL TIME</span>
-          <span class="font-bold text-xs" id="ticket-holder-time">-</span>
+          <span class="font-bold text-xs text-appHeading" id="ticket-holder-time">-</span>
         </div>
         <div>
           <span class="text-neutralMuted block text-[9px] uppercase">SEATING ZONE</span>
           <span class="font-bold text-xs text-terracotta" id="ticket-holder-zone">-</span>
         </div>
       </div>
-      <div class="pt-4 text-center border-t border-terracotta/20 mt-2">
-        <div class="inline-block bg-espresso text-parchment px-4 py-2 text-xs font-mono tracking-widest font-bold shadow">
+      <div class="pt-4 text-center border-t border-appBorder mt-2">
+        <div class="inline-block bg-appBg text-appText px-4 py-2 text-xs font-mono tracking-widest font-bold shadow transition-colors">
           ||||| ||| |||| || |||| |||
         </div>
         <p class="text-[8px] text-neutralMuted mt-1">POUR DECISIONS COFFEE CO.</p>
@@ -741,15 +780,15 @@ img{max-width:100%;display:block}
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeUploadSheet()" aria-label="Close upload menu"><i class="fa-solid fa-xmark"></i></button>
   <div class="sheet-content">
-    <h3 class="font-serif text-2xl font-bold text-white mb-1" id="upload-title">Share Your Vibe</h3>
+    <h3 class="font-serif text-2xl font-bold text-appHeading mb-1" id="upload-title">Share Your Vibe</h3>
     <p class="text-xs text-neutralMuted mb-4">Post a custom coffee setup view onto our real-time board.</p>
     
     <form id="vibe-upload-form" class="space-y-4">
-      <div class="relative overflow-hidden w-full h-44 rounded-2xl bg-espresso border-2 border-dashed border-terracotta/30 flex flex-col items-center justify-center cursor-pointer hover:border-terracotta transition-all" id="dropzone">
+      <div class="relative overflow-hidden w-full h-44 rounded-2xl bg-appBg border-2 border-dashed border-terracotta/30 flex flex-col items-center justify-center cursor-pointer hover:border-terracotta transition-all" id="dropzone">
         <img class="absolute inset-0 w-full h-full object-cover hidden" id="preview-img" alt="Uploaded polaroid preview image">
         <div class="flex flex-col items-center justify-center p-4 text-center" id="dropzone-placeholder">
           <i class="fa-solid fa-cloud-arrow-up text-3xl mb-2 text-terracotta"></i>
-          <p class="font-serif font-bold text-parchment text-sm">Tap to upload your photo</p>
+          <p class="font-serif font-bold text-appText text-sm">Tap to upload your photo</p>
           <p class="text-[10px] mt-1 text-neutralMuted">Supports JPEG/PNG</p>
         </div>
         <input type="file" id="file-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
@@ -759,23 +798,23 @@ img{max-width:100%;display:block}
       <div>
         <label class="block text-[10px] font-mono font-bold uppercase tracking-wider text-terracotta mb-1.5">No snapshot handy? Pick a curated preset vibe:</label>
         <div class="grid grid-cols-3 gap-2">
-          <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-darkCard text-parchment font-semibold transition-all truncate" onclick="applyPresetVibe('https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400')">☕ Drip Brew</button>
-          <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-darkCard text-parchment font-semibold transition-all truncate" onclick="applyPresetVibe('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400')">🍵 Foam Art</button>
-          <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-darkCard text-parchment font-semibold transition-all truncate" onclick="applyPresetVibe('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400')">🥐 Fresh Croissant</button>
+          <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate" onclick="applyPresetVibe('https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400')">☕ Drip Brew</button>
+          <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate" onclick="applyPresetVibe('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400')">🍵 Foam Art</button>
+          <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate" onclick="applyPresetVibe('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400')">🥐 Fresh Croissant</button>
         </div>
       </div>
 
       <div class="flex flex-col gap-1.5">
         <label for="wall-handle" class="text-xs font-semibold text-neutralMuted uppercase">Your Instagram Tag</label>
-        <div class="flex items-center border border-terracotta/30 rounded-xl bg-espresso overflow-hidden focus-within:border-terracotta">
+        <div class="flex items-center border border-terracotta/30 rounded-xl bg-appBg overflow-hidden focus-within:border-terracotta">
           <span class="text-neutralMuted px-3 font-mono">@</span>
-          <input type="text" id="wall-handle" placeholder="pourdecisions_morning" class="border-none bg-transparent focus:ring-0 p-3 text-xs text-white flex-1 outline-none">
+          <input type="text" id="wall-handle" placeholder="pourdecisions_morning" class="border-none bg-transparent focus:ring-0 p-3 text-xs text-appHeading flex-1 outline-none">
         </div>
       </div>
 
       <div class="flex flex-col gap-1.5">
         <label for="wall-drink" class="text-xs font-semibold text-neutralMuted uppercase">Your Favorite Ordered Item</label>
-        <input type="text" id="wall-drink" placeholder="e.g. Viennese Waltz" required class="border border-terracotta/30 bg-espresso text-white rounded-xl p-3 text-sm focus:outline-none">
+        <input type="text" id="wall-drink" placeholder="e.g. Viennese Waltz" required class="border border-terracotta/30 bg-appBg text-appHeading rounded-xl p-3 text-sm focus:outline-none">
       </div>
 
       <button type="submit" class="w-full bg-terracotta text-white font-serif py-3.5 rounded-xl font-bold tracking-wider transition-all shadow-md">
@@ -790,17 +829,17 @@ img{max-width:100%;display:block}
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeCMSPanel()" aria-label="Close CMS Window"><i class="fa-solid fa-xmark"></i></button>
   <div class="sheet-content">
-    <h3 class="font-serif text-2xl font-bold text-white mb-1" id="cms-panel-title">Administration Hub</h3>
+    <h3 class="font-serif text-2xl font-bold text-appHeading mb-1" id="cms-panel-title">Administration Hub</h3>
     <p class="text-xs text-neutralMuted mb-6">Direct management over community photos & live digital items.</p>
 
     <!-- Passcode Verification (Completely stripped any default hints/suggestive labels) -->
     <div id="cms-verify-section" class="space-y-4 text-center py-6">
-      <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-darkCard text-parchment border border-terracotta/30 text-lg mb-2">
+      <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-appCard text-appText border border-terracotta/30 text-lg mb-2">
         <i class="fa-solid fa-lock"></i>
       </div>
-      <p class="text-xs font-semibold uppercase tracking-wider text-parchment">Enterprise Authentication Required</p>
+      <p class="text-xs font-semibold uppercase tracking-wider text-appText">Enterprise Authentication Required</p>
       <div class="max-w-xs mx-auto">
-        <input type="password" id="cms-passcode-input" placeholder="Enter credentials..." class="text-center tracking-widest bg-espresso border border-terracotta/30 rounded-xl p-3 text-xs w-full text-white focus:outline-none focus:border-terracotta">
+        <input type="password" id="cms-passcode-input" placeholder="Enter credentials..." class="text-center tracking-widest bg-appBg border border-terracotta/30 rounded-xl p-3 text-xs w-full text-appHeading focus:outline-none focus:border-terracotta">
       </div>
       <button onclick="verifyAdministrativePasscode()" class="bg-terracotta text-white text-xs font-bold px-6 py-3 rounded-xl hover:bg-terracotta/90 transition-all">
         Authenticate Credentials
@@ -809,7 +848,7 @@ img{max-width:100%;display:block}
 
     <!-- Authenticated CMS Layout Container -->
     <div id="cms-authenticated-view" class="hidden space-y-4">
-      <div class="flex border-b border-terracotta/20 mb-4 text-xs font-bold">
+      <div class="flex border-b border-appBorder mb-4 text-xs font-bold">
         <button class="flex-1 pb-2 text-terracotta border-b-2 border-terracotta" id="tab-cms-photos" onclick="switchCMSTab('photos')">
           📸 Uploaded Photos
         </button>
@@ -841,23 +880,23 @@ img{max-width:100%;display:block}
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeProductEditForm()"><i class="fa-solid fa-xmark"></i></button>
   <div class="sheet-content">
-    <h3 class="font-serif text-xl font-bold text-white mb-1" id="product-form-title">Product Editor</h3>
+    <h3 class="font-serif text-xl font-bold text-appHeading mb-1" id="product-form-title">Product Editor</h3>
     <form id="product-crud-form" class="space-y-3 mt-3 text-xs">
       <input type="hidden" id="p-form-id">
       
       <div class="flex flex-col gap-1.5">
         <label for="p-form-name">Item Name</label>
-        <input type="text" id="p-form-name" required placeholder="e.g. Smoked Salmon Bagel Box" class="bg-espresso text-white p-3 rounded-xl border border-terracotta/20 text-sm">
+        <input type="text" id="p-form-name" required placeholder="e.g. Smoked Salmon Bagel Box" class="bg-appBg text-appHeading p-3 rounded-xl border border-terracotta/20 text-sm">
       </div>
 
       <div class="grid grid-cols-2 gap-3">
         <div class="flex flex-col gap-1.5">
           <label for="p-form-price">Base Price ($)</label>
-          <input type="number" id="p-form-price" step="0.01" required placeholder="5.50" class="bg-espresso text-white p-3 rounded-xl border border-terracotta/20 text-sm">
+          <input type="number" id="p-form-price" step="0.01" required placeholder="5.50" class="bg-appBg text-appHeading p-3 rounded-xl border border-terracotta/20 text-sm">
         </div>
         <div class="flex flex-col gap-1.5">
           <label for="p-form-category">Category Tab</label>
-          <select id="p-form-category" class="border border-terracotta/30 p-3 bg-espresso text-white rounded-xl focus:outline-none text-sm" required>
+          <select id="p-form-category" class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none text-sm" required>
             <option value="coffee">Brewed & Drip</option>
             <option value="espresso">Espresso Drinks</option>
             <option value="signature">Signatures</option>
@@ -870,12 +909,12 @@ img{max-width:100%;display:block}
 
       <div class="flex flex-col gap-1.5">
         <label for="p-form-desc">Detailed Description</label>
-        <textarea id="p-form-desc" rows="2" placeholder="Explain ingredients or sizes clearly" required class="border border-terracotta/30 p-3 bg-espresso text-white rounded-xl focus:outline-none text-sm"></textarea>
+        <textarea id="p-form-desc" rows="2" placeholder="Explain ingredients or sizes clearly" required class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none text-sm"></textarea>
       </div>
 
       <div class="flex flex-col gap-1.5">
         <label for="p-form-image">Product Image URL</label>
-        <input type="text" id="p-form-image" placeholder="https://images.unsplash.com/..." class="border border-terracotta/30 bg-espresso text-white p-3 rounded-xl focus:outline-none text-sm">
+        <input type="text" id="p-form-image" placeholder="https://images.unsplash.com/..." class="border border-terracotta/30 bg-appBg text-appHeading p-3 rounded-xl focus:outline-none text-sm">
       </div>
 
       <button type="submit" class="w-full bg-terracotta text-white font-serif py-3 rounded-xl font-bold uppercase tracking-wider shadow">
@@ -888,7 +927,7 @@ img{max-width:100%;display:block}
 <!-- 7. Premium Launch "New Arrival" Promotion Popup -->
 <div class="promo-modal" id="promo-modal" role="dialog" aria-modal="true">
   <div class="fixed inset-0 bg-espresso/80 backdrop-blur-sm" onclick="closePromoModal()"></div>
-  <div class="relative bg-darkCard border border-terracotta max-w-sm w-full rounded-3xl overflow-hidden shadow-2xl z-10 mx-4">
+  <div class="relative bg-appCard border border-terracotta max-w-sm w-full rounded-3xl overflow-hidden shadow-2xl z-10 mx-4 transition-colors">
     <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-espresso/40 text-white flex items-center justify-center font-bold hover:bg-espresso/60 transition-all z-20" onclick="closePromoModal()">
       <i class="fa-solid fa-xmark"></i>
     </button>
@@ -907,7 +946,7 @@ img{max-width:100%;display:block}
       <div class="flex justify-between items-center pt-2">
         <div>
           <span class="text-[9px] text-neutralMuted block uppercase font-mono">Special Price</span>
-          <span class="font-mono text-white font-bold text-sm">$5.80</span>
+          <span class="font-mono text-appHeading font-bold text-sm">$5.80</span>
         </div>
         <button onclick="addPromoToOrder()" class="bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 px-4 rounded-xl transition-all shadow">
           Pre-Order Now!
@@ -917,7 +956,7 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<div class="fixed bottom-4 right-4 bg-darkCard border border-terracotta/30 text-parchment p-3 rounded-2xl shadow-2xl z-50 transition-all transform translate-y-24 opacity-0 max-w-xs text-xs font-semibold tracking-wide" id="toast">
+<div class="fixed bottom-4 right-4 bg-appCard border border-terracotta/30 text-appText p-3 rounded-2xl shadow-2xl z-50 transition-all transform translate-y-24 opacity-0 max-w-xs text-xs font-semibold tracking-wide" id="toast">
   Item added successfully!
 </div>
 
@@ -942,6 +981,29 @@ function initDOMCache() {
   dom.builderDisplayPrice = document.getElementById('builder-display-price');
   dom.polaroidCanvasGrid = document.getElementById('polaroid-canvas-grid');
   dom.feedbackBoardCards = document.getElementById('feedback-board-cards');
+}
+
+// Master Theme Toggler Controller (Dark to Light Boutique Mode)
+let currentTheme = 'dark';
+function toggleTheme() {
+  const root = document.documentElement;
+  const themeIcon = document.getElementById('theme-toggle-icon');
+  
+  if (currentTheme === 'dark') {
+    root.classList.add('light-mode');
+    currentTheme = 'light';
+    if (themeIcon) {
+      themeIcon.className = 'fa-solid fa-sun text-base text-terracotta';
+    }
+    showToastNotification("Theme switched to Light Boutique Mode ☕");
+  } else {
+    root.classList.remove('light-mode');
+    currentTheme = 'dark';
+    if (themeIcon) {
+      themeIcon.className = 'fa-solid fa-moon text-base text-terracotta';
+    }
+    showToastNotification("Theme switched to Espresso Dark Mode 🌙");
+  }
 }
 
 // Master Fallback Image URL to recover from any broken Unsplash images gracefully
