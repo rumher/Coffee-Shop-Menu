@@ -321,7 +321,7 @@ img{max-width:100%;display:block}
       </button>
       <button onclick="openSidebarCart()" class="relative p-2 text-terracotta hover:text-terracotta/80 transition-all" aria-label="Shopping Cart">
         <i class="fa-solid fa-bag-shopping text-xl"></i>
-        <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow animate-pulse" id="desktop-cart-badge">0</span>
+        <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow " id="desktop-cart-badge">0</span>
       </button>
       <button onclick="openCMSPage()" class="text-neutralMuted hover:text-terracotta p-1 rounded transition-all text-sm" aria-label="Open Admin Control Panel">
         <i class="fa-solid fa-lock"></i>
@@ -442,17 +442,17 @@ img{max-width:100%;display:block}
           <div>
             <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Size Portion (ml)</label>
             <div class="grid grid-cols-3 gap-2">
-              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center">
+              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center transition-all">
                 <input type="radio" name="brew-size" value="250" checked class="sr-only" onchange="calculateCustomPrice()">
                 <span class="text-sm font-bold block text-appHeading">250</span>
                 <span class="text-[9px] text-neutralMuted">Small</span>
               </label>
-              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center">
+              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center transition-all">
                 <input type="radio" name="brew-size" value="350" class="sr-only" onchange="calculateCustomPrice()">
                 <span class="text-sm font-bold block text-appHeading">350</span>
                 <span class="text-[9px] text-neutralMuted">Medium (+$1)</span>
               </label>
-              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center">
+              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center transition-all">
                 <input type="radio" name="brew-size" value="450" class="sr-only" onchange="calculateCustomPrice()">
                 <span class="text-sm font-bold block text-appHeading">450</span>
                 <span class="text-[9px] text-neutralMuted">Large (+$2)</span>
@@ -463,15 +463,15 @@ img{max-width:100%;display:block}
           <div>
             <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Milk Alternative</label>
             <div class="grid grid-cols-3 gap-2">
-              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard">
+              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard transition-all">
                 <input type="radio" name="milk" value="Regular" checked class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Whole</span>
               </label>
-              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard">
+              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard transition-all">
                 <input type="radio" name="milk" value="Oat Milk" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Oat (+$1)</span>
               </label>
-              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard">
+              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard transition-all">
                 <input type="radio" name="milk" value="Almond Milk" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Almond (+$1)</span>
               </label>
@@ -481,19 +481,19 @@ img{max-width:100%;display:block}
           <div>
             <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Syrup Flavor Add-ons</label>
             <div class="grid grid-cols-2 gap-2">
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
                 <input type="checkbox" id="syrup-vanilla" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Vanilla (+$1)</span>
               </label>
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
                 <input type="checkbox" id="syrup-sorghum" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Sorghum (+$1)</span>
               </label>
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
                 <input type="checkbox" id="extra-shot" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Extra Espresso (+$1)</span>
               </label>
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
                 <input type="checkbox" id="heavy-cream" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Heavy Cream (+$2)</span>
               </label>
@@ -1110,10 +1110,6 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<div class="fixed bottom-4 right-4 bg-appCard border border-terracotta/30 text-appText p-3 rounded-2xl shadow-2xl z-50 transition-all transform translate-y-24 opacity-0 max-w-xs text-xs font-semibold tracking-wide" id="toast">
-  Item added successfully!
-</div>
-
 <!-- ================= SYSTEM SCRIPTS & BUSINESS LOGIC ================= -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
@@ -1175,7 +1171,7 @@ let cart = [];
 // DOM caching container
 const dom = {};
 
-// Initial Theme Loading from Session Persistence (Strictly avoiding localStorage per guidelines)
+// Initial Theme Loading from Session Persistence
 let currentTheme = 'dark';
 
 // --- SYSTEM INITIALIZATION ---
@@ -1185,7 +1181,15 @@ window.onload = function() {
   // Initialize Cloud Database Pipeline
   initCloudEngine();
 
-  // Load customizers and theme configurations
+  // Load theme persistence
+  const savedTheme = sessionStorage.getItem('pd_theme_mode');
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else {
+    applyTheme('dark');
+  }
+
+  // Load customizers and calculate initial pricing
   calculateCustomPrice();
 
   // Attach search event
@@ -1384,7 +1388,6 @@ function logTelemetryEvent(eventName, eventDetails) {
 
 // --- STATE PROTECTION AND OFFLINE CACHE ---
 function loadStoredCart() {
-  // Safe persistent storage across page loads using local variables
   try {
     const cachedCart = sessionStorage.getItem('pd_active_order_bag');
     if (cachedCart) {
@@ -1404,8 +1407,8 @@ function saveCartToStorage() {
 function toggleTheme() {
   const targetTheme = (currentTheme === 'dark') ? 'light' : 'dark';
   applyTheme(targetTheme);
+  sessionStorage.setItem('pd_theme_mode', targetTheme);
 
-  // Persist preference to database for device sync
   if (db && isFirebaseReady) {
     const themeRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'theme_preference');
     setDoc(themeRef, { mode: targetTheme }).catch(err => console.error("Theme save failed:", err));
@@ -1430,14 +1433,13 @@ function applyTheme(theme) {
 }
 
 // --- MULTI-PAGE CONTROLLER (SPA) ---
-window.switchPage = function(pageId) {
+function switchPage(pageId) {
   const pageViews = document.querySelectorAll('.page-view');
   for (let i = 0; i < pageViews.length; i++) {
     pageViews[i].classList.add('hidden');
   }
   document.getElementById('page-' + pageId).classList.remove('hidden');
 
-  // Desktop indicator states
   const navTabBtns = document.querySelectorAll('.nav-tab-btn');
   for (let i = 0; i < navTabBtns.length; i++) {
     navTabBtns[i].classList.remove('active', 'text-white');
@@ -1449,7 +1451,6 @@ window.switchPage = function(pageId) {
     activeTab.classList.remove('text-neutralMuted');
   }
 
-  // Mobile indicators
   const mobileTabs = document.querySelectorAll('[id^="mobile-tab-"]');
   for (let i = 0; i < mobileTabs.length; i++) {
     mobileTabs[i].classList.remove('text-terracotta');
@@ -1490,7 +1491,7 @@ function contactForQrUpgrade() {
   showToastNotification("QR Menu Upgrade Proposal Sent to Maryville Team! 🚀");
 }
 
-// --- STREAMING_CHUNK: Processing active category filters and dynamic accordion catalog... ---
+// --- STREAMING_CHUNK: Filtering active menu tabs and building dynamic Bistro accordions... ---
 // --- PRODUCTS CATALOG AND BISTRO ACCORDION RENDERERS ---
 function filterCategory(categoryName) {
   selectedCategory = categoryName;
@@ -1531,7 +1532,6 @@ function renderBistroMenu() {
     return;
   }
 
-  // Horizontal Carousel specialties (signatures or badge highlights)
   let featuredSpecialties = filtered.filter(item => item.category === 'signature' || item.badge);
   if (featuredSpecialties.length === 0) {
     featuredSpecialties = filtered.slice(0, 3);
@@ -1563,7 +1563,6 @@ function renderBistroMenu() {
   });
   dom.premiumCarousel.appendChild(carouselFragment);
 
-  // Group Categories Accordions
   const categoryGroups = {
     coffee: { title: "☕ Brewed & Specialty Drip", icon: "fa-mug-hot" },
     espresso: { title: "⚡ Traditional Espresso Creations", icon: "fa-bolt" },
@@ -1731,7 +1730,6 @@ async function triggerCheckoutCheckout() {
     timestamp: Date.now()
   };
 
-  // Persist Order Transaction to Real-time Cloud Pipeline
   if (db && isFirebaseReady) {
     try {
       await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'orders'), orderTicket);
@@ -1759,30 +1757,33 @@ function selectReserveZone(element, name, description) {
 }
 
 const reservationForm = document.getElementById('reserve-bistro-form');
-reservationForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  
-  const holder = document.getElementById('reserve-name').value.trim();
-  const guests = document.getElementById('reserve-guests').value;
-  const time = document.getElementById('reserve-time').value;
+if (reservationForm) {
+  reservationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const holder = document.getElementById('reserve-name').value.trim();
+    const guests = document.getElementById('reserve-guests').value;
+    const time = document.getElementById('reserve-time').value;
 
-  document.getElementById('ticket-holder-name').innerText = holder;
-  document.getElementById('ticket-holder-guests').innerText = `${guests} Guests`;
-  document.getElementById('ticket-holder-time').innerText = time;
-  document.getElementById('ticket-holder-zone').innerText = selectedLoungeZone;
+    document.getElementById('ticket-holder-name').innerText = holder;
+    document.getElementById('ticket-holder-guests').innerText = `${guests} Guests`;
+    document.getElementById('ticket-holder-time').innerText = time;
+    document.getElementById('ticket-holder-zone').innerText = selectedLoungeZone;
 
-  document.getElementById('ticket-sheet').classList.add('active');
-  document.getElementById('sheet-backdrop').classList.add('active');
+    document.getElementById('ticket-sheet').classList.add('active');
+    document.getElementById('sheet-backdrop').classList.add('active');
 
-  logTelemetryEvent('reservation_created', { name: holder, guests, time, zone: selectedLoungeZone });
-  reservationForm.reset();
-});
+    logTelemetryEvent('reservation_created', { name: holder, guests, time, zone: selectedLoungeZone });
+    reservationForm.reset();
+  });
+}
 
 function closeReservationTicket() {
   document.getElementById('ticket-sheet').classList.remove('active');
   document.getElementById('sheet-backdrop').classList.remove('active');
 }
 
+// --- STREAMING_CHUNK: Binding interactive customizers and highlighting selected states... ---
 // --- CUSTOM MIX STUDIO (TIMPLAHAN DESIGN PROFILES) ---
 function calculateCustomPrice() {
   if (!dom.builderBase) return;
@@ -1802,10 +1803,34 @@ function calculateCustomPrice() {
     finalPrice += 2.00;
   }
 
+  // Set active size selector styling
+  document.querySelectorAll('input[name="brew-size"]').forEach(input => {
+    const label = input.closest('label');
+    if (input.checked) {
+      label.classList.add('border-terracotta', 'bg-terracotta/10');
+      label.classList.remove('border-terracotta/20', 'border-terracotta/30');
+    } else {
+      label.classList.remove('border-terracotta', 'bg-terracotta/10');
+      label.classList.add('border-terracotta/20');
+    }
+  });
+
   const milkValue = document.querySelector('input[name="milk"]:checked').value;
   if (milkValue !== 'Regular') {
     finalPrice += 1.00;
   }
+
+  // Set active milk selector styling
+  document.querySelectorAll('input[name="milk"]').forEach(input => {
+    const label = input.closest('label');
+    if (input.checked) {
+      label.classList.add('border-terracotta', 'bg-terracotta/10');
+      label.classList.remove('border-terracotta/20');
+    } else {
+      label.classList.remove('border-terracotta', 'bg-terracotta/10');
+      label.classList.add('border-terracotta/20');
+    }
+  });
 
   let syrupArr = [];
   if (document.getElementById('syrup-vanilla').checked) {
@@ -1940,7 +1965,6 @@ if (vibeUploadForm) {
       timestamp: Date.now()
     };
 
-    // Store vibe to Cloud/Local
     if (db && isFirebaseReady) {
       try {
         await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vibes', 'vibe_' + Date.now()), newPhoto);
@@ -1961,12 +1985,12 @@ if (vibeUploadForm) {
   });
 }
 
+// --- STREAMING_CHUNK: Gathering reviews and preparing administrative controls... ---
 // --- FEEDBACK & REVIEW MODERATION QUEUE ---
 function renderFeedbackBoard() {
   if (!dom.feedbackBoardCards) return;
   dom.feedbackBoardCards.innerHTML = '';
 
-  // Only render APPROVED customer reviews
   const approvedReviews = communityFeedbacks.filter(fb => fb.approved === true);
 
   if (approvedReviews.length === 0) {
@@ -2025,7 +2049,6 @@ if (suggestionsForm) {
   });
 }
 
-// --- STREAMING_CHUNK: Designing the administrative view tabs and control logs... ---
 // --- ADMINISTRATIVE CMS SEPARATE FULL-SCREEN PANEL ---
 function openCMSPage() {
   switchPage('admin');
@@ -2235,7 +2258,6 @@ function renderCMSPhotosList() {
 }
 
 function downloadVibePhoto(base64OrUrl, handle) {
-  // Direct file trigger using execution tags
   const link = document.createElement('a');
   link.href = base64OrUrl;
   link.download = `Vibe_Photo_By_${handle}.jpg`;
@@ -2395,6 +2417,43 @@ function debounce(func, delay) {
     timeout = setTimeout(() => func.apply(this, args), delay);
   };
 }
+
+// Bind module-scoped actions to global window namespace to ensure HTML onclick attributes are safely resolved
+Object.assign(window, {
+  toggleTheme,
+  openSidebarCart,
+  closeSidebarCart,
+  openCMSPage,
+  claimMysteryStamp,
+  addItemToCart,
+  removeOneFromCart,
+  triggerCheckoutCheckout,
+  selectReserveZone,
+  calculateCustomPrice,
+  addCustomBuildToCart,
+  openUploadSheet,
+  closeUploadSheet,
+  applyPresetVibe,
+  closeReservationTicket,
+  closePromoModal,
+  addPromoToOrder,
+  closeQrUpgradeModal,
+  contactForQrUpgrade,
+  verifyAdministrativePasscode,
+  switchCMSTab,
+  updateOrderStatus,
+  moderateFeedback,
+  downloadVibePhoto,
+  deleteVibePhoto,
+  openProductEditForm,
+  closeProductEditForm,
+  deleteProductFromCMS,
+  handleImageError,
+  toggleAccordion,
+  filterCategory,
+  scrollIntoSection,
+  switchPage
+});
 </script>
 
 <!-- Global Toast Notification Component -->
