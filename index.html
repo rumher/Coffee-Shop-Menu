@@ -870,6 +870,25 @@ img{max-width:100%;display:block}
               Evaluating Sync...
             </span>
           </div>
+
+          <!-- Mobile Scan Sync Tool Section -->
+          <div class="border-t border-appBorder/50 pt-4 mt-2 space-y-3">
+            <h5 class="font-serif font-bold text-sm text-appHeading">📱 Sync with Phone Browser</h5>
+            <p class="text-[11px] text-neutralMuted">Generate a dynamic link to sync your database configurations instantly to your mobile browser without retyping keys.</p>
+            <div class="flex flex-wrap items-center gap-3">
+              <button onclick="generateMobileSyncQRCode()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2">
+                <i class="fa-solid fa-qrcode"></i> Generate Phone Sync Link
+              </button>
+            </div>
+            <div id="sync-qr-container" class="hidden bg-appBg border border-appBorder p-4 rounded-2xl flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+              <img id="sync-qr-image" src="" alt="Mobile Sync QR Code" class="w-32 h-32 bg-white p-1 rounded-lg">
+              <div class="space-y-2">
+                <p class="text-xs font-bold text-appHeading">Scan QR to connect your Phone!</p>
+                <p class="text-[10px] text-neutralMuted leading-relaxed max-w-xs">Scanning this with your phone's camera will open the portal on your phone browser and automatically configure your API keys securely.</p>
+                <button onclick="copySyncLinkToClipboard()" class="text-[10px] text-terracotta underline font-mono hover:text-terracotta/80 block">Copy Direct Sync Link</button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="space-y-3">
@@ -1130,6 +1149,18 @@ img{max-width:100%;display:block}
 
 <script type="module">
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+// Check if keys were passed via URL parameters (Allows scanning QR code to sync mobile browsers instantly)
+const urlParams = new URLSearchParams(window.location.search);
+const paramUrl = urlParams.get('sb_url');
+const paramKey = urlParams.get('sb_key');
+
+if (paramUrl && paramKey) {
+  localStorage.setItem('pd_supabase_url', decodeURIComponent(paramUrl));
+  localStorage.setItem('pd_supabase_key', decodeURIComponent(paramKey));
+  // Clean URL immediately for security and reload
+  window.location.replace(window.location.pathname);
+}
 
 // Retreive locally override credentials or fall back to sandbox defaults
 const storedUrl = localStorage.getItem('pd_supabase_url');
@@ -2591,6 +2622,44 @@ window.deleteVibePhoto = deleteVibePhoto;
 window.approveFeedback = approveFeedback;
 window.deleteFeedback = deleteFeedback;
 window.deleteReservation = deleteReservation;
+
+let currentSyncLink = "";
+
+window.generateMobileSyncQRCode = function() {
+  const url = localStorage.getItem('pd_supabase_url') || document.getElementById('db-url-input').value.trim();
+  const key = localStorage.getItem('pd_supabase_key') || document.getElementById('db-key-input').value.trim();
+
+  if (!url || !key) {
+    showToastNotification("⚠️ Please configure and save your credentials on this device first!");
+    return;
+  }
+
+  // Generate sync url with parameters
+  const originUrl = window.location.origin + window.location.pathname;
+  currentSyncLink = `${originUrl}?sb_url=${encodeURIComponent(url)}&sb_key=${encodeURIComponent(key)}`;
+  
+  // Create QR Code from free API
+  const qrImg = document.getElementById('sync-qr-image');
+  const container = document.getElementById('sync-qr-container');
+  
+  if (qrImg && container) {
+    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(currentSyncLink)}`;
+    container.classList.remove('hidden');
+    showToastNotification("Sync code generated! Scan with your phone's camera.");
+  }
+};
+
+window.copySyncLinkToClipboard = function() {
+  if (!currentSyncLink) return;
+  // Fallback copy structure
+  const tempInput = document.createElement("input");
+  tempInput.value = currentSyncLink;
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempInput);
+  showToastNotification("Sync URL copied to clipboard!");
+};
 </script>
 
 <!-- Toast Component -->
