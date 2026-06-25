@@ -19,7 +19,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,800;1,300&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght=0,300;0,400;0,600;0,800;1,300&family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Inter:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <!-- Leaflet OpenStreetMap Styling -->
@@ -772,7 +772,7 @@ img{max-width:100%;display:block}
           ☕ Catalog Editor
         </button>
         <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-analytics" onclick="switchCMSTab('analytics')">
-          📊 Telemetry & Logs
+          ⚙️ Settings & Telemetry
         </button>
       </div>
 
@@ -838,12 +838,46 @@ img{max-width:100%;display:block}
         </div>
       </div>
 
-      <!-- CMS Sub-Panel 5: Telemetry Logs -->
-      <div id="cms-analytics-subview" class="space-y-4 hidden">
-        <h4 class="font-serif text-lg font-bold text-appHeading">Live System Telemetry Logs</h4>
-        <p class="text-xs text-neutralMuted">A non-technical audit ledger documenting interactions on your storefront portal.</p>
-        <div class="bg-appBg border border-appBorder rounded-2xl p-4 font-sans text-xs space-y-2.5 max-h-96 overflow-y-auto text-appText transition-colors" id="telemetry-logs-wrapper">
-          <!-- Logs populated dynamically -->
+      <!-- CMS Sub-Panel 5: Telemetry Logs & Credentials Manager -->
+      <div id="cms-analytics-subview" class="space-y-6 hidden">
+        <!-- Connection Diagnostics Panel -->
+        <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 transition-colors">
+          <div class="flex items-center gap-2.5">
+            <i class="fa-solid fa-gears text-terracotta text-lg animate-spin" style="animation-duration: 8s;"></i>
+            <h4 class="font-serif text-lg font-bold text-appHeading">Supabase Connection Settings</h4>
+          </div>
+          <p class="text-xs text-neutralMuted leading-relaxed">
+            By default, this storefront uses placeholder credentials. To secure customer pre-orders, lounge reservations, and vibe photos, copy your real credentials from your Supabase Dashboard and paste them below. They are saved privately inside your browser's local secure database.
+          </p>
+          <div class="grid gap-4 sm:grid-cols-2 text-xs text-appText">
+            <div class="flex flex-col gap-1.5">
+              <label for="db-url-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Project REST Endpoint URL</label>
+              <input type="text" id="db-url-input" placeholder="https://your-project.supabase.co" class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:border-terracotta transition-colors">
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label for="db-key-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Anon Public Key (Long JWT Token)</label>
+              <input type="password" id="db-key-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC..." class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:border-terracotta transition-colors">
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button onclick="saveSupabaseCredentials()" class="bg-terracotta hover:bg-terracotta/90 text-white font-serif font-bold py-2.5 px-5 rounded-xl text-xs transition-all shadow-md">
+              Save & Reconnect Sync
+            </button>
+            <button onclick="clearSupabaseCredentials()" class="border border-terracotta/30 text-neutralMuted hover:text-white font-serif py-2.5 px-4 rounded-xl text-xs transition-all">
+              Reset to Local Sandbox Fallback
+            </button>
+            <span id="connection-status-pill" class="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-yellow-500/10 text-yellow-500 border border-yellow-500/30">
+              Evaluating Sync...
+            </span>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="font-serif text-lg font-bold text-appHeading">Live System Telemetry Logs</h4>
+          <p class="text-xs text-neutralMuted">A non-technical audit ledger documenting interactions on your storefront portal.</p>
+          <div class="bg-appBg border border-appBorder rounded-2xl p-4 font-sans text-xs space-y-2.5 max-h-96 overflow-y-auto text-appText transition-colors" id="telemetry-logs-wrapper">
+            <!-- Logs populated dynamically -->
+          </div>
         </div>
       </div>
 
@@ -1097,9 +1131,16 @@ img{max-width:100%;display:block}
 <script type="module">
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-const SUPABASE_URL = "https://hpvzvwxczgkvgzrjplie.supabase.co";
-const SUPABASE_KEY = "hpvzvwxczgkvgzrjplie";
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+// Retreive locally override credentials or fall back to sandbox defaults
+const storedUrl = localStorage.getItem('pd_supabase_url');
+const storedKey = localStorage.getItem('pd_supabase_key');
+
+const DEFAULT_URL = "https://hpvzvwxczgkvgzrjplie.supabase.co";
+const DEFAULT_KEY = "hpvzvwxczgkvgzrjplie"; // Keep project reference placeholder
+
+let supabaseUrl = storedUrl || DEFAULT_URL;
+let supabaseKey = storedKey || DEFAULT_KEY;
+let supabase = createClient(supabaseUrl, supabaseKey);
 
 // Global state registers
 let activeOrders = [];
@@ -1146,7 +1187,7 @@ let cart = [];
 let currentTheme = 'dark';
 const dom = {};
 
-// --- STREAMING_CHUNK: Initializing System Core... ---
+// --- STREAMING_CHUNK: Initializing System Core & Prefills... ---
 window.onload = function() {
   initDOMCache();
   initSupabasePipeline();
@@ -1175,6 +1216,14 @@ window.onload = function() {
   const fileInput = document.getElementById('file-input');
   if (fileInput) {
     fileInput.addEventListener('change', handleFileChoose);
+  }
+
+  // Pre-populate connection override settings
+  const dbUrlInput = document.getElementById('db-url-input');
+  const dbKeyInput = document.getElementById('db-key-input');
+  if (dbUrlInput && dbKeyInput) {
+    dbUrlInput.value = localStorage.getItem('pd_supabase_url') || '';
+    dbKeyInput.value = localStorage.getItem('pd_supabase_key') || '';
   }
 
   renderBistroMenu();
@@ -1229,6 +1278,27 @@ function initInteractiveMap() {
   }
 }
 
+// --- STREAMING_CHUNK: Performing Diagnostics Connection Check... ---
+async function testDatabaseConnection() {
+  const statusPill = document.getElementById('connection-status-pill');
+  if (!statusPill) return;
+  
+  statusPill.className = "inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-blue-500/10 text-blue-500 border border-blue-500/30";
+  statusPill.innerText = "Evaluating Sync...";
+  
+  try {
+    const { data, error } = await supabase.from('orders').select('id').limit(1);
+    if (error) throw error;
+    
+    statusPill.className = "inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-green-500/10 text-green-500 border border-green-500/30";
+    statusPill.innerText = "CONNECTED (Postgres Active)";
+  } catch(err) {
+    statusPill.className = "inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-red-500/10 text-red-500 border border-red-500/30";
+    statusPill.innerText = "OFFLINE (Sandbox fallback)";
+    console.warn("Database connection verification rejected: ", err.message);
+  }
+}
+
 // --- STREAMING_CHUNK: Connecting Supabase Pipeline Reads... ---
 async function initSupabasePipeline() {
   loadStoredCart(); 
@@ -1238,6 +1308,7 @@ async function initSupabasePipeline() {
   fetchVibeBoard();
   fetchFeedbacks();
   fetchReservations();
+  testDatabaseConnection();
 }
 
 async function fetchLiveOrders() {
@@ -1321,6 +1392,50 @@ async function fetchReservations() {
   renderAdminReservations();
 }
 
+// --- STREAMING_CHUNK: Custom Overriding Credentials Settings... ---
+window.saveSupabaseCredentials = function() {
+  const url = document.getElementById('db-url-input').value.trim();
+  const key = document.getElementById('db-key-input').value.trim();
+  
+  if (!url || !key) {
+    showToastNotification("⚠️ URL and Anon Key must be filled!");
+    return;
+  }
+  
+  localStorage.setItem('pd_supabase_url', url);
+  localStorage.setItem('pd_supabase_key', key);
+  
+  supabaseUrl = url;
+  supabaseKey = key;
+  supabase = createClient(supabaseUrl, supabaseKey);
+  
+  showToastNotification("Database keys saved. Verifying connections...");
+  logTelemetryEvent('supabase_credentials_updated', { url });
+  
+  testDatabaseConnection().then(() => {
+    fetchLiveOrders();
+    fetchVibeBoard();
+    fetchFeedbacks();
+    fetchReservations();
+  });
+};
+
+window.clearSupabaseCredentials = function() {
+  localStorage.removeItem('pd_supabase_url');
+  localStorage.removeItem('pd_supabase_key');
+  
+  document.getElementById('db-url-input').value = '';
+  document.getElementById('db-key-input').value = '';
+  
+  supabaseUrl = DEFAULT_URL;
+  supabaseKey = DEFAULT_KEY;
+  supabase = createClient(supabaseUrl, supabaseKey);
+  
+  showToastNotification("Returned back to Sandbox Fallback mode!");
+  logTelemetryEvent('supabase_credentials_reset', {});
+  testDatabaseConnection();
+};
+
 // --- STREAMING_CHUNK: Defining Telemetry and Themes... ---
 function logTelemetryEvent(eventName, eventDetails) {
   let logText = "";
@@ -1347,6 +1462,9 @@ function logTelemetryEvent(eventName, eventDetails) {
       break;
     case 'theme_toggled':
       logText = `🌗 Swapped theme configuration mode to: ${eventDetails.theme}`;
+      break;
+    case 'supabase_credentials_updated':
+      logText = `🔐 Updated Supabase Endpoint: ${eventDetails.url}`;
       break;
     case 'supabase_connected':
       logText = `⚡ Sync Completed: pulled data securely from Supabase tables.`;
@@ -1704,8 +1822,6 @@ async function triggerCheckoutCheckout() {
   if (cart.length === 0) return;
 
   let totalPrice = cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
-  
-  // Package order details cleanly with customization lines preserved
   const orderDetails = cart.map(i => ({
     id: i.id,
     name: i.name,
@@ -1717,7 +1833,7 @@ async function triggerCheckoutCheckout() {
   try {
     const { error } = await supabase.from('orders').insert([{
       customer_name: 'Boutique Visitor',
-      items: orderDetails, // PostgreSQL automatic serialization of JSONB structure
+      items: orderDetails,
       total_price: totalPrice,
       status: 'Pending',
       timestamp: new Date().toISOString()
@@ -1736,7 +1852,7 @@ async function triggerCheckoutCheckout() {
       status: 'Pending',
       timestamp: new Date().toISOString()
     });
-    showToastNotification("Pre-order simulation completed! (Sandbox Fallback Mode)");
+    showToastNotification(`⚠️ Fallback to Sandbox: ${err.message || 'Check connection settings'}`);
   }
 
   cart = [];
@@ -1782,6 +1898,7 @@ if (reservationForm) {
         zone: selectedLoungeZone,
         timestamp: new Date().toISOString()
       });
+      showToastNotification(`⚠️ Fallback to Sandbox: ${err.message || 'Check database connection setup'}`);
     }
 
     document.getElementById('ticket-holder-name').innerText = holder;
@@ -1900,6 +2017,7 @@ async function updateOrderStatus(orderId, nextStatus) {
     fetchLiveOrders();
   } catch(err) {
     console.error("Order update failure: ", err);
+    showToastNotification(`⚠️ Failed to update order status: ${err.message || 'Sync error'}`);
   }
 }
 
@@ -2010,6 +2128,7 @@ async function deleteReservation(id) {
     fetchReservations();
   } catch(err) {
     console.error("Delete booking error: ", err);
+    showToastNotification(`⚠️ Failed to remove reservation: ${err.message}`);
   }
 }
 
@@ -2080,6 +2199,7 @@ async function deleteVibePhoto(id) {
     fetchVibeBoard();
   } catch(err) {
     console.error("Vibe deletion error: ", err);
+    showToastNotification(`⚠️ Failed to remove photo: ${err.message}`);
   }
 }
 
@@ -2148,6 +2268,7 @@ async function approveFeedback(id) {
     fetchFeedbacks();
   } catch(err) {
     console.error("Approval error: ", err);
+    showToastNotification(`⚠️ Failed to approve review: ${err.message}`);
   }
 }
 
@@ -2163,6 +2284,7 @@ async function deleteFeedback(id) {
     fetchFeedbacks();
   } catch(err) {
     console.error("Deletion error: ", err);
+    showToastNotification(`⚠️ Failed to delete review: ${err.message}`);
   }
 }
 
@@ -2194,7 +2316,7 @@ if (feedbackForm) {
         approved: false,
         timestamp: Date.now()
       });
-      showToastNotification("Suggestion saved (Simulated Pending Moderation).");
+      showToastNotification(`⚠️ Saved to Sandbox: ${err.message || 'Check connection settings'}`);
     }
     
     feedbackForm.reset();
@@ -2230,7 +2352,7 @@ if (vibeUploadForm) {
         image: imageSrc,
         timestamp: Date.now()
       });
-      showToastNotification("Vibe pinned locally (Sandbox Cache Mode).");
+      showToastNotification(`⚠️ Fallback to Sandbox: ${err.message || 'Check connection settings'}`);
     }
     
     closeUploadSheet();
@@ -2400,7 +2522,7 @@ function showToastNotification(msg) {
   toast.innerText = msg;
   toast.classList.remove('opacity-0');
   toast.classList.add('opacity-100');
-  setTimeout(() => toast.classList.replace('opacity-100', 'opacity-0'), 3000);
+  setTimeout(() => toast.classList.replace('opacity-100', 'opacity-0'), 3500);
 }
 
 function debounce(func, wait) {
