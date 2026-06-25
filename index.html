@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -15,7 +15,7 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&family=Fraunces:ital,wght@0,300;0,400;0,600;0,800;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Fraunces:ital,wght@0,300;0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
     
     <!-- Leaflet OpenStreetMap Styling -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -91,6 +91,7 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
             text-align: center;
             width: 100%;
+            transition: all 0.3s ease;
         }
 
         .sheet-backdrop {
@@ -228,13 +229,13 @@
 </head>
 <body class="bg-appBg text-appText flex flex-col min-h-screen">
 
-    <!-- Unified, horizontal/vertical safe Toast Notification Container -->
+    <!-- Unified Toast Notification Container -->
     <div id="toast-container" class="toast-container hidden">
-        <div id="toast-message" class="toast text-xs font-semibold tracking-wide border border-terracotta/30 flex items-center gap-2"></div>
+        <div id="toast-message" class="toast text-xs font-semibold tracking-wide border border-terracotta/30 flex items-center justify-center gap-2"></div>
     </div>
 
     <!-- App Backdrops -->
-    <div class="sheet-backdrop" id="sheet-backdrop"></div>
+    <div class="sheet-backdrop" id="sheet-backdrop" onclick="closeAllSheets()"></div>
 
     <!-- Header -->
     <header class="fixed top-0 w-full bg-white/85 backdrop-blur-md border-b border-gray-200 z-40 p-4 flex justify-between items-center transition-colors dark:bg-[#150A08]/80 dark:border-appBorder">
@@ -266,7 +267,7 @@
             </button>
             <button id="cart-trigger" onclick="openSidebarCart()" class="p-2 hover:bg-gray-100 dark:hover:bg-darkAccent rounded-full transition-all relative">
                 <i class="fa-solid fa-bag-shopping text-xl text-terracotta"></i>
-                <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow" id="desktop-cart-badge">0</span>
+                <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow animate-pulse" id="desktop-cart-badge">0</span>
             </button>
             <button onclick="switchPage('admin')" class="p-2 hover:bg-gray-100 dark:hover:bg-darkAccent rounded-full transition-all">
                 <i class="fa-solid fa-lock text-xl text-neutralMuted"></i>
@@ -279,9 +280,9 @@
         
         <!-- ================= PAGE 1: HOME/STOREFRONT ================= -->
         <div id="page-home" class="page-view space-y-10">
-            <!-- Hero banner and Customizer studio omitted here for brevity since code remains unchanged -->
+            <!-- Hero banner -->
             <div class="relative rounded-3xl overflow-hidden bg-appCard text-appHeading py-12 px-6 sm:px-12 shadow-2xl flex flex-col md:flex-row items-center justify-between border border-appBorder transition-colors">
-                <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1200');"></div>
+                <div class="absolute inset-0 bg-cover bg-center opacity-15" style="background-image: url('https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&q=80&w=1200');"></div>
                 <div class="absolute inset-0 bg-gradient-to-r from-appBg via-appBg/90 to-transparent"></div>
                 
                 <div class="relative z-10 max-w-lg space-y-4">
@@ -347,6 +348,7 @@
                     </div>
                 </div>
 
+                <!-- Accordions for Category Blocks -->
                 <div class="space-y-4">
                     <div class="flex justify-between items-baseline">
                         <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide">Bistro Catalog</h3>
@@ -547,10 +549,9 @@
                 <p class="text-sm text-neutralMuted">We strive for culinary excellence. Submit suggestions or happy coffee notes below.</p>
             </div>
 
-            <!-- Task 4: Place Featured Guest Notes at the TOP of Feedback page in mobile view -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
                 
-                <!-- Published Board Notes (order-first puts it at the top of mobile grid layout, lg:order-last resets it beside the form on desktop) -->
+                <!-- Published Board Notes -->
                 <div class="space-y-5 order-first lg:order-last">
                     <div class="flex justify-between items-baseline border-b border-appBorder pb-2">
                         <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide">Featured Guest Notes</h3>
@@ -562,7 +563,7 @@
                     </div>
                 </div>
 
-                <!-- Input Panel (order-last on mobile view to align below guest reviews, lg:order-first on desktop) -->
+                <!-- Input Panel -->
                 <div class="bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 transition-colors order-last lg:order-first">
                     <div class="p-4 bg-terracotta/10 border-l-4 border-terracotta rounded-xl text-xs leading-relaxed text-accentLight font-serif">
                         <p class="font-bold text-appHeading mb-1">📢 Important Note</p>
@@ -661,7 +662,7 @@
                 </div>
                 <div>
                     <h3 class="font-serif text-lg font-bold text-appHeading">Administrative Access Required</h3>
-                    <p class="text-xs text-neutralMuted mt-1">Please enter your passcode to unlock dashboard operations.</p>
+                    <p class="text-xs text-neutralMuted mt-1">Please enter your passcode to unlock dashboard operations. (Hint: <b>barako</b>)</p>
                 </div>
                 <div class="space-y-3">
                     <input type="password" id="cms-passcode-input" placeholder="Password..." class="w-full text-center bg-appBg border border-terracotta/30 rounded-xl p-3 text-sm text-appHeading focus:outline-none focus:border-terracotta">
@@ -717,7 +718,6 @@
                 <div id="cms-orders-subview" class="space-y-4">
                     <div class="flex justify-between items-center">
                         <h4 class="font-serif text-lg font-bold text-appHeading">Simulated Real-Time Orders</h4>
-                        <!-- Task 1: Refresh Pipeline on Simulated Orders Pipeline -->
                         <button onclick="fetchLiveOrders()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2 shadow" aria-label="Refresh orders list">
                             <i class="fa-solid fa-rotate-right" id="refresh-orders-icon"></i> Refresh Pipeline
                         </button>
@@ -745,7 +745,6 @@
                             <h4 class="font-serif text-lg font-bold text-appHeading">Pending Customer Note Approvals</h4>
                             <p class="text-xs text-neutralMuted">Click Approve to publish feedback directly on the storefront.</p>
                         </div>
-                        <!-- Task 1: Refresh Pipeline on Review Moderation -->
                         <button onclick="fetchFeedbacks()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh feedbacks list">
                             <i class="fa-solid fa-rotate-right" id="refresh-feedbacks-icon"></i> Refresh Pipeline
                         </button>
@@ -762,7 +761,6 @@
                             <h4 class="font-serif text-lg font-bold text-appHeading">Corkboard Polaroid Archive Moderation</h4>
                             <p class="text-xs text-neutralMuted">Moderate and prune uploaded setup photographs directly on the live wall.</p>
                         </div>
-                        <!-- Task 1: Refresh Pipeline on Vibe Archives -->
                         <button onclick="fetchVibeBoard()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh vibe photos list">
                             <i class="fa-solid fa-rotate-right" id="refresh-vibes-icon"></i> Refresh Pipeline
                         </button>
@@ -780,7 +778,6 @@
                             <p class="text-xs text-neutralMuted">Adjust pricing, hide options, or trigger sold out filters.</p>
                         </div>
                         <div class="flex gap-2">
-                            <!-- Task 1: Refresh Pipeline on Catalog Editor -->
                             <button onclick="renderCMSProductsList()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh products list">
                                 <i class="fa-solid fa-rotate-right" id="refresh-products-icon"></i> Refresh Pipeline
                             </button>
@@ -886,7 +883,6 @@
     </nav>
 
     <!-- Persistent Mobile Bag Toggle -->
-    <!-- Task 3 & 4: Added id mobile-cart-bar-container to dynamically toggle visibility inside Javascript -->
     <div id="mobile-cart-bar-container" class="md:hidden fixed bottom-14 left-0 right-0 px-4 py-2 z-30 pointer-events-none">
         <button onclick="openSidebarCart()" class="w-full bg-terracotta text-white font-serif py-3 px-4 rounded-2xl flex justify-between items-center shadow-2xl pointer-events-auto hover:bg-terracotta/90 transition-all">
             <span class="text-xs font-bold tracking-wider"><i class="fa-solid fa-basket-shopping mr-2"></i> View Order Bag</span>
@@ -907,7 +903,6 @@
             <h3 class="font-serif text-2xl font-bold text-appHeading mb-1" id="cart-title">Your Order Bag</h3>
             <p class="text-xs text-neutralMuted mb-2">Digital menu preview helper</p>
             
-            <!-- High-Contrast Helper Disclaimer -->
             <div class="p-3 bg-terracotta/10 border-l-4 border-terracotta rounded-xl text-[11px] leading-relaxed text-accentLight mb-4 font-sans font-medium">
                 <i class="fa-solid fa-circle-info text-terracotta mr-1"></i> 
                 <strong>In-House Assistant Only:</strong> This bag serves as a digital table order aggregator for showing the baristas at the counter. **We do not support external online home delivery orders.**
@@ -1000,7 +995,7 @@
                 <div>
                     <label class="block text-[10px] font-mono font-bold uppercase tracking-wider text-terracotta mb-1.5">No snapshot handy? Pick a curated preset vibe:</label>
                     <div class="grid grid-cols-3 gap-2">
-                        <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate hover:border-terracotta" onclick="applyPresetVibe('https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400')">☕ Drip Brew</button>
+                        <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate hover:border-terracotta animate-pulse" onclick="applyPresetVibe('https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400')">☕ Drip Brew</button>
                         <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate hover:border-terracotta" onclick="applyPresetVibe('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400')">🍵 Foam Art</button>
                         <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate hover:border-terracotta" onclick="applyPresetVibe('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400')">🥐 Fresh Pastry</button>
                     </div>
@@ -1028,7 +1023,7 @@
 
     <!-- 4. Promo Highlight Overlay Modal -->
     <div class="promo-modal" id="promo-modal" role="dialog" aria-modal="true">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-md" onclick="closePromoModal()"></div>
         <div class="bg-appCard border border-terracotta/35 p-6 rounded-3xl max-w-sm w-full mx-auto relative z-10 text-center space-y-4 animate-scaleUp text-appText transition-colors">
             <div class="w-14 h-14 bg-terracotta/10 rounded-full flex items-center justify-center text-terracotta text-2xl mx-auto">
                 <i class="fa-solid fa-gift"></i>
@@ -1107,7 +1102,7 @@
     <script type="module">
         import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-        // Check if keys were passed via URL parameters
+        // Check URL parameters for fast credentials syncing
         const urlParams = new URLSearchParams(window.location.search);
         const paramUrl = urlParams.get('sb_url');
         const paramKey = urlParams.get('sb_key');
@@ -1128,7 +1123,7 @@
         let supabaseKey = storedKey || DEFAULT_KEY;
         let supabase = createClient(supabaseUrl, supabaseKey);
 
-        // Global state registers
+        // Global State Registry
         let activeOrders = [];
         let activeReservations = [];
         let telemetryLogs = [
@@ -1173,6 +1168,7 @@
         let currentTheme = 'dark';
         const dom = {};
 
+        // Window load triggers
         window.onload = function() {
             initDOMCache();
             initSupabasePipeline();
@@ -1195,6 +1191,7 @@
                 }, 200));
             }
 
+            // Fire welcome promo code after load delay
             setTimeout(() => openPromoModal(), 1500);
 
             const fileInput = document.getElementById('file-input');
@@ -1489,7 +1486,6 @@
             }
         }
 
-        // --- Task 3 & 4 mobile-cart-bar-container visibility filter in switchPage ---
         function switchPage(pageId) {
             const pageViews = document.querySelectorAll('.page-view');
             for (let i = 0; i < pageViews.length; i++) {
@@ -1580,6 +1576,7 @@
                 return matchesCategory && matchesSearch;
             });
 
+            // Waltz special condition mapping
             const waltz = masterProducts.find(p => p.id === 's3');
             const highlightAddBtn = document.getElementById('highlight-add-btn');
             if (highlightAddBtn) {
@@ -1889,7 +1886,14 @@
         }
 
         function closeReservationTicket() {
+            document.getElementById('ticket-sheet').classList.remove('remove');
             document.getElementById('ticket-sheet').classList.remove('active');
+            document.getElementById('sheet-backdrop').classList.remove('active');
+        }
+
+        function closeAllSheets() {
+            const sheets = document.querySelectorAll('.sheet');
+            sheets.forEach(s => s.classList.remove('active'));
             document.getElementById('sheet-backdrop').classList.remove('active');
         }
 
@@ -2036,7 +2040,7 @@
                         <div class="pt-2 border-t border-appBorder space-y-3">
                             <div class="flex justify-between items-baseline font-bold">
                                 <span>Aggregated Est.</span>
-                                <span class="text-terracotta text-sm">$${parseFloat(order.totalPrice || 0).toFixed(2)}</span>
+                                <span class="text-terracotta text-sm">$${parseFloat(order.totalPrice || order.total_price || 0).toFixed(2)}</span>
                             </div>
                             
                             <div class="grid grid-cols-3 gap-1 pt-1.5 border-t border-appBorder/40">
@@ -2108,7 +2112,7 @@
             if (feedPending) feedPending.innerText = communityFeedbacks.filter(f => !f.approved).length;
             if (vibesCnt) vibesCnt.innerText = communityPhotos.length;
             if (rev) {
-                let totalSum = activeOrders.reduce((acc, curr) => acc + parseFloat(curr.totalPrice || 0), 0);
+                let totalSum = activeOrders.reduce((acc, curr) => acc + parseFloat(curr.totalPrice || curr.total_price || 0), 0);
                 rev.innerText = `$${totalSum.toFixed(2)}`;
             }
         }
@@ -2177,7 +2181,7 @@
             }
 
             dom.feedbackBoardCards.innerHTML = approvedNotes.map(f => `
-                <div class="bg-appCard border border-appBorder p-4 rounded-2xl shadow-sm transition-colors">
+                <div class="bg-appCard border border-appBorder p-4 rounded-2xl shadow-sm transition-colors animate-fadeIn">
                     <div class="flex justify-between items-baseline mb-1">
                         <span class="font-serif font-bold text-appHeading text-xs">${f.user}</span>
                         <span class="text-[9px] font-mono text-terracotta bg-terracotta/10 px-2 py-0.5 rounded">${f.topic}</span>
@@ -2321,7 +2325,7 @@
                 previewImg.classList.add('hidden');
                 document.getElementById('dropzone-placeholder').classList.remove('hidden');
                 fetchVibeBoard();
-              });
+            });
         }
 
         function handleFileChoose(event) {
@@ -2468,22 +2472,78 @@
         function closeUploadSheet() { document.getElementById('upload-sheet').classList.remove('active'); document.getElementById('sheet-backdrop').classList.remove('active'); }
         function applyPresetVibe(url) { document.getElementById('preview-img').src = url; document.getElementById('preview-img').classList.remove('hidden'); document.getElementById('dropzone-placeholder').classList.add('hidden'); }
 
-        // --- Task 3: showToastNotification redesigned to use bottom-center toast-container to prevent overlapping action buttons ---
         function showToastNotification(msg) {
             const toastContainer = document.getElementById('toast-container');
             const toastMessage = document.getElementById('toast-message');
             if (toastContainer && toastMessage) {
                 toastMessage.innerText = msg;
                 toastContainer.classList.remove('hidden');
-                // Basic fade/slide-up reinforcement classes
-                toastContainer.classList.add('flex animate-slideUp');
                 
-                // Clear any existing timeouts to prevent stuttering
-                if (window.toastTimeout) clearTimeout(window.syncToastTimeout);
+                if (window.syncToastTimeout) clearTimeout(window.syncToastTimeout);
                 window.syncToastTimeout = setTimeout(() => {
-                    toast.classList.add('hidden');
+                    toastContainer.classList.add('hidden');
                 }, 3500);
             }
+        }
+
+        // Theme management module
+        function toggleTheme() {
+            const root = document.documentElement;
+            const icon = document.getElementById('theme-toggle-icon');
+            if (root.classList.contains('light-mode')) {
+                root.classList.remove('light-mode');
+                if (icon) {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+                sessionStorage.setItem('pd_theme_mode', 'dark');
+                currentTheme = 'dark';
+            } else {
+                root.classList.add('light-mode');
+                if (icon) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+                sessionStorage.setItem('pd_theme_mode', 'light');
+                currentTheme = 'light';
+            }
+            logTelemetryEvent('theme_toggled', { theme: currentTheme });
+        }
+
+        function applyTheme(theme) {
+            const root = document.documentElement;
+            const icon = document.getElementById('theme-toggle-icon');
+            if (theme === 'light') {
+                root.classList.add('light-mode');
+                if (icon) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+                currentTheme = 'light';
+            } else {
+                root.classList.remove('light-mode');
+                if (icon) {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+                currentTheme = 'dark';
+            }
+        }
+
+        function loadStoredCart() {
+            try {
+                const stored = localStorage.getItem('pd_shopping_cart');
+                if (stored) {
+                    cart = JSON.parse(stored);
+                    syncCartUI();
+                }
+            } catch(e) {
+                console.warn("Could not retrieve local shopping cart.", e);
+            }
+        }
+
+        function saveCartToStorage() {
+            localStorage.setItem('pd_shopping_cart', JSON.stringify(cart));
         }
 
         function debounce(func, wait) {
@@ -2498,7 +2558,7 @@
             img.src = 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400';
         };
 
-        // Global Exposure Layer
+        // Global Window Exposure Layer
         window.switchPage = switchPage;
         window.toggleTheme = toggleTheme;
         window.openSidebarCart = openSidebarCart;
@@ -2537,6 +2597,7 @@
         window.approveFeedback = approveFeedback;
         window.deleteFeedback = deleteFeedback;
         window.deleteReservation = deleteReservation;
+        window.closeAllSheets = closeAllSheets;
 
         let currentSyncLink = "";
 
