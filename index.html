@@ -14,7 +14,7 @@
 <meta name="keywords" content="Pour Decisions, Specialty coffee Maryville TN, Muddy Pond Mocha, Viennese Waltz, artisan bakery, coffee shop near me, local lounge, Maryville TN bistro">
 <meta name="robots" content="index, follow">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23C67C4E' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20h40a4 4 0 0 1 4 4v4a20 20 0 0 1-20 20H28A20 20 0 0 1 8 28v-4a4 4 0 0 1 4-4Z'/%3E%3Cpath d='M18 20V12a6 6 0 0 1 12 0v8M34 20v-5a3 3 0 0 1 6 0v5'/%3E%3Cpath d='M26 48c0 4 6 10 6 10s6-6 6-10'/%3E%3C/svg%3E">
+<link class="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☕%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,800;1,300&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -258,7 +258,7 @@ img{max-width:100%;display:block}
   max-height: 1000px;
 }
 
-/* Embedded Maps container styles */
+/* Embedded Google Maps container styles */
 .map-responsive {
   overflow:hidden;
   position:relative;
@@ -289,7 +289,7 @@ img{max-width:100%;display:block}
 <header class="bg-appCard text-appText sticky top-0 z-40 border-b border-appBorder shadow-lg transition-colors">
   <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
     <div class="flex items-center gap-3">
-      <!-- Dynamic SVG Favicon Logo Alignment -->
+      <!-- Made-Up Premium Professional Logo -->
       <div class="w-11 h-11 flex items-center justify-center bg-appBg rounded-xl border border-terracotta/30 shadow-inner">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-7 h-7 fill-none stroke-terracotta" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 20h40a4 4 0 0 1 4 4v4a20 20 0 0 1-20 20H28A20 20 0 0 1 8 28v-4a4 4 0 0 1 4-4Z" />
@@ -314,7 +314,7 @@ img{max-width:100%;display:block}
 
     <!-- Header Actions (Theme toggle, Cart, and Admin trigger) -->
     <div class="flex items-center gap-2">
-      <!-- Theme Toggle Switcher -->
+      <!-- Theme Toggle Switcher with High-Contrast Prompt Indicator -->
       <button onclick="toggleTheme()" class="theme-glowing-aura p-2.5 bg-darkAccent hover:bg-terracotta/10 text-terracotta rounded-xl transition-all border border-terracotta/20 relative" id="theme-toggle-btn" aria-label="Toggle Light/Dark Theme">
         <i class="fa-solid fa-moon text-base" id="theme-toggle-icon"></i>
         <span class="absolute -top-1 -right-1 bg-terracotta w-2.5 h-2.5 rounded-full ring-2 ring-appCard"></span>
@@ -366,7 +366,7 @@ img{max-width:100%;display:block}
           <span class="text-terracotta font-mono text-sm">$5.80</span>
         </div>
         <p class="text-[11px] text-accentLight mt-1">Rich Espresso, velvet steamed milk, premium white chocolate, and sweet almond syrup.</p>
-        <button id="highlight-add-btn" onclick="addItemToCart('s3', 'Viennese Waltz', 5.80)" class="w-full mt-4 bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 rounded-xl transition-all">
+        <button onclick="addItemToCart('s3', 'Viennese Waltz', 5.80)" class="w-full mt-4 bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 rounded-xl transition-all">
           <i class="fa-solid fa-cart-plus mr-1"></i> Add to Order
         </button>
       </div>
@@ -552,9 +552,10 @@ img{max-width:100%;display:block}
     <div class="text-center max-w-xl mx-auto space-y-2">
       <span class="font-mono text-xs uppercase tracking-widest text-terracotta">College Street Lounge Space</span>
       <h2 class="font-serif text-3xl font-bold text-appHeading">Reserve a Lounge Table</h2>
-      <p class="text-sm text-neutralMuted">Book high-speed study rooms, cozy window niches, or rustic community harvest tables.</p>
+      <p class="text-sm text-neutralMuted">Book study rooms, window niches, or rustic community harvest tables ahead of time.</p>
+      <!-- Lounge Booking Disclaimer Block (Task 4) -->
       <div class="inline-block bg-yellow-500/10 border border-yellow-500/30 text-yellow-500 rounded-xl px-4 py-2 mt-2 text-xs font-medium">
-        <i class="fa-solid fa-clock-rotate-left mr-1.5"></i> All lounge bookings are active for the **current day only** to guarantee fair community access.
+        <i class="fa-solid fa-clock-rotate-left mr-1.5"></i> All table and room bookings are active for the **current day only** to guarantee fair neighborhood community access.
       </div>
     </div>
 
@@ -698,20 +699,21 @@ img{max-width:100%;display:block}
       </div>
     </div>
 
-    <!-- Resilient Location Module (Fully validated OpenStreetMap responsive viewport integration) -->
-    <div class="max-w-4xl mx-auto space-y-4 pt-6 border-t border-appBorder font-sans">
+    <!-- Google Maps Location Module (Corrected, responsive, fully valid Maryville coords parameters) -->
+    <div class="max-w-4xl mx-auto space-y-4 pt-6 border-t border-appBorder">
       <div class="text-center">
         <h3 class="font-serif text-xl font-bold text-appHeading">Find Our Cozy Sanctuary</h3>
         <p class="text-xs text-neutralMuted">212 College Street, Maryville, TN 37804 | Phone: (865) 980-8282</p>
       </div>
-      <div class="map-responsive h-64 sm:h-80 w-full rounded-2xl overflow-hidden shadow-lg border border-appBorder">
+      <div class="map-responsive h-64 sm:h-80 w-full">
         <iframe 
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-83.985%2C35.750%2C-83.955%2C35.765&layer=mapnik&marker=35.7565%2C-83.9716" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3235.485121817926!2d-83.9716178!3d35.7565203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x885e9fd17dc1399d%3A0x5741a0a616c080cb!2s212%20College%20St%2C%20Maryville%2C%20TN%2037804%2C%20USA!5e0!3m2!1sen!2sus!5m2!1sen!2sus" 
           width="100%" 
           height="100%" 
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy">
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
     </div>
@@ -792,15 +794,13 @@ img{max-width:100%;display:block}
       <div id="cms-orders-subview" class="space-y-4">
         <div class="flex justify-between items-center">
           <h4 class="font-serif text-lg font-bold text-appHeading">Simulated Real-Time Orders</h4>
-          <div class="flex items-center gap-2">
-            <button onclick="fetchLiveOrders()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-3 py-1.5 text-xs transition-all flex items-center gap-1.5" aria-label="Refresh orders list">
-              <i class="fa-solid fa-rotate-right" id="refresh-icon"></i> Refresh Pipeline
-            </button>
-            <span class="text-[10px] font-mono uppercase tracking-wider text-neutralMuted hidden sm:inline">Updated Instantly</span>
-          </div>
+          <!-- High-Fidelity Manual Refresh Trigger Button (Task 1) -->
+          <button onclick="fetchLiveOrders()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2 shadow" aria-label="Refresh orders list">
+            <i class="fa-solid fa-rotate-right" id="refresh-icon"></i> Refresh Pipeline
+          </button>
         </div>
         <div id="admin-orders-container" class="grid gap-4 md:grid-cols-2">
-          <!-- Dynamically populated via Real-Time Cloud Subscription -->
+          <!-- Dynamically populated via standard cloud HTTP reads -->
         </div>
       </div>
 
@@ -820,7 +820,7 @@ img{max-width:100%;display:block}
         </div>
       </div>
 
-      <!-- CMS Sub-Panel 4: Menu Catalog Editor -->
+      <!-- CMS Sub-Panel 4: Menu Catalog Editor (Task 1: Complete Product CRUD Option Triggers) -->
       <div id="cms-products-subview" class="space-y-4 hidden">
         <div class="flex justify-between items-center">
           <h4 class="font-serif text-lg font-bold text-appHeading">Manage Store Products</h4>
@@ -828,8 +828,8 @@ img{max-width:100%;display:block}
             <i class="fa-solid fa-circle-plus"></i> Add New Product Option
           </button>
         </div>
-        <div id="cms-products-listing-wrapper" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <!-- Dynamic products lists populated by renderCMSProductsList() -->
+        <div id="cms-products-listing-wrapper" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Dynamic products lists loaded in renderCMSProductsList() -->
         </div>
       </div>
 
@@ -884,7 +884,7 @@ img{max-width:100%;display:block}
 
 <!-- ================= MODALS & OVERLAYS ================= -->
 
-<!-- 1. Shopping Cart Slide Drawer -->
+<!-- 1. Shopping Cart Slide Drawer (Task 4: Clear Disclaimers stating Digital Menu Helper) -->
 <div class="sheet" id="cart-sheet" role="dialog" aria-modal="true" aria-labelledby="cart-title">
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeSidebarCart()" aria-label="Close Shopping Cart"><i class="fa-solid fa-xmark"></i></button>
@@ -1157,22 +1157,17 @@ function initDOMCache() {
   dom.feedbackBoardCards = document.getElementById('feedback-board-cards');
 }
 
+// 3. SECURE REPLICATION-FREE / STANDARD HTTP PIPELINE
 async function initSupabasePipeline() {
   renderBistroMenu();
   renderVibeBoard();
   renderFeedbackBoard();
   loadStoredCart(); 
 
-  // Fetch initial data from Supabase
+  // Fetch initial data from Supabase via clean REST fetches
   fetchLiveOrders();
-
-  // Subscribe to real-time changes to stream directly into the dashboard
-  supabase
-    .channel('realtime-orders-channel')
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, (payload) => {
-      fetchLiveOrders();
-    })
-    .subscribe();
+  
+  // To keep costs completely at $0, we query the database on page transitions and click refreshes.
 }
 
 async function fetchLiveOrders() {
@@ -1182,7 +1177,6 @@ async function fetchLiveOrders() {
     const { data, error } = await supabase.from('orders').select('*').order('timestamp', { ascending: false });
     if (error) throw error;
     if (data) {
-      // Map postgres JSON formats cleanly
       activeOrders = data.map(order => ({
         ...order,
         items: typeof order.items === 'string' ? JSON.parse(order.items) : order.items,
@@ -1751,7 +1745,6 @@ async function updateOrderStatus(orderId, nextStatus) {
     logTelemetryEvent('order_status_updated', { id: orderId, status: nextStatus });
     fetchLiveOrders();
   } catch(err) {
-    // Fallback if postgres table column mappings vary
     const targetOrder = activeOrders.find(o => o.id === orderId);
     if (targetOrder) {
       targetOrder.status = nextStatus;
@@ -1775,7 +1768,6 @@ function renderCMSOrdersPipeline() {
     let rawItems = [];
     try { rawItems = typeof order.items === 'string' ? JSON.parse(order.items) : order.items; } catch(e) {}
     
-    // Check status colors
     let statusClass = "bg-yellow-500/20 text-yellow-400";
     if (order.status === 'Completed' || order.status === 'Order Done') statusClass = "bg-green-500/20 text-green-400";
     if (order.status === 'Cancelled') statusClass = "bg-red-500/20 text-red-400";
@@ -1802,7 +1794,6 @@ function renderCMSOrdersPipeline() {
             <span class="text-terracotta">$${parseFloat(order.totalPrice || 0).toFixed(2)}</span>
           </div>
           
-          <!-- State/Pipeline Transition Controllers (Task 3) -->
           <div class="grid grid-cols-3 gap-1 pt-1.5 border-t border-appBorder/40">
             <button onclick="updateOrderStatus('${order.id}', 'Pending')" class="bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-500 rounded py-1.5 font-mono text-[9px] uppercase tracking-wider transition-all">
               Pending
@@ -1876,7 +1867,6 @@ function renderCMSProductsList() {
         </div>
 
         <div class="border-t border-appBorder/50 pt-2 space-y-2">
-          <!-- Main status manipulation row -->
           <div class="grid grid-cols-2 gap-1.5 text-[9px] font-bold">
             <button onclick="toggleProductSoldOutStatus('${item.id}')" class="px-2 py-1.5 rounded border ${item.sold_out ? 'bg-red-600 text-white border-red-500' : 'bg-darkAccent text-terracotta border-terracotta/20'} transition-all">
               ${item.sold_out ? 'Mark In-Stock' : 'Mark Sold Out'}
@@ -1961,7 +1951,6 @@ if (productForm) {
     const img = document.getElementById('p-form-image').value || 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400';
 
     if (id) {
-      // Edit mode
       const item = masterProducts.find(p => p.id === id);
       if (item) {
         item.name = name;
@@ -1972,7 +1961,6 @@ if (productForm) {
         showToastNotification(`Details saved successfully for "${name}"`);
       }
     } else {
-      // Add mode
       const newId = 'p_' + Date.now();
       masterProducts.push({
         id: newId, name, price, category, desc, img, sold_out: false, hidden: false, badge: ''
