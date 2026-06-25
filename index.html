@@ -14,18 +14,17 @@
 <meta name="keywords" content="Pour Decisions, Specialty coffee Maryville TN, Muddy Pond Mocha, Viennese Waltz, artisan bakery, coffee shop near me, local lounge, Maryville TN bistro">
 <meta name="robots" content="index, follow">
 
-<!-- Dynamic SVG Logo Favicon -->
+<!-- Dynamic SVG Logo Favicon Matching Brand Logo -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M12 20h40a4 4 0 0 1 4 4v4a20 20 0 0 1-20 20H28A20 20 0 0 1 8 28v-4a4 4 0 0 1 4-4Z' fill='none' stroke='%23C67C4E' stroke-width='2.5'/%3E%3Cpath d='M18 20V12a6 6 0 0 1 12 0v8M34 20v-5a3 3 0 0 1 6 0v5' fill='none' stroke='%23C67C4E' stroke-width='2.5'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,800;1,300&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2 family=Fraunces:ital,wght@0,300;0,400;0,600;0,800;1,300&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<!-- Leaflet OpenStreetMap styling -->
+<!-- Leaflet OpenStreetMap Styling -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
-<!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config={theme:{extend:{colors:{espresso:'var(--espresso)',darkCard:'var(--darkCard)',terracotta:'var(--terracotta)',parchment:'var(--parchment)',accentLight:'var(--accentLight)',darkAccent:'var(--darkAccent)',neutralMuted:'var(--neutralMuted)',appBg:'var(--bg)',appCard:'var(--card)',appText:'var(--text)',appHeading:'var(--text-heading)',appBorder:'var(--border)',appGlass:'var(--glass-overlay)'},fontFamily:{serif:['Fraunces','serif'],display:['Playfair Display','serif'],sans:['Inter','sans-serif'],mono:['Space Mono','monospace']}}}}
@@ -51,7 +50,7 @@
 }
 
 :root.light-mode {
-  /* Elegant Cozy Light Mode colors for high-fidelity readability and contrast */
+  /* Elegant Cozy Light Mode colors */
   --espresso: #2C1A11;
   --darkCard: #FFFFFF;
   --terracotta: #C67C4E;
@@ -75,7 +74,7 @@ button{font-family:inherit;cursor:pointer;background:0 0;border:none}
 img{max-width:100%;display:block}
 :focus-visible{outline:2px solid var(--terracotta);outline-offset:2px}
 
-/* High Fidelity Visual Texturing */
+/* Visual Texturing */
 .grain{pointer-events:none;opacity:.025;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")}
 
 .app-card {
@@ -122,7 +121,7 @@ img{max-width:100%;display:block}
   scrollbar-width: none;
 }
 
-/* High fidelity blurred glassmorphism overlays */
+/* Glassmorphism slide panels */
 .sheet-backdrop {
   position: fixed;
   inset: 0;
@@ -217,7 +216,6 @@ img{max-width:100%;display:block}
   }
 }
 
-/* Announcement Overlay with Blurred Backdrop */
 .promo-modal {
   position: fixed;
   inset: 0;
@@ -236,7 +234,6 @@ img{max-width:100%;display:block}
   pointer-events: auto;
 }
 
-/* Polaroid Canvas */
 .polaroid {
   background: var(--card);
   padding: 12px 12px 28px;
@@ -255,7 +252,6 @@ img{max-width:100%;display:block}
   transform: scale(1.05);
 }
 
-/* Accordion Smooth Height */
 .accordion-content {
   max-height: 0;
   overflow: hidden;
@@ -265,7 +261,6 @@ img{max-width:100%;display:block}
   max-height: 1000px;
 }
 
-/* Embedded Leaflet Maps container styles */
 .map-responsive {
   overflow:hidden;
   position:relative;
@@ -274,7 +269,6 @@ img{max-width:100%;display:block}
   z-index: 10;
 }
 
-/* Heartbeat notification trigger aura for theme toggler */
 @keyframes heartglowing {
   0% { box-shadow: 0 0 0 0 rgba(198, 124, 78, 0.4); }
   70% { box-shadow: 0 0 0 10px rgba(198, 124, 78, 0); }
@@ -285,18 +279,17 @@ img{max-width:100%;display:block}
 }
 </style>
 </head>
-<body class="bg-appBg text-appText flex flex-col min-h-screen">
+<body class="bg-appBg text-appText flex flex-col min-h-screen animate-fadeIn">
 
-<!-- High-fidelity custom texture layout overlay -->
 <div class="grain fixed inset-0 z-50 pointer-events-none" aria-hidden="true"></div>
 
-<!-- Backdrops -->
+<!-- App Backdrops -->
 <div class="sheet-backdrop" id="sheet-backdrop"></div>
 
 <header class="bg-appCard text-appText sticky top-0 z-40 border-b border-appBorder shadow-lg transition-colors">
   <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
     <div class="flex items-center gap-3">
-      <!-- Premium Customized Vector Logo -->
+      <!-- Customized SVG Brand Logo -->
       <div class="w-11 h-11 flex items-center justify-center bg-appBg rounded-xl border border-terracotta/30 shadow-inner">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-7 h-7 fill-none stroke-terracotta" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 20h40a4 4 0 0 1 4 4v4a20 20 0 0 1-20 20H28A20 20 0 0 1 8 28v-4a4 4 0 0 1 4-4Z" />
@@ -319,9 +312,8 @@ img{max-width:100%;display:block}
       <button onclick="switchPage('heritage')" class="nav-tab-btn px-3 py-2 text-[11px] tracking-wider uppercase text-neutralMuted" id="tab-heritage">Our Heritage</button>
     </nav>
 
-    <!-- Header Actions (Theme toggle, Cart, and Admin trigger) -->
+    <!-- Header Actions -->
     <div class="flex items-center gap-2">
-      <!-- Theme Toggle Switcher with High-Contrast Prompt Indicator -->
       <button onclick="toggleTheme()" class="theme-glowing-aura p-2.5 bg-darkAccent hover:bg-terracotta/10 text-terracotta rounded-xl transition-all border border-terracotta/20 relative" id="theme-toggle-btn" aria-label="Toggle Light/Dark Theme">
         <i class="fa-solid fa-moon text-base" id="theme-toggle-icon"></i>
         <span class="absolute -top-1 -right-1 bg-terracotta w-2.5 h-2.5 rounded-full ring-2 ring-appCard"></span>
@@ -337,13 +329,12 @@ img{max-width:100%;display:block}
   </div>
 </header>
 
-<!-- Dynamic Main View Container -->
 <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-6">
 
-  <!-- ================= PAGE 1: HOME (ONLINE MENU & CHECKOUT) ================= -->
+  <!-- ================= PAGE 1: HOME (ONLINE MENU) ================= -->
   <section id="page-home" class="page-view space-y-10">
     
-    <!-- Premium Interactive Hero Section -->
+    <!-- Hero Banner -->
     <div class="relative rounded-3xl overflow-hidden bg-appCard text-appHeading py-12 px-6 sm:px-12 shadow-2xl flex flex-col md:flex-row items-center justify-between border border-appBorder transition-colors">
       <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1200');"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-appBg via-appBg/90 to-transparent"></div>
@@ -352,7 +343,7 @@ img{max-width:100%;display:block}
         <span class="bg-terracotta/10 text-terracotta font-mono text-xs uppercase px-3 py-1 rounded-full border border-terracotta/35">Est. Maryville, TN</span>
         <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">Every cup, a beautiful mistake.</h2>
         <p class="text-sm text-accentLight leading-relaxed">
-          Savor Maryville's premium ethically sourced specialty coffee and freshly baked bites. Aggregate your order here inside our interactive digital helper to showcase directly to our baristas at the counter.
+          Savor Maryville's finest specialty blends. Add custom items to your digital bag to showcase straight to our baristas at the counter during checkout.
         </p>
         <div class="flex flex-wrap gap-3 pt-2">
           <button onclick="scrollIntoSection('menu-categories')" class="bg-terracotta hover:bg-terracotta/90 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-all shadow-md">Browse Catalog</button>
@@ -362,7 +353,7 @@ img{max-width:100%;display:block}
         </div>
       </div>
       
-      <!-- Visual Highlight Card (The Viennese Waltz Showcase) -->
+      <!-- Viennese Waltz Highlight Card -->
       <div class="relative z-10 mt-8 md:mt-0 bg-appCard p-5 rounded-2xl border border-appBorder max-w-xs w-full shadow-xl transition-colors">
         <div class="relative rounded-xl overflow-hidden h-40 bg-gray-900 mb-4">
           <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600" alt="Viennese Waltz Premium Drink" class="object-cover w-full h-full" loading="lazy" onerror="window.handleImageError(this)">
@@ -379,7 +370,7 @@ img{max-width:100%;display:block}
       </div>
     </div>
 
-    <!-- Menu Section (Categories, Search & Items Display) -->
+    <!-- Menu Section -->
     <div id="menu-categories" class="space-y-6 pt-4">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-appBorder pb-4">
         <div>
@@ -387,7 +378,6 @@ img{max-width:100%;display:block}
           <p class="text-xs text-neutralMuted mt-0.5">Filter items by category or search below</p>
         </div>
         
-        <!-- Live Search Field with Debounced Listener -->
         <div class="relative w-full md:w-80">
           <input type="text" id="menu-search" placeholder="Search coffee, bagels, quiche..." class="w-full bg-appCard border border-terracotta/30 rounded-xl px-4 py-2.5 pl-10 text-xs text-appHeading focus:outline-none focus:border-terracotta transition-all">
           <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-neutralMuted text-xs"></i>
@@ -405,11 +395,10 @@ img{max-width:100%;display:block}
         <button id="pill-lunch" onclick="filterCategory('lunch')" class="category-pill bg-darkCard text-parchment border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all">Sandwiches & Salads</button>
       </div>
 
-      <!-- Horizontal specialties layout -->
       <div class="space-y-3">
         <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide" id="carousel-title">Featured Specialties</h3>
         <div id="premium-carousel" class="flex gap-4 overflow-x-auto pb-4 scrollbar-none snap-x snap-mandatory">
-          <!-- Horizontal large carousel cards rendered via JavaScript -->
+          <!-- Horizontal carousel cards loaded by JS -->
         </div>
       </div>
 
@@ -419,26 +408,25 @@ img{max-width:100%;display:block}
           <span class="text-xs text-neutralMuted uppercase tracking-wider font-mono">Tap to Expand Group</span>
         </div>
         
-        <!-- Accordion Collapsible Wrapper to keep page extremely clean and avoid long scroll page -->
         <div id="bistro-catalog-accordions" class="space-y-4">
-          <!-- Dynamically populated via JS categories -->
+          <!-- Populated dynamically via JS -->
         </div>
       </div>
     </div>
 
-    <!-- Interactive Customization Zone ("Brew Lab Builder") -->
-    <div class="bg-appCard rounded-3xl p-6 md:p-8 border border-terracotta/30 space-y-6 transition-colors">
+    <!-- Interactive Customization Zone -->
+    <div class="bg-appCard rounded-3xl p-6 md:p-8 border border-terracotta/30 space-y-6 transition-colors animate-fadeIn">
       <div class="text-center max-w-xl mx-auto space-y-2">
         <span class="font-mono text-xs uppercase tracking-widest text-terracotta">The Brew Lab Customizer</span>
         <h3 class="font-serif text-2xl font-bold text-appHeading">Customize Your Perfect Brew</h3>
-        <p class="text-xs text-neutralMuted">Configure size proportions, milk alternatives, and signature flavor toppings.</p>
+        <p class="text-xs text-neutralMuted">Configure base proportions, milk profiles, and delicious sorghum syrups.</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8 items-center bg-appBg p-6 rounded-2xl border border-appBorder transition-colors">
         <!-- Custom Controls -->
-        <div class="space-y-4 text-xs">
+        <div class="space-y-4 text-xs text-appText">
           <div>
-            <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Select Base Drink</label>
+            <label class="block font-bold uppercase tracking-wider mb-1.5">Select Base Drink</label>
             <select id="builder-base" class="w-full border border-terracotta/30 bg-appCard rounded-xl p-2.5 text-appHeading focus:outline-none transition-colors" onchange="calculateCustomPrice()">
               <option value="Cold Brew" data-price="5.50">Cold Brew Coffee ($5.50)</option>
               <option value="Latte" data-price="5.00">Premium Caffe Latte ($5.00)</option>
@@ -448,7 +436,7 @@ img{max-width:100%;display:block}
           </div>
 
           <div>
-            <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Size Portion (ml)</label>
+            <label class="block font-bold uppercase tracking-wider mb-1.5">Size Portion (ml)</label>
             <div class="grid grid-cols-3 gap-2">
               <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center transition-all">
                 <input type="radio" name="brew-size" value="250" checked class="sr-only" onchange="calculateCustomPrice()">
@@ -469,10 +457,10 @@ img{max-width:100%;display:block}
           </div>
 
           <div>
-            <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Milk Alternative</label>
+            <label class="block font-bold uppercase tracking-wider mb-1.5">Milk Alternative</label>
             <div class="grid grid-cols-3 gap-2">
               <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard transition-all">
-                <input type="radio" name="milk" value="Regular" checked class="accent-terracotta" onchange="calculateCustomPrice()">
+                <input type="radio" name="milk" value="Whole" checked class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Whole</span>
               </label>
               <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard transition-all">
@@ -487,7 +475,7 @@ img{max-width:100%;display:block}
           </div>
 
           <div>
-            <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Syrup Flavor Add-ons</label>
+            <label class="block font-bold uppercase tracking-wider mb-1.5">Syrup Flavor Add-ons</label>
             <div class="grid grid-cols-2 gap-2">
               <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
                 <input type="checkbox" id="syrup-vanilla" class="accent-terracotta" onchange="calculateCustomPrice()">
@@ -499,7 +487,7 @@ img{max-width:100%;display:block}
               </label>
               <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
                 <input type="checkbox" id="extra-shot" class="accent-terracotta" onchange="calculateCustomPrice()">
-                <span>Extra Espresso (+$1)</span>
+                <span>Extra Shot (+$1)</span>
               </label>
               <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
                 <input type="checkbox" id="heavy-cream" class="accent-terracotta" onchange="calculateCustomPrice()">
@@ -509,7 +497,7 @@ img{max-width:100%;display:block}
           </div>
         </div>
 
-        <!-- Custom Output Card -->
+        <!-- Custom Output Display Card -->
         <div class="bg-appCard text-appHeading p-6 rounded-2xl h-full flex flex-col justify-between border border-terracotta/30 transition-colors">
           <div>
             <span class="text-terracotta font-mono text-[9px] uppercase tracking-widest block mb-1">Interactive Custom Build</span>
@@ -531,46 +519,43 @@ img{max-width:100%;display:block}
         </div>
       </div>
     </div>
-
   </section>
 
-  <!-- ================= PAGE 2: VIBE BOARD (COMMUNITY CANVAS) ================= -->
+  <!-- ================= PAGE 2: VIBE BOARD (COMMUNITY BOARD) ================= -->
   <section id="page-wall" class="page-view hidden space-y-8 animate-fadeIn">
     <div class="text-center max-w-xl mx-auto space-y-2">
       <span class="font-mono text-xs uppercase tracking-widest text-terracotta">The Community Corkboard</span>
       <h2 class="font-serif text-3xl font-bold text-appHeading">Pour Decisions Vibe Board</h2>
-      <p class="text-sm text-neutralMuted">Share your morning setup! Client uploads stay featured on our board for exactly 7 days before archiving.</p>
+      <p class="text-sm text-neutralMuted">Share your morning setup! Guest uploads are featured directly from our cloud archives.</p>
     </div>
 
-    <!-- Centered Responsive Grid of Polaroid Frames: 2 images per row on mobile -->
-    <div id="polaroid-canvas-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
-      <!-- Generated Dynamically via JS -->
+    <!-- Centered Responsive Polaroid Grid -->
+    <div id="polaroid-canvas-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+      <!-- Generated Dynamically via JS (Supabase Connected) -->
     </div>
 
-    <!-- Centered Call to Action Trigger -->
     <div class="text-center pt-4">
-      <button onclick="openUploadSheet()" class="btn-stamp bg-appCard hover:bg-appCard/90 text-appHeading font-serif px-6 py-3 rounded-xl shadow-lg transition-all border border-terracotta/30">
+      <button onclick="openUploadSheet()" class="bg-appCard hover:bg-appCard/90 text-appHeading font-serif px-6 py-3 rounded-xl shadow-lg transition-all border border-terracotta/30">
         <i class="fa-solid fa-camera mr-2"></i> Pin Your Vibe on the Board
       </button>
     </div>
   </section>
 
-  <!-- ================= PAGE 3: LOUNGE BOOKING (SEATING ZONE) ================= -->
+  <!-- ================= PAGE 3: LOUNGE BOOKING (RESERVATION) ================= -->
   <section id="page-booking" class="page-view hidden space-y-8 animate-fadeIn">
     <div class="text-center max-w-xl mx-auto space-y-2">
       <span class="font-mono text-xs uppercase tracking-widest text-terracotta">College Street Lounge Space</span>
       <h2 class="font-serif text-3xl font-bold text-appHeading">Reserve a Lounge Table</h2>
-      <p class="text-sm text-neutralMuted">Book study rooms, window niches, or rustic community harvest tables ahead of time.</p>
+      <p class="text-sm text-neutralMuted">Book warm hearth niches or quiet community study corners.</p>
       
-      <!-- Lounge Booking Disclaimer Block (Same day only reservation guard) -->
+      <!-- Seating Same-Day Disclaimer -->
       <div class="inline-block bg-yellow-500/10 border border-yellow-500/30 text-yellow-500 rounded-xl px-4 py-2 mt-2 text-xs font-medium max-w-md">
         <i class="fa-solid fa-clock-rotate-left mr-1.5"></i> All table and room bookings are active for the **current day only** to guarantee fair neighborhood community access.
       </div>
     </div>
 
     <div class="max-w-2xl mx-auto bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 transition-colors">
-      
-      <!-- Table Selector Area -->
+      <!-- Table Selector Bar -->
       <div>
         <label class="block text-xs font-bold text-appText uppercase tracking-widest text-center mb-3">Choose Seating Area</label>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -592,7 +577,7 @@ img{max-width:100%;display:block}
         </p>
       </div>
 
-      <!-- Booking Form Inputs -->
+      <!-- Booking Form -->
       <form id="reserve-bistro-form" class="space-y-4">
         <div class="flex flex-col gap-1.5">
           <label for="reserve-name" class="text-xs font-semibold text-neutralMuted uppercase">Full Reservation Name</label>
@@ -622,30 +607,30 @@ img{max-width:100%;display:block}
     <div class="text-center max-w-xl mx-auto space-y-2">
       <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Tell Us Your Thoughts</span>
       <h2 class="font-serif text-3xl font-bold text-appHeading">Community Feedback</h2>
-      <p class="text-sm text-neutralMuted">We strive for culinary excellence. Submit suggestions, constructive advice, or happy coffee notes below.</p>
+      <p class="text-sm text-neutralMuted">We strive for culinary excellence. Submit suggestions or happy coffee notes below.</p>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
-      <!-- Feedback input panel -->
+    <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start animate-fadeIn">
+      <!-- Input Panel -->
       <div class="bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 transition-colors">
         <div class="p-4 bg-terracotta/10 border-l-4 border-terracotta rounded-xl text-xs leading-relaxed text-accentLight font-serif">
           <p class="font-bold text-appHeading mb-1">📢 Important Community Note</p>
-          To maintain a warm, welcoming, and friendly neighborhood cafe connection in Maryville, some submitted suggestions and comments will be selected and published directly below on this board! Thank you for sharing your journey.
+          To maintain a friendly atmosphere, reviews will be audited by our staff before appearing on the public Corkboard. Thank you for your support!
         </div>
 
         <form id="suggestions-submit-form" class="space-y-4">
-          <div class="flex flex-col gap-1.5 text-xs">
+          <div class="flex flex-col gap-1.5 text-xs text-appText">
             <label for="feedback-user" class="font-semibold text-neutralMuted uppercase tracking-wider">Your Handle / Name</label>
             <input type="text" id="feedback-user" required placeholder="e.g. @maryville_regular" class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
           </div>
 
-          <div class="flex flex-col gap-1.5 text-xs">
+          <div class="flex flex-col gap-1.5 text-xs text-appText">
             <label for="feedback-topic" class="font-semibold text-neutralMuted uppercase tracking-wider">Favorite Specialty Product</label>
             <input type="text" id="feedback-topic" required placeholder="e.g. Muddy Pond Mocha" class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
           </div>
 
-          <div class="flex flex-col gap-1.5 text-xs">
-            <label for="feedback-comment" class="font-semibold text-neutralMuted uppercase tracking-wider">Constructive Suggestion or Review</label>
+          <div class="flex flex-col gap-1.5 text-xs text-appText">
+            <label for="feedback-comment" class="font-semibold text-neutralMuted uppercase tracking-wider">Review or Suggestion</label>
             <textarea id="feedback-comment" rows="4" required placeholder="Let us know how to make your next visit extraordinary..." class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors"></textarea>
           </div>
 
@@ -655,7 +640,7 @@ img{max-width:100%;display:block}
         </form>
       </div>
 
-      <!-- Published Feedbacks list board -->
+      <!-- Published Board Notes -->
       <div class="space-y-5">
         <div class="flex justify-between items-baseline border-b border-appBorder pb-2">
           <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide">Featured Guest Notes</h3>
@@ -663,13 +648,13 @@ img{max-width:100%;display:block}
         </div>
 
         <div id="feedback-board-cards" class="grid gap-4">
-          <!-- Dynamically populated via JS -->
+          <!-- Dynamically populated approved Feedbacks -->
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= PAGE 5: OUR HERITAGE (ABOUT US) ================= -->
+  <!-- ================= PAGE 5: HERITAGE & MAP ================= -->
   <section id="page-heritage" class="page-view hidden space-y-12 animate-fadeIn">
     <div class="text-center max-w-xl mx-auto space-y-2">
       <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Est. 1999 — Tennessee</span>
@@ -684,10 +669,10 @@ img{max-width:100%;display:block}
       <div class="space-y-4 text-xs sm:text-sm leading-relaxed text-accentLight font-serif">
         <h3 class="font-serif text-xl font-bold text-terracotta">Roasting for Community</h3>
         <p>
-          Founded on the cornerstone of absolute ethical sourcing, **Pour Decisions** works hand-in-hand with individual shade-grown farms globally to secure unmatched grade quality.
+          Founded on ethical sourcing, **Pour Decisions** works with individual shade-grown farms globally to secure unmatched grade quality.
         </p>
         <p>
-          Our Maryville hub serves as a cultural anchor, where college students, downtown workers, and neighborhood families convene to discuss the day over handcrafted pour overs and fresh artisan bakery options.
+          Our Maryville hub serves as a cultural anchor where college students, downtown workers, and neighborhood families meet over hand-dripped cups.
         </p>
         
         <!-- Local Metrics -->
@@ -708,139 +693,158 @@ img{max-width:100%;display:block}
       </div>
     </div>
 
-    <!-- Interactive Map Location Container (Leaflet.js + OpenStreetMap - Sandbox Resilient) -->
+    <!-- Maps Location -->
     <div class="max-w-4xl mx-auto space-y-4 pt-6 border-t border-appBorder">
       <div class="text-center">
         <h3 class="font-serif text-xl font-bold text-appHeading">Find Our Cozy Sanctuary</h3>
         <p class="text-xs text-neutralMuted">212 College Street, Maryville, TN 37804 | Phone: (865) 980-8282</p>
       </div>
       
-      <!-- Leaflet map container div -->
+      <!-- Leaflet Container -->
       <div id="heritage-map" class="map-responsive h-64 sm:h-80 w-full shadow-lg"></div>
     </div>
   </section>
 
-  <!-- ================= PAGE 6: EXCLUSIVE ADMIN HUB (FULL-PAGE DASHBOARD VIEW) ================= -->
+  <!-- ================= PAGE 6: ADMIN HUB ================= -->
   <section id="page-admin" class="page-view hidden space-y-8 animate-fadeIn">
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-appBorder pb-4">
       <div>
         <h2 class="font-serif text-2xl font-bold text-appHeading">Admin Control & Operations</h2>
-        <p class="text-xs text-neutralMuted mt-0.5">Manage pending approvals, view real-time orders, and modify menu items</p>
+        <p class="text-xs text-neutralMuted mt-0.5">Manage database records, approvals, and order pipelines.</p>
       </div>
       <button onclick="switchPage('home')" class="bg-terracotta hover:bg-terracotta/90 text-white font-semibold px-4 py-2.5 rounded-xl text-xs transition-all flex items-center gap-2 shadow-md">
         <i class="fa-solid fa-store"></i> Back to Storefront
       </button>
     </div>
 
-    <!-- Passcode Verification View -->
+    <!-- Passcode Check -->
     <div id="cms-verify-section" class="bg-appCard border border-appBorder rounded-3xl p-8 max-w-md mx-auto text-center space-y-6">
       <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-darkAccent border border-terracotta/30 text-2xl text-terracotta">
         <i class="fa-solid fa-lock"></i>
       </div>
       <div>
         <h3 class="font-serif text-lg font-bold text-appHeading">Administrative Access Required</h3>
-        <p class="text-xs text-neutralMuted mt-1">Please enter your system passcode to unlock the dashboard.</p>
+        <p class="text-xs text-neutralMuted mt-1">Please enter your passcode to unlock dashboard operations.</p>
         <p class="text-[10px] text-terracotta font-mono mt-1">(Passcode: barako)</p>
       </div>
       <div class="space-y-3">
         <input type="password" id="cms-passcode-input" placeholder="Password..." class="w-full text-center bg-appBg border border-terracotta/30 rounded-xl p-3 text-sm text-appHeading focus:outline-none focus:border-terracotta">
-        <button onclick="verifyAdministrativePasscode()" class="w-full bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-3 rounded-xl transition-all">
+        <button onclick="verifyAdministrativePasscode()" class="w-full bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-3 rounded-xl transition-all shadow-md">
           Authorize Session
         </button>
       </div>
     </div>
 
-    <!-- Authenticated Full-Page Admin Dashboard view -->
+    <!-- Authenticated CMS Panel -->
     <div id="cms-authenticated-view" class="hidden space-y-8">
       
-      <!-- Premium Metrics Overview -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Metrics -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-appText">
         <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
-          <span class="text-[10px] text-neutralMuted font-mono uppercase tracking-wider">Live Revenue (Simulated)</span>
+          <span class="text-[10px] text-neutralMuted font-mono uppercase tracking-wider">Live Revenue (Supabase)</span>
           <span id="metrics-revenue" class="text-2xl font-serif font-bold text-terracotta mt-2">$0.00</span>
         </div>
         <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
-          <span class="text-[10px] text-neutralMuted font-mono uppercase tracking-wider">Active Orders Count</span>
+          <span class="text-[10px] text-neutralMuted font-mono uppercase tracking-wider">Active Pending Orders</span>
           <span id="metrics-orders-active" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
         </div>
         <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
-          <span class="text-[10px] text-neutralMuted font-mono uppercase tracking-wider">Pending Feedback Moderation</span>
+          <span class="text-[10px] text-neutralMuted font-mono uppercase tracking-wider">Pending Feedback Notes</span>
           <span id="metrics-feedback-pending" class="text-2xl font-serif font-bold text-yellow-500 mt-2">0</span>
         </div>
         <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
-          <span class="text-[10px] text-neutralMuted font-mono uppercase tracking-wider">Total Corkboard Photos</span>
+          <span class="text-[10px] text-neutralMuted font-mono uppercase tracking-wider">Vibe Board Photos</span>
           <span id="metrics-vibes-count" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
         </div>
       </div>
 
-      <!-- Live Dashboard Tabs -->
-      <div class="flex border-b border-appBorder text-xs font-bold gap-4">
-        <button class="pb-2.5 text-terracotta border-b-2 border-terracotta transition-colors" id="tab-cms-orders" onclick="switchCMSTab('orders')">
-          🛍️ Live Orders Pipeline
+      <!-- Navigation tabs -->
+      <div class="flex border-b border-appBorder text-xs font-bold gap-4 overflow-x-auto scrollbar-none">
+        <button class="pb-2.5 text-terracotta border-b-2 border-terracotta whitespace-nowrap transition-colors" id="tab-cms-orders" onclick="switchCMSTab('orders')">
+          🛍️ Simulated Orders Pipeline
         </button>
-        <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent transition-colors" id="tab-cms-feedback" onclick="switchCMSTab('feedback')">
+        <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-feedback" onclick="switchCMSTab('feedback')">
           🛡️ Review Moderation
         </button>
-        <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent transition-colors" id="tab-cms-photos" onclick="switchCMSTab('photos')">
+        <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-photos" onclick="switchCMSTab('photos')">
           📸 Vibe Archives
         </button>
-        <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent transition-colors" id="tab-cms-products" onclick="switchCMSTab('products')">
+        <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-products" onclick="switchCMSTab('products')">
           ☕ Catalog Editor
         </button>
-        <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent transition-colors" id="tab-cms-analytics" onclick="switchCMSTab('analytics')">
-          📊 Business Telemetry
+        <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-analytics" onclick="switchCMSTab('analytics')">
+          📊 Telemetry & Logs
         </button>
       </div>
 
-      <!-- CMS Sub-Panel 1: Live Orders Pipeline -->
-      <div id="cms-orders-subview" class="space-y-4">
-        <div class="flex justify-between items-center">
-          <h4 class="font-serif text-lg font-bold text-appHeading">Simulated Real-Time Orders</h4>
-          <!-- High-Fidelity Manual Refresh Trigger Button (Stateless pulling connection) -->
-          <button onclick="fetchLiveOrders()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2 shadow" aria-label="Refresh orders list">
+      <!-- CMS Sub-Panel 1: Orders & Lounge Bookings -->
+      <div id="cms-orders-subview" class="space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+          <div>
+            <h4 class="font-serif text-lg font-bold text-appHeading">Live Simulated Pre-Orders</h4>
+            <p class="text-xs text-neutralMuted">Audit checkout simulations submitted from client storefronts.</p>
+          </div>
+          <button onclick="fetchLiveOrders()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2 self-start">
             <i class="fa-solid fa-rotate-right" id="refresh-icon"></i> Refresh Pipeline
           </button>
         </div>
-        <div id="admin-orders-container" class="grid gap-4 md:grid-cols-2">
-          <!-- Dynamically populated via standard cloud HTTP reads -->
+
+        <div id="admin-orders-container" class="grid gap-4 md:grid-cols-2 text-appText">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- Today's Lounge Bookings Segment -->
+        <div class="border-t border-appBorder pt-6 space-y-4">
+          <div>
+            <h4 class="font-serif text-lg font-bold text-appHeading">Lounge Seating Reservations</h4>
+            <p class="text-xs text-neutralMuted">View today's table reservation entries stored in Supabase.</p>
+          </div>
+          <div id="admin-reservations-container" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-appText">
+            <!-- Dynamically populated bookings list -->
+          </div>
         </div>
       </div>
 
-      <!-- CMS Sub-Panel 2: Review/Feedback Moderation -->
+      <!-- CMS Sub-Panel 2: Review Moderation -->
       <div id="cms-feedback-subview" class="space-y-4 hidden">
-        <h4 class="font-serif text-lg font-bold text-appHeading">Pending Customer Notes Approvals</h4>
-        <div id="admin-feedback-moderation-list" class="grid gap-4">
-          <!-- Dynamic moderation rows -->
+        <h4 class="font-serif text-lg font-bold text-appHeading">Pending Customer Note Approvals</h4>
+        <p class="text-xs text-neutralMuted">Click Approve to publish unapproved reviews directly to the public feedback corkboard.</p>
+        <div id="admin-feedback-moderation-list" class="grid gap-4 text-appText">
+          <!-- Moderation cards -->
         </div>
       </div>
 
       <!-- CMS Sub-Panel 3: Vibe Archives -->
       <div id="cms-photos-subview" class="space-y-4 hidden">
-        <h4 class="font-serif text-lg font-bold text-appHeading">Client Polaroid Archive Moderation</h4>
-        <div id="admin-photos-moderation-grid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-          <!-- Dynamic vibe rows -->
+        <h4 class="font-serif text-lg font-bold text-appHeading">Corkboard Polaroid Archive Moderation</h4>
+        <p class="text-xs text-neutralMuted font-sans">Moderate and prune uploaded setup photographs directly on the live wall.</p>
+        <div id="admin-photos-moderation-grid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-appText font-sans">
+          <!-- Grid loaded via JS -->
         </div>
       </div>
 
-      <!-- CMS Sub-Panel 4: Menu Catalog Editor (Product CRUD Option Triggers) -->
+      <!-- CMS Sub-Panel 4: Menu Catalog Editor -->
       <div id="cms-products-subview" class="space-y-4 hidden">
         <div class="flex justify-between items-center">
-          <h4 class="font-serif text-lg font-bold text-appHeading">Manage Store Products</h4>
-          <button onclick="openProductEditForm()" class="bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow">
-            <i class="fa-solid fa-circle-plus"></i> Add New Product Option
+          <div>
+            <h4 class="font-serif text-lg font-bold text-appHeading">Manage Catalog Items</h4>
+            <p class="text-xs text-neutralMuted">Adjust pricing, hide options, or trigger sold out filters.</p>
+          </div>
+          <button onclick="openProductEditForm()" class="bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow-md">
+            <i class="fa-solid fa-circle-plus"></i> Add New Product
           </button>
         </div>
-        <div id="cms-products-listing-wrapper" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          <!-- Dynamic products lists loaded in renderCMSProductsList() -->
+        <div id="cms-products-listing-wrapper" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-appText">
+          <!-- Dynamic product listings -->
         </div>
       </div>
 
-      <!-- CMS Sub-Panel 5: Real-Time Event Telemetry Feed -->
+      <!-- CMS Sub-Panel 5: Telemetry Logs -->
       <div id="cms-analytics-subview" class="space-y-4 hidden">
-        <h4 class="font-serif text-lg font-bold text-appHeading">Business Event Telemetry Logs</h4>
-        <p class="text-xs text-neutralMuted">A non-technical log of visitor engagements in our Maryville boutique app.</p>
-        <div class="bg-appBg border border-appBorder rounded-2xl p-4 font-sans text-xs space-y-2.5 max-h-96 overflow-y-auto" id="telemetry-logs-wrapper">
-          <!-- Cozy business event logs -->
+        <h4 class="font-serif text-lg font-bold text-appHeading">Live System Telemetry Logs</h4>
+        <p class="text-xs text-neutralMuted">A non-technical audit ledger documenting interactions on your storefront portal.</p>
+        <div class="bg-appBg border border-appBorder rounded-2xl p-4 font-sans text-xs space-y-2.5 max-h-96 overflow-y-auto text-appText transition-colors" id="telemetry-logs-wrapper">
+          <!-- Logs populated dynamically -->
         </div>
       </div>
 
@@ -849,8 +853,8 @@ img{max-width:100%;display:block}
 
 </main>
 
-<!-- Sticky Mobile Navigation Tab Bar -->
-<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-appCard text-appText border-t border-appBorder py-2.5 px-4 flex justify-around items-center z-40 shadow-2xl animate-slideUp transition-colors" aria-label="Mobile Navigation">
+<!-- Sticky Mobile Nav Bar -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-appCard text-appText border-t border-appBorder py-2.5 px-4 flex justify-around items-center z-40 shadow-2xl transition-colors" aria-label="Mobile Navigation">
   <button onclick="switchPage('home')" class="flex flex-col items-center gap-1 active text-terracotta" id="mobile-tab-home">
     <i class="fa-solid fa-mug-hot text-lg"></i>
     <span class="text-[9px] uppercase tracking-wider font-semibold">Bistro Menu</span>
@@ -873,7 +877,7 @@ img{max-width:100%;display:block}
   </button>
 </nav>
 
-<!-- Persistent Mobile Bottom Cart Toggle -->
+<!-- Persistent Mobile Bag Toggle -->
 <div class="md:hidden fixed bottom-14 left-0 right-0 px-4 py-2 z-30 pointer-events-none">
   <button onclick="openSidebarCart()" class="w-full bg-terracotta text-white font-serif py-3 px-4 rounded-2xl flex justify-between items-center shadow-2xl pointer-events-auto hover:bg-terracotta/90 transition-all">
     <span class="text-xs font-bold tracking-wider"><i class="fa-solid fa-basket-shopping mr-2"></i> View Order Bag</span>
@@ -884,29 +888,29 @@ img{max-width:100%;display:block}
   </button>
 </div>
 
-<!-- ================= MODALS & OVERLAYS ================= -->
+<!-- ================= MODALS & SLIDE DRAWER OVERLAYS ================= -->
 
-<!-- 1. Shopping Cart Slide Drawer (Task 4: Clear Disclaimers stating Digital Menu Helper) -->
-<div class="sheet" id="cart-sheet" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+<!-- 1. Shopping Bag Drawer -->
+<div class="sheet text-appText" id="cart-sheet" role="dialog" aria-modal="true" aria-labelledby="cart-title">
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeSidebarCart()" aria-label="Close Shopping Cart"><i class="fa-solid fa-xmark"></i></button>
   <div class="sheet-content">
     <h3 class="font-serif text-2xl font-bold text-appHeading mb-1" id="cart-title">Your Order Bag</h3>
     <p class="text-xs text-neutralMuted mb-2">Digital menu preview helper</p>
     
-    <!-- Heavy-contrast Disclaimer block clarifying this is ONLY a digital menu preview helper (No Delivery) -->
+    <!-- High-Contrast Helper Disclaimer (No Delivery) -->
     <div class="p-3 bg-terracotta/10 border-l-4 border-terracotta rounded-xl text-[11px] leading-relaxed text-accentLight mb-4 font-sans font-medium">
       <i class="fa-solid fa-circle-info text-terracotta mr-1"></i> 
       <strong>In-House Assistant Only:</strong> This bag serves as a digital table order aggregator for showing the baristas at the counter. **We do not support external online home delivery orders.**
     </div>
     
     <div id="cart-items-wrapper" class="space-y-4 mb-6 max-h-[40vh] overflow-y-auto">
-      <!-- Dynamic list loaded via JS -->
+      <!-- Loaded dynamically -->
     </div>
 
     <div class="border-t border-appBorder pt-4 space-y-4">
       <div class="flex justify-between items-baseline font-mono font-bold text-base">
-        <span class="text-appText">Subtotal Est.</span>
+        <span>Subtotal Est.</span>
         <span class="text-terracotta text-xl" id="cart-drawer-total">$0.00</span>
       </div>
       <button onclick="triggerCheckoutCheckout()" class="w-full bg-terracotta text-white font-serif py-3.5 rounded-xl font-bold tracking-wider hover:bg-terracotta/90 transition-all shadow-md" id="cart-action-btn" disabled>
@@ -916,10 +920,10 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<!-- 2. Dynamic Seating Entry Pass Passport -->
-<div class="sheet" id="ticket-sheet" role="dialog" aria-modal="true">
+<!-- 2. Lounge Boarding Pass -->
+<div class="sheet text-appText" id="ticket-sheet" role="dialog" aria-modal="true">
   <div class="sheet-handle"></div>
-  <button class="sheet-close" onclick="closeReservationTicket()" aria-label="Close entry ticket"><i class="fa-solid fa-xmark"></i></button>
+  <button class="sheet-close" onclick="closeReservationTicket()" aria-label="Close Entry Ticket"><i class="fa-solid fa-xmark"></i></button>
   <div class="sheet-content text-center">
     <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-terracotta/20 text-terracotta text-3xl mb-4">
       <i class="fa-solid fa-circle-check"></i>
@@ -933,7 +937,7 @@ img{max-width:100%;display:block}
       
       <div class="flex justify-between border-b border-appBorder pb-2">
         <span class="font-bold text-terracotta">POUR DECISIONS LOUNGE PASS</span>
-        <span class="text-neutralMuted">#PD-2026</span>
+        <span class="text-neutralMuted text-[9px]">#PD-2026</span>
       </div>
       <div class="grid grid-cols-2 gap-y-3 pt-2 text-appText">
         <div>
@@ -964,13 +968,13 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<!-- 3. Community Upload Form Drawer -->
-<div class="sheet" id="upload-sheet" role="dialog" aria-modal="true" aria-labelledby="upload-title">
+<!-- 3. Community Polaroid Pin-Up Drawer -->
+<div class="sheet text-appText" id="upload-sheet" role="dialog" aria-modal="true" aria-labelledby="upload-title">
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeUploadSheet()" aria-label="Close upload menu"><i class="fa-solid fa-xmark"></i></button>
   <div class="sheet-content">
     <h3 class="font-serif text-2xl font-bold text-appHeading mb-1" id="upload-title">Share Your Vibe</h3>
-    <p class="text-xs text-neutralMuted mb-4">Post a custom coffee setup view onto our real-time board.</p>
+    <p class="text-xs text-neutralMuted mb-4">Post a setup snapshot onto our live real-time boards.</p>
     
     <form id="vibe-upload-form" class="space-y-4">
       <div class="relative overflow-hidden w-full h-44 rounded-2xl bg-appBg border-2 border-dashed border-terracotta/30 flex flex-col items-center justify-center cursor-pointer hover:border-terracotta transition-all" id="dropzone">
@@ -978,31 +982,31 @@ img{max-width:100%;display:block}
         <div class="flex flex-col items-center justify-center p-4 text-center" id="dropzone-placeholder">
           <i class="fa-solid fa-cloud-arrow-up text-3xl mb-2 text-terracotta"></i>
           <p class="font-serif font-bold text-appText text-sm">Tap to upload your photo</p>
-          <p class="text-[10px] mt-1 text-neutralMuted">Supports JPEG/PNG</p>
+          <p class="text-[10px] mt-1 text-neutralMuted font-mono">Supports Jpeg / Png</p>
         </div>
         <input type="file" id="file-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
       </div>
 
-      <!-- Preset Vibe Image Options -->
+      <!-- Preset vibe choices -->
       <div>
         <label class="block text-[10px] font-mono font-bold uppercase tracking-wider text-terracotta mb-1.5">No snapshot handy? Pick a curated preset vibe:</label>
         <div class="grid grid-cols-3 gap-2">
-          <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate" onclick="applyPresetVibe('https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400')">☕ Drip Brew</button>
-          <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate" onclick="applyPresetVibe('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400')">🍵 Foam Art</button>
-          <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate" onclick="applyPresetVibe('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400')">🥐 Fresh Croissant</button>
+          <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate hover:border-terracotta" onclick="applyPresetVibe('https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400')">☕ Drip Brew</button>
+          <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate hover:border-terracotta" onclick="applyPresetVibe('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400')">🍵 Foam Art</button>
+          <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate hover:border-terracotta" onclick="applyPresetVibe('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400')">🥐 Fresh Pastry</button>
         </div>
       </div>
 
-      <div class="flex flex-col gap-1.5">
-        <label for="wall-handle" class="text-xs font-semibold text-neutralMuted uppercase">Your Instagram Tag</label>
+      <div class="flex flex-col gap-1.5 text-xs text-appText">
+        <label for="wall-handle" class="font-semibold uppercase text-neutralMuted">Your Handle Name</label>
         <div class="flex items-center border border-terracotta/30 rounded-xl bg-appBg overflow-hidden focus-within:border-terracotta">
           <span class="text-neutralMuted px-3 font-mono">@</span>
-          <input type="text" id="wall-handle" placeholder="pourdecisions_morning" class="border-none bg-transparent focus:ring-0 p-3 text-xs text-appHeading flex-1 outline-none">
+          <input type="text" id="wall-handle" placeholder="pourdecisions_regular" class="border-none bg-transparent focus:ring-0 p-3 text-xs text-appHeading flex-1 outline-none">
         </div>
       </div>
 
-      <div class="flex flex-col gap-1.5">
-        <label for="wall-drink" class="text-xs font-semibold text-neutralMuted uppercase">Your Favorite Ordered Item</label>
+      <div class="flex flex-col gap-1.5 text-xs text-appText">
+        <label for="wall-drink" class="font-semibold uppercase text-neutralMuted">What did you order today?</label>
         <input type="text" id="wall-drink" placeholder="e.g. Viennese Waltz" required class="border border-terracotta/30 bg-appBg text-appHeading rounded-xl p-3 text-sm focus:outline-none">
       </div>
 
@@ -1013,8 +1017,34 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<!-- 5. CMS Product Modification Sub-Modal -->
-<div class="sheet" id="product-modal-sheet" role="dialog" aria-modal="true">
+<!-- 4. Promo Highlight Overlay Modal -->
+<div class="promo-modal" id="promo-modal" role="dialog" aria-modal="true">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
+  <div class="bg-appCard border border-terracotta/35 p-6 rounded-3xl max-w-sm w-full mx-auto relative z-10 text-center space-y-4 animate-scaleUp text-appText transition-colors">
+    <div class="w-14 h-14 bg-terracotta/10 rounded-full flex items-center justify-center text-terracotta text-2xl mx-auto">
+      <i class="fa-solid fa-gift"></i>
+    </div>
+    <div>
+      <h3 class="font-serif text-xl font-bold text-appHeading">Viennese Waltz Premium Deal!</h3>
+      <p class="text-xs text-neutralMuted mt-1">Get 10% off on our best-selling white chocolate specialty when configuring your checkout simulation.</p>
+    </div>
+    <div class="bg-appBg border border-terracotta/20 p-3.5 rounded-xl text-left font-mono text-[10px] space-y-1">
+      <p><span class="text-terracotta font-bold">Offer Code:</span> PD_WALTZ10</p>
+      <p><span class="text-terracotta font-bold">Availability:</span> Curbside helper active</p>
+    </div>
+    <div class="grid grid-cols-2 gap-3 text-xs font-bold font-serif">
+      <button onclick="closePromoModal()" class="w-full border border-terracotta/25 hover:bg-terracotta/10 text-appHeading py-2.5 rounded-xl transition-all">
+        Dismiss
+      </button>
+      <button onclick="addPromoToOrder()" class="w-full bg-terracotta hover:bg-terracotta/90 text-white py-2.5 rounded-xl transition-all shadow-md">
+        Add to Bag
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- 5. CMS Product Modification Modal -->
+<div class="sheet text-appText" id="product-modal-sheet" role="dialog" aria-modal="true">
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeProductEditForm()"><i class="fa-solid fa-xmark"></i></button>
   <div class="sheet-content font-sans text-xs">
@@ -1034,7 +1064,7 @@ img{max-width:100%;display:block}
         </div>
         <div class="flex flex-col gap-1.5">
           <label for="p-form-category">Category Tab</label>
-          <select id="p-form-category" class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none text-sm animate-none" required>
+          <select id="p-form-category" class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none text-sm" required>
             <option value="coffee">Brewed & Drip</option>
             <option value="espresso">Espresso Drinks</option>
             <option value="signature">Signatures</option>
@@ -1068,12 +1098,13 @@ img{max-width:100%;display:block}
 <script type="module">
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-const supabaseUrl = "https://hpvzvwxczgkvgzrjplie.supabase.co";
-const supabaseKey = "hpvzvwxczgkvgzrjplie";
-const supabase = createClient(supabaseUrl, supabaseKey);
+const SUPABASE_URL = "https://hpvzvwxczgkvgzrjplie.supabase.co";
+const SUPABASE_KEY = "hpvzvwxczgkvgzrjplie";
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// Global operational objects
+// Global state registers
 let activeOrders = [];
+let activeReservations = [];
 let telemetryLogs = [
   "☕ Pour Decisions boutique online storefront initialized.",
   "🟢 Theme preset initialized to cozy Dark Espresso."
@@ -1100,12 +1131,12 @@ let masterProducts = [
 ];
 
 let communityPhotos = [
-  { id: 'w1', handle: 'maryville_academic', drink: 'Viennese Waltz & quiche slice', image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400', timestamp: Date.now() - 100000 },
-  { id: 'w2', handle: 'college_st_designer', drink: 'Muddy Pond Mocha with extra shot', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400', timestamp: Date.now() - 400000000 }
+  { id: 'local_1', handle: 'maryville_academic', drink: 'Viennese Waltz & quiche slice', image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400', timestamp: Date.now() - 100000 },
+  { id: 'local_2', handle: 'college_st_designer', drink: 'Muddy Pond Mocha with extra shot', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400', timestamp: Date.now() - 400000000 }
 ];
 
 let communityFeedbacks = [
-  { id: 'f1', user: '@maryville_local', topic: 'Muddy Pond Mocha', comment: 'The Sorghum syrup in the mocha is absolutely life-changing. Perfect study fuel for College Street.', approved: true, timestamp: Date.now() - 500000 }
+  { id: 'local_f1', user: '@maryville_local', topic: 'Muddy Pond Mocha', comment: 'The Sorghum syrup in the mocha is absolutely life-changing. Perfect study fuel for College Street.', approved: true, timestamp: Date.now() - 500000 }
 ];
 
 let selectedCategory = 'all';
@@ -1116,6 +1147,7 @@ let cart = [];
 let currentTheme = 'dark';
 const dom = {};
 
+// --- STREAMING_CHUNK: Initializing System Core... ---
 window.onload = function() {
   initDOMCache();
   initSupabasePipeline();
@@ -1139,6 +1171,12 @@ window.onload = function() {
   }
 
   setTimeout(() => openPromoModal(), 1500);
+
+  // File Upload Dropzone listener hook
+  const fileInput = document.getElementById('file-input');
+  if (fileInput) {
+    fileInput.addEventListener('change', handleFileChoose);
+  }
 };
 
 function initDOMCache() {
@@ -1162,7 +1200,6 @@ function initDOMCache() {
 
 function initInteractiveMap() {
   try {
-    // Coordinates of Maryville TN: 35.75652, -83.971617
     const map = L.map('heritage-map', { scrollWheelZoom: false }).setView([35.75652, -83.971617], 15);
     
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -1170,7 +1207,6 @@ function initInteractiveMap() {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // High fidelity design coffee bean marker style
     const coffeeIcon = L.divIcon({
       html: `<div class="bg-terracotta text-white w-8 h-8 rounded-full flex items-center justify-center shadow-lg border-2 border-white"><i class="fa-solid fa-mug-hot text-xs"></i></div>`,
       className: 'custom-div-icon',
@@ -1181,25 +1217,26 @@ function initInteractiveMap() {
     L.marker([35.75652, -83.971617], { icon: coffeeIcon })
       .addTo(map)
       .bindPopup(`
-        <div class="text-espresso p-1 text-center">
-          <h4 class="font-serif font-bold text-xs" style="color: #150A08;">Pour Decisions</h4>
-          <p class="text-[9px] text-neutral-600">212 College St, Maryville, TN</p>
+        <div class="text-espresso p-1 text-center font-sans">
+          <h4 class="font-serif font-bold text-xs" style="color: #2C1A11;">Pour Decisions</h4>
+          <p class="text-[9px] text-neutral-600 font-sans">212 College St, Maryville, TN</p>
         </div>
       `)
       .openPopup();
   } catch (err) {
-    console.warn("Leaflet Map failed to load, fallback mapping activated: ", err);
+    console.warn("Leaflet Map failed to load: ", err);
   }
 }
 
+// --- STREAMING_CHUNK: Connecting Supabase Pipeline Reads... ---
 async function initSupabasePipeline() {
-  renderBistroMenu();
-  renderVibeBoard();
-  renderFeedbackBoard();
   loadStoredCart(); 
-
-  // Fetch initial data from Supabase via clean REST fetches
+  
+  // Simultaneously pull elements
   fetchLiveOrders();
+  fetchVibeBoard();
+  fetchFeedbacks();
+  fetchReservations();
 }
 
 async function fetchLiveOrders() {
@@ -1208,7 +1245,7 @@ async function fetchLiveOrders() {
   try {
     const { data, error } = await supabase.from('orders').select('*').order('timestamp', { ascending: false });
     if (error) throw error;
-    if (data && data.length > 0) {
+    if (data) {
       activeOrders = data.map(order => ({
         ...order,
         items: typeof order.items === 'string' ? JSON.parse(order.items) : order.items,
@@ -1217,73 +1254,104 @@ async function fetchLiveOrders() {
       renderCMSOrdersPipeline();
       updateDashboardMetrics();
       logTelemetryEvent('supabase_connected', { count: data.length });
-    } else {
-      // If table exists but has no data, populate a cozy simulated item
-      fallbackLocalOrders();
     }
   } catch (err) {
-    console.warn("Supabase data connection reading error, running robust fallback simulation mode:", err);
-    logTelemetryEvent('supabase_error', { details: err.message });
-    fallbackLocalOrders();
+    console.warn("Supabase orders offline, fallback to simulation mode: ", err.message);
   } finally {
     if (refreshIcon) {
-      setTimeout(() => {
-        refreshIcon.classList.remove('fa-spin');
-      }, 600);
+      setTimeout(() => refreshIcon.classList.remove('fa-spin'), 600);
     }
   }
 }
 
-function fallbackLocalOrders() {
-  if (activeOrders.length === 0) {
-    activeOrders = [
-      { id: 'ord_local_fallback', customer_name: 'Boutique Regular (Demo)', items: [{name: 'Viennese Waltz', quantity: 1, price: 5.80}], totalPrice: 5.80, status: 'Pending', timestamp: new Date().toISOString() }
-    ];
+async function fetchVibeBoard() {
+  try {
+    const { data, error } = await supabase.from('vibes').select('*').order('timestamp', { ascending: false });
+    if (error) throw error;
+    if (data && data.length > 0) {
+      communityPhotos = data.map(v => ({
+        id: v.id,
+        handle: v.handle,
+        drink: v.ordered_item,
+        image: v.image_url,
+        timestamp: new Date(v.timestamp).getTime()
+      }));
+    }
+  } catch (err) {
+    console.warn("Using local memories for Corkboard catalog fallback.", err);
   }
-  renderCMSOrdersPipeline();
+  renderVibeBoard();
+  renderCMSPhotosModeration();
   updateDashboardMetrics();
 }
 
+async function fetchFeedbacks() {
+  try {
+    const { data, error } = await supabase.from('feedback').select('*').order('timestamp', { ascending: false });
+    if (error) throw error;
+    if (data && data.length > 0) {
+      communityFeedbacks = data.map(f => ({
+        id: f.id,
+        user: f.handle,
+        topic: f.favorite_product,
+        comment: f.comment,
+        approved: f.approved,
+        timestamp: new Date(f.timestamp).getTime()
+      }));
+    }
+  } catch (err) {
+    console.warn("Using local memories for Feedback fallback.", err);
+  }
+  renderFeedbackBoard();
+  renderCMSFeedbackModeration();
+  updateDashboardMetrics();
+}
+
+async function fetchReservations() {
+  try {
+    const { data, error } = await supabase.from('bookings').select('*').order('timestamp', { ascending: false });
+    if (error) throw error;
+    if (data) {
+      activeReservations = data;
+    }
+  } catch(err) {
+    console.warn("Lounge bookings loading fallback.", err);
+  }
+  renderAdminReservations();
+}
+
+// --- STREAMING_CHUNK: Defining Telemetry and Themes... ---
 function logTelemetryEvent(eventName, eventDetails) {
   let logText = "";
   const timestamp = new Date().toLocaleTimeString();
 
   switch(eventName) {
     case 'catalog_searched':
-      logText = `🔍 Client searched catalog for: "${eventDetails.query}"`;
+      logText = `🔍 Searched menu for: "${eventDetails.query}"`;
       break;
     case 'item_added_to_cart':
-      logText = `🟢 ${eventDetails.name} added to client order bag ($${eventDetails.price.toFixed(2)})`;
+      logText = `🟢 Added ${eventDetails.name} to checkout helper ($${eventDetails.price.toFixed(2)})`;
       break;
     case 'custom_mix_added_to_cart':
-      logText = `☕ Custom ${eventDetails.name} crafted in Mix Studio ($${eventDetails.price.toFixed(2)})`;
+      logText = `☕ Crafted custom ${eventDetails.name} ($${eventDetails.price.toFixed(2)})`;
       break;
     case 'order_placed':
-      logText = `🛍️ New In-House table aggregation simulation logged!`;
+      logText = `🛍️ Checked out pre-order with ${eventDetails.itemCount} items`;
       break;
     case 'reservation_created':
-      logText = `🎫 Seating booked (Today Only): ${eventDetails.zone} for ${eventDetails.guests} guests`;
+      logText = `🎫 Seating reserved: ${eventDetails.zone} for ${eventDetails.guests} guests`;
       break;
     case 'loyalty_stamp_claimed':
-      logText = `🎯 Mystery Stamp claimed! (${eventDetails.count}/5 completed)`;
+      logText = `🎯 Mystery loyalty stamp registered (${eventDetails.count}/5)`;
       break;
     case 'theme_toggled':
-      logText = `🌗 Storefront design switched to ${eventDetails.theme} mode`;
+      logText = `🌗 Swapped theme configuration mode to: ${eventDetails.theme}`;
       break;
     case 'supabase_connected':
-      logText = `⚡ Database connected! Loaded ${eventDetails.count} live order(s) from PostgreSQL.`;
-      break;
-    case 'supabase_error':
-      logText = `⚠️ Supabase offline fallback: ${eventDetails.details}`;
-      break;
-    case 'order_status_updated':
-      logText = `🔄 Status changed for Order #${eventDetails.id.slice(0,5)}: -> ${eventDetails.status}`;
-      break;
-    case 'product_status_updated':
-      logText = `☕ Product "${eventDetails.name}" configuration altered.`;
+      logText = `⚡ Sync Completed: pulled data securely from Supabase tables.`;
       break;
     default:
-      logText = `⚡ User action: ${eventName}`;
+      logText = `⚡ Action: ${eventName}`;
   }
 
   telemetryLogs.unshift(`[${timestamp}] ${logText}`);
@@ -1305,13 +1373,13 @@ function loadStoredCart() {
       cart = JSON.parse(cachedCart);
       syncCartUI();
     }
-  } catch(e) { console.warn("Cart cache recovery failed.", e); }
+  } catch(e) {}
 }
 
 function saveCartToStorage() {
   try {
     sessionStorage.setItem('pd_active_order_bag', JSON.stringify(cart));
-  } catch(e) { console.warn("Cart cache save failed.", e); }
+  } catch(e) {}
 }
 
 function toggleTheme() {
@@ -1332,11 +1400,11 @@ function applyTheme(theme) {
   } else {
     root.classList.remove('light-mode');
     currentTheme = 'dark';
-    currentTheme = 'dark';
     if (themeIcon) themeIcon.className = 'fa-solid fa-moon text-base text-terracotta';
   }
 }
 
+// --- STREAMING_CHUNK: Handling View Transitions... ---
 function switchPage(pageId) {
   const pageViews = document.querySelectorAll('.page-view');
   for (let i = 0; i < pageViews.length; i++) {
@@ -1366,6 +1434,10 @@ function switchPage(pageId) {
   
   if (pageId === 'admin') {
     renderCMSProductsList();
+    fetchLiveOrders();
+    fetchVibeBoard();
+    fetchFeedbacks();
+    fetchReservations();
   }
 }
 
@@ -1399,12 +1471,12 @@ function filterCategory(categoryName) {
   renderBistroMenu();
 }
 
+// --- STREAMING_CHUNK: Designing Card Render Engine... ---
 function renderBistroMenu() {
   if (!dom.premiumCarousel || !dom.bistroCatalogAccordions) return;
   dom.premiumCarousel.innerHTML = '';
   dom.bistroCatalogAccordions.innerHTML = '';
 
-  // Filter out products marked as hidden/temporarily removed
   const filtered = masterProducts.filter(item => {
     if (item.hidden) return false;
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
@@ -1413,7 +1485,6 @@ function renderBistroMenu() {
     return matchesCategory && matchesSearch;
   });
 
-  // Check highlight Viennese Waltz status
   const waltz = masterProducts.find(p => p.id === 's3');
   const highlightAddBtn = document.getElementById('highlight-add-btn');
   if (highlightAddBtn) {
@@ -1433,7 +1504,6 @@ function renderBistroMenu() {
     return;
   }
 
-  // Specialties
   let featuredSpecialties = filtered.filter(item => item.category === 'signature' || item.badge);
   if (featuredSpecialties.length === 0) featuredSpecialties = filtered.slice(0, 3);
 
@@ -1469,7 +1539,6 @@ function renderBistroMenu() {
     dom.premiumCarousel.appendChild(card);
   });
 
-  // Accordion lists
   const categoryGroups = {
     coffee: { title: "☕ Brewed & Specialty Drip", icon: "fa-mug-hot" },
     espresso: { title: "⚡ Traditional Espresso Creations", icon: "fa-bolt" },
@@ -1548,7 +1617,8 @@ function toggleAccordion(buttonElement) {
   }
 }
 
-function addItemToCart(id, name, price) {
+// --- STREAMING_CHUNK: Building Bag Logic... ---
+function addItemToCart(id, name, price, desc = "") {
   const item = masterProducts.find(p => p.id === id || id.startsWith('custom_mix_'));
   if (item && item.sold_out) {
     showToastNotification("This item is currently sold out!");
@@ -1558,7 +1628,7 @@ function addItemToCart(id, name, price) {
   if (existing) {
     existing.quantity++;
   } else {
-    cart.push({ id, name, price, quantity: 1 });
+    cart.push({ id, name, price, quantity: 1, desc: desc });
   }
   syncCartUI();
   saveCartToStorage();
@@ -1599,12 +1669,13 @@ function syncCartUI() {
       itemRow.innerHTML = `
         <div class="flex-grow pr-2">
           <h4 class="font-serif font-bold text-appHeading leading-tight">${item.name}</h4>
+          ${item.desc ? `<p class="text-[10px] text-accentLight font-serif mt-0.5 line-clamp-2">${item.desc}</p>` : ''}
           <span class="text-[10px] text-neutralMuted block mt-0.5">$${item.price.toFixed(2)} each</span>
         </div>
-        <div class="flex items-center gap-3 text-appText">
+        <div class="flex items-center gap-3 text-appText flex-shrink-0">
           <button onclick="removeOneFromCart('${item.id}')" class="text-neutralMuted hover:text-terracotta p-1 text-xs"><i class="fa-solid fa-minus"></i></button>
           <span class="font-mono font-bold text-xs">${item.quantity}</span>
-          <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="hover:text-terracotta p-1 text-xs"><i class="fa-solid fa-plus"></i></button>
+          <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price}, '${item.desc}')" class="hover:text-terracotta p-1 text-xs"><i class="fa-solid fa-plus"></i></button>
         </div>
       `;
       dom.cartItemsWrapper.appendChild(itemRow);
@@ -1626,50 +1697,54 @@ function closeSidebarCart() {
   document.getElementById('sheet-backdrop').classList.remove('active');
 }
 
+// --- STREAMING_CHUNK: Integrating checkout orders... ---
 async function triggerCheckoutCheckout() {
   closeSidebarCart();
+  if (cart.length === 0) return;
+
   let totalPrice = cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
   
-  const orderTicket = {
-    customer_name: 'Boutique Visitor',
-    items: JSON.stringify(cart),
-    totalPrice: totalPrice,
-    status: 'Pending',
-    timestamp: Date.now()
-  };
+  // Package order details cleanly with customization lines preserved
+  const orderDetails = cart.map(i => ({
+    id: i.id,
+    name: i.name,
+    price: i.price,
+    quantity: i.quantity,
+    desc: i.desc || ""
+  }));
 
   try {
     const { error } = await supabase.from('orders').insert([{
-      customer_name: orderTicket.customer_name,
-      items: orderTicket.items,
-      total_price: orderTicket.totalPrice,
-      status: orderTicket.status,
+      customer_name: 'Boutique Visitor',
+      items: orderDetails, // PostgreSQL automatic serialization of JSONB structure
+      total_price: totalPrice,
+      status: 'Pending',
       timestamp: new Date().toISOString()
     }]);
+    
     if (error) throw error;
-    fetchLiveOrders();
+    showToastNotification("Pre-order simulation successfully saved to database!");
+    logTelemetryEvent('order_placed', { itemCount: cart.length });
   } catch(err) {
-    console.warn("Supabase insert failed, caching locally as simulated order:", err);
+    console.warn("Supabase insert failure, saving simulated checkout locally: ", err.message);
     activeOrders.unshift({
       id: 'local_' + Date.now(),
-      customer_name: orderTicket.customer_name,
-      items: cart,
+      customer_name: 'Boutique Visitor',
+      items: orderDetails,
       totalPrice: totalPrice,
       status: 'Pending',
       timestamp: new Date().toISOString()
     });
-    renderCMSOrdersPipeline();
-    updateDashboardMetrics();
+    showToastNotification("Pre-order simulation completed! (Sandbox Fallback Mode)");
   }
 
-  showToastNotification("Pre-order aggregated! Synced in real-time to admin pipeline.");
-  logTelemetryEvent('order_placed', { itemCount: cart.length });
-  
   cart = [];
   saveCartToStorage();
   syncCartUI();
+  fetchLiveOrders();
 }
 
+// --- STREAMING_CHUNK: Configuring Lounge Bookings... ---
 function selectReserveZone(element, name, description) {
   selectedLoungeZone = name;
   document.getElementById('zone-reserve-desc').innerText = description;
@@ -1680,11 +1755,33 @@ function selectReserveZone(element, name, description) {
 
 const reservationForm = document.getElementById('reserve-bistro-form');
 if (reservationForm) {
-  reservationForm.addEventListener('submit', (e) => {
+  reservationForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const holder = document.getElementById('reserve-name').value.trim();
     const guests = document.getElementById('reserve-guests').value;
     const time = document.getElementById('reserve-time').value;
+
+    try {
+      const { error } = await supabase.from('bookings').insert([{
+        name: holder,
+        guests: parseInt(guests),
+        arrival_time: time,
+        zone: selectedLoungeZone,
+        timestamp: new Date().toISOString()
+      }]);
+      if (error) throw error;
+      showToastNotification("Lounge Reservation stored on Supabase!");
+    } catch(err) {
+      console.warn("Saving reservation in local state cache fallback.", err.message);
+      activeReservations.unshift({
+        id: 'local_' + Date.now(),
+        name: holder,
+        guests: parseInt(guests),
+        arrival_time: time,
+        zone: selectedLoungeZone,
+        timestamp: new Date().toISOString()
+      });
+    }
 
     document.getElementById('ticket-holder-name').innerText = holder;
     document.getElementById('ticket-holder-guests').innerText = `${guests} Guests`;
@@ -1696,6 +1793,7 @@ if (reservationForm) {
 
     logTelemetryEvent('reservation_created', { name: holder, guests, time, zone: selectedLoungeZone });
     reservationForm.reset();
+    fetchReservations();
   });
 }
 
@@ -1704,6 +1802,7 @@ function closeReservationTicket() {
   document.getElementById('sheet-backdrop').classList.remove('active');
 }
 
+// --- STREAMING_CHUNK: Brew Lab Core Calculators... ---
 function calculateCustomPrice() {
   if (!dom.builderBase) return;
   
@@ -1727,27 +1826,28 @@ function calculateCustomPrice() {
   for (let i = 0; i < milkRadios.length; i++) {
     if (milkRadios[i].checked) {
       selectedMilk = milkRadios[i].value;
-      if (selectedMilk !== 'Regular') extraPrice += 1.00;
+      if (selectedMilk !== 'Whole') extraPrice += 1.00;
     }
   }
   
   let optionsText = [];
   if (document.getElementById('syrup-vanilla')?.checked) { extraPrice += 1.00; optionsText.push('Vanilla'); }
   if (document.getElementById('syrup-sorghum')?.checked) { extraPrice += 1.00; optionsText.push('Sorghum'); }
-  if (document.getElementById('extra-shot')?.checked) { extraPrice += 1.00; optionsText.push('Extra Espresso Shot'); }
-  if (document.getElementById('heavy-cream')?.checked) { extraPrice += 2.00; optionsText.push('Heavy Cream Layer'); }
+  if (document.getElementById('extra-shot')?.checked) { extraPrice += 1.00; optionsText.push('Extra Shot'); }
+  if (document.getElementById('heavy-cream')?.checked) { extraPrice += 2.00; optionsText.push('Heavy Cream'); }
 
   const finalSum = basePrice + extraPrice;
   if (dom.builderDisplayPrice) dom.builderDisplayPrice.innerText = `$${finalSum.toFixed(2)}`;
   if (dom.builderDisplayName) dom.builderDisplayName.innerText = `Custom ${chosenOption.value}`;
-  if (dom.builderDisplayDesc) dom.builderDisplayDesc.innerText = `Proportions: ${selectedSize}ml, Milk Alternative Base: ${selectedMilk} milk. Additions: ${optionsText.length ? optionsText.join(', ') : 'None Specified'}.`;
+  if (dom.builderDisplayDesc) dom.builderDisplayDesc.innerText = `${selectedSize}ml, ${selectedMilk} alternative, Additions: ${optionsText.length ? optionsText.join(', ') : 'None'}.`;
 }
 
 function addCustomBuildToCart() {
   const baseSelect = dom.builderBase;
   const name = dom.builderDisplayName.innerText;
   const price = parseFloat(dom.builderDisplayPrice.innerText.replace('$', ''));
-  addItemToCart('custom_mix_' + Date.now(), name, price);
+  const desc = dom.builderDisplayDesc.innerText;
+  addItemToCart('custom_mix_' + Date.now(), name, price, desc);
   logTelemetryEvent('custom_mix_added_to_cart', { name, price });
 }
 
@@ -1757,16 +1857,17 @@ function claimMysteryStamp() {
   logTelemetryEvent('loyalty_stamp_claimed', { count: stampCount });
 }
 
+// --- STREAMING_CHUNK: Managing Administrative Access... ---
 function verifyAdministrativePasscode() {
   const code = document.getElementById('cms-passcode-input').value.trim().toLowerCase();
   if (code === 'barako') {
     document.getElementById('cms-verify-section').classList.add('hidden');
     document.getElementById('cms-authenticated-view').classList.remove('hidden');
-    showToastNotification("Authorized Session Unlocked.");
+    showToastNotification("Administrative operations authorization successful.");
     logTelemetryEvent('cms_authenticated', { success: true });
     renderCMSProductsList();
   } else {
-    showToastNotification("Invalid system security token access key.");
+    showToastNotification("Passcode error. Access denied.");
   }
 }
 
@@ -1780,76 +1881,86 @@ function switchCMSTab(tab) {
   document.getElementById(`tab-cms-${tab}`)?.classList.add('text-terracotta', 'border-terracotta');
 }
 
+// --- STREAMING_CHUNK: Supplying Database Toggles... ---
 async function updateOrderStatus(orderId, nextStatus) {
   try {
-    const { error } = await supabase
-      .from('orders')
-      .update({ status: nextStatus })
-      .eq('id', orderId);
-      
-    if (error) throw error;
-    showToastNotification(`Order Status altered successfully to ${nextStatus}`);
+    if (orderId.startsWith('local_')) {
+      const targetOrder = activeOrders.find(o => o.id === orderId);
+      if (targetOrder) targetOrder.status = nextStatus;
+    } else {
+      const { error } = await supabase
+        .from('orders')
+        .update({ status: nextStatus })
+        .eq('id', orderId);
+      if (error) throw error;
+    }
+    showToastNotification(`Simulated status updated to: ${nextStatus}`);
     logTelemetryEvent('order_status_updated', { id: orderId, status: nextStatus });
     fetchLiveOrders();
   } catch(err) {
-    const targetOrder = activeOrders.find(o => o.id === orderId);
-    if (targetOrder) {
-      targetOrder.status = nextStatus;
-      showToastNotification(`Status altered to ${nextStatus} (Local Mode)`);
-      logTelemetryEvent('order_status_updated', { id: orderId, status: nextStatus });
-      renderCMSOrdersPipeline();
-      updateDashboardMetrics();
-    }
+    console.error("Order update failure: ", err);
   }
 }
 
+// --- STREAMING_CHUNK: Rendering Orders Cards... ---
 function renderCMSOrdersPipeline() {
   const container = document.getElementById('admin-orders-container');
   if (!container) return;
   
   if (activeOrders.length === 0) {
-    container.innerHTML = '<p class="text-xs text-neutralMuted font-mono text-center col-span-full py-12">No incoming orders streaming right now.</p>';
+    container.innerHTML = '<p class="text-xs text-neutralMuted font-mono text-center col-span-full py-12">No pre-order simulation cards found.</p>';
     return;
   }
 
   container.innerHTML = activeOrders.map(order => {
     let rawItems = [];
-    try { rawItems = typeof order.items === 'string' ? JSON.parse(order.items) : order.items; } catch(e) {}
+    if (order.items) {
+      if (typeof order.items === 'string') {
+        try { rawItems = JSON.parse(order.items); } catch(e) {}
+      } else if (Array.isArray(order.items)) {
+        rawItems = order.items;
+      }
+    }
     
     let statusClass = "bg-yellow-500/20 text-yellow-400";
     if (order.status === 'Completed' || order.status === 'Order Done') statusClass = "bg-green-500/20 text-green-400";
     if (order.status === 'Cancelled') statusClass = "bg-red-500/20 text-red-400";
 
     return `
-      <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 flex flex-col justify-between">
+      <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 flex flex-col justify-between transition-colors">
         <div>
           <div class="flex justify-between items-center border-b border-appBorder pb-2">
             <span class="font-mono text-terracotta font-bold">#ORD-${order.id ? order.id.toString().slice(0,5) : 'SIM'}</span>
             <span class="px-2 py-0.5 rounded text-[10px] font-bold ${statusClass}">${order.status}</span>
           </div>
-          <div class="space-y-1 pt-2">
+          <!-- Robust Itemized Details Rendering (Task 1 Complete) -->
+          <div class="space-y-3 pt-2">
             ${(rawItems || []).map(item => `
-              <div class="flex justify-between text-accentLight">
-                <span>${item.name} x${item.quantity}</span>
-                <span>$${(item.price * item.quantity).toFixed(2)}</span>
+              <div class="flex flex-col border-b border-appBorder/20 pb-1.5 last:border-b-0 last:pb-0">
+                <div class="flex justify-between text-accentLight font-semibold">
+                  <span>${item.name} <span class="text-neutralMuted font-mono">x${item.quantity}</span></span>
+                  <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+                ${item.desc ? `<p class="text-[9px] text-neutralMuted italic mt-0.5">${item.desc}</p>` : ''}
               </div>
             `).join('')}
           </div>
         </div>
         <div class="pt-2 border-t border-appBorder space-y-3">
           <div class="flex justify-between items-baseline font-bold">
-            <span>Total Stream Revenue</span>
-            <span class="text-terracotta">$${parseFloat(order.totalPrice || 0).toFixed(2)}</span>
+            <span>Aggregated Est.</span>
+            <span class="text-terracotta text-sm">$${parseFloat(order.totalPrice || 0).toFixed(2)}</span>
           </div>
           
+          <!-- Actions Controller Matrix (Task 3 Complete) -->
           <div class="grid grid-cols-3 gap-1 pt-1.5 border-t border-appBorder/40">
-            <button onclick="updateOrderStatus('${order.id}', 'Pending')" class="bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-500 rounded py-1.5 font-mono text-[9px] uppercase tracking-wider transition-all">
+            <button onclick="updateOrderStatus('${order.id}', 'Pending')" class="bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-500 rounded py-1 font-mono text-[9px] uppercase tracking-wider transition-all">
               Pending
             </button>
-            <button onclick="updateOrderStatus('${order.id}', 'Order Done')" class="bg-green-600/20 hover:bg-green-600/40 text-green-500 rounded py-1.5 font-mono text-[9px] uppercase tracking-wider transition-all">
+            <button onclick="updateOrderStatus('${order.id}', 'Order Done')" class="bg-green-600/20 hover:bg-green-600/40 text-green-500 rounded py-1 font-mono text-[9px] uppercase tracking-wider transition-all">
               Done
             </button>
-            <button onclick="updateOrderStatus('${order.id}', 'Cancelled')" class="bg-red-600/20 hover:bg-red-600/40 text-red-500 rounded py-1.5 font-mono text-[9px] uppercase tracking-wider transition-all">
+            <button onclick="updateOrderStatus('${order.id}', 'Cancelled')" class="bg-red-600/20 hover:bg-red-600/40 text-red-500 rounded py-1 font-mono text-[9px] uppercase tracking-wider transition-all">
               Cancel
             </button>
           </div>
@@ -1859,22 +1970,70 @@ function renderCMSOrdersPipeline() {
   }).join('');
 }
 
+// --- STREAMING_CHUNK: Displaying reservations... ---
+function renderAdminReservations() {
+  const container = document.getElementById('admin-reservations-container');
+  if (!container) return;
+
+  if (activeReservations.length === 0) {
+    container.innerHTML = `<p class="col-span-full text-xs text-neutralMuted font-mono py-6 text-center">No reservations submitted today.</p>`;
+    return;
+  }
+
+  container.innerHTML = activeReservations.map(res => `
+    <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 relative transition-colors">
+      <div class="flex justify-between items-baseline border-b border-appBorder pb-1.5">
+        <span class="font-serif font-bold text-appHeading text-sm">${res.name}</span>
+        <span class="font-mono text-terracotta font-semibold">${res.guests} Guests</span>
+      </div>
+      <div class="space-y-1 pt-1 font-sans">
+        <p><span class="text-neutralMuted">Seating Zone:</span> <span class="font-semibold">${res.zone}</span></p>
+        <p><span class="text-neutralMuted">Arrival Slot:</span> <span class="font-semibold font-mono">${res.arrival_time}</span></p>
+      </div>
+      <button onclick="deleteReservation('${res.id}')" class="w-full mt-2 py-1 bg-red-600/15 hover:bg-red-600/30 text-red-400 rounded text-[9px] uppercase font-bold tracking-wider transition-all">
+        Release Seating
+      </button>
+    </div>
+  `).join('');
+}
+
+async function deleteReservation(id) {
+  try {
+    if (id.toString().startsWith('local_')) {
+      activeReservations = activeReservations.filter(r => r.id !== id);
+    } else {
+      const { error } = await supabase.from('bookings').delete().eq('id', id);
+      if (error) throw error;
+    }
+    showToastNotification("Reservation deleted.");
+    fetchReservations();
+  } catch(err) {
+    console.error("Delete booking error: ", err);
+  }
+}
+
 function updateDashboardMetrics() {
   const rev = document.getElementById('metrics-revenue');
   const cnt = document.getElementById('metrics-orders-active');
-  if (cnt) cnt.innerText = activeOrders.length;
+  const feedPending = document.getElementById('metrics-feedback-pending');
+  const vibesCnt = document.getElementById('metrics-vibes-count');
+  
+  if (cnt) cnt.innerText = activeOrders.filter(o => o.status === 'Pending').length;
+  if (feedPending) feedPending.innerText = communityFeedbacks.filter(f => !f.approved).length;
+  if (vibesCnt) vibesCnt.innerText = communityPhotos.length;
   if (rev) {
     let totalSum = activeOrders.reduce((acc, curr) => acc + parseFloat(curr.totalPrice || 0), 0);
     rev.innerText = `$${totalSum.toFixed(2)}`;
   }
 }
 
+// --- STREAMING_CHUNK: Displaying Corkboard feeds... ---
 function renderVibeBoard() {
   if (!dom.polaroidCanvasGrid) return;
   dom.polaroidCanvasGrid.innerHTML = communityPhotos.map(photo => `
-    <div class="polaroid rounded-sm">
+    <div class="polaroid rounded-sm transition-transform duration-200">
       <div class="w-full aspect-square overflow-hidden bg-espresso/10 mb-2">
-        <img src="${photo.image}" alt="Vibe" class="w-full h-full object-cover" onerror="window.handleImageError(this)">
+        <img src="${photo.image}" alt="Vibe Board Upload" class="w-full h-full object-cover" onerror="window.handleImageError(this)">
       </div>
       <p class="font-mono text-[10px] text-terracotta font-bold truncate">@${photo.handle}</p>
       <p class="text-[9px] text-neutralMuted truncate mt-0.5 font-serif">${photo.drink}</p>
@@ -1882,10 +2041,59 @@ function renderVibeBoard() {
   `).join('');
 }
 
+// --- STREAMING_CHUNK: Moderating Photos... ---
+function renderCMSPhotosModeration() {
+  const grid = document.getElementById('admin-photos-moderation-grid');
+  if (!grid) return;
+  
+  if (communityPhotos.length === 0) {
+    grid.innerHTML = `<p class="col-span-full text-xs text-neutralMuted font-mono py-6 text-center">No photos posted.</p>`;
+    return;
+  }
+
+  grid.innerHTML = communityPhotos.map(p => `
+    <div class="bg-appBg border border-appBorder p-3 rounded-xl space-y-2 flex flex-col justify-between">
+      <div class="w-full h-32 rounded overflow-hidden bg-espresso/20">
+        <img src="${p.image}" class="w-full h-full object-cover" onerror="window.handleImageError(this)">
+      </div>
+      <div>
+        <p class="font-bold font-mono">@${p.handle}</p>
+        <p class="text-neutralMuted line-clamp-1">${p.drink}</p>
+      </div>
+      <button onclick="deleteVibePhoto('${p.id}')" class="w-full py-1.5 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded text-[11px] font-bold uppercase transition-all">
+        Remove Photo
+      </button>
+    </div>
+  `).join('');
+}
+
+async function deleteVibePhoto(id) {
+  try {
+    if (id.toString().startsWith('local_')) {
+      communityPhotos = communityPhotos.filter(p => p.id !== id);
+    } else {
+      const { error } = await supabase.from('vibes').delete().eq('id', id);
+      if (error) throw error;
+    }
+    showToastNotification("Polaroid archive deleted.");
+    fetchVibeBoard();
+  } catch(err) {
+    console.error("Vibe deletion error: ", err);
+  }
+}
+
+// --- STREAMING_CHUNK: Displaying suggestions... ---
 function renderFeedbackBoard() {
   if (!dom.feedbackBoardCards) return;
-  dom.feedbackBoardCards.innerHTML = communityFeedbacks.map(f => `
-    <div class="bg-appCard border border-appBorder p-4 rounded-2xl shadow-sm">
+  const approvedNotes = communityFeedbacks.filter(f => f.approved);
+  
+  if (approvedNotes.length === 0) {
+    dom.feedbackBoardCards.innerHTML = `<p class="text-xs text-neutralMuted italic text-center py-4 font-serif">No notes published yet.</p>`;
+    return;
+  }
+
+  dom.feedbackBoardCards.innerHTML = approvedNotes.map(f => `
+    <div class="bg-appCard border border-appBorder p-4 rounded-2xl shadow-sm transition-colors">
       <div class="flex justify-between items-baseline mb-1">
         <span class="font-serif font-bold text-appHeading text-xs">${f.user}</span>
         <span class="text-[9px] font-mono text-terracotta bg-terracotta/10 px-2 py-0.5 rounded">${f.topic}</span>
@@ -1895,6 +2103,157 @@ function renderFeedbackBoard() {
   `).join('');
 }
 
+// --- STREAMING_CHUNK: Moderating reviews... ---
+function renderCMSFeedbackModeration() {
+  const container = document.getElementById('admin-feedback-moderation-list');
+  if (!container) return;
+  
+  const pendingNotes = communityFeedbacks.filter(f => !f.approved);
+  
+  if (pendingNotes.length === 0) {
+    container.innerHTML = `<p class="text-xs text-neutralMuted font-mono py-6 text-center">No pending feedback submissions.</p>`;
+    return;
+  }
+
+  container.innerHTML = pendingNotes.map(f => `
+    <div class="bg-appBg border border-appBorder p-4 rounded-xl text-xs space-y-3">
+      <div class="flex justify-between items-baseline">
+        <span class="font-bold font-sans">${f.user} <span class="text-neutralMuted font-normal">on</span> ${f.topic}</span>
+        <span class="text-[10px] text-yellow-500 bg-yellow-500/10 px-2 py-0.5 rounded font-mono">Awaiting Review</span>
+      </div>
+      <p class="italic text-accentLight font-serif">"${f.comment}"</p>
+      <div class="flex gap-2 justify-end">
+        <button onclick="approveFeedback('${f.id}')" class="px-3 py-1.5 bg-green-600/20 hover:bg-green-600/40 text-green-400 rounded text-[10px] font-bold uppercase transition-all">
+          Approve & Publish
+        </button>
+        <button onclick="deleteFeedback('${f.id}')" class="px-3 py-1.5 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded text-[10px] font-bold uppercase transition-all">
+          Reject & Delete
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function approveFeedback(id) {
+  try {
+    if (id.toString().startsWith('local_')) {
+      const match = communityFeedbacks.find(f => f.id === id);
+      if (match) match.approved = true;
+    } else {
+      const { error } = await supabase.from('feedback').update({ approved: true }).eq('id', id);
+      if (error) throw error;
+    }
+    showToastNotification("Guest review approved!");
+    fetchFeedbacks();
+  } catch(err) {
+    console.error("Approval error: ", err);
+  }
+}
+
+async function deleteFeedback(id) {
+  try {
+    if (id.toString().startsWith('local_')) {
+      communityFeedbacks = communityFeedbacks.filter(f => f.id !== id);
+    } else {
+      const { error } = await supabase.from('feedback').delete().eq('id', id);
+      if (error) throw error;
+    }
+    showToastNotification("Review entry dismissed.");
+    fetchFeedbacks();
+  } catch(err) {
+    console.error("Deletion error: ", err);
+  }
+}
+
+// --- STREAMING_CHUNK: Connecting Feedback Submission Forms... ---
+const feedbackForm = document.getElementById('suggestions-submit-form');
+if (feedbackForm) {
+  feedbackForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const user = document.getElementById('feedback-user').value.trim();
+    const topic = document.getElementById('feedback-topic').value.trim();
+    const comment = document.getElementById('feedback-comment').value.trim();
+
+    try {
+      const { error } = await supabase.from('feedback').insert([{
+        handle: user,
+        favorite_product: topic,
+        comment: comment,
+        approved: false // Moderated on database
+      }]);
+      if (error) throw error;
+      showToastNotification("Suggestion uploaded! Waiting for admin approval. 📝");
+    } catch(err) {
+      console.warn("Saving unapproved review in local fallback cache.");
+      communityFeedbacks.unshift({
+        id: 'local_' + Date.now(),
+        user,
+        topic,
+        comment,
+        approved: false,
+        timestamp: Date.now()
+      });
+      showToastNotification("Suggestion saved (Simulated Pending Moderation).");
+    }
+    
+    feedbackForm.reset();
+    fetchFeedbacks();
+  });
+}
+
+// --- STREAMING_CHUNK: Managing Vibe Photo Uploader... ---
+const vibeUploadForm = document.getElementById('vibe-upload-form');
+if (vibeUploadForm) {
+  vibeUploadForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const handle = document.getElementById('wall-handle').value.trim() || 'anonymous';
+    const drink = document.getElementById('wall-drink').value.trim() || 'Signature Brew';
+    const previewImg = document.getElementById('preview-img');
+    const imageSrc = previewImg.src || 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400';
+
+    try {
+      const { error } = await supabase.from('vibes').insert([{
+        handle: handle,
+        ordered_item: drink,
+        image_url: imageSrc,
+        timestamp: new Date().toISOString()
+      }]);
+      if (error) throw error;
+      showToastNotification("Vibe pinned directly to the database! 📌");
+    } catch(err) {
+      console.warn("Vibe board sandbox upload error, saving locally: ", err.message);
+      communityPhotos.unshift({
+        id: 'local_' + Date.now(),
+        handle,
+        drink,
+        image: imageSrc,
+        timestamp: Date.now()
+      });
+      showToastNotification("Vibe pinned locally (Sandbox Cache Mode).");
+    }
+    
+    closeUploadSheet();
+    vibeUploadForm.reset();
+    previewImg.src = '';
+    previewImg.classList.add('hidden');
+    document.getElementById('dropzone-placeholder').classList.remove('hidden');
+    fetchVibeBoard();
+  });
+}
+
+// Handle Local File choosing & Base64 translation
+function handleFileChoose(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      applyPresetVibe(e.target.result);
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+// --- STREAMING_CHUNK: Catalog editor... ---
 function renderCMSProductsList() {
   const wrapper = document.getElementById('cms-products-listing-wrapper');
   if (!wrapper) return;
@@ -1920,13 +2279,13 @@ function renderCMSProductsList() {
               ${item.sold_out ? 'Mark In-Stock' : 'Mark Sold Out'}
             </button>
             <button onclick="toggleProductHiddenStatus('${item.id}')" class="px-2 py-1.5 rounded border ${item.hidden ? 'bg-neutral-600 text-white border-neutral-500' : 'bg-darkAccent text-neutralMuted border-terracotta/20'} transition-all">
-              ${item.hidden ? 'Show in Menu' : 'Temporarily Hide'}
+              ${item.hidden ? 'Show in Menu' : 'Hide Catalog'}
             </button>
           </div>
           
           <div class="grid grid-cols-2 gap-1.5 text-[9px] font-bold">
             <button onclick="toggleProductPopularStatus('${item.id}')" class="px-2 py-1.5 rounded border ${item.badge === 'Popular' ? 'bg-yellow-600 text-white border-yellow-500' : 'bg-darkAccent text-parchment border-terracotta/20'} transition-all">
-              ${item.badge === 'Popular' ? 'De-promote Spec' : 'Most Popular'}
+              ${item.badge === 'Popular' ? 'Normal Style' : 'Mark Popular'}
             </button>
             <button onclick="editProductDetailsCMS('${item.id}')" class="px-2 py-1.5 rounded bg-terracotta hover:bg-terracotta/90 text-white text-center transition-all">
               <i class="fa-solid fa-pen-to-square mr-1"></i> Edit Details
@@ -1953,7 +2312,7 @@ window.toggleProductHiddenStatus = function(id) {
   const item = masterProducts.find(p => p.id === id);
   if (item) {
     item.hidden = !item.hidden;
-    showToastNotification(`Product "${item.name}" updated: ${item.hidden ? 'TEMPORARILY REMOVED' : 'ACTIVE IN CATALOG'}`);
+    showToastNotification(`Product "${item.name}" updated: ${item.hidden ? 'HIDDEN' : 'ACTIVE'}`);
     logTelemetryEvent('product_status_updated', { name: item.name });
     renderCMSProductsList();
     renderBistroMenu();
@@ -1964,7 +2323,7 @@ window.toggleProductPopularStatus = function(id) {
   const item = masterProducts.find(p => p.id === id);
   if (item) {
     item.badge = item.badge === 'Popular' ? '' : 'Popular';
-    showToastNotification(`Product "${item.name}" updated: ${item.badge ? 'MARKED AS MOST POPULAR' : 'NORMAL STATS'}`);
+    showToastNotification(`Product "${item.name}" badge altered.`);
     logTelemetryEvent('product_status_updated', { name: item.name });
     renderCMSProductsList();
     renderBistroMenu();
@@ -2012,7 +2371,7 @@ if (productForm) {
       masterProducts.push({
         id: newId, name, price, category, desc, img, sold_out: false, hidden: false, badge: ''
       });
-      showToastNotification(`Product "${name}" added to catalog options.`);
+      showToastNotification(`Product "${name}" added to catalog.`);
     }
 
     closeProductEditForm();
@@ -2028,12 +2387,13 @@ function openUploadSheet() { document.getElementById('upload-sheet').classList.a
 function closeUploadSheet() { document.getElementById('upload-sheet').classList.remove('active'); document.getElementById('sheet-backdrop').classList.remove('active'); }
 function applyPresetVibe(url) { document.getElementById('preview-img').src = url; document.getElementById('preview-img').classList.remove('hidden'); document.getElementById('dropzone-placeholder').classList.add('hidden'); }
 
+// --- STREAMING_CHUNK: Triggering Custom Helper Toast Alerts... ---
 function showToastNotification(msg) {
   let toast = document.getElementById('app-toast');
   if (!toast) {
     toast = document.createElement('div');
     toast.id = 'app-toast';
-    toast.className = 'fixed top-4 right-4 bg-darkCard border border-terracotta text-appHeading text-xs px-4 py-3 rounded-xl shadow-2xl z-[200] transition-opacity duration-300 pointer-events-none opacity-0';
+    toast.className = 'fixed top-4 right-4 bg-darkCard border border-terracotta text-appHeading text-xs px-4 py-3 rounded-xl shadow-2xl z-[200] transition-opacity duration-300 pointer-events-none opacity-0 font-sans';
     document.body.appendChild(toast);
   }
   toast.innerText = msg;
@@ -2054,7 +2414,7 @@ window.handleImageError = function(img) {
   img.src = 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400';
 };
 
-// Global Exposure Layer mapping internal module functions to programmatic trigger elements safely
+// Global Exposure Layer
 window.switchPage = switchPage;
 window.toggleTheme = toggleTheme;
 window.openSidebarCart = openSidebarCart;
@@ -2087,9 +2447,13 @@ window.triggerCheckoutCheckout = triggerCheckoutCheckout;
 window.toggleAccordion = toggleAccordion;
 window.updateOrderStatus = updateOrderStatus;
 window.fetchLiveOrders = fetchLiveOrders;
+window.deleteVibePhoto = deleteVibePhoto;
+window.approveFeedback = approveFeedback;
+window.deleteFeedback = deleteFeedback;
+window.deleteReservation = deleteReservation;
 </script>
 
-<!-- Global Toast Notification Component -->
+<!-- Toast Component -->
 <div class="fixed bottom-4 right-4 bg-appCard border border-terracotta/30 text-appText p-3 rounded-2xl shadow-2xl z-50 transition-all transform translate-y-24 opacity-0 max-w-xs text-xs font-semibold tracking-wide" id="toast">
   Item added successfully!
 </div>
