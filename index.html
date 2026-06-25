@@ -14,58 +14,6 @@
 <meta name="keywords" content="Pour Decisions, Specialty coffee Maryville TN, Muddy Pond Mocha, Viennese Waltz, artisan bakery, coffee shop near me, local lounge, Maryville TN bistro">
 <meta name="robots" content="index, follow">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☕%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,7 +34,7 @@
   --accentLight: #EDD6C8;
   --darkAccent: #342420;
   --neutralMuted: #9B8D8B;
-
+  
   --bg: #150A08;
   --card: #231511;
   --text: #EEDCC5;
@@ -104,7 +52,7 @@
   --accentLight: #4A3B32;
   --darkAccent: #F3EFE9;
   --neutralMuted: #7A6E6D;
-
+  
   --bg: #FAF6F0;
   --card: #FFFFFF;
   --text: #3A2312;
@@ -373,7 +321,7 @@ img{max-width:100%;display:block}
       </button>
       <button onclick="openSidebarCart()" class="relative p-2 text-terracotta hover:text-terracotta/80 transition-all" aria-label="Shopping Cart">
         <i class="fa-solid fa-bag-shopping text-xl"></i>
-        <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow animate-pulse" id="desktop-cart-badge">0</span>
+        <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow " id="desktop-cart-badge">0</span>
       </button>
       <button onclick="openCMSPage()" class="text-neutralMuted hover:text-terracotta p-1 rounded transition-all text-sm" aria-label="Open Admin Control Panel">
         <i class="fa-solid fa-lock"></i>
@@ -387,12 +335,12 @@ img{max-width:100%;display:block}
 
   <!-- ================= PAGE 1: HOME (ONLINE MENU & CHECKOUT) ================= -->
   <section id="page-home" class="page-view space-y-10">
-
+    
     <!-- Premium Interactive Hero Section -->
     <div class="relative rounded-3xl overflow-hidden bg-appCard text-appHeading py-12 px-6 sm:px-12 shadow-2xl flex flex-col md:flex-row items-center justify-between border border-appBorder transition-colors">
       <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1200');"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-appBg via-appBg/90 to-transparent"></div>
-
+      
       <div class="relative z-10 max-w-lg space-y-4">
         <span class="bg-terracotta/10 text-terracotta font-mono text-xs uppercase px-3 py-1 rounded-full border border-terracotta/35">Est. Maryville, TN</span>
         <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">Every cup, a beautiful mistake.</h2>
@@ -406,7 +354,7 @@ img{max-width:100%;display:block}
           </button>
         </div>
       </div>
-
+      
       <!-- Visual Highlight Card (The Viennese Waltz Showcase) -->
       <div class="relative z-10 mt-8 md:mt-0 bg-appCard p-5 rounded-2xl border border-appBorder max-w-xs w-full shadow-xl transition-colors">
         <div class="relative rounded-xl overflow-hidden h-40 bg-gray-900 mb-4">
@@ -431,7 +379,7 @@ img{max-width:100%;display:block}
           <h2 class="font-serif text-2xl font-bold text-appHeading">The Bistro Culinary Menu</h2>
           <p class="text-xs text-neutralMuted mt-0.5">Filter items by category or search below</p>
         </div>
-
+        
         <!-- Live Search Field with Debounced Listener -->
         <div class="relative w-full md:w-80">
           <input type="text" id="menu-search" placeholder="Search coffee, bagels, quiche..." class="w-full bg-appCard border border-terracotta/30 rounded-xl px-4 py-2.5 pl-10 text-xs text-appHeading focus:outline-none focus:border-terracotta transition-all">
@@ -462,7 +410,7 @@ img{max-width:100%;display:block}
           <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide">Bistro Catalog</h3>
           <span class="text-xs text-neutralMuted uppercase tracking-wider font-mono">Tap to Expand Group</span>
         </div>
-
+        
         <!-- Accordion Collapsible Wrapper to keep page extremely clean and avoid long scroll page -->
         <div id="bistro-catalog-accordions" class="space-y-4">
           <!-- Dynamically populated via JS categories -->
@@ -494,17 +442,17 @@ img{max-width:100%;display:block}
           <div>
             <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Size Portion (ml)</label>
             <div class="grid grid-cols-3 gap-2">
-              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center">
+              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center transition-all">
                 <input type="radio" name="brew-size" value="250" checked class="sr-only" onchange="calculateCustomPrice()">
                 <span class="text-sm font-bold block text-appHeading">250</span>
                 <span class="text-[9px] text-neutralMuted">Small</span>
               </label>
-              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center">
+              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center transition-all">
                 <input type="radio" name="brew-size" value="350" class="sr-only" onchange="calculateCustomPrice()">
                 <span class="text-sm font-bold block text-appHeading">350</span>
                 <span class="text-[9px] text-neutralMuted">Medium (+$1)</span>
               </label>
-              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center">
+              <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center transition-all">
                 <input type="radio" name="brew-size" value="450" class="sr-only" onchange="calculateCustomPrice()">
                 <span class="text-sm font-bold block text-appHeading">450</span>
                 <span class="text-[9px] text-neutralMuted">Large (+$2)</span>
@@ -515,15 +463,15 @@ img{max-width:100%;display:block}
           <div>
             <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Milk Alternative</label>
             <div class="grid grid-cols-3 gap-2">
-              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard">
+              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard transition-all">
                 <input type="radio" name="milk" value="Regular" checked class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Whole</span>
               </label>
-              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard">
+              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard transition-all">
                 <input type="radio" name="milk" value="Oat Milk" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Oat (+$1)</span>
               </label>
-              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard">
+              <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard transition-all">
                 <input type="radio" name="milk" value="Almond Milk" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Almond (+$1)</span>
               </label>
@@ -533,19 +481,19 @@ img{max-width:100%;display:block}
           <div>
             <label class="block font-bold text-appText uppercase tracking-wider mb-1.5">Syrup Flavor Add-ons</label>
             <div class="grid grid-cols-2 gap-2">
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
                 <input type="checkbox" id="syrup-vanilla" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Vanilla (+$1)</span>
               </label>
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
                 <input type="checkbox" id="syrup-sorghum" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Sorghum (+$1)</span>
               </label>
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
                 <input type="checkbox" id="extra-shot" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Extra Espresso (+$1)</span>
               </label>
-              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText">
+              <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
                 <input type="checkbox" id="heavy-cream" class="accent-terracotta" onchange="calculateCustomPrice()">
                 <span>Heavy Cream (+$2)</span>
               </label>
@@ -562,7 +510,7 @@ img{max-width:100%;display:block}
               Premium drip espresso profile with standard whole milk. Add luxury flavors and modifications.
             </p>
           </div>
-
+          
           <div class="mt-6 pt-4 border-t border-appBorder flex justify-between items-center">
             <div>
               <span class="text-[10px] text-neutralMuted block uppercase tracking-wider">Total Est.</span>
@@ -608,7 +556,7 @@ img{max-width:100%;display:block}
     </div>
 
     <div class="max-w-2xl mx-auto bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 transition-colors">
-
+      
       <!-- Table Selector Area resembling the delivery details view of image_7b52ed.jpg -->
       <div>
         <label class="block text-xs font-bold text-appText uppercase tracking-widest text-center mb-3">Choose Seating Area</label>
@@ -637,7 +585,7 @@ img{max-width:100%;display:block}
           <label for="reserve-name" class="text-xs font-semibold text-neutralMuted uppercase">Full Reservation Name</label>
           <input type="text" id="reserve-name" required placeholder="Hold reservation under what name?" class="border border-terracotta/30 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
         </div>
-
+        
         <div class="grid grid-cols-2 gap-4">
           <div class="flex flex-col gap-1.5">
             <label for="reserve-guests" class="text-xs font-semibold text-neutralMuted uppercase">Total Guests</label>
@@ -728,7 +676,7 @@ img{max-width:100%;display:block}
         <p>
           Our Maryville hub serves as a cultural anchor, where college students, downtown workers, and neighborhood families convene to discuss the day over handcrafted pour overs and quiche.
         </p>
-
+        
         <!-- Local Metrics -->
         <div class="grid grid-cols-3 gap-4 pt-4 text-center font-serif text-appText border-t border-appBorder">
           <div>
@@ -937,7 +885,7 @@ img{max-width:100%;display:block}
   <div class="sheet-content">
     <h3 class="font-serif text-2xl font-bold text-appHeading mb-1" id="cart-title">Your Order Bag</h3>
     <p class="text-xs text-neutralMuted mb-6">Real-Time curbside pickup ordering pipeline</p>
-
+    
     <div id="cart-items-wrapper" class="space-y-4 mb-6 max-h-[50vh] overflow-y-auto">
       <!-- Dynamic list loaded via JS -->
     </div>
@@ -964,11 +912,11 @@ img{max-width:100%;display:block}
     </div>
     <h3 class="font-serif text-2xl font-bold text-appHeading mb-1">Lounge Pass Generated</h3>
     <p class="text-xs text-neutralMuted mb-6">Please show this boarding coupon pass to the barista at Maryville.</p>
-
+    
     <div class="bg-appCard border-2 border-dashed border-terracotta/50 p-6 rounded-2xl text-left font-mono text-[11px] space-y-3 relative overflow-hidden max-w-sm mx-auto shadow-inner transition-colors">
       <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-appBg"></div>
       <div class="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-appBg"></div>
-
+      
       <div class="flex justify-between border-b border-appBorder pb-2">
         <span class="font-bold text-terracotta">POUR DECISIONS LOUNGE PASS</span>
         <span class="text-neutralMuted">#PD-2026</span>
@@ -1008,7 +956,7 @@ img{max-width:100%;display:block}
   <div class="sheet-content">
     <h3 class="font-serif text-2xl font-bold text-appHeading mb-1" id="upload-title">Share Your Vibe</h3>
     <p class="text-xs text-neutralMuted mb-4">Post a custom coffee setup view onto our real-time board.</p>
-
+    
     <form id="vibe-upload-form" class="space-y-4">
       <div class="relative overflow-hidden w-full h-44 rounded-2xl bg-appBg border-2 border-dashed border-terracotta/30 flex flex-col items-center justify-center cursor-pointer hover:border-terracotta transition-all" id="dropzone">
         <img class="absolute inset-0 w-full h-full object-cover hidden" id="preview-img" alt="Uploaded polaroid preview image">
@@ -1050,80 +998,6 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- 5. CMS Product Modification Sub-Modal -->
 <div class="sheet" id="product-modal-sheet" role="dialog" aria-modal="true">
   <div class="sheet-handle"></div>
@@ -1132,7 +1006,7 @@ img{max-width:100%;display:block}
     <h3 class="font-serif text-xl font-bold text-appHeading mb-1" id="product-form-title">Product Editor</h3>
     <form id="product-crud-form" class="space-y-3 mt-3 text-xs text-appText">
       <input type="hidden" id="p-form-id">
-
+      
       <div class="flex flex-col gap-1.5">
         <label for="p-form-name">Item Name</label>
         <input type="text" id="p-form-name" required placeholder="e.g. Smoked Salmon Bagel Box" class="bg-appBg text-appHeading p-3 rounded-xl border border-terracotta/20 text-sm focus:outline-none focus:border-terracotta">
@@ -1236,33 +1110,11 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<div class="fixed bottom-4 right-4 bg-appCard border border-terracotta/30 text-appText p-3 rounded-2xl shadow-2xl z-50 transition-all transform translate-y-24 opacity-0 max-w-xs text-xs font-semibold tracking-wide" id="toast">
-  Item added successfully!
-</div>
-
 <!-- ================= SYSTEM SCRIPTS & BUSINESS LOGIC ================= -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, addDoc, updateDoc, deleteDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Global operational objects
 let db = null;
@@ -1270,103 +1122,28 @@ let auth = null;
 let userId = null;
 let isFirebaseReady = false;
 
-
 // Application ID
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'pour-decisions';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Seeding Default Menu Options (drink images from image_700523.jpg, food from image_79f20c.jpg)
 let masterProducts = [
-
   { id: 'c1', name: 'Freshly Brewed Coffee', price: 3.00, category: 'coffee', desc: 'Fresh local house roast, includes 1 free refill from coffee bar.', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400' },
   { id: 'c2', name: 'Pour Over Coffee', price: 4.20, category: 'coffee', desc: 'Hand-brewed, fresh single cup of premium origin coffee.', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400' },
   { id: 'c3', name: 'Nitro Cold Brew', price: 5.50, category: 'coffee', desc: 'Creamy nitrogen-infused local cold brew served chilled.', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400' },
   { id: 'c4', name: 'Palomino Signature Brew', price: 7.00, category: 'coffee', desc: 'Nitro cold brew custom styled with gourmet vanilla and half & half.', img: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&q=80&w=400' },
   { id: 'c5', name: 'Red Eye Shot', price: 4.30, category: 'coffee', desc: 'Double shot of house espresso topped with rich brewed coffee.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400' },
-
-
+  
   { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, category: 'signature', desc: 'Double espresso, velvet steamed milk, chocolate, vanilla, and sweet Muddy Pond Sorghum syrup.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=400', badge: 'Best Seller' },
   { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', badge: 'Barista Rec' },
   { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=400', badge: 'Classic Signature' },
-
-
+  
   { id: 'e1', name: 'Espresso Double Shot', price: 3.30, category: 'espresso', desc: 'Perfectly extracted, rich-bodied local espresso blend.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400' },
   { id: 'e2', name: 'Caffe Latte', price: 5.00, category: 'espresso', desc: 'Espresso double shot over steamed milk with thin microfoam layer.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400' },
   { id: 'e3', name: 'Cortado Glass', price: 4.10, category: 'espresso', desc: 'Equal parts extracted espresso and velvet steamed whole milk.', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&q=80&w=400' },
-
-
-
-
-
-
-
-
-
-
+  
   { id: 'b1', name: 'Quiche Slice Special', price: 6.00, category: 'breakfast', desc: 'Choose Ham & Cheddar or rotating vegetarian spinach, tomato, and feta quiche.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400', badge: 'Fresh Baked' },
   { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1626700051175-6518c4793f06?auto=format&fit=crop&q=80&w=400', badge: 'Local Fav' },
   { id: 'l1', name: 'Smoked Salmon Bagel Box', price: 13.00, category: 'lunch', desc: 'Smoked wild salmon, toasted bagel with cream cheese, cucumber slices, and hard-boiled egg.', img: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400', badge: 'Premium Pick' }
-
-
-
-
-
-
-
 ];
 
 // Local state elements (if cloud connectivity is delayed/missing)
@@ -1394,24 +1171,25 @@ let cart = [];
 // DOM caching container
 const dom = {};
 
-// Initial Theme Loading from Session Persistence (Strictly avoiding localStorage per guidelines)
+// Initial Theme Loading from Session Persistence
 let currentTheme = 'dark';
-
-
-
 
 // --- SYSTEM INITIALIZATION ---
 window.onload = function() {
   initDOMCache();
-
-
-
-
-
+  
   // Initialize Cloud Database Pipeline
   initCloudEngine();
 
-  // Load customizers and theme configurations
+  // Load theme persistence
+  const savedTheme = sessionStorage.getItem('pd_theme_mode');
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else {
+    applyTheme('dark');
+  }
+
+  // Load customizers and calculate initial pricing
   calculateCustomPrice();
 
   // Attach search event
@@ -1426,12 +1204,6 @@ window.onload = function() {
   // Promotion modals and timed QR upgrader triggers
   setTimeout(() => openPromoModal(), 1500);
   setTimeout(() => openQrUpgradeModal(), 40000);
-
-
-
-
-
-
 };
 
 function initDOMCache() {
@@ -1616,7 +1388,6 @@ function logTelemetryEvent(eventName, eventDetails) {
 
 // --- STATE PROTECTION AND OFFLINE CACHE ---
 function loadStoredCart() {
-  // Safe persistent storage across page loads using local variables
   try {
     const cachedCart = sessionStorage.getItem('pd_active_order_bag');
     if (cachedCart) {
@@ -1636,8 +1407,8 @@ function saveCartToStorage() {
 function toggleTheme() {
   const targetTheme = (currentTheme === 'dark') ? 'light' : 'dark';
   applyTheme(targetTheme);
+  sessionStorage.setItem('pd_theme_mode', targetTheme);
 
-  // Persist preference to database for device sync
   if (db && isFirebaseReady) {
     const themeRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'theme_preference');
     setDoc(themeRef, { mode: targetTheme }).catch(err => console.error("Theme save failed:", err));
@@ -1662,14 +1433,13 @@ function applyTheme(theme) {
 }
 
 // --- MULTI-PAGE CONTROLLER (SPA) ---
-window.switchPage = function(pageId) {
+function switchPage(pageId) {
   const pageViews = document.querySelectorAll('.page-view');
   for (let i = 0; i < pageViews.length; i++) {
     pageViews[i].classList.add('hidden');
   }
   document.getElementById('page-' + pageId).classList.remove('hidden');
 
-  // Desktop indicator states
   const navTabBtns = document.querySelectorAll('.nav-tab-btn');
   for (let i = 0; i < navTabBtns.length; i++) {
     navTabBtns[i].classList.remove('active', 'text-white');
@@ -1681,7 +1451,6 @@ window.switchPage = function(pageId) {
     activeTab.classList.remove('text-neutralMuted');
   }
 
-  // Mobile indicators
   const mobileTabs = document.querySelectorAll('[id^="mobile-tab-"]');
   for (let i = 0; i < mobileTabs.length; i++) {
     mobileTabs[i].classList.remove('text-terracotta');
@@ -1690,7 +1459,6 @@ window.switchPage = function(pageId) {
   if (activeMobileTab) activeMobileTab.classList.add('text-terracotta');
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
-
 }
 
 function scrollIntoSection(id) {
@@ -1701,7 +1469,6 @@ function scrollIntoSection(id) {
 // --- PROMOTION POPUPS ---
 function openPromoModal() {
   document.getElementById('promo-modal').classList.add('active');
-
 }
 function closePromoModal() {
   document.getElementById('promo-modal').classList.remove('active');
@@ -1710,13 +1477,11 @@ function addPromoToOrder() {
   addItemToCart('s3', 'Viennese Waltz', 5.80);
   closePromoModal();
   openSidebarCart();
-
 }
 
 // --- QR DIGITAL UPGRADE MODAL ---
 function openQrUpgradeModal() {
   document.getElementById('qr-upgrade-modal').classList.add('active');
-
 }
 function closeQrUpgradeModal() {
   document.getElementById('qr-upgrade-modal').classList.remove('active');
@@ -1724,10 +1489,9 @@ function closeQrUpgradeModal() {
 function contactForQrUpgrade() {
   closeQrUpgradeModal();
   showToastNotification("QR Menu Upgrade Proposal Sent to Maryville Team! 🚀");
-
 }
 
-// --- STREAMING_CHUNK: Processing active category filters and dynamic accordion catalog... ---
+// --- STREAMING_CHUNK: Filtering active menu tabs and building dynamic Bistro accordions... ---
 // --- PRODUCTS CATALOG AND BISTRO ACCORDION RENDERERS ---
 function filterCategory(categoryName) {
   selectedCategory = categoryName;
@@ -1736,22 +1500,20 @@ function filterCategory(categoryName) {
     categoryPills[i].classList.remove('bg-terracotta', 'text-white');
     categoryPills[i].classList.add('bg-darkCard', 'text-parchment');
   }
-
+  
   const currentPill = document.getElementById('pill-' + categoryName);
   if (currentPill) {
     currentPill.classList.remove('bg-darkCard', 'text-parchment');
     currentPill.classList.add('bg-terracotta', 'text-white');
   }
-
+  
   renderBistroMenu();
-
 }
 
 function renderBistroMenu() {
   if (!dom.premiumCarousel || !dom.bistroCatalogAccordions) return;
   dom.premiumCarousel.innerHTML = '';
   dom.bistroCatalogAccordions.innerHTML = '';
-
 
   const filtered = masterProducts.filter(item => {
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
@@ -1770,7 +1532,6 @@ function renderBistroMenu() {
     return;
   }
 
-  // Horizontal Carousel specialties (signatures or badge highlights)
   let featuredSpecialties = filtered.filter(item => item.category === 'signature' || item.badge);
   if (featuredSpecialties.length === 0) {
     featuredSpecialties = filtered.slice(0, 3);
@@ -1778,14 +1539,11 @@ function renderBistroMenu() {
 
   dom.carouselTitle.innerText = selectedCategory === 'all' ? "Featured Signatures" : "Top Picks";
 
-
   const carouselFragment = document.createDocumentFragment();
-
   featuredSpecialties.forEach(item => {
     const card = document.createElement('div');
     card.className = 'w-64 flex-shrink-0 bg-appCard border border-appBorder rounded-3xl overflow-hidden p-3 flex flex-col justify-between snap-center shadow-lg transition-transform hover:scale-[1.02]';
     card.innerHTML = `
-
       <div>
         <div class="relative h-44 rounded-2xl overflow-hidden mb-3.5 bg-espresso/30">
           ${item.badge ? `<span class="absolute top-2 left-2 bg-appBg text-appText border border-appBorder font-mono text-[9px] uppercase px-2 py-0.5 rounded shadow z-10">${item.badge}</span>` : ''}
@@ -1805,7 +1563,6 @@ function renderBistroMenu() {
   });
   dom.premiumCarousel.appendChild(carouselFragment);
 
-  // Group Categories Accordions
   const categoryGroups = {
     coffee: { title: "☕ Brewed & Specialty Drip", icon: "fa-mug-hot" },
     espresso: { title: "⚡ Traditional Espresso Creations", icon: "fa-bolt" },
@@ -1816,10 +1573,7 @@ function renderBistroMenu() {
   };
 
   const accordionsFragment = document.createDocumentFragment();
-
-
   Object.keys(categoryGroups).forEach(catId => {
-
     const groupItems = filtered.filter(item => item.category === catId);
     if (groupItems.length === 0) return;
 
@@ -1827,8 +1581,6 @@ function renderBistroMenu() {
     const accordionDiv = document.createElement('div');
     accordionDiv.className = 'border border-appBorder rounded-2xl bg-appCard overflow-hidden shadow-sm transition-colors';
     const isExpanded = selectedCategory === catId;
-
-
 
     accordionDiv.innerHTML = `
       <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center p-4 text-left font-serif font-bold text-appHeading focus:outline-none hover:bg-espresso/5 transition-all">
@@ -1867,11 +1619,10 @@ function renderBistroMenu() {
   dom.bistroCatalogAccordions.appendChild(accordionsFragment);
 }
 
-
 function toggleAccordion(buttonElement) {
   const content = buttonElement.nextElementSibling;
   const icon = buttonElement.querySelector('.fa-chevron-down');
-
+  
   if (content.classList.contains('expanded')) {
     content.classList.remove('expanded');
     content.style.maxHeight = '0px';
@@ -1884,7 +1635,6 @@ function toggleAccordion(buttonElement) {
 }
 
 // --- CURBSIDE BASKET CHECKOUT SYSTEM ---
-
 function addItemToCart(id, name, price) {
   const existing = cart.find(item => item.id === id);
   if (existing) {
@@ -1914,8 +1664,7 @@ function removeOneFromCart(id) {
 
 function syncCartUI() {
   if (!dom.cartItemsWrapper) return;
-
-
+  
   const fragment = document.createDocumentFragment();
   let totalCount = 0;
   let totalPrice = 0;
@@ -1952,10 +1701,9 @@ function syncCartUI() {
   dom.cartItemsWrapper.innerHTML = '';
   dom.cartItemsWrapper.appendChild(fragment);
 
-
   dom.desktopCartBadge.innerText = totalCount;
   dom.mobileCartBadge.innerText = totalCount;
-
+  
   const formattedTotal = `$${totalPrice.toFixed(2)}`;
   dom.mobileCartTotal.innerText = formattedTotal;
   dom.cartDrawerTotal.innerText = formattedTotal;
@@ -1964,7 +1712,6 @@ function syncCartUI() {
 function openSidebarCart() {
   document.getElementById('cart-sheet').classList.add('active');
   document.getElementById('sheet-backdrop').classList.add('active');
-
 }
 function closeSidebarCart() {
   document.getElementById('cart-sheet').classList.remove('active');
@@ -1983,7 +1730,6 @@ async function triggerCheckoutCheckout() {
     timestamp: Date.now()
   };
 
-  // Persist Order Transaction to Real-time Cloud Pipeline
   if (db && isFirebaseReady) {
     try {
       await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'orders'), orderTicket);
@@ -2002,44 +1748,46 @@ async function triggerCheckoutCheckout() {
 function selectReserveZone(element, name, description) {
   selectedLoungeZone = name;
   document.getElementById('zone-reserve-desc').innerText = description;
-
+  
   const zoneBtns = document.querySelectorAll('.zone-btn');
   for (let i = 0; i < zoneBtns.length; i++) {
     zoneBtns[i].classList.remove('selected', 'border-terracotta');
   }
   element.classList.add('selected', 'border-terracotta');
-
 }
 
 const reservationForm = document.getElementById('reserve-bistro-form');
-reservationForm.addEventListener('submit', (e) => {
-  e.preventDefault();
+if (reservationForm) {
+  reservationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const holder = document.getElementById('reserve-name').value.trim();
+    const guests = document.getElementById('reserve-guests').value;
+    const time = document.getElementById('reserve-time').value;
 
-  const holder = document.getElementById('reserve-name').value.trim();
-  const guests = document.getElementById('reserve-guests').value;
-  const time = document.getElementById('reserve-time').value;
+    document.getElementById('ticket-holder-name').innerText = holder;
+    document.getElementById('ticket-holder-guests').innerText = `${guests} Guests`;
+    document.getElementById('ticket-holder-time').innerText = time;
+    document.getElementById('ticket-holder-zone').innerText = selectedLoungeZone;
 
-  document.getElementById('ticket-holder-name').innerText = holder;
-  document.getElementById('ticket-holder-guests').innerText = `${guests} Guests`;
-  document.getElementById('ticket-holder-time').innerText = time;
-  document.getElementById('ticket-holder-zone').innerText = selectedLoungeZone;
+    document.getElementById('ticket-sheet').classList.add('active');
+    document.getElementById('sheet-backdrop').classList.add('active');
 
-  document.getElementById('ticket-sheet').classList.add('active');
-  document.getElementById('sheet-backdrop').classList.add('active');
-
-  logTelemetryEvent('reservation_created', { name: holder, guests, time, zone: selectedLoungeZone });
-  reservationForm.reset();
-});
+    logTelemetryEvent('reservation_created', { name: holder, guests, time, zone: selectedLoungeZone });
+    reservationForm.reset();
+  });
+}
 
 function closeReservationTicket() {
   document.getElementById('ticket-sheet').classList.remove('active');
   document.getElementById('sheet-backdrop').classList.remove('active');
 }
 
+// --- STREAMING_CHUNK: Binding interactive customizers and highlighting selected states... ---
 // --- CUSTOM MIX STUDIO (TIMPLAHAN DESIGN PROFILES) ---
 function calculateCustomPrice() {
   if (!dom.builderBase) return;
-
+  
   const baseSelect = dom.builderBase;
   const chosenOption = baseSelect.options[baseSelect.selectedIndex];
   const basePrice = parseFloat(chosenOption.dataset.price);
@@ -2048,7 +1796,6 @@ function calculateCustomPrice() {
   let finalPrice = basePrice;
   let descString = `Artisan signature espresso customized with your premium selection of modifications.`;
 
-
   const sizeValue = document.querySelector('input[name="brew-size"]:checked').value;
   if (sizeValue === '350') {
     finalPrice += 1.00;
@@ -2056,10 +1803,34 @@ function calculateCustomPrice() {
     finalPrice += 2.00;
   }
 
+  // Set active size selector styling
+  document.querySelectorAll('input[name="brew-size"]').forEach(input => {
+    const label = input.closest('label');
+    if (input.checked) {
+      label.classList.add('border-terracotta', 'bg-terracotta/10');
+      label.classList.remove('border-terracotta/20', 'border-terracotta/30');
+    } else {
+      label.classList.remove('border-terracotta', 'bg-terracotta/10');
+      label.classList.add('border-terracotta/20');
+    }
+  });
+
   const milkValue = document.querySelector('input[name="milk"]:checked').value;
   if (milkValue !== 'Regular') {
     finalPrice += 1.00;
   }
+
+  // Set active milk selector styling
+  document.querySelectorAll('input[name="milk"]').forEach(input => {
+    const label = input.closest('label');
+    if (input.checked) {
+      label.classList.add('border-terracotta', 'bg-terracotta/10');
+      label.classList.remove('border-terracotta/20');
+    } else {
+      label.classList.remove('border-terracotta', 'bg-terracotta/10');
+      label.classList.add('border-terracotta/20');
+    }
+  });
 
   let syrupArr = [];
   if (document.getElementById('syrup-vanilla').checked) {
@@ -2079,14 +1850,12 @@ function calculateCustomPrice() {
     syrupArr.push('Velvet Heavy Cream');
   }
 
-
   dom.builderDisplayName.innerText = `Gourmet Custom ${baseName} (${sizeValue}ml)`;
-
   const modifications = [
     `Served with ${milkValue} milk alternative`,
     ...syrupArr
   ].join(', ');
-
+  
   dom.builderDisplayDesc.innerText = modifications ? `Brew modified with: ${modifications}.` : descString;
   dom.builderDisplayPrice.innerText = `$${finalPrice.toFixed(2)}`;
 }
@@ -2094,7 +1863,7 @@ function calculateCustomPrice() {
 function addCustomBuildToCart() {
   const customName = dom.builderDisplayName.innerText;
   const customPrice = parseFloat(dom.builderDisplayPrice.innerText.replace('$', ''));
-
+  
   addItemToCart('custom-' + Date.now(), customName, customPrice);
   openSidebarCart();
   logTelemetryEvent('custom_mix_added_to_cart', { name: customName, price: customPrice });
@@ -2107,10 +1876,7 @@ function renderVibeBoard() {
 
   const sevenDaysLimit = 7 * 24 * 60 * 60 * 1000;
   const now = Date.now();
-
-
   const activePhotos = communityPhotos.filter(photo => (now - photo.timestamp) <= sevenDaysLimit);
-
 
   const itemsCount = Math.max(4, activePhotos.length + 2);
   const fragment = document.createDocumentFragment();
@@ -2148,7 +1914,6 @@ function renderVibeBoard() {
   dom.polaroidCanvasGrid.appendChild(fragment);
 }
 
-
 function openUploadSheet() {
   document.getElementById('upload-sheet').classList.add('active');
   document.getElementById('sheet-backdrop').classList.add('active');
@@ -2182,7 +1947,6 @@ function applyPresetVibe(url) {
   previewImg.src = url;
   previewImg.classList.remove('hidden');
   placeholder.classList.add('hidden');
-
 }
 
 const vibeUploadForm = document.getElementById('vibe-upload-form');
@@ -2194,16 +1958,13 @@ if (vibeUploadForm) {
     const orderedItem = document.getElementById('wall-drink').value.trim() || 'Handcrafted Brew';
     const imgUrl = previewImg.src || 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400';
 
-
     const newPhoto = {
-
       handle: handle,
       drink: orderedItem,
       image: imgUrl,
       timestamp: Date.now()
     };
 
-    // Store vibe to Cloud/Local
     if (db && isFirebaseReady) {
       try {
         await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vibes', 'vibe_' + Date.now()), newPhoto);
@@ -2212,7 +1973,6 @@ if (vibeUploadForm) {
       communityPhotos.unshift({ id: 'w-' + Date.now(), ...newPhoto });
       renderVibeBoard();
     }
-
 
     vibeUploadForm.reset();
     previewImg.src = '';
@@ -2225,12 +1985,12 @@ if (vibeUploadForm) {
   });
 }
 
+// --- STREAMING_CHUNK: Gathering reviews and preparing administrative controls... ---
 // --- FEEDBACK & REVIEW MODERATION QUEUE ---
 function renderFeedbackBoard() {
   if (!dom.feedbackBoardCards) return;
   dom.feedbackBoardCards.innerHTML = '';
 
-  // Only render APPROVED customer reviews
   const approvedReviews = communityFeedbacks.filter(fb => fb.approved === true);
 
   if (approvedReviews.length === 0) {
@@ -2242,7 +2002,6 @@ function renderFeedbackBoard() {
 
   const fragment = document.createDocumentFragment();
   approvedReviews.forEach(fb => {
-
     const card = document.createElement('div');
     card.className = 'bg-appCard border border-terracotta/20 p-4 rounded-2xl relative shadow-md overflow-hidden';
     card.innerHTML = `
@@ -2268,7 +2027,6 @@ if (suggestionsForm) {
     const comment = document.getElementById('feedback-comment').value.trim();
 
     const feedbackPayload = {
-
       user: user.startsWith('@') ? user : '@' + user,
       topic: topic,
       comment: comment,
@@ -2291,23 +2049,14 @@ if (suggestionsForm) {
   });
 }
 
-// --- STREAMING_CHUNK: Designing the administrative view tabs and control logs... ---
 // --- ADMINISTRATIVE CMS SEPARATE FULL-SCREEN PANEL ---
 function openCMSPage() {
   switchPage('admin');
-
-
-
-
-
-
-
-
 }
 
 function verifyAdministrativePasscode() {
   const pass = document.getElementById('cms-passcode-input').value.trim().toLowerCase();
-
+  
   if (pass === 'pour' || pass === 'barako' || pass === 'vienna') {
     document.getElementById('cms-verify-section').classList.add('hidden');
     document.getElementById('cms-authenticated-view').classList.remove('hidden');
@@ -2321,10 +2070,8 @@ function verifyAdministrativePasscode() {
     logTelemetryEvent('cms_authenticated', { success: true });
   } else {
     showToastNotification("Invalid Passcode. Access Denied.");
-
   }
 }
-
 
 function switchCMSTab(tabName) {
   const tabs = ['orders', 'feedback', 'photos', 'products', 'analytics'];
@@ -2484,7 +2231,6 @@ function renderCMSPhotosList() {
   const sevenDaysLimit = 7 * 24 * 60 * 60 * 1000;
   const now = Date.now();
 
-
   communityPhotos.forEach(photo => {
     const isExpired = (now - photo.timestamp) > sevenDaysLimit;
     const card = document.createElement('div');
@@ -2504,20 +2250,14 @@ function renderCMSPhotosList() {
         <div class="flex gap-1.5 flex-shrink-0">
           <button onclick="downloadVibePhoto('${photo.image}', '${photo.handle}')" class="w-8 h-8 rounded-lg bg-darkAccent border border-terracotta/30 text-terracotta flex items-center justify-center hover:bg-terracotta hover:text-white transition-all shadow-sm" title="Download Vibe"><i class="fa-solid fa-download"></i></button>
           <button onclick="deleteVibePhoto('${photo.id}')" class="w-8 h-8 rounded-lg bg-red-900/20 text-red-400 flex items-center justify-center hover:bg-red-800 hover:text-white transition-all shadow-sm" title="Remove"><i class="fa-solid fa-trash"></i></button>
-
         </div>
-
-
-
       </div>
     `;
     container.appendChild(card);
   });
-
 }
 
 function downloadVibePhoto(base64OrUrl, handle) {
-  // Direct file trigger using execution tags
   const link = document.createElement('a');
   link.href = base64OrUrl;
   link.download = `Vibe_Photo_By_${handle}.jpg`;
@@ -2546,8 +2286,6 @@ function renderCMSProductsList() {
   if (!container) return;
   container.innerHTML = '';
 
-
-
   masterProducts.forEach(item => {
     const card = document.createElement('div');
     card.className = 'bg-appBg border border-appBorder p-3 rounded-2xl flex items-center justify-between gap-3 text-xs shadow-sm';
@@ -2566,7 +2304,6 @@ function renderCMSProductsList() {
     `;
     container.appendChild(card);
   });
-
 }
 
 async function deleteProductFromCMS(id) {
@@ -2585,7 +2322,7 @@ function openProductEditForm(id = '') {
   const modal = document.getElementById('product-modal-sheet');
   const title = document.getElementById('product-form-title');
   const form = document.getElementById('product-crud-form');
-
+  
   form.reset();
   modal.classList.add('active');
 
@@ -2614,7 +2351,7 @@ const crudForm = document.getElementById('product-crud-form');
 if (crudForm) {
   crudForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-
+    
     const id = document.getElementById('p-form-id').value;
     const name = document.getElementById('p-form-name').value.trim();
     const price = parseFloat(document.getElementById('p-form-price').value);
@@ -2640,7 +2377,6 @@ if (crudForm) {
 
     closeProductEditForm();
     showToastNotification("Catalog updated successfully!");
-
   });
 }
 
@@ -2650,27 +2386,18 @@ function claimMysteryStamp() {
     showToastNotification("🏆 Reward code UNLOCKED: POUR99!");
     return;
   }
-
+  
   stampCount++;
-
-
-
-
-
-
-
-
   showToastNotification(`Stamp claimed! (${stampCount}/5)`);
   logTelemetryEvent('loyalty_stamp_claimed', { count: stampCount });
 }
-
 
 function showToastNotification(message) {
   const toast = document.getElementById('toast');
   toast.innerText = message;
   toast.classList.remove('translate-y-24', 'opacity-0');
   toast.classList.add('translate-y-0', 'opacity-100');
-
+  
   setTimeout(() => {
     toast.classList.remove('translate-y-0', 'opacity-100');
     toast.classList.add('translate-y-24', 'opacity-0');
@@ -2690,15 +2417,49 @@ function debounce(func, delay) {
     timeout = setTimeout(() => func.apply(this, args), delay);
   };
 }
+
+// Bind module-scoped actions to global window namespace to ensure HTML onclick attributes are safely resolved
+Object.assign(window, {
+  toggleTheme,
+  openSidebarCart,
+  closeSidebarCart,
+  openCMSPage,
+  claimMysteryStamp,
+  addItemToCart,
+  removeOneFromCart,
+  triggerCheckoutCheckout,
+  selectReserveZone,
+  calculateCustomPrice,
+  addCustomBuildToCart,
+  openUploadSheet,
+  closeUploadSheet,
+  applyPresetVibe,
+  closeReservationTicket,
+  closePromoModal,
+  addPromoToOrder,
+  closeQrUpgradeModal,
+  contactForQrUpgrade,
+  verifyAdministrativePasscode,
+  switchCMSTab,
+  updateOrderStatus,
+  moderateFeedback,
+  downloadVibePhoto,
+  deleteVibePhoto,
+  openProductEditForm,
+  closeProductEditForm,
+  deleteProductFromCMS,
+  handleImageError,
+  toggleAccordion,
+  filterCategory,
+  scrollIntoSection,
+  switchPage
+});
 </script>
 
 <!-- Global Toast Notification Component -->
 <div class="fixed bottom-4 right-4 bg-appCard border border-terracotta/30 text-appText p-3 rounded-2xl shadow-2xl z-50 transition-all transform translate-y-24 opacity-0 max-w-xs text-xs font-semibold tracking-wide" id="toast">
   Item added successfully!
-
-
-
-
 </div>
 
 </body>
+</html>
