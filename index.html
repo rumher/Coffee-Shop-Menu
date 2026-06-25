@@ -1062,11 +1062,36 @@ img{max-width:100%;display:block}
 
 <!-- ================= SYSTEM SCRIPTS & BUSINESS LOGIC ================= -->
 <script type="module">
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/module/index.js";
 
-const supabaseUrl = "https://hpvzvwxczgkvgzrjplie.supabase.co";
-const supabaseKey = "hpvzvwxczgkvgzrjplie";
-const supabase = createClient(supabaseUrl, supabaseKey);
+const SUPABASE_URL = "https://hpvzvwxczgkvgzrjplie.supabase.co";
+const SUPABASE_KEY = "hpvzvwxczgkvgzrjplie";
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function startOrdersRealtime() {
+  await supabase.realtime.setAuth();
+
+  const channel = supabase
+    .channel("orders:simulated_real_time", { config: { private: true } })
+    .on("broadcast", { event: "order_simulated" }, ({ id, customer_name, status, timestamp, action, items, total_price }) => {
+      console.log("orders:simulated_real_time", { id, action, status, timestamp });
+      // Example: if you maintain a UI list/table, use action like:
+      // - insert / enter_pending => add/update row
+      // - exit_pending / delete_pending => remove row
+    })
+    .subscribe((status, err) => {
+      if (status === "SUBSCRIBED") {
+        console.log("Realtime subscribed!");
+      } else if (err) {
+        console.error("Realtime error:", err);
+      }
+    });
+
+  // Optional cleanup if you ever need it:
+  // return () => supabase.removeChannel(channel);
+}
+
+startOrdersRealtime();
 
 // Global operational objects
 let activeOrders = [];
