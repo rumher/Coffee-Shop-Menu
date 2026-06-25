@@ -1135,8 +1135,8 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 const storedUrl = localStorage.getItem('pd_supabase_url');
 const storedKey = localStorage.getItem('pd_supabase_key');
 
-const DEFAULT_URL = "https://sb_publishable_lQarNuQsf2oZiyRokbp7zA_L63ZKEJ0.supabase.co";
-const DEFAULT_KEY = "sb_publishable_lQarNuQsf2oZiyRokbp7zA_L63ZKEJ0"; // Keep project reference placeholder
+const DEFAULT_URL = "https://hpvzvwxczgkvgzrjplie.supabase.co";
+const DEFAULT_KEY = "hpvzvwxczgkvgzrjplie"; // Keep project reference placeholder
 
 let supabaseUrl = storedUrl || DEFAULT_URL;
 let supabaseKey = storedKey || DEFAULT_KEY;
@@ -1323,13 +1323,30 @@ async function fetchLiveOrders() {
         items: typeof order.items === 'string' ? JSON.parse(order.items) : order.items,
         totalPrice: parseFloat(order.total_price || order.totalPrice || 0)
       }));
-      renderCMSOrdersPipeline();
-      updateDashboardMetrics();
       logTelemetryEvent('supabase_connected', { count: data.length });
     }
   } catch (err) {
     console.warn("Supabase orders offline, fallback to simulation mode: ", err.message);
+    // If we are in local fallback sandbox mode, ensure there is at least one preloaded order card
+    if (activeOrders.length === 0) {
+      activeOrders = [
+        {
+          id: 'sim_1',
+          customer_name: 'Boutique Visitor',
+          items: [
+            { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, quantity: 1, desc: 'Hot, oat milk' },
+            { id: 'b1', name: 'Quiche Slice Special', price: 6.00, quantity: 2, desc: 'Ham & Cheddar' }
+          ],
+          totalPrice: 17.80,
+          status: 'Pending',
+          timestamp: new Date(Date.now() - 600000).toISOString()
+        }
+      ];
+    }
   } finally {
+    // ALWAYS run rendering loops regardless of database state to prevent blank panels!
+    renderCMSOrdersPipeline();
+    updateDashboardMetrics();
     if (refreshIcon) {
       setTimeout(() => refreshIcon.classList.remove('fa-spin'), 600);
     }
