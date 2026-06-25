@@ -14,7 +14,7 @@
 <meta name="keywords" content="Pour Decisions, Specialty coffee Maryville TN, Muddy Pond Mocha, Viennese Waltz, artisan bakery, coffee shop near me, local lounge, Maryville TN bistro">
 <meta name="robots" content="index, follow">
 
-<link class="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☕%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23C67C4E' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20h40a4 4 0 0 1 4 4v4a20 20 0 0 1-20 20H28A20 20 0 0 1 8 28v-4a4 4 0 0 1 4-4Z'/%3E%3Cpath d='M18 20V12a6 6 0 0 1 12 0v8M34 20v-5a3 3 0 0 1 6 0v5'/%3E%3Cpath d='M26 48c0 4 6 10 6 10s6-6 6-10'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,800;1,300&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -258,7 +258,7 @@ img{max-width:100%;display:block}
   max-height: 1000px;
 }
 
-/* Embedded Google Maps container styles */
+/* Embedded Maps container styles */
 .map-responsive {
   overflow:hidden;
   position:relative;
@@ -289,7 +289,7 @@ img{max-width:100%;display:block}
 <header class="bg-appCard text-appText sticky top-0 z-40 border-b border-appBorder shadow-lg transition-colors">
   <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
     <div class="flex items-center gap-3">
-      <!-- Made-Up Premium Professional Logo -->
+      <!-- Dynamic SVG Favicon Logo Alignment -->
       <div class="w-11 h-11 flex items-center justify-center bg-appBg rounded-xl border border-terracotta/30 shadow-inner">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-7 h-7 fill-none stroke-terracotta" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 20h40a4 4 0 0 1 4 4v4a20 20 0 0 1-20 20H28A20 20 0 0 1 8 28v-4a4 4 0 0 1 4-4Z" />
@@ -314,7 +314,7 @@ img{max-width:100%;display:block}
 
     <!-- Header Actions (Theme toggle, Cart, and Admin trigger) -->
     <div class="flex items-center gap-2">
-      <!-- Theme Toggle Switcher with High-Contrast Prompt Indicator -->
+      <!-- Theme Toggle Switcher -->
       <button onclick="toggleTheme()" class="theme-glowing-aura p-2.5 bg-darkAccent hover:bg-terracotta/10 text-terracotta rounded-xl transition-all border border-terracotta/20 relative" id="theme-toggle-btn" aria-label="Toggle Light/Dark Theme">
         <i class="fa-solid fa-moon text-base" id="theme-toggle-icon"></i>
         <span class="absolute -top-1 -right-1 bg-terracotta w-2.5 h-2.5 rounded-full ring-2 ring-appCard"></span>
@@ -366,7 +366,7 @@ img{max-width:100%;display:block}
           <span class="text-terracotta font-mono text-sm">$5.80</span>
         </div>
         <p class="text-[11px] text-accentLight mt-1">Rich Espresso, velvet steamed milk, premium white chocolate, and sweet almond syrup.</p>
-        <button onclick="addItemToCart('s3', 'Viennese Waltz', 5.80)" class="w-full mt-4 bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 rounded-xl transition-all">
+        <button id="highlight-add-btn" onclick="addItemToCart('s3', 'Viennese Waltz', 5.80)" class="w-full mt-4 bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 rounded-xl transition-all">
           <i class="fa-solid fa-cart-plus mr-1"></i> Add to Order
         </button>
       </div>
@@ -552,7 +552,10 @@ img{max-width:100%;display:block}
     <div class="text-center max-w-xl mx-auto space-y-2">
       <span class="font-mono text-xs uppercase tracking-widest text-terracotta">College Street Lounge Space</span>
       <h2 class="font-serif text-3xl font-bold text-appHeading">Reserve a Lounge Table</h2>
-      <p class="text-sm text-neutralMuted">Book high-speed study rooms, cozy window niches, or rustic community harvest tables ahead of time.</p>
+      <p class="text-sm text-neutralMuted">Book high-speed study rooms, cozy window niches, or rustic community harvest tables.</p>
+      <div class="inline-block bg-yellow-500/10 border border-yellow-500/30 text-yellow-500 rounded-xl px-4 py-2 mt-2 text-xs font-medium">
+        <i class="fa-solid fa-clock-rotate-left mr-1.5"></i> All lounge bookings are active for the **current day only** to guarantee fair community access.
+      </div>
     </div>
 
     <div class="max-w-2xl mx-auto bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 transition-colors">
@@ -592,13 +595,13 @@ img{max-width:100%;display:block}
             <input type="number" id="reserve-guests" min="1" max="15" required placeholder="2" class="border border-terracotta/30 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
           </div>
           <div class="flex flex-col gap-1.5">
-            <label for="reserve-time" class="text-xs font-semibold text-neutralMuted uppercase">Arrival Time Slot</label>
+            <label for="reserve-time" class="text-xs font-semibold text-neutralMuted uppercase">Arrival Time Slot (Today Only)</label>
             <input type="time" id="reserve-time" required class="border border-terracotta/30 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
           </div>
         </div>
 
         <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif py-3.5 rounded-xl shadow-md transition-all font-bold tracking-wider">
-          Generate Lounge Entry Pass
+          Generate Same-Day Lounge Entry Pass
         </button>
       </form>
     </div>
@@ -695,21 +698,20 @@ img{max-width:100%;display:block}
       </div>
     </div>
 
-    <!-- Google Maps Location Module (Corrected, responsive, fully valid Maryville coords parameters) -->
-    <div class="max-w-4xl mx-auto space-y-4 pt-6 border-t border-appBorder">
+    <!-- Resilient Location Module (Fully validated OpenStreetMap responsive viewport integration) -->
+    <div class="max-w-4xl mx-auto space-y-4 pt-6 border-t border-appBorder font-sans">
       <div class="text-center">
         <h3 class="font-serif text-xl font-bold text-appHeading">Find Our Cozy Sanctuary</h3>
         <p class="text-xs text-neutralMuted">212 College Street, Maryville, TN 37804 | Phone: (865) 980-8282</p>
       </div>
-      <div class="map-responsive h-64 sm:h-80 w-full">
+      <div class="map-responsive h-64 sm:h-80 w-full rounded-2xl overflow-hidden shadow-lg border border-appBorder">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3235.485121817926!2d-83.9716178!3d35.7565203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x885e9fd17dc1399d%3A0x5741a0a616c080cb!2s212%20College%20St%2C%20Maryville%2C%20TN%2037804%2C%20USA!5e0!3m2!1sen!2sus!5m2!1sen!2sus" 
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-83.985%2C35.750%2C-83.955%2C35.765&layer=mapnik&marker=35.7565%2C-83.9716" 
           width="100%" 
           height="100%" 
-          style="border:0;" 
-          allowfullscreen="" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade">
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy">
         </iframe>
       </div>
     </div>
@@ -821,8 +823,8 @@ img{max-width:100%;display:block}
             <i class="fa-solid fa-circle-plus"></i> Add New Product Option
           </button>
         </div>
-        <div id="cms-products-listing-wrapper" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          <!-- Dynamic products lists -->
+        <div id="cms-products-listing-wrapper" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Dynamic products lists populated by renderCMSProductsList() -->
         </div>
       </div>
 
@@ -883,9 +885,15 @@ img{max-width:100%;display:block}
   <button class="sheet-close" onclick="closeSidebarCart()" aria-label="Close Shopping Cart"><i class="fa-solid fa-xmark"></i></button>
   <div class="sheet-content">
     <h3 class="font-serif text-2xl font-bold text-appHeading mb-1" id="cart-title">Your Order Bag</h3>
-    <p class="text-xs text-neutralMuted mb-6">Real-Time curbside pickup ordering pipeline</p>
+    <p class="text-xs text-neutralMuted mb-2">Digital menu preview helper</p>
     
-    <div id="cart-items-wrapper" class="space-y-4 mb-6 max-h-[50vh] overflow-y-auto">
+    <!-- Heavy-contrast Disclaimer block clarifying this is ONLY a digital menu preview helper (No Delivery) -->
+    <div class="p-3 bg-terracotta/10 border-l-4 border-terracotta rounded-xl text-[11px] leading-relaxed text-accentLight mb-4 font-sans">
+      <i class="fa-solid fa-circle-info text-terracotta mr-1"></i> 
+      <strong>In-House Assistant Only:</strong> This bag serves as a digital table order aggregator for showing the baristas at the counter. **We do not support external online home delivery orders.**
+    </div>
+    
+    <div id="cart-items-wrapper" class="space-y-4 mb-6 max-h-[40vh] overflow-y-auto">
       <!-- Dynamic list loaded via JS -->
     </div>
 
@@ -939,6 +947,7 @@ img{max-width:100%;display:block}
         </div>
       </div>
       <div class="pt-4 text-center border-t border-appBorder mt-2">
+        <p class="text-[9px] font-bold text-yellow-500 mb-2 uppercase tracking-wide">Valid Today Only</p>
         <div class="inline-block bg-appBg text-appText px-4 py-2 text-xs font-mono tracking-widest font-bold shadow transition-colors">
           ||||| ||| |||| || |||| |||
         </div>
@@ -1001,7 +1010,7 @@ img{max-width:100%;display:block}
 <div class="sheet" id="product-modal-sheet" role="dialog" aria-modal="true">
   <div class="sheet-handle"></div>
   <button class="sheet-close" onclick="closeProductEditForm()"><i class="fa-solid fa-xmark"></i></button>
-  <div class="sheet-content">
+  <div class="sheet-content font-sans text-xs">
     <h3 class="font-serif text-xl font-bold text-appHeading mb-1" id="product-form-title">Product Editor</h3>
     <form id="product-crud-form" class="space-y-3 mt-3 text-xs text-appText">
       <input type="hidden" id="p-form-id">
@@ -1018,7 +1027,7 @@ img{max-width:100%;display:block}
         </div>
         <div class="flex flex-col gap-1.5">
           <label for="p-form-category">Category Tab</label>
-          <select id="p-form-category" class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none text-sm" required>
+          <select id="p-form-category" class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none text-sm animate-none" required>
             <option value="coffee">Brewed & Drip</option>
             <option value="espresso">Espresso Drinks</option>
             <option value="signature">Signatures</option>
@@ -1046,71 +1055,8 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<!-- 6. Premium Launch "New Arrival" Promotion Popup -->
-<div class="promo-modal" id="promo-modal" role="dialog" aria-modal="true">
-  <div class="fixed inset-0 bg-[#150A08]/80 backdrop-blur-md transition-opacity duration-300" onclick="closePromoModal()"></div>
-  <div class="relative bg-appCard border border-terracotta max-w-sm w-full rounded-3xl overflow-hidden shadow-2xl z-10 mx-4 transition-colors">
-    <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-espresso/40 text-white flex items-center justify-center font-bold hover:bg-espresso/60 transition-all z-20" onclick="closePromoModal()">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-    <div class="relative h-44 bg-gray-900">
-      <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600" alt="Viennese Waltz Premium Drink Highlight" class="object-cover w-full h-full" onerror="handleImageError(this)">
-      <div class="absolute inset-0 bg-gradient-to-t from-espresso to-transparent"></div>
-      <div class="absolute bottom-4 left-4">
-        <span class="bg-terracotta text-white font-mono text-[9px] font-bold uppercase px-2 py-0.5 rounded shadow block w-max mb-1">New Signature</span>
-        <h4 class="font-serif text-lg font-bold text-white">The Viennese Waltz</h4>
-      </div>
-    </div>
-    <div class="p-5 space-y-3">
-      <p class="text-xs text-accentLight leading-relaxed">
-        Our barista-crafted specialty drink of the month is here. Indulge in hot espresso sweetened with melted white chocolate, velvety steamed milk, and roasted almond syrup.
-      </p>
-      <div class="flex justify-between items-center pt-2">
-        <div>
-          <span class="text-[9px] text-neutralMuted block uppercase font-mono">Special Price</span>
-          <span class="font-mono text-appHeading font-bold text-sm">$5.80</span>
-        </div>
-        <button onclick="addPromoToOrder()" class="bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 px-4 rounded-xl transition-all shadow">
-          Pre-Order Now!
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 7. Premium QR Menu Upgrade Suggestion Modal -->
-<div class="promo-modal" id="qr-upgrade-modal" role="dialog" aria-modal="true">
-  <div class="fixed inset-0 bg-[#150A08]/85 backdrop-blur-md transition-opacity duration-300" onclick="closeQrUpgradeModal()"></div>
-  <div class="relative bg-appCard border border-terracotta max-w-md w-full rounded-3xl overflow-hidden shadow-2xl z-50 mx-4 transition-colors p-6 sm:p-8 space-y-6">
-    <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-espresso/40 text-appText flex items-center justify-center font-bold hover:bg-espresso/60 transition-all z-20" onclick="closeQrUpgradeModal()">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-    <div class="text-center space-y-3">
-      <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-terracotta/20 text-terracotta text-3xl mb-1">
-        <i class="fa-solid fa-qrcode"></i>
-      </div>
-      <h3 class="font-serif text-2xl font-bold text-appHeading">Upgrade to a Premium Digital Menu System</h3>
-      <p class="text-xs text-accentLight leading-relaxed">
-        Loved the fluid transitions, interactive customizer, live feedback board, and responsive dark/light mode designs in this app? This is a preview of our premium <strong>Interactive QR Menu & Digital Ordering Ecosystem</strong>.
-      </p>
-      <p class="text-[11px] text-neutralMuted leading-relaxed">
-        Elevate your restaurant, bistro, or cafe operations with synchronized online checkout, live kitchen display integrations, real-time analytics dashboards, and contactless QR-table scans.
-      </p>
-    </div>
-    <div class="flex flex-col sm:flex-row gap-2.5 pt-2">
-      <button onclick="contactForQrUpgrade()" class="flex-grow bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-3 px-4 rounded-xl transition-all shadow text-center">
-        Get Your Custom QR Menu Build
-      </button>
-      <button onclick="closeQrUpgradeModal()" class="bg-darkAccent border border-terracotta/25 hover:bg-terracotta/10 text-terracotta text-xs font-bold py-3 px-4 rounded-xl transition-all text-center">
-        Maybe Later
-      </button>
-    </div>
-  </div>
-</div>
-
 <!-- ================= SYSTEM SCRIPTS & BUSINESS LOGIC ================= -->
 <script type="module">
-// 1. SUPABASE DATABASE INITIALIZATION INTEGRATION
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 const supabaseUrl = "https://hpvzvwxczgkvgzrjplie.supabase.co";
@@ -1125,23 +1071,23 @@ let telemetryLogs = [
 ];
 
 let masterProducts = [
-  { id: 'c1', name: 'Freshly Brewed Coffee', price: 3.00, category: 'coffee', desc: 'Fresh local house roast, includes 1 free refill from coffee bar.', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400' },
-  { id: 'c2', name: 'Pour Over Coffee', price: 4.20, category: 'coffee', desc: 'Hand-brewed, fresh single cup of premium origin coffee.', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400' },
-  { id: 'c3', name: 'Nitro Cold Brew', price: 5.50, category: 'coffee', desc: 'Creamy nitrogen-infused local cold brew served chilled.', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400' },
-  { id: 'c4', name: 'Palomino Signature Brew', price: 7.00, category: 'coffee', desc: 'Nitro cold brew custom styled with gourmet vanilla and half & half.', img: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&q=80&w=400' },
-  { id: 'c5', name: 'Red Eye Shot', price: 4.30, category: 'coffee', desc: 'Double shot of house espresso topped with rich brewed coffee.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400' },
+  { id: 'c1', name: 'Freshly Brewed Coffee', price: 3.00, category: 'coffee', desc: 'Fresh local house roast, includes 1 free refill from coffee bar.', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
+  { id: 'c2', name: 'Pour Over Coffee', price: 4.20, category: 'coffee', desc: 'Hand-brewed, fresh single cup of premium origin coffee.', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
+  { id: 'c3', name: 'Nitro Cold Brew', price: 5.50, category: 'coffee', desc: 'Creamy nitrogen-infused local cold brew served chilled.', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
+  { id: 'c4', name: 'Palomino Signature Brew', price: 7.00, category: 'coffee', desc: 'Nitro cold brew custom styled with gourmet vanilla and half & half.', img: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
+  { id: 'c5', name: 'Red Eye Shot', price: 4.30, category: 'coffee', desc: 'Double shot of house espresso topped with rich brewed coffee.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
   
-  { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, category: 'signature', desc: 'Double espresso, velvet steamed milk, chocolate, vanilla, and sweet Muddy Pond Sorghum syrup.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=400', badge: 'Best Seller' },
-  { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', badge: 'Barista Rec' },
-  { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=400', badge: 'Classic Signature' },
+  { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, category: 'signature', desc: 'Double espresso, velvet steamed milk, chocolate, vanilla, and sweet Muddy Pond Sorghum syrup.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Best Seller' },
+  { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Barista Rec' },
+  { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Classic Signature' },
   
-  { id: 'e1', name: 'Espresso Double Shot', price: 3.30, category: 'espresso', desc: 'Perfectly extracted, rich-bodied local espresso blend.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400' },
-  { id: 'e2', name: 'Caffe Latte', price: 5.00, category: 'espresso', desc: 'Espresso double shot over steamed milk with thin microfoam layer.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400' },
-  { id: 'e3', name: 'Cortado Glass', price: 4.10, category: 'espresso', desc: 'Equal parts extracted espresso and velvet steamed whole milk.', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&q=80&w=400' },
+  { id: 'e1', name: 'Espresso Double Shot', price: 3.30, category: 'espresso', desc: 'Perfectly extracted, rich-bodied local espresso blend.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
+  { id: 'e2', name: 'Caffe Latte', price: 5.00, category: 'espresso', desc: 'Espresso double shot over steamed milk with thin microfoam layer.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
+  { id: 'e3', name: 'Cortado Glass', price: 4.10, category: 'espresso', desc: 'Equal parts extracted espresso and velvet steamed whole milk.', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
   
-  { id: 'b1', name: 'Quiche Slice Special', price: 6.00, category: 'breakfast', desc: 'Choose Ham & Cheddar or rotating vegetarian spinach, tomato, and feta quiche.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400', badge: 'Fresh Baked' },
-  { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1626700051175-6518c4793f06?auto=format&fit=crop&q=80&w=400', badge: 'Local Fav' },
-  { id: 'l1', name: 'Smoked Salmon Bagel Box', price: 13.00, category: 'lunch', desc: 'Smoked wild salmon, toasted bagel with cream cheese, cucumber slices, and hard-boiled egg.', img: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400', badge: 'Premium Pick' }
+  { id: 'b1', name: 'Quiche Slice Special', price: 6.00, category: 'breakfast', desc: 'Choose Ham & Cheddar or rotating vegetarian spinach, tomato, and feta quiche.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Fresh Baked' },
+  { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1626700051175-6518c4793f06?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Local Fav' },
+  { id: 'l1', name: 'Smoked Salmon Bagel Box', price: 13.00, category: 'lunch', desc: 'Smoked wild salmon, toasted bagel with cream cheese, cucumber slices, and hard-boiled egg.', img: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Premium Pick' }
 ];
 
 let communityPhotos = [
@@ -1206,12 +1152,11 @@ function initDOMCache() {
   dom.feedbackBoardCards = document.getElementById('feedback-board-cards');
 }
 
-// 3. REAL-TIME ORDERS STREAM & PERSISTENT ORDER BAG LOGIC
 async function initSupabasePipeline() {
   renderBistroMenu();
   renderVibeBoard();
   renderFeedbackBoard();
-  loadStoredCart(); // Keeps custom order bags local on each device as requested
+  loadStoredCart(); 
 
   // Fetch initial data from Supabase
   fetchLiveOrders();
@@ -1230,7 +1175,12 @@ async function fetchLiveOrders() {
     const { data, error } = await supabase.from('orders').select('*').order('timestamp', { ascending: false });
     if (error) throw error;
     if (data) {
-      activeOrders = data;
+      // Map postgres JSON formats cleanly
+      activeOrders = data.map(order => ({
+        ...order,
+        items: typeof order.items === 'string' ? JSON.parse(order.items) : order.items,
+        totalPrice: parseFloat(order.total_price || order.totalPrice || 0)
+      }));
       renderCMSOrdersPipeline();
       updateDashboardMetrics();
       logTelemetryEvent('supabase_connected', { count: data.length });
@@ -1256,13 +1206,10 @@ function logTelemetryEvent(eventName, eventDetails) {
       logText = `☕ Custom ${eventDetails.name} crafted in Mix Studio ($${eventDetails.price.toFixed(2)})`;
       break;
     case 'order_placed':
-      logText = `🛍️ New Curbside Pre-Order Placed for ${eventDetails.itemCount} items!`;
+      logText = `🛍️ New In-House table aggregation simulation logged!`;
       break;
     case 'reservation_created':
-      logText = `🎫 Seating booked: ${eventDetails.zone} for ${eventDetails.guests} guests`;
-      break;
-    case 'feedback_submitted':
-      logText = `✨ Review submitted by ${eventDetails.user} - Held for moderation`;
+      logText = `🎫 Seating booked (Today Only): ${eventDetails.zone} for ${eventDetails.guests} guests`;
       break;
     case 'loyalty_stamp_claimed':
       logText = `🎯 Mystery Stamp claimed! (${eventDetails.count}/5 completed)`;
@@ -1275,6 +1222,12 @@ function logTelemetryEvent(eventName, eventDetails) {
       break;
     case 'supabase_error':
       logText = `⚠️ Supabase connection error: ${eventDetails.details}`;
+      break;
+    case 'order_status_updated':
+      logText = `🔄 Status changed for Order #${eventDetails.id.slice(0,5)}: -> ${eventDetails.status}`;
+      break;
+    case 'product_status_updated':
+      logText = `☕ Product "${eventDetails.name}" configuration altered.`;
       break;
     default:
       logText = `⚡ User action: ${eventName}`;
@@ -1356,6 +1309,10 @@ function switchPage(pageId) {
   if (activeMobileTab) activeMobileTab.classList.add('text-terracotta');
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+  if (pageId === 'admin') {
+    renderCMSProductsList();
+  }
 }
 
 function scrollIntoSection(id) {
@@ -1404,18 +1361,36 @@ function renderBistroMenu() {
   dom.premiumCarousel.innerHTML = '';
   dom.bistroCatalogAccordions.innerHTML = '';
 
+  // Filter out products marked as hidden/temporarily removed
   const filtered = masterProducts.filter(item => {
+    if (item.hidden) return false;
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
     const matchesSearch = item.name.toLowerCase().includes(currentSearch.toLowerCase()) || 
                           item.desc.toLowerCase().includes(currentSearch.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
+  // Check highlight Viennese Waltz status
+  const waltz = masterProducts.find(p => p.id === 's3');
+  const highlightAddBtn = document.getElementById('highlight-add-btn');
+  if (highlightAddBtn) {
+    if (waltz && waltz.sold_out) {
+      highlightAddBtn.disabled = true;
+      highlightAddBtn.innerHTML = `<i class="fa-solid fa-ban mr-1"></i> Sold Out`;
+      highlightAddBtn.className = "w-full mt-4 bg-neutral-600 text-white text-xs font-bold py-2.5 rounded-xl cursor-not-allowed opacity-60";
+    } else {
+      highlightAddBtn.disabled = false;
+      highlightAddBtn.innerHTML = `<i class="fa-solid fa-cart-plus mr-1"></i> Add to Order`;
+      highlightAddBtn.className = "w-full mt-4 bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 rounded-xl transition-all";
+    }
+  }
+
   if (filtered.length === 0) {
     dom.premiumCarousel.innerHTML = `<div class="text-neutralMuted py-4 text-xs font-mono pl-2">No matching item found.</div>`;
     return;
   }
 
+  // Specialties
   let featuredSpecialties = filtered.filter(item => item.category === 'signature' || item.badge);
   if (featuredSpecialties.length === 0) featuredSpecialties = filtered.slice(0, 3);
 
@@ -1423,11 +1398,13 @@ function renderBistroMenu() {
 
   featuredSpecialties.forEach(item => {
     const card = document.createElement('div');
-    card.className = 'w-64 flex-shrink-0 bg-appCard border border-appBorder rounded-3xl overflow-hidden p-3 flex flex-col justify-between snap-center shadow-lg transition-transform hover:scale-[1.02]';
+    const isSoldOut = item.sold_out;
+    card.className = `w-64 flex-shrink-0 bg-appCard border border-appBorder rounded-3xl overflow-hidden p-3 flex flex-col justify-between snap-center shadow-lg transition-transform hover:scale-[1.02] ${isSoldOut ? 'opacity-70 filter saturate-50' : ''}`;
     card.innerHTML = `
       <div>
         <div class="relative h-44 rounded-2xl overflow-hidden mb-3.5 bg-espresso/30">
           ${item.badge ? `<span class="absolute top-2 left-2 bg-appBg text-appText border border-appBorder font-mono text-[9px] uppercase px-2 py-0.5 rounded shadow z-10">${item.badge}</span>` : ''}
+          ${isSoldOut ? `<span class="absolute inset-0 bg-black/60 flex items-center justify-center font-bold text-sm tracking-wider text-red-400 font-serif z-10 uppercase">Sold Out</span>` : ''}
           <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" loading="lazy" onerror="window.handleImageError(this)">
         </div>
         <h4 class="font-serif font-bold text-appHeading text-base leading-snug mb-1 truncate">${item.name}</h4>
@@ -1435,14 +1412,21 @@ function renderBistroMenu() {
       </div>
       <div class="pt-3 border-t border-appBorder flex justify-between items-center mt-3">
         <span class="text-terracotta font-mono font-bold text-base">$${item.price.toFixed(2)}</span>
-        <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-9 h-9 rounded-full bg-terracotta text-white flex items-center justify-center hover:bg-terracotta/90 transition-all shadow">
-          <i class="fa-solid fa-plus text-xs"></i>
-        </button>
+        ${isSoldOut ? `
+          <button disabled class="w-9 h-9 rounded-full bg-neutral-600 text-neutral-400 flex items-center justify-center cursor-not-allowed">
+            <i class="fa-solid fa-ban text-xs"></i>
+          </button>
+        ` : `
+          <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-9 h-9 rounded-full bg-terracotta text-white flex items-center justify-center hover:bg-terracotta/90 transition-all shadow">
+            <i class="fa-solid fa-plus text-xs"></i>
+          </button>
+        `}
       </div>
     `;
     dom.premiumCarousel.appendChild(card);
   });
 
+  // Accordion lists
   const categoryGroups = {
     coffee: { title: "☕ Brewed & Specialty Drip", icon: "fa-mug-hot" },
     espresso: { title: "⚡ Traditional Espresso Creations", icon: "fa-bolt" },
@@ -1471,25 +1455,35 @@ function renderBistroMenu() {
       </button>
       <div class="accordion-content px-4 pb-4 space-y-3 ${isExpanded ? 'expanded' : ''}" style="${isExpanded ? 'max-height: 1000px;' : 'max-height: 0px;'}">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
-          ${groupItems.map(item => `
-            <div class="bg-appBg/50 border border-appBorder p-3 rounded-xl flex items-center justify-between gap-3 shadow-inner">
-              <div class="flex items-center gap-3 overflow-hidden">
-                <div class="w-12 h-12 rounded-lg overflow-hidden bg-espresso/20 flex-shrink-0">
-                  <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" loading="lazy" onerror="window.handleImageError(this)">
+          ${groupItems.map(item => {
+            const isSoldOut = item.sold_out;
+            return `
+              <div class="bg-appBg/50 border border-appBorder p-3 rounded-xl flex items-center justify-between gap-3 shadow-inner relative ${isSoldOut ? 'opacity-60 saturate-50' : ''}">
+                <div class="flex items-center gap-3 overflow-hidden">
+                  <div class="w-12 h-12 rounded-lg overflow-hidden bg-espresso/20 flex-shrink-0 relative">
+                    <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" loading="lazy" onerror="window.handleImageError(this)">
+                    ${isSoldOut ? `<div class="absolute inset-0 bg-black/60 flex items-center justify-center"><span class="text-[8px] font-bold text-red-400 uppercase font-serif">Sold</span></div>` : ''}
+                  </div>
+                  <div class="overflow-hidden">
+                    <h4 class="font-serif font-bold text-appHeading text-xs leading-tight truncate">${item.name}</h4>
+                    <p class="text-[10px] text-neutralMuted leading-normal truncate max-w-[150px]">${item.desc}</p>
+                  </div>
                 </div>
-                <div class="overflow-hidden">
-                  <h4 class="font-serif font-bold text-appHeading text-xs leading-tight truncate">${item.name}</h4>
-                  <p class="text-[10px] text-neutralMuted leading-normal truncate max-w-[150px]">${item.desc}</p>
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  <span class="text-terracotta font-mono font-bold text-xs">$${item.price.toFixed(2)}</span>
+                  ${isSoldOut ? `
+                    <button disabled class="w-7 h-7 rounded-full bg-neutral-600 text-neutral-400 flex items-center justify-center cursor-not-allowed">
+                      <i class="fa-solid fa-ban text-[10px]"></i>
+                    </button>
+                  ` : `
+                    <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-7 h-7 rounded-full bg-darkAccent border border-terracotta/40 text-terracotta flex items-center justify-center hover:bg-terracotta hover:text-white transition-all shadow-sm">
+                      <i class="fa-solid fa-plus text-[10px]"></i>
+                    </button>
+                  `}
                 </div>
               </div>
-              <div class="flex items-center gap-2 flex-shrink-0">
-                <span class="text-terracotta font-mono font-bold text-xs">$${item.price.toFixed(2)}</span>
-                <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-7 h-7 rounded-full bg-darkAccent border border-terracotta/40 text-terracotta flex items-center justify-center hover:bg-terracotta hover:text-white transition-all shadow-sm">
-                  <i class="fa-solid fa-plus text-[10px]"></i>
-                </button>
-              </div>
-            </div>
-          `).join('')}
+            `;
+          }).join('')}
         </div>
       </div>
     `;
@@ -1512,7 +1506,12 @@ function toggleAccordion(buttonElement) {
 }
 
 function addItemToCart(id, name, price) {
-  const existing = cart.find(item => item.id === id);
+  const item = masterProducts.find(p => p.id === id || id.startsWith('custom_mix_'));
+  if (item && item.sold_out) {
+    showToastNotification("This item is currently sold out!");
+    return;
+  }
+  const existing = cart.find(i => i.id === id);
   if (existing) {
     existing.quantity++;
   } else {
@@ -1584,7 +1583,6 @@ function closeSidebarCart() {
   document.getElementById('sheet-backdrop').classList.remove('active');
 }
 
-// 3. INPUT IN REAL-TIME THE ORDERS PLACED INTO SUPABASE 
 async function triggerCheckoutCheckout() {
   closeSidebarCart();
   let totalPrice = cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
@@ -1598,12 +1596,19 @@ async function triggerCheckoutCheckout() {
   };
 
   try {
-    await supabase.from('orders').insert([orderTicket]);
+    await supabase.from('orders').insert([{
+      customer_name: orderTicket.customer_name,
+      items: orderTicket.items,
+      total_price: orderTicket.totalPrice,
+      status: orderTicket.status,
+      timestamp: new Date().toISOString()
+    }]);
+    fetchLiveOrders();
   } catch(err) {
     console.error("Supabase order synchronization error:", err);
   }
 
-  showToastNotification("Pre-order confirmed! Synced in real-time to admin pipeline.");
+  showToastNotification("Pre-order aggregated! Synced in real-time to admin pipeline.");
   logTelemetryEvent('order_placed', { itemCount: cart.length });
   
   cart = [];
@@ -1645,7 +1650,6 @@ function closeReservationTicket() {
   document.getElementById('sheet-backdrop').classList.remove('active');
 }
 
-// COMPLETE THE CUT-OFF BASE CODE IMPLEMENTATION FROM THE PROMPT WITH EXACT ALIGNMENT
 function calculateCustomPrice() {
   if (!dom.builderBase) return;
   
@@ -1699,7 +1703,6 @@ function claimMysteryStamp() {
   logTelemetryEvent('loyalty_stamp_claimed', { count: stampCount });
 }
 
-// 2. STATED AUTHENTICATION SECURITY PASSWORD VERIFICATION GATES ONLY RECOGNIZING 'barako'
 function verifyAdministrativePasscode() {
   const code = document.getElementById('cms-passcode-input').value.trim().toLowerCase();
   if (code === 'barako') {
@@ -1707,6 +1710,7 @@ function verifyAdministrativePasscode() {
     document.getElementById('cms-authenticated-view').classList.remove('hidden');
     showToastNotification("Authorized Session Unlocked.");
     logTelemetryEvent('cms_authenticated', { success: true });
+    renderCMSProductsList();
   } else {
     showToastNotification("Invalid system security token access key.");
   }
@@ -1722,12 +1726,35 @@ function switchCMSTab(tab) {
   document.getElementById(`tab-cms-${tab}`)?.classList.add('text-terracotta', 'border-terracotta');
 }
 
+async function updateOrderStatus(orderId, nextStatus) {
+  try {
+    const { error } = await supabase
+      .from('orders')
+      .update({ status: nextStatus })
+      .eq('id', orderId);
+      
+    if (error) throw error;
+    showToastNotification(`Order Status altered successfully to ${nextStatus}`);
+    logTelemetryEvent('order_status_updated', { id: orderId, status: nextStatus });
+    fetchLiveOrders();
+  } catch(err) {
+    // Fallback if postgres table column mappings vary
+    const targetOrder = activeOrders.find(o => o.id === orderId);
+    if (targetOrder) {
+      targetOrder.status = nextStatus;
+      showToastNotification(`Status altered to ${nextStatus} (Local Mode)`);
+      logTelemetryEvent('order_status_updated', { id: orderId, status: nextStatus });
+      renderCMSOrdersPipeline();
+    }
+  }
+}
+
 function renderCMSOrdersPipeline() {
   const container = document.getElementById('admin-orders-container');
   if (!container) return;
   
   if (activeOrders.length === 0) {
-    container.innerHTML = '<p class="text-xs text-neutralMuted font-mono">No incoming orders streaming right now.</p>';
+    container.innerHTML = '<p class="text-xs text-neutralMuted font-mono text-center col-span-full py-12">No incoming orders streaming right now.</p>';
     return;
   }
 
@@ -1735,23 +1762,45 @@ function renderCMSOrdersPipeline() {
     let rawItems = [];
     try { rawItems = typeof order.items === 'string' ? JSON.parse(order.items) : order.items; } catch(e) {}
     
+    // Check status colors
+    let statusClass = "bg-yellow-500/20 text-yellow-400";
+    if (order.status === 'Completed' || order.status === 'Order Done') statusClass = "bg-green-500/20 text-green-400";
+    if (order.status === 'Cancelled') statusClass = "bg-red-500/20 text-red-400";
+
     return `
-      <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2">
-        <div class="flex justify-between items-center border-b border-appBorder pb-2">
-          <span class="font-mono text-terracotta font-bold">#ORD-${order.id ? order.id.toString().slice(0,5) : 'SIM'}</span>
-          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-500/20 text-yellow-400">${order.status}</span>
+      <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-center border-b border-appBorder pb-2">
+            <span class="font-mono text-terracotta font-bold">#ORD-${order.id ? order.id.toString().slice(0,5) : 'SIM'}</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${statusClass}">${order.status}</span>
+          </div>
+          <div class="space-y-1 pt-2">
+            ${(rawItems || []).map(item => `
+              <div class="flex justify-between text-accentLight">
+                <span>${item.name} x${item.quantity}</span>
+                <span>$${(item.price * item.quantity).toFixed(2)}</span>
+              </div>
+            `).join('')}
+          </div>
         </div>
-        <div class="space-y-1">
-          ${(rawItems || []).map(item => `
-            <div class="flex justify-between text-accentLight">
-              <span>${item.name} x${item.quantity}</span>
-              <span>$${(item.price * item.quantity).toFixed(2)}</span>
-            </div>
-          `).join('')}
-        </div>
-        <div class="flex justify-between items-baseline pt-2 border-t border-appBorder font-bold">
-          <span>Total Stream Revenue</span>
-          <span class="text-terracotta">$${parseFloat(order.totalPrice || 0).toFixed(2)}</span>
+        <div class="pt-2 border-t border-appBorder space-y-3">
+          <div class="flex justify-between items-baseline font-bold">
+            <span>Total Stream Revenue</span>
+            <span class="text-terracotta">$${parseFloat(order.totalPrice || 0).toFixed(2)}</span>
+          </div>
+          
+          <!-- State/Pipeline Transition Controllers (Task 3) -->
+          <div class="grid grid-cols-3 gap-1 pt-1.5 border-t border-appBorder/40">
+            <button onclick="updateOrderStatus('${order.id}', 'Pending')" class="bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-500 rounded py-1.5 font-mono text-[9px] uppercase tracking-wider transition-all">
+              Pending
+            </button>
+            <button onclick="updateOrderStatus('${order.id}', 'Order Done')" class="bg-green-600/20 hover:bg-green-600/40 text-green-500 rounded py-1.5 font-mono text-[9px] uppercase tracking-wider transition-all">
+              Done
+            </button>
+            <button onclick="updateOrderStatus('${order.id}', 'Cancelled')" class="bg-red-600/20 hover:bg-red-600/40 text-red-500 rounded py-1.5 font-mono text-[9px] uppercase tracking-wider transition-all">
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
     `;
@@ -1794,8 +1843,137 @@ function renderFeedbackBoard() {
   `).join('');
 }
 
-// Additional interface stubs required by code blocks to avoid runtime reference crash
-function renderCMSProductsList() {}
+function renderCMSProductsList() {
+  const wrapper = document.getElementById('cms-products-listing-wrapper');
+  if (!wrapper) return;
+
+  wrapper.innerHTML = masterProducts.map(item => {
+    return `
+      <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between space-y-3 font-sans relative">
+        ${item.sold_out ? `<div class="absolute top-2 right-2 bg-red-600/30 border border-red-500 text-red-400 text-[9px] px-2 py-0.5 rounded font-bold uppercase z-10">Sold Out</div>` : ''}
+        ${item.hidden ? `<div class="absolute top-2 right-2 bg-neutral-600 text-white text-[9px] px-2 py-0.5 rounded font-bold uppercase z-10">Hidden</div>` : ''}
+        
+        <div>
+          <div class="w-full h-32 rounded-xl overflow-hidden bg-espresso/20 mb-2">
+            <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover" onerror="window.handleImageError(this)">
+          </div>
+          <h4 class="font-bold text-appHeading text-sm">${item.name}</h4>
+          <span class="text-xs text-terracotta font-mono font-bold">$${item.price.toFixed(2)}</span>
+          <p class="text-[10px] text-neutralMuted line-clamp-2 mt-1 leading-normal">${item.desc}</p>
+        </div>
+
+        <div class="border-t border-appBorder/50 pt-2 space-y-2">
+          <!-- Main status manipulation row -->
+          <div class="grid grid-cols-2 gap-1.5 text-[9px] font-bold">
+            <button onclick="toggleProductSoldOutStatus('${item.id}')" class="px-2 py-1.5 rounded border ${item.sold_out ? 'bg-red-600 text-white border-red-500' : 'bg-darkAccent text-terracotta border-terracotta/20'} transition-all">
+              ${item.sold_out ? 'Mark In-Stock' : 'Mark Sold Out'}
+            </button>
+            <button onclick="toggleProductHiddenStatus('${item.id}')" class="px-2 py-1.5 rounded border ${item.hidden ? 'bg-neutral-600 text-white border-neutral-500' : 'bg-darkAccent text-neutralMuted border-terracotta/20'} transition-all">
+              ${item.hidden ? 'Show in Menu' : 'Temporarily Hide'}
+            </button>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-1.5 text-[9px] font-bold">
+            <button onclick="toggleProductPopularStatus('${item.id}')" class="px-2 py-1.5 rounded border ${item.badge === 'Popular' ? 'bg-yellow-600 text-white border-yellow-500' : 'bg-darkAccent text-parchment border-terracotta/20'} transition-all">
+              ${item.badge === 'Popular' ? 'De-promote Spec' : 'Most Popular'}
+            </button>
+            <button onclick="editProductDetailsCMS('${item.id}')" class="px-2 py-1.5 rounded bg-terracotta hover:bg-terracotta/90 text-white text-center transition-all">
+              <i class="fa-solid fa-pen-to-square mr-1"></i> Edit Details
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// CRUD state mutators
+window.toggleProductSoldOutStatus = function(id) {
+  const item = masterProducts.find(p => p.id === id);
+  if (item) {
+    item.sold_out = !item.sold_out;
+    showToastNotification(`Product "${item.name}" updated: ${item.sold_out ? 'SOLD OUT' : 'IN-STOCK'}`);
+    logTelemetryEvent('product_status_updated', { name: item.name });
+    renderCMSProductsList();
+    renderBistroMenu();
+  }
+};
+
+window.toggleProductHiddenStatus = function(id) {
+  const item = masterProducts.find(p => p.id === id);
+  if (item) {
+    item.hidden = !item.hidden;
+    showToastNotification(`Product "${item.name}" updated: ${item.hidden ? 'TEMPORARILY REMOVED' : 'ACTIVE IN CATALOG'}`);
+    logTelemetryEvent('product_status_updated', { name: item.name });
+    renderCMSProductsList();
+    renderBistroMenu();
+  }
+};
+
+window.toggleProductPopularStatus = function(id) {
+  const item = masterProducts.find(p => p.id === id);
+  if (item) {
+    item.badge = item.badge === 'Popular' ? '' : 'Popular';
+    showToastNotification(`Product "${item.name}" updated: ${item.badge ? 'MARKED AS MOST POPULAR' : 'NORMAL STATS'}`);
+    logTelemetryEvent('product_status_updated', { name: item.name });
+    renderCMSProductsList();
+    renderBistroMenu();
+  }
+};
+
+window.editProductDetailsCMS = function(id) {
+  const item = masterProducts.find(p => p.id === id);
+  if (item) {
+    document.getElementById('p-form-id').value = item.id;
+    document.getElementById('p-form-name').value = item.name;
+    document.getElementById('p-form-price').value = item.price;
+    document.getElementById('p-form-category').value = item.category;
+    document.getElementById('p-form-desc').value = item.desc;
+    document.getElementById('p-form-image').value = item.img;
+    
+    document.getElementById('product-form-title').innerText = `Edit: ${item.name}`;
+    openProductEditForm();
+  }
+};
+
+const productForm = document.getElementById('product-crud-form');
+if (productForm) {
+  productForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const id = document.getElementById('p-form-id').value;
+    const name = document.getElementById('p-form-name').value;
+    const price = parseFloat(document.getElementById('p-form-price').value);
+    const category = document.getElementById('p-form-category').value;
+    const desc = document.getElementById('p-form-desc').value;
+    const img = document.getElementById('p-form-image').value || 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400';
+
+    if (id) {
+      // Edit mode
+      const item = masterProducts.find(p => p.id === id);
+      if (item) {
+        item.name = name;
+        item.price = price;
+        item.category = category;
+        item.desc = desc;
+        item.img = img;
+        showToastNotification(`Details saved successfully for "${name}"`);
+      }
+    } else {
+      // Add mode
+      const newId = 'p_' + Date.now();
+      masterProducts.push({
+        id: newId, name, price, category, desc, img, sold_out: false, hidden: false, badge: ''
+      });
+      showToastNotification(`Product "${name}" added to catalog options.`);
+    }
+
+    closeProductEditForm();
+    renderCMSProductsList();
+    renderBistroMenu();
+    productForm.reset();
+  });
+}
+
 function renderCMSPhotosList() {}
 function renderCMSFeedbackModerationList() {}
 function openProductEditForm() { document.getElementById('product-modal-sheet').classList.add('active'); }
@@ -1853,11 +2031,17 @@ window.closeQrUpgradeModal = closeQrUpgradeModal;
 window.contactForQrUpgrade = contactForQrUpgrade;
 window.verifyAdministrativePasscode = verifyAdministrativePasscode;
 window.switchCMSTab = switchCMSTab;
-window.openProductEditForm = openProductEditForm;
+window.openProductEditForm = () => {
+  document.getElementById('p-form-id').value = '';
+  document.getElementById('product-crud-form').reset();
+  document.getElementById('product-form-title').innerText = 'Add New Product Option';
+  openProductEditForm();
+};
 window.closeProductEditForm = closeProductEditForm;
 window.removeOneFromCart = removeOneFromCart;
 window.triggerCheckoutCheckout = triggerCheckoutCheckout;
 window.toggleAccordion = toggleAccordion;
+window.updateOrderStatus = updateOrderStatus;
 </script>
 
 <!-- Global Toast Notification Component -->
