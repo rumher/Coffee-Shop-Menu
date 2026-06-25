@@ -792,7 +792,12 @@ img{max-width:100%;display:block}
       <div id="cms-orders-subview" class="space-y-4">
         <div class="flex justify-between items-center">
           <h4 class="font-serif text-lg font-bold text-appHeading">Simulated Real-Time Orders</h4>
-          <span class="text-[10px] font-mono uppercase tracking-wider text-neutralMuted">Updated Instantly</span>
+          <div class="flex items-center gap-2">
+            <button onclick="fetchLiveOrders()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-3 py-1.5 text-xs transition-all flex items-center gap-1.5" aria-label="Refresh orders list">
+              <i class="fa-solid fa-rotate-right" id="refresh-icon"></i> Refresh Pipeline
+            </button>
+            <span class="text-[10px] font-mono uppercase tracking-wider text-neutralMuted hidden sm:inline">Updated Instantly</span>
+          </div>
         </div>
         <div id="admin-orders-container" class="grid gap-4 md:grid-cols-2">
           <!-- Dynamically populated via Real-Time Cloud Subscription -->
@@ -1171,6 +1176,8 @@ async function initSupabasePipeline() {
 }
 
 async function fetchLiveOrders() {
+  const refreshIcon = document.getElementById('refresh-icon');
+  if (refreshIcon) refreshIcon.classList.add('fa-spin');
   try {
     const { data, error } = await supabase.from('orders').select('*').order('timestamp', { ascending: false });
     if (error) throw error;
@@ -1188,6 +1195,12 @@ async function fetchLiveOrders() {
   } catch (err) {
     console.warn("Supabase data connection reading error:", err);
     logTelemetryEvent('supabase_error', { details: err.message });
+  } finally {
+    if (refreshIcon) {
+      setTimeout(() => {
+        refreshIcon.classList.remove('fa-spin');
+      }, 600);
+    }
   }
 }
 
@@ -2042,6 +2055,7 @@ window.removeOneFromCart = removeOneFromCart;
 window.triggerCheckoutCheckout = triggerCheckoutCheckout;
 window.toggleAccordion = toggleAccordion;
 window.updateOrderStatus = updateOrderStatus;
+window.fetchLiveOrders = fetchLiveOrders;
 </script>
 
 <!-- Global Toast Notification Component -->
