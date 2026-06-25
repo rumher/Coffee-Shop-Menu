@@ -14,7 +14,7 @@
 <meta name="keywords" content="Pour Decisions, Specialty coffee Maryville TN, Muddy Pond Mocha, Viennese Waltz, artisan bakery, coffee shop near me, local lounge, Maryville TN bistro">
 <meta name="robots" content="index, follow">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☕%3C/text%3E%3C/svg%3E">
+<link class="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☕%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,800;1,300&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -358,7 +358,7 @@ img{max-width:100%;display:block}
       <!-- Visual Highlight Card (The Viennese Waltz Showcase) -->
       <div class="relative z-10 mt-8 md:mt-0 bg-appCard p-5 rounded-2xl border border-appBorder max-w-xs w-full shadow-xl transition-colors">
         <div class="relative rounded-xl overflow-hidden h-40 bg-gray-900 mb-4">
-          <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600" alt="Viennese Waltz Premium Drink" class="object-cover w-full h-full" loading="lazy" onerror="handleImageError(this)">
+          <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600" alt="Viennese Waltz Premium Drink" class="object-cover w-full h-full" loading="lazy" onerror="window.handleImageError(this)">
           <span class="absolute top-2 right-2 bg-terracotta text-white font-mono text-[9px] font-bold uppercase px-2 py-0.5 rounded shadow">Popular</span>
         </div>
         <div class="flex justify-between items-baseline">
@@ -695,16 +695,15 @@ img{max-width:100%;display:block}
       </div>
     </div>
 
-    <!-- Google Maps Location Module -->
+    <!-- Google Maps Location Module (Corrected, responsive, fully valid Maryville coords parameters) -->
     <div class="max-w-4xl mx-auto space-y-4 pt-6 border-t border-appBorder">
       <div class="text-center">
         <h3 class="font-serif text-xl font-bold text-appHeading">Find Our Cozy Sanctuary</h3>
         <p class="text-xs text-neutralMuted">212 College Street, Maryville, TN 37804 | Phone: (865) 980-8282</p>
       </div>
       <div class="map-responsive h-64 sm:h-80 w-full">
-        <!-- Secure Embedded Google Maps pointing directly to 212 College St, Maryville -->
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0x885e9fd17dc1399d%3A0x5741a0a616c080cb!2s212%20College%20St%2C%20Maryville%2C%20TN%2037804!5m2!1sen!2sus" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3235.485121817926!2d-83.9716178!3d35.7565203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x885e9fd17dc1399d%3A0x5741a0a616c080cb!2s212%20College%20St%2C%20Maryville%2C%20TN%2037804%2C%20USA!5e0!3m2!1sen!2sus!5m2!1sen!2sus" 
           width="100%" 
           height="100%" 
           style="border:0;" 
@@ -1214,7 +1213,7 @@ async function initSupabasePipeline() {
   renderFeedbackBoard();
   loadStoredCart(); // Keeps custom order bags local on each device as requested
 
-  // Fetch initial data from Supabase if tables exist
+  // Fetch initial data from Supabase
   fetchLiveOrders();
 
   // Subscribe to real-time changes to stream directly into the dashboard
@@ -1229,13 +1228,16 @@ async function initSupabasePipeline() {
 async function fetchLiveOrders() {
   try {
     const { data, error } = await supabase.from('orders').select('*').order('timestamp', { ascending: false });
-    if (!error && data) {
+    if (error) throw error;
+    if (data) {
       activeOrders = data;
       renderCMSOrdersPipeline();
       updateDashboardMetrics();
+      logTelemetryEvent('supabase_connected', { count: data.length });
     }
   } catch (err) {
     console.warn("Supabase data connection reading error:", err);
+    logTelemetryEvent('supabase_error', { details: err.message });
   }
 }
 
@@ -1267,6 +1269,12 @@ function logTelemetryEvent(eventName, eventDetails) {
       break;
     case 'theme_toggled':
       logText = `🌗 Storefront design switched to ${eventDetails.theme} mode`;
+      break;
+    case 'supabase_connected':
+      logText = `⚡ Successfully connected to Supabase! Loaded ${eventDetails.count} live order(s) from PostgreSQL.`;
+      break;
+    case 'supabase_error':
+      logText = `⚠️ Supabase connection error: ${eventDetails.details}`;
       break;
     default:
       logText = `⚡ User action: ${eventName}`;
@@ -1691,12 +1699,14 @@ function claimMysteryStamp() {
   logTelemetryEvent('loyalty_stamp_claimed', { count: stampCount });
 }
 
+// 2. STATED AUTHENTICATION SECURITY PASSWORD VERIFICATION GATES ONLY RECOGNIZING 'barako'
 function verifyAdministrativePasscode() {
-  const code = document.getElementById('cms-passcode-input').value;
-  if (code === 'admin' || code === '' || code === '1234') {
+  const code = document.getElementById('cms-passcode-input').value.trim().toLowerCase();
+  if (code === 'barako') {
     document.getElementById('cms-verify-section').classList.add('hidden');
     document.getElementById('cms-authenticated-view').classList.remove('hidden');
     showToastNotification("Authorized Session Unlocked.");
+    logTelemetryEvent('cms_authenticated', { success: true });
   } else {
     showToastNotification("Invalid system security token access key.");
   }
@@ -1849,5 +1859,11 @@ window.removeOneFromCart = removeOneFromCart;
 window.triggerCheckoutCheckout = triggerCheckoutCheckout;
 window.toggleAccordion = toggleAccordion;
 </script>
+
+<!-- Global Toast Notification Component -->
+<div class="fixed bottom-4 right-4 bg-appCard border border-terracotta/30 text-appText p-3 rounded-2xl shadow-2xl z-50 transition-all transform translate-y-24 opacity-0 max-w-xs text-xs font-semibold tracking-wide" id="toast">
+  Item added successfully!
+</div>
+
 </body>
 </html>
