@@ -40,6 +40,9 @@
             --text-heading: #ffffff;
             --border: rgba(217, 119, 87, 0.15);
             --glass-overlay: rgba(35, 21, 17, 0.95);
+            --header-bg: rgba(35, 21, 17, 0.85);
+            --mobile-nav-bg: rgba(35, 21, 17, 0.92);
+            --mobile-nav-border: rgba(217, 119, 87, 0.25);
         }
 
         :root.light-mode {
@@ -55,14 +58,16 @@
             --card: #FFFFFF;
             --text: #3A2312;
             --text-heading: #1F1005;
-            --border: rgba(217, 119, 87, 0.25);
+            --border: rgba(217, 119, 87, 0.2);
             --glass-overlay: rgba(255, 255, 255, 0.95);
+            --header-bg: rgba(250, 246, 240, 0.9);
+            --mobile-nav-bg: rgba(255, 255, 255, 0.92);
+            --mobile-nav-border: rgba(217, 119, 87, 0.25);
         }
 
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); transition: background-color 0.3s ease, color 0.3s ease; }
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
         
-        /* Unified bottom toast notification system */
         .toast-container {
             position: fixed;
             bottom: 5.5rem; 
@@ -97,9 +102,9 @@
         .sheet-backdrop {
             position: fixed;
             inset: 0;
-            background: rgba(15, 7, 6, 0.55);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(15, 7, 6, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             opacity: 0;
             pointer-events: none;
             transition: opacity .35s ease;
@@ -224,14 +229,82 @@
             z-index: 10;
         }
 
-        /* Beautiful styles for active desktop navigation tab buttons */
+        /* Improved Desktop Navigation Tab Buttons */
         .nav-tab-btn {
-            border-bottom: 2px solid transparent;
-            transition: all 0.25s ease;
+            position: relative;
+            padding: 0.6rem 1rem;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 9999px;
+            border: 1px solid transparent;
+        }
+        .nav-tab-btn:hover {
+            color: var(--terracotta) !important;
+            background-color: rgba(217, 119, 87, 0.08);
         }
         .nav-tab-btn.active {
-            color: var(--text-heading) !important;
-            border-bottom-color: var(--terracotta);
+            color: #FFFFFF !important;
+            background-color: var(--terracotta);
+            box-shadow: 0 4px 12px rgba(217, 119, 87, 0.25);
+        }
+        .light-mode .nav-tab-btn.active {
+            color: #FFFFFF !important;
+            background-color: var(--terracotta);
+        }
+        .light-mode .nav-tab-btn {
+            color: #5C4A42;
+        }
+        .light-mode .nav-tab-btn:hover {
+            color: var(--terracotta) !important;
+            background-color: rgba(217, 119, 87, 0.06);
+        }
+
+        /* Improved Mobile Floating Navigation Bar */
+        .mobile-nav-container {
+            background-color: var(--mobile-nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--mobile-nav-border);
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.35);
+            transition: all 0.3s ease;
+        }
+        .light-mode .mobile-nav-container {
+            box-shadow: 0 -8px 30px rgba(217, 119, 87, 0.1);
+        }
+        .mobile-tab-btn {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            color: var(--neutralMuted);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 16px;
+        }
+        .mobile-tab-btn i {
+            font-size: 1.15rem;
+            transition: transform 0.25s ease;
+        }
+        .mobile-tab-btn.active {
+            color: var(--terracotta) !important;
+            background-color: rgba(217, 119, 87, 0.08);
+        }
+        .mobile-tab-btn.active i {
+            transform: translateY(-2px) scale(1.1);
+        }
+        .mobile-tab-btn:active {
+            transform: scale(0.92);
+        }
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
@@ -245,7 +318,8 @@
     <!-- App Backdrops -->
     <div class="sheet-backdrop" id="sheet-backdrop" onclick="closeAllSheets()"></div>
 
-    <header class="fixed top-0 w-full bg-white/85 backdrop-blur-md border-b border-gray-200 z-40 p-4 flex justify-between items-center transition-colors dark:bg-[#150A08]/80 dark:border-appBorder">
+    <!-- Main Site Header -->
+    <header class="fixed top-0 w-full backdrop-blur-md border-b z-40 p-4 flex justify-between items-center transition-all duration-300" style="background-color: var(--header-bg); border-color: var(--border);">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 flex items-center justify-center bg-appBg rounded-xl border border-terracotta/30 shadow-inner">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-6 h-6 fill-none stroke-terracotta" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -260,13 +334,13 @@
             </div>
         </div>
 
-        <!-- Desktop Navigation: Added dynamic switchPage routing and visual active cues -->
-        <nav class="hidden md:flex items-center gap-5 font-serif" aria-label="Desktop Navigation">
-            <button onclick="switchPage('home')" class="nav-tab-btn active px-3 py-2 text-[11px] tracking-wider uppercase text-neutralMuted" id="tab-home">Online Menu</button>
-            <button onclick="switchPage('wall')" class="nav-tab-btn px-3 py-2 text-[11px] tracking-wider uppercase text-neutralMuted" id="tab-wall">Vibe Board</button>
-            <button onclick="switchPage('booking')" class="nav-tab-btn px-3 py-2 text-[11px] tracking-wider uppercase text-neutralMuted" id="tab-booking">Lounge Booking</button>
-            <button onclick="switchPage('feedback')" class="nav-tab-btn px-3 py-2 text-[11px] tracking-wider uppercase text-neutralMuted" id="tab-feedback">Feedback</button>
-            <button onclick="switchPage('heritage')" class="nav-tab-btn px-3 py-2 text-[11px] tracking-wider uppercase text-neutralMuted" id="tab-heritage">Our Heritage</button>
+        <!-- Desktop Navigation: Premium pill tab system -->
+        <nav class="hidden md:flex items-center gap-3 font-serif" aria-label="Desktop Navigation">
+            <button onclick="switchPage('home')" class="nav-tab-btn active" id="tab-home">Online Menu</button>
+            <button onclick="switchPage('wall')" class="nav-tab-btn" id="tab-wall">Vibe Board</button>
+            <button onclick="switchPage('booking')" class="nav-tab-btn" id="tab-booking">Lounge Booking</button>
+            <button onclick="switchPage('feedback')" class="nav-tab-btn" id="tab-feedback">Feedback</button>
+            <button onclick="switchPage('heritage')" class="nav-tab-btn" id="tab-heritage">Our Heritage</button>
         </nav>
 
         <div class="flex items-center gap-2">
@@ -278,7 +352,7 @@
                 <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow animate-pulse" id="desktop-cart-badge">0</span>
             </button>
             <button onclick="switchPage('admin')" class="p-2 hover:bg-gray-100 dark:hover:bg-darkAccent rounded-full transition-all" aria-label="Open Admin Dashboard">
-                <i class="fa-solid fa-lock text-xl text-neutralMuted"></i>
+                <i class="fa-solid fa-lock text-xl text-neutralMuted" id="header-admin-lock-icon"></i>
             </button>
         </div>
     </header>
@@ -669,7 +743,7 @@
                 </div>
                 <div>
                     <h3 class="font-serif text-lg font-bold text-appHeading">Administrative Access Required</h3>
-                    <p class="text-xs text-neutralMuted mt-1">Please enter your passcode to unlock dashboard operations. (Hint: <b>barako</b>)</p>
+                    <p class="text-xs text-neutralMuted mt-1">Please enter your passcode to unlock dashboard operations.</p>
                 </div>
                 <div class="space-y-3">
                     <input type="password" id="cms-passcode-input" placeholder="Password..." class="w-full text-center bg-appBg border border-terracotta/30 rounded-xl p-3 text-sm text-appHeading focus:outline-none focus:border-terracotta">
@@ -812,11 +886,11 @@
                         <div class="grid gap-4 sm:grid-cols-2 text-xs text-appText">
                             <div class="flex flex-col gap-1.5">
                                 <label for="db-url-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Project REST Endpoint URL</label>
-                                <input type="text" id="db-url-input" placeholder="https://your-project.supabase.co" class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:border-terracotta transition-colors font-sans">
+                                <input type="text" id="db-url-input" placeholder="https://your-project.supabase.co" class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:border-terracotta transition-colors font-sans font-medium">
                             </div>
                             <div class="flex flex-col gap-1.5">
                                 <label for="db-key-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Anon Public Key (Long JWT Token)</label>
-                                <input type="password" id="db-key-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC..." class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:border-terracotta transition-colors font-sans">
+                                <input type="password" id="db-key-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC..." class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:border-terracotta transition-colors font-sans font-medium">
                             </div>
                         </div>
                         <div class="flex flex-wrap items-center gap-3 pt-2 font-serif">
@@ -865,31 +939,32 @@
 
     </main>
 
-    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-appCard text-appText border-t border-appBorder py-2.5 px-4 flex justify-around items-center z-40 shadow-2xl transition-colors" aria-label="Mobile Navigation">
-        <button onclick="switchPage('home')" class="flex flex-col items-center gap-1 text-terracotta" id="mobile-tab-home">
-            <i class="fa-solid fa-mug-hot text-lg"></i>
-            <span class="text-[9px] uppercase tracking-wider font-semibold">Bistro Menu</span>
+    <!-- Re-sculpted Glassmorphic Bottom Mobile Navigation Bar -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 py-2 px-4 z-40 mobile-nav-container flex justify-around items-center" aria-label="Mobile Navigation">
+        <button onclick="switchPage('home')" class="mobile-tab-btn active" id="mobile-tab-home">
+            <i class="fa-solid fa-mug-hot"></i>
+            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Menu</span>
         </button>
-        <button onclick="switchPage('wall')" class="flex flex-col items-center gap-1 text-neutralMuted hover:text-terracotta" id="mobile-tab-wall">
-            <i class="fa-solid fa-images text-lg"></i>
-            <span class="text-[9px] uppercase tracking-wider font-semibold">Vibe Board</span>
+        <button onclick="switchPage('wall')" class="mobile-tab-btn" id="mobile-tab-wall">
+            <i class="fa-solid fa-images"></i>
+            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Vibes</span>
         </button>
-        <button onclick="switchPage('booking')" class="flex flex-col items-center gap-1 text-neutralMuted hover:text-terracotta" id="mobile-tab-booking">
-            <i class="fa-regular fa-calendar-check text-lg"></i>
-            <span class="text-[9px] uppercase tracking-wider font-semibold">Reserve</span>
+        <button onclick="switchPage('booking')" class="mobile-tab-btn" id="mobile-tab-booking">
+            <i class="fa-regular fa-calendar-check"></i>
+            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Reserve</span>
         </button>
-        <button onclick="switchPage('feedback')" class="flex flex-col items-center gap-1 text-neutralMuted hover:text-terracotta" id="mobile-tab-feedback">
-            <i class="fa-solid fa-comment-dots text-lg"></i>
-            <span class="text-[9px] uppercase tracking-wider font-semibold">Feedback</span>
+        <button onclick="switchPage('feedback')" class="mobile-tab-btn" id="mobile-tab-feedback">
+            <i class="fa-solid fa-comment-dots"></i>
+            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Notes</span>
         </button>
-        <button onclick="switchPage('heritage')" class="flex flex-col items-center gap-1 text-neutralMuted hover:text-terracotta" id="mobile-tab-heritage">
-            <i class="fa-solid fa-circle-info text-lg"></i>
-            <span class="text-[9px] uppercase tracking-wider font-semibold">Story</span>
+        <button onclick="switchPage('heritage')" class="mobile-tab-btn" id="mobile-tab-heritage">
+            <i class="fa-solid fa-circle-info"></i>
+            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Story</span>
         </button>
     </nav>
 
     <!-- Persistent Mobile Bag Toggle -->
-    <div id="mobile-cart-bar-container" class="md:hidden fixed bottom-14 left-0 right-0 px-4 py-2 z-30 pointer-events-none">
+    <div id="mobile-cart-bar-container" class="md:hidden fixed bottom-16 left-0 right-0 px-4 py-2 z-30 pointer-events-none">
         <button onclick="openSidebarCart()" class="w-full bg-terracotta text-white font-serif py-3 px-4 rounded-2xl flex justify-between items-center shadow-2xl pointer-events-auto hover:bg-terracotta/90 transition-all">
             <span class="text-xs font-bold tracking-wider"><i class="fa-solid fa-basket-shopping mr-2"></i> View Order Bag</span>
             <div class="flex items-center gap-2 font-mono">
@@ -1108,6 +1183,7 @@
     <script type="module">
         import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
+        // Exposing routing variables immediately to prevent race conditions on clicks
         window.switchPage = switchPage;
         window.toggleTheme = toggleTheme;
         window.openSidebarCart = openSidebarCart;
@@ -1162,21 +1238,20 @@
         const storedUrl = localStorage.getItem('pd_supabase_url');
         const storedKey = localStorage.getItem('pd_supabase_key');
 
-        const DEFAULT_URL = "https://hpvzvwxczgkvgzrjplie.supabase.co";
-        const DEFAULT_KEY = "hpvzvwxczgkvgzrjplie";
+        const DEFAULT_URL = "https://hpvwvwxczgkvgzrjplie.supabase.co";
+        const DEFAULT_KEY = "hpvwvwxczgkvgzrjplie";
 
         let supabaseUrl = storedUrl || DEFAULT_URL;
         let supabaseKey = storedKey || DEFAULT_KEY;
 
         let supabase;
         try {
-            // Re-auth standard API Key formatting. If invalid / short, safely default to mock client.
             if (supabaseKey.length < 20) {
-                throw new Error("API key is a placeholder, starting local sandbox state.");
+                throw new Error("API key is placeholder, bypassing live connections.");
             }
             supabase = createClient(supabaseUrl, supabaseKey);
         } catch (e) {
-            console.warn("Supabase Client failed/bypassed. Starting high-performance Sandbox fallback client:", e.message);
+            console.warn("Supabase bypassed. Starting Sandbox fallback state engine:", e.message);
             supabase = {
                 from: (tableName) => ({
                     select: () => ({
@@ -1211,7 +1286,7 @@
             
             { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, category: 'signature', desc: 'Double espresso, velvet steamed milk, chocolate, vanilla, and sweet Muddy Pond Sorghum syrup.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Best Seller' },
             { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Barista Rec' },
-            { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Classic Signature' },
+            { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600', sold_out: false, hidden: false, badge: 'Classic Signature' },
             
             { id: 'e1', name: 'Espresso Double Shot', price: 3.30, category: 'espresso', desc: 'Perfectly extracted, rich-bodied local espresso blend.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
             { id: 'e2', name: 'Caffe Latte', price: 5.00, category: 'espresso', desc: 'Espresso double shot over steamed milk with thin microfoam layer.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
@@ -1558,7 +1633,7 @@
             if (logsWrapper) {
                 logsWrapper.innerHTML = telemetryLogs.map(log => `
                     <div class="py-2 border-b border-appBorder/40 flex gap-2">
-                        <span class="text-terracotta select-none">▶</span>
+                        <span class="text-terracotta select-none font-semibold">▶</span>
                         <span>${log}</span>
                     </div>
                 `).join('');
@@ -1576,25 +1651,21 @@
             // Synchronize active states for Desktop Navigation tab items
             const navTabBtns = document.querySelectorAll('.nav-tab-btn');
             for (let i = 0; i < navTabBtns.length; i++) {
-                navTabBtns[i].classList.remove('active', 'text-white');
-                navTabBtns[i].classList.add('text-neutralMuted');
+                navTabBtns[i].classList.remove('active');
             }
             const activeTab = document.getElementById('tab-' + pageId);
             if (activeTab) {
-                activeTab.classList.add('active', 'text-white');
-                activeTab.classList.remove('text-neutralMuted');
+                activeTab.classList.add('active');
             }
 
             // Synchronize active states for Mobile Navigation bottom bar items
-            const mobileTabs = document.querySelectorAll('[id^="mobile-tab-"]');
+            const mobileTabs = document.querySelectorAll('.mobile-tab-btn');
             for (let i = 0; i < mobileTabs.length; i++) {
-                mobileTabs[i].classList.remove('text-terracotta');
-                mobileTabs[i].classList.add('text-neutralMuted');
+                mobileTabs[i].classList.remove('active');
             }
             const activeMobileTab = document.getElementById('mobile-tab-' + pageId);
             if (activeMobileTab) {
-                activeMobileTab.classList.add('text-terracotta');
-                activeMobileTab.classList.remove('text-neutralMuted');
+                activeMobileTab.classList.add('active');
             }
 
             // Toggle Mobile sticky view bag visible only on storefront pages, hidden completely on Admin Panel
@@ -2040,6 +2111,13 @@
             if (code === 'barako') {
                 document.getElementById('cms-verify-section').classList.add('hidden');
                 document.getElementById('cms-authenticated-view').classList.remove('hidden');
+                
+                // Swap lock icon state on verification success
+                const headerLock = document.getElementById('header-admin-lock-icon');
+                if (headerLock) {
+                    headerLock.className = "fa-solid fa-unlock text-xl text-terracotta";
+                }
+                
                 showToastNotification("Administrative operations authorization successful.");
                 logTelemetryEvent('cms_authenticated', { success: true });
                 renderCMSProductsList();
@@ -2299,10 +2377,10 @@
                     </div>
                     <p class="italic text-accentLight font-serif">"${f.comment}"</p>
                     <div class="flex gap-2 justify-end">
-                        <button onclick="approveFeedback('${f.id}')" class="px-3 py-1.5 bg-green-600/20 hover:bg-green-600/40 text-green-400 rounded text-[10px] font-bold uppercase transition-all">
+                        <button onclick="approveFeedback('${f.id}')" class="px-3 py-1.5 bg-green-600/20 hover:bg-green-600/40 text-green-400 rounded text-[10px] font-bold uppercase transition-all font-serif">
                             Approve & Publish
                         </button>
-                        <button onclick="deleteFeedback('${f.id}')" class="px-3 py-1.5 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded text-[10px] font-bold uppercase transition-all">
+                        <button onclick="deleteFeedback('${f.id}')" class="px-3 py-1.5 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded text-[10px] font-bold uppercase transition-all font-serif">
                             Reject & Delete
                         </button>
                     </div>
@@ -2442,8 +2520,8 @@
             wrapper.innerHTML = masterProducts.map(item => {
                 return `
                     <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between space-y-3 font-sans relative transition-colors">
-                        ${item.sold_out ? `<div class="absolute top-2 right-2 bg-red-600/30 border border-red-500 text-red-400 text-[9px] px-2 py-0.5 rounded font-bold uppercase z-10">Sold Out</div>` : ''}
-                        ${item.hidden ? `<div class="absolute top-2 right-2 bg-neutral-600 text-white text-[9px] px-2 py-0.5 rounded font-bold uppercase z-10">Hidden</div>` : ''}
+                        ${item.sold_out ? `<div class="absolute top-2 right-2 bg-red-600/30 border border-red-500 text-red-400 text-[9px] px-2 py-0.5 rounded font-bold uppercase z-10 font-mono">Sold Out</div>` : ''}
+                        ${item.hidden ? `<div class="absolute top-2 right-2 bg-neutral-600 text-white text-[9px] px-2 py-0.5 rounded font-bold uppercase z-10 font-mono">Hidden</div>` : ''}
                         
                         <div>
                             <div class="w-full h-32 rounded-xl overflow-hidden bg-espresso/20 mb-2">
@@ -2582,7 +2660,6 @@
             }
         }
 
-        // Theme management module
         function toggleTheme() {
             const root = document.documentElement;
             const icon = document.getElementById('theme-toggle-icon');
