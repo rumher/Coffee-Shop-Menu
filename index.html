@@ -368,10 +368,9 @@
         <!-- Desktop Navigation: Premium pill tab system -->
         <nav class="hidden md:flex items-center gap-3 font-serif" aria-label="Desktop Navigation">
             <button onclick="switchPage('home')" class="nav-tab-btn active" id="tab-home">Online Menu</button>
-            <button onclick="switchPage('wall')" class="nav-tab-btn" id="tab-wall">Vibe Board</button>
+            <button onclick="switchPage('wall')" class="nav-tab-btn" id="tab-wall">Vibes & Feedback</button>
             <button onclick="switchPage('booking')" class="nav-tab-btn" id="tab-booking">Lounge Booking</button>
             <button onclick="switchPage('catering')" class="nav-tab-btn" id="tab-catering">Catering & Events</button>
-            <button onclick="switchPage('feedback')" class="nav-tab-btn" id="tab-feedback">Feedback</button>
             <button onclick="switchPage('heritage')" class="nav-tab-btn" id="tab-heritage">Our Heritage</button>
         </nav>
 
@@ -572,8 +571,8 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 2: VIBE BOARD ================= -->
-        <div id="page-wall" class="page-view hidden space-y-8 animate-fadeIn">
+        <!-- ================= PAGE 2: VIBE BOARD & FEEDBACK ================= -->
+        <div id="page-wall" class="page-view hidden space-y-12 animate-fadeIn">
             <div class="text-center max-w-xl mx-auto space-y-2">
                 <span class="font-mono text-xs uppercase tracking-widest text-terracotta">The Community Corkboard</span>
                 <h2 class="font-serif text-3xl font-bold text-appHeading">Pour Decisions Vibe Board</h2>
@@ -590,6 +589,62 @@
                 <button onclick="openUploadSheet()" class="bg-appCard hover:bg-appCard/90 text-appHeading font-serif px-6 py-3 rounded-xl shadow-lg transition-all border border-terracotta/30">
                     <i class="fa-solid fa-camera mr-2"></i> Pin Your Vibe on the Board
                 </button>
+            </div>
+
+            <!-- Visual Separation Line -->
+            <div class="border-t border-appBorder/50 pt-10"></div>
+
+            <!-- Integrated Community Feedback Module -->
+            <div class="space-y-8">
+                <div class="text-center max-w-xl mx-auto space-y-2 font-sans">
+                    <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Tell Us Your Thoughts</span>
+                    <h2 class="font-serif text-3xl font-bold text-appHeading">Community Feedback</h2>
+                    <p class="text-sm text-neutralMuted">We strive for culinary excellence. Submit suggestions or happy coffee notes below.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
+                    
+                    <!-- Published Board Notes -->
+                    <div class="space-y-5 order-first lg:order-last w-full">
+                        <div class="flex justify-between items-baseline border-b border-appBorder pb-2">
+                            <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide">Featured Guest Notes</h3>
+                            <span class="text-xs text-neutralMuted uppercase tracking-wider font-mono">Maryville, TN</span>
+                        </div>
+
+                        <div id="feedback-board-cards" class="grid gap-4">
+                            <!-- Dynamically populated approved Feedbacks -->
+                        </div>
+                    </div>
+
+                    <!-- Input Panel -->
+                    <div class="bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 transition-colors order-last lg:order-first w-full">
+                        <div class="p-4 bg-terracotta/10 border-l-4 border-terracotta rounded-xl text-xs leading-relaxed text-accentLight font-serif">
+                            <p class="font-bold text-appHeading mb-1">📢 Important Note</p>
+                            To maintain a friendly atmosphere, reviews will be audited by our staff before appearing on the public Corkboard. Thank you for your support!
+                        </div>
+
+                        <form id="suggestions-submit-form" class="space-y-4 font-sans">
+                            <div class="flex flex-col gap-1.5 text-xs text-appText">
+                                <label for="feedback-user" class="font-semibold text-neutralMuted uppercase tracking-wider">Your Handle / Name</label>
+                                <input type="text" id="feedback-user" required placeholder="e.g. @maryville_regular" class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
+                            </div>
+
+                            <div class="flex flex-col gap-1.5 text-xs text-appText">
+                                <label for="feedback-topic" class="font-semibold text-neutralMuted uppercase tracking-wider">Favorite Specialty Product</label>
+                                <input type="text" id="feedback-topic" required placeholder="e.g. Muddy Pond Mocha" class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
+                            </div>
+
+                            <div class="flex flex-col gap-1.5 text-xs text-appText">
+                                <label for="feedback-comment" class="font-semibold text-neutralMuted uppercase tracking-wider">Review or Suggestion</label>
+                                <textarea id="feedback-comment" rows="4" required placeholder="Let us know how to make your next visit extraordinary..." class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif py-3.5 rounded-xl shadow-md transition-all font-bold tracking-wider text-sm">
+                                Publish Suggestion
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -768,60 +823,7 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 5: FEEDBACK & SUGGESTIONS ================= -->
-        <div id="page-feedback" class="page-view hidden space-y-8 animate-fadeIn">
-            <div class="text-center max-w-xl mx-auto space-y-2 font-sans">
-                <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Tell Us Your Thoughts</span>
-                <h2 class="font-serif text-3xl font-bold text-appHeading">Community Feedback</h2>
-                <p class="text-sm text-neutralMuted">We strive for culinary excellence. Submit suggestions or happy coffee notes below.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
-                
-                <!-- Published Board Notes -->
-                <div class="space-y-5 order-first lg:order-last w-full">
-                    <div class="flex justify-between items-baseline border-b border-appBorder pb-2">
-                        <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide">Featured Guest Notes</h3>
-                        <span class="text-xs text-neutralMuted uppercase tracking-wider font-mono">Maryville, TN</span>
-                    </div>
-
-                    <div id="feedback-board-cards" class="grid gap-4">
-                        <!-- Dynamically populated approved Feedbacks -->
-                    </div>
-                </div>
-
-                <!-- Input Panel -->
-                <div class="bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 transition-colors order-last lg:order-first w-full">
-                    <div class="p-4 bg-terracotta/10 border-l-4 border-terracotta rounded-xl text-xs leading-relaxed text-accentLight font-serif">
-                        <p class="font-bold text-appHeading mb-1">📢 Important Note</p>
-                        To maintain a friendly atmosphere, reviews will be audited by our staff before appearing on the public Corkboard. Thank you for your support!
-                    </div>
-
-                    <form id="suggestions-submit-form" class="space-y-4 font-sans">
-                        <div class="flex flex-col gap-1.5 text-xs text-appText">
-                            <label for="feedback-user" class="font-semibold text-neutralMuted uppercase tracking-wider">Your Handle / Name</label>
-                            <input type="text" id="feedback-user" required placeholder="e.g. @maryville_regular" class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
-                        </div>
-
-                        <div class="flex flex-col gap-1.5 text-xs text-appText">
-                            <label for="feedback-topic" class="font-semibold text-neutralMuted uppercase tracking-wider">Favorite Specialty Product</label>
-                            <input type="text" id="feedback-topic" required placeholder="e.g. Muddy Pond Mocha" class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
-                        </div>
-
-                        <div class="flex flex-col gap-1.5 text-xs text-appText">
-                            <label for="feedback-comment" class="font-semibold text-neutralMuted uppercase tracking-wider">Review or Suggestion</label>
-                            <textarea id="feedback-comment" rows="4" required placeholder="Let us know how to make your next visit extraordinary..." class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif py-3.5 rounded-xl shadow-md transition-all font-bold tracking-wider text-sm">
-                            Publish Suggestion
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= PAGE 6: OUR HERITAGE ================= -->
+        <!-- ================= PAGE 5: OUR HERITAGE ================= -->
         <div id="page-heritage" class="page-view hidden space-y-12 animate-fadeIn">
             <div class="text-center max-w-xl mx-auto space-y-2 font-sans">
                 <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Est. 1999 — Tennessee</span>
@@ -873,7 +875,7 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 7: ADMIN HUB ================= -->
+        <!-- ================= PAGE 6: ADMIN HUB ================= -->
         <div id="page-admin" class="page-view hidden space-y-8 animate-fadeIn">
             <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-appBorder pb-4">
                 <div>
@@ -934,7 +936,7 @@
                         🛡️ Review Moderation
                     </button>
                     <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-catering" onclick="switchCMSTab('catering')">
-                        🍖 Catering Proposals
+                        🍖 Catering & Leads
                     </button>
                     <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-photos" onclick="switchCMSTab('photos')">
                         📸 Vibe Archives
@@ -992,12 +994,40 @@
                     </div>
                 </div>
 
-                <!-- CMS Sub-Panel 3: Catering Proposals -->
-                <div id="cms-catering-subview" class="space-y-4 hidden font-sans">
-                    <h4 class="font-serif text-lg font-bold text-appHeading">Received Event & Catering Inquiries</h4>
-                    <p class="text-xs text-neutralMuted">Manage customer digital proposals, dates, and budget plans.</p>
-                    <div id="admin-catering-inquiries-list" class="grid gap-4 md:grid-cols-2">
-                        <!-- Loaded dynamically -->
+                <!-- CMS Sub-Panel 3: Catering Proposals & Leads -->
+                <div id="cms-catering-subview" class="space-y-6 hidden font-sans">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Catering Proposals Column (Col-span 2) -->
+                        <div class="lg:col-span-2 space-y-4">
+                            <div class="flex justify-between items-center border-b border-appBorder pb-2">
+                                <div>
+                                    <h4 class="font-serif text-lg font-bold text-appHeading">Received Event & Catering Inquiries</h4>
+                                    <p class="text-xs text-neutralMuted">Manage customer digital proposals, dates, and budget plans.</p>
+                                </div>
+                                <button onclick="fetchCatering()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh catering list">
+                                    <i class="fa-solid fa-rotate-right" id="refresh-catering-icon"></i> Refresh
+                                </button>
+                            </div>
+                            <div id="admin-catering-inquiries-list" class="grid gap-4 md:grid-cols-1">
+                                <!-- Loaded dynamically -->
+                            </div>
+                        </div>
+                        
+                        <!-- Captured Newsletter Leads Column (Col-span 1) -->
+                        <div class="space-y-4 bg-appCard border border-appBorder p-6 rounded-3xl h-fit">
+                            <div class="flex justify-between items-center border-b border-appBorder pb-2">
+                                <div>
+                                    <h4 class="font-serif text-lg font-bold text-appHeading">Captured Newsletter Leads</h4>
+                                    <p class="text-xs text-neutralMuted font-serif">Emails registered via the society modal.</p>
+                                </div>
+                                <button onclick="fetchSubscribers()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl p-2.5 text-xs font-bold transition-all" aria-label="Refresh subscriber list">
+                                    <i class="fa-solid fa-rotate-right" id="refresh-subscribers-icon"></i>
+                                </button>
+                            </div>
+                            <div id="subscriber-emails-container" class="space-y-1.5 font-mono text-xs max-h-96 overflow-y-auto">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1056,8 +1086,9 @@
                                 </button>
                             </div>
                         </div>
-                        <div id="cms-products-listing-wrapper" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-appText font-sans">
-                            <!-- Dynamic product listings -->
+                        <!-- Compact interactive accordion wrapper -->
+                        <div id="cms-products-listing-wrapper" class="space-y-4 text-appText font-sans">
+                            <!-- Dynamic compact products list -->
                         </div>
                     </div>
                 </div>
@@ -1148,15 +1179,6 @@
                         </div>
                     </div>
 
-                    <!-- Newsletter Subscriber List -->
-                    <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4">
-                        <h4 class="font-serif text-lg font-bold text-appHeading">Captured Newsletter Leads</h4>
-                        <p class="text-xs text-neutralMuted">Emails registered via the promotional slide popup modal.</p>
-                        <div id="subscriber-emails-container" class="space-y-1.5 font-mono text-xs max-h-48 overflow-y-auto">
-                            <!-- Populated dynamically -->
-                        </div>
-                    </div>
-
                     <div class="space-y-3">
                         <h4 class="font-serif text-lg font-bold text-appHeading font-sans">Live System Telemetry Logs</h4>
                         <p class="text-xs text-neutralMuted">A non-technical audit ledger documenting interactions on your storefront portal.</p>
@@ -1179,7 +1201,7 @@
         </button>
         <button onclick="switchPage('wall')" class="mobile-tab-btn" id="mobile-tab-wall">
             <i class="fa-solid fa-images"></i>
-            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Vibes</span>
+            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Vibes & Feed</span>
         </button>
         <button onclick="switchPage('booking')" class="mobile-tab-btn" id="mobile-tab-booking">
             <i class="fa-regular fa-calendar-check"></i>
@@ -1476,6 +1498,24 @@
         window.setReservationMode = setReservationMode;
         window.applyCustomThemeColors = applyCustomThemeColors;
         window.resetThemeColorsToDefault = resetThemeColorsToDefault;
+        window.fetchCatering = function() {
+            const icon = document.getElementById('refresh-catering-icon');
+            if (icon) icon.classList.add('fa-spin');
+            loadLocalCatering();
+            if (icon) {
+                setTimeout(() => icon.classList.remove('fa-spin'), 600);
+            }
+            showToastNotification("Catering inquiries list successfully reloaded!");
+        };
+        window.fetchSubscribers = function() {
+            const icon = document.getElementById('refresh-subscribers-icon');
+            if (icon) icon.classList.add('fa-spin');
+            loadLocalSubscribers();
+            if (icon) {
+                setTimeout(() => icon.classList.remove('fa-spin'), 600);
+            }
+            showToastNotification("Newsletter subscribers list successfully reloaded!");
+        };
 
         // Check URL parameters for fast credentials syncing
         const urlParams = new URLSearchParams(window.location.search);
@@ -2302,6 +2342,9 @@
         }
 
         function switchPage(pageId) {
+            if (pageId === 'feedback') {
+                pageId = 'wall';
+            }
             const pageViews = document.querySelectorAll('.page-view');
             for (let i = 0; i < pageViews.length; i++) {
                 pageViews[i].classList.add('hidden');
@@ -3195,46 +3238,65 @@
             const wrapper = document.getElementById('cms-products-listing-wrapper');
             if (!wrapper) return;
 
-            wrapper.innerHTML = masterProducts.map(item => {
-                return `
-                    <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between space-y-3 font-sans relative transition-colors">
-                        ${item.sold_out ? `<div class="absolute top-2 right-2 bg-red-600/30 border border-red-500 text-red-400 text-[9px] px-2 py-0.5 rounded font-bold uppercase z-10 font-mono">Sold Out</div>` : ''}
-                        ${item.hidden ? `<div class="absolute top-2 right-2 bg-neutral-600 text-white text-[9px] px-2 py-0.5 rounded font-bold uppercase z-10 font-mono">Hidden</div>` : ''}
-                        
-                        <div>
-                            <div class="w-full h-32 rounded-xl overflow-hidden bg-espresso/20 mb-2">
-                                <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover" onerror="window.handleImageError(this)">
-                            </div>
-                            <h4 class="font-bold text-appHeading text-sm flex items-center gap-1.5">
-                                ${item.name}
-                                ${item.badge ? `<span class="bg-terracotta text-white font-mono text-[7px] px-1 py-0.5 rounded font-bold">${item.badge}</span>` : ''}
-                            </h4>
-                            <span class="text-xs text-terracotta font-mono font-bold">$${item.price.toFixed(2)}</span>
-                            <p class="text-[10px] text-neutralMuted line-clamp-2 mt-1 leading-normal font-serif">${item.desc}</p>
-                        </div>
+            wrapper.innerHTML = '';
 
-                        <div class="border-t border-appBorder/50 pt-2 space-y-2 font-serif">
-                            <div class="grid grid-cols-2 gap-1.5 text-[9px] font-bold">
-                                <button onclick="toggleProductSoldOutStatus('${item.id}')" class="px-2 py-1.5 rounded border ${item.sold_out ? 'bg-red-600 text-white border-red-500' : 'bg-darkAccent text-terracotta border-terracotta/20'} transition-all">
-                                    ${item.sold_out ? 'Mark In-Stock' : 'Mark Sold Out'}
-                                </button>
-                                <button onclick="toggleProductHiddenStatus('${item.id}')" class="px-2 py-1.5 rounded border ${item.hidden ? 'bg-neutral-600 text-white border-neutral-500' : 'bg-darkAccent text-neutralMuted border-terracotta/20'} transition-all">
-                                    ${item.hidden ? 'Show in Menu' : 'Hide Catalog'}
-                                </button>
-                            </div>
-                            
-                            <div class="grid grid-cols-2 gap-1.5 text-[9px] font-bold">
-                                <button onclick="toggleProductPopularStatus('${item.id}')" class="px-2 py-1.5 rounded border ${item.badge === 'Popular' ? 'bg-yellow-600 text-white border-yellow-500' : 'bg-darkAccent text-parchment border-terracotta/20'} transition-all">
-                                    ${item.badge === 'Popular' ? 'Normal Style' : 'Mark Popular'}
-                                </button>
-                                <button onclick="editProductDetailsCMS('${item.id}')" class="px-2 py-1.5 rounded bg-terracotta hover:bg-terracotta/90 text-white text-center transition-all">
-                                    <i class="fa-solid fa-pen-to-square mr-1"></i> Edit Details
-                                </button>
-                            </div>
+            masterCategories.forEach(cat => {
+                const groupItems = masterProducts.filter(item => item.category === cat.id);
+                const accordionDiv = document.createElement('div');
+                accordionDiv.className = 'border border-appBorder rounded-2xl bg-appCard overflow-hidden shadow-sm transition-colors mb-3';
+                
+                accordionDiv.innerHTML = `
+                    <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center p-4 text-left font-serif font-bold text-appHeading focus:outline-none hover:bg-espresso/5 transition-all">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid ${cat.icon} text-terracotta text-sm"></i>
+                            <span class="text-sm tracking-wide">${cat.name} (${groupItems.length})</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-neutralMuted text-xs transition-transform duration-300 rotate-180"></i>
+                    </button>
+                    <div class="accordion-content px-4 pb-4 space-y-3 expanded" style="max-height: 2000px;">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                            ${groupItems.map(item => {
+                                return `
+                                    <div class="bg-appBg/50 border border-appBorder p-3 rounded-xl flex flex-col justify-between gap-3 shadow-inner relative">
+                                        <div class="flex items-center justify-between gap-3">
+                                            <div class="flex items-center gap-3 overflow-hidden">
+                                                <div class="w-10 h-10 rounded-lg overflow-hidden bg-espresso/20 flex-shrink-0 relative">
+                                                    <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" onerror="window.handleImageError(this)">
+                                                </div>
+                                                <div class="overflow-hidden">
+                                                    <h4 class="font-serif font-bold text-appHeading text-xs leading-tight truncate">
+                                                        ${item.name}
+                                                        ${item.badge ? `<span class="bg-terracotta text-white font-mono text-[7px] px-1 py-0.5 rounded ml-1 font-bold inline-block">${item.badge}</span>` : ''}
+                                                    </h4>
+                                                    <p class="text-[10px] text-neutralMuted leading-normal truncate font-serif">${item.desc}</p>
+                                                </div>
+                                            </div>
+                                            <span class="text-terracotta font-mono font-bold text-xs flex-shrink-0">$${item.price.toFixed(2)}</span>
+                                        </div>
+                                        
+                                        <!-- Action controls underneath (small and inline) -->
+                                        <div class="grid grid-cols-4 gap-1 pt-1.5 border-t border-appBorder/40 font-mono text-[8px] font-bold">
+                                            <button onclick="toggleProductSoldOutStatus('${item.id}')" class="px-1.5 py-1 rounded border text-center transition-all truncate ${item.sold_out ? 'bg-red-600 text-white border-red-500' : 'bg-darkAccent text-terracotta border-terracotta/20'}">
+                                                ${item.sold_out ? 'In Stock' : 'Sold Out'}
+                                            </button>
+                                            <button onclick="toggleProductHiddenStatus('${item.id}')" class="px-1.5 py-1 rounded border text-center transition-all truncate ${item.hidden ? 'bg-neutral-600 text-white border-neutral-500' : 'bg-darkAccent text-neutralMuted border-terracotta/20'}">
+                                                ${item.hidden ? 'Show' : 'Hide'}
+                                            </button>
+                                            <button onclick="toggleProductPopularStatus('${item.id}')" class="px-1.5 py-1 rounded border text-center transition-all truncate ${item.badge === 'Popular' ? 'bg-yellow-600 text-white border-yellow-500' : 'bg-darkAccent text-parchment border-terracotta/20'}">
+                                                ${item.badge === 'Popular' ? 'Unmark' : 'Popular'}
+                                            </button>
+                                            <button onclick="editProductDetailsCMS('${item.id}')" class="px-1.5 py-1 rounded bg-terracotta hover:bg-terracotta/90 text-white text-center transition-all truncate">
+                                                Edit
+                                            </button>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
                         </div>
                     </div>
                 `;
-            }).join('');
+                wrapper.appendChild(accordionDiv);
+            });
         }
 
         window.toggleProductSoldOutStatus = function(id) {
