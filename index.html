@@ -342,7 +342,6 @@
 </head>
 <body class="bg-appBg text-appText flex flex-col min-h-screen">
 
-    <!-- Unified Toast Notification Container -->
     <div id="toast-container" class="toast-container hidden">
         <div id="toast-message" class="toast text-xs font-semibold tracking-wide border border-terracotta/30 flex items-center justify-center gap-2"></div>
     </div>
@@ -371,6 +370,7 @@
             <button onclick="switchPage('home')" class="nav-tab-btn active" id="tab-home">Online Menu</button>
             <button onclick="switchPage('wall')" class="nav-tab-btn" id="tab-wall">Vibe Board</button>
             <button onclick="switchPage('booking')" class="nav-tab-btn" id="tab-booking">Lounge Booking</button>
+            <button onclick="switchPage('catering')" class="nav-tab-btn" id="tab-catering">Catering & Events</button>
             <button onclick="switchPage('feedback')" class="nav-tab-btn" id="tab-feedback">Feedback</button>
             <button onclick="switchPage('heritage')" class="nav-tab-btn" id="tab-heritage">Our Heritage</button>
         </nav>
@@ -443,15 +443,8 @@
                     </div>
                 </div>
 
-                <!-- Category Filter Pills -->
                 <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none" id="category-pills" role="tablist">
-                    <button id="pill-all" onclick="filterCategory('all')" class="category-pill bg-terracotta text-white border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all">All Items</button>
-                    <button id="pill-coffee" onclick="filterCategory('coffee')" class="category-pill bg-darkCard text-parchment border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all">Brewed & Drip</button>
-                    <button id="pill-espresso" onclick="filterCategory('espresso')" class="category-pill bg-darkCard text-parchment border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all">Espresso Drinks</button>
-                    <button id="pill-signature" onclick="filterCategory('signature')" class="category-pill bg-darkCard text-parchment border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all">Signatures</button>
-                    <button id="pill-tea-more" onclick="filterCategory('tea-more')" class="category-pill bg-darkCard text-parchment border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all">Tea & Other</button>
-                    <button id="pill-breakfast" onclick="filterCategory('breakfast')" class="category-pill bg-darkCard text-parchment border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all">Breakfast Bites</button>
-                    <button id="pill-lunch" onclick="filterCategory('lunch')" class="category-pill bg-darkCard text-parchment border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all">Sandwiches & Salads</button>
+                    <!-- Loaded dynamically via JS based on categories state -->
                 </div>
 
                 <div class="space-y-3">
@@ -600,19 +593,22 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 3: LOUNGE BOOKING ================= -->
+        <!-- ================= PAGE 3: LOUNGE BOOKING (RESERVATION OPTIONS) ================= -->
         <div id="page-booking" class="page-view hidden space-y-8 animate-fadeIn">
             <div class="text-center max-w-xl mx-auto space-y-2 font-sans">
                 <span class="font-mono text-xs uppercase tracking-widest text-terracotta">College Street Lounge Space</span>
                 <h2 class="font-serif text-3xl font-bold text-appHeading">Reserve a Lounge Table</h2>
-                <p class="text-sm text-neutralMuted">Book warm hearth niches or quiet community study corners.</p>
+                <p class="text-sm text-neutralMuted">Book warm hearth niches, quiet study corners, or register on OpenTable/Resy.</p>
                 
-                <div class="inline-block bg-yellow-500/10 border border-yellow-500/30 text-yellow-500 rounded-xl px-4 py-2 mt-2 text-xs font-medium max-w-md">
-                    <i class="fa-solid fa-clock-rotate-left mr-1.5"></i> All table and room bookings are active for the **current day only** to guarantee fair neighborhood community access.
+                <!-- Toggle Mode Selector -->
+                <div class="inline-flex rounded-full bg-darkAccent p-1 border border-terracotta/20 mt-4">
+                    <button id="btn-booking-internal" onclick="setReservationMode('internal')" class="px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-terracotta text-white">Same-Day Lounge Pass</button>
+                    <button id="btn-booking-widget" onclick="setReservationMode('widget')" class="px-4 py-1.5 rounded-full text-xs font-semibold transition-all text-neutralMuted">OpenTable / Resy</button>
                 </div>
             </div>
 
-            <div class="max-w-2xl mx-auto bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 transition-colors">
+            <!-- Booking Section Content -->
+            <div id="booking-internal-container" class="max-w-2xl mx-auto bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 transition-colors">
                 <div>
                     <label class="block text-xs font-bold text-appText uppercase tracking-widest text-center mb-3">Choose Seating Area</label>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -656,9 +652,123 @@
                     </button>
                 </form>
             </div>
+
+            <!-- Simulated Widget Overlay Container -->
+            <div id="booking-widget-container" class="max-w-2xl mx-auto hidden bg-appCard border border-terracotta/30 p-6 rounded-3xl shadow-xl space-y-4">
+                <div class="flex justify-between items-center border-b border-appBorder pb-3">
+                    <h4 class="font-serif font-bold text-appHeading">Resy & OpenTable Network Sync</h4>
+                    <span class="text-[10px] bg-red-500/20 text-red-400 font-bold px-2 py-0.5 rounded font-mono animate-pulse">● Live Streamed Widget</span>
+                </div>
+                <div class="bg-black/40 border border-appBorder rounded-2xl p-2 relative" style="height: 420px;">
+                    <!-- A beautiful high-fidelity mock iframe integration element -->
+                    <div class="absolute inset-0 bg-cover bg-center rounded-2xl opacity-20" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800')"></div>
+                    <div class="relative z-10 w-full h-full flex flex-col justify-between p-6">
+                        <div class="space-y-2 text-center sm:text-left">
+                            <h5 class="text-terracotta font-bold text-lg font-serif">Maryville College Street Hub</h5>
+                            <p class="text-xs text-neutralMuted">Secured reservations provided by OpenTable & Resy global systems. Guaranteed dining slots.</p>
+                        </div>
+                        <div class="my-auto max-w-sm mx-auto w-full bg-darkCard/90 border border-terracotta/30 p-4 rounded-xl space-y-3 font-sans text-xs">
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="text-[9px] uppercase font-bold text-neutralMuted">Resy Guests</label>
+                                    <select class="w-full bg-appBg border border-terracotta/25 p-2 rounded text-xs focus:outline-none"><option>2 People</option><option>4 People</option></select>
+                                </div>
+                                <div>
+                                    <label class="text-[9px] uppercase font-bold text-neutralMuted">Date</label>
+                                    <input type="date" class="w-full bg-appBg border border-terracotta/25 p-1.5 rounded text-xs focus:outline-none">
+                                </div>
+                            </div>
+                            <button onclick="showToastNotification('Widget Mock: Custom reservation successfully routed through OpenTable/Resy!')" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-2 rounded transition-colors text-xs uppercase tracking-wider font-mono">
+                                Search Available Tables
+                            </button>
+                        </div>
+                        <p class="text-[10px] text-center text-neutralMuted font-mono">Resy Widget Embed Core Code V3.4.11-Maryville</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- ================= PAGE 4: FEEDBACK & SUGGESTIONS ================= -->
+        <!-- ================= PAGE 4: CATERING & EVENTS (CATERING INQUIRY) ================= -->
+        <div id="page-catering" class="page-view hidden space-y-8 animate-fadeIn">
+            <div class="text-center max-w-xl mx-auto space-y-2 font-sans">
+                <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Sorghum & Smoke Caterings</span>
+                <h2 class="font-serif text-3xl font-bold text-appHeading">Digital Catering Inquiries</h2>
+                <p class="text-sm text-neutralMuted">Host elegant company luncheons, family reunions, or wedding coffee bars.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
+                <!-- Perks column -->
+                <div class="bg-appCard border border-appBorder rounded-3xl p-6 flex flex-col justify-between space-y-6">
+                    <div>
+                        <h3 class="font-serif text-xl font-bold text-terracotta mb-2">Our Catering Packages</h3>
+                        <p class="text-xs text-neutralMuted leading-relaxed">We bring Maryville’s supreme coffee and pastries directly to your event venue with staff support.</p>
+                        
+                        <div class="mt-4 space-y-3 text-xs text-appText">
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-mug-hot text-terracotta mt-0.5"></i>
+                                <div><strong>Espresso Bar Package:</strong> Professional dual-group head machine, custom syrup menu, and 2 dedicated baristas for 4 hours.</div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-cookie-bite text-terracotta mt-0.5"></i>
+                                <div><strong>College St Pastry Feast:</strong> Assorted quiche plates, gourmet sweet bagels, fresh smoked salmon spreads, and sweet glazes.</div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-cloud-sun text-terracotta mt-0.5"></i>
+                                <div><strong>The Morning Brew Station:</strong> Heavy-duty coffee urns, nitro-keg selections, local whole milk, and sorghum cups.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 bg-terracotta/10 border-l-4 border-terracotta rounded-xl text-xs leading-relaxed text-accentLight font-mono">
+                        <i class="fa-solid fa-percent text-terracotta mr-1.5 animate-pulse"></i> <strong>Catering Discount:</strong> Booking slots confirmed 30 days in advance qualify for 10% off final pricing matrix!
+                    </div>
+                </div>
+
+                <!-- Inquiry form -->
+                <div class="bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-4">
+                    <h4 class="font-serif font-bold text-appHeading text-lg">Inquiry Request Form</h4>
+                    <form id="catering-inquiry-form" class="space-y-3 font-sans text-xs">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="flex flex-col gap-1">
+                                <label class="text-neutralMuted uppercase tracking-wider font-semibold">Your Name</label>
+                                <input type="text" id="cat-name" required class="bg-appBg border border-terracotta/25 rounded-lg p-2.5 text-appHeading focus:outline-none">
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label class="text-neutralMuted uppercase tracking-wider font-semibold">Contact Email</label>
+                                <input type="email" id="cat-email" required class="bg-appBg border border-terracotta/25 rounded-lg p-2.5 text-appHeading focus:outline-none">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="flex flex-col gap-1">
+                                <label class="text-neutralMuted uppercase tracking-wider font-semibold">Expected Guests</label>
+                                <input type="number" id="cat-guests" min="5" placeholder="30" required class="bg-appBg border border-terracotta/25 rounded-lg p-2.5 text-appHeading focus:outline-none">
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label class="text-neutralMuted uppercase tracking-wider font-semibold">Event Date</label>
+                                <input type="date" id="cat-date" required class="bg-appBg border border-terracotta/25 rounded-lg p-2.5 text-appHeading focus:outline-none">
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label class="text-neutralMuted uppercase tracking-wider font-semibold">Budget Tier Selection</label>
+                            <select id="cat-budget" class="bg-appBg border border-terracotta/25 rounded-lg p-2.5 text-appHeading focus:outline-none">
+                                <option value="Standard Brew (Urns Only)">Standard Brew (Urns Only)</option>
+                                <option value="Full Espresso Station & Pastries">Full Espresso Bar & Pastries</option>
+                                <option value="Executive Full Service & Open Bar">Executive Service & Full Menu</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label class="text-neutralMuted uppercase tracking-wider font-semibold">Event Description / Demands</label>
+                            <textarea id="cat-desc" rows="3" required placeholder="Tell us about your catering theme or requirements..." class="bg-appBg border border-terracotta/25 rounded-lg p-2 text-appHeading focus:outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif py-3 rounded-lg font-bold shadow transition-all">
+                            Submit Catering Proposal
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 5: FEEDBACK & SUGGESTIONS ================= -->
         <div id="page-feedback" class="page-view hidden space-y-8 animate-fadeIn">
             <div class="text-center max-w-xl mx-auto space-y-2 font-sans">
                 <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Tell Us Your Thoughts</span>
@@ -711,7 +821,7 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 5: OUR HERITAGE ================= -->
+        <!-- ================= PAGE 6: OUR HERITAGE ================= -->
         <div id="page-heritage" class="page-view hidden space-y-12 animate-fadeIn">
             <div class="text-center max-w-xl mx-auto space-y-2 font-sans">
                 <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Est. 1999 — Tennessee</span>
@@ -763,7 +873,7 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 6: ADMIN HUB ================= -->
+        <!-- ================= PAGE 7: ADMIN HUB ================= -->
         <div id="page-admin" class="page-view hidden space-y-8 animate-fadeIn">
             <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-appBorder pb-4">
                 <div>
@@ -782,7 +892,7 @@
                 </div>
                 <div>
                     <h3 class="font-serif text-lg font-bold text-appHeading">Administrative Access Required</h3>
-                    <p class="text-xs text-neutralMuted mt-1">Please enter your passcode to unlock dashboard operations.</p>
+                    <p class="text-xs text-neutralMuted mt-1">Please enter your passcode to unlock dashboard operations. (Hint: <strong>barako</strong>)</p>
                 </div>
                 <div class="space-y-3">
                     <input type="password" id="cms-passcode-input" placeholder="Password..." class="w-full text-center bg-appBg border border-terracotta/30 rounded-xl p-3 text-sm text-appHeading focus:outline-none focus:border-terracotta">
@@ -806,35 +916,38 @@
                         <span id="metrics-orders-active" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
                     </div>
                     <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
-                        <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Pending Feedback Notes</span>
-                        <span id="metrics-feedback-pending" class="text-2xl font-serif font-bold text-yellow-500 mt-2">0</span>
+                        <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Catering Requests</span>
+                        <span id="metrics-catering-pending" class="text-2xl font-serif font-bold text-yellow-500 mt-2">0</span>
                     </div>
                     <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
-                        <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Vibe Board Photos</span>
-                        <span id="metrics-vibes-count" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
+                        <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Newsletter Subscribers</span>
+                        <span id="metrics-subscribers-count" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
                     </div>
                 </div>
 
                 <!-- Navigation tabs -->
                 <div class="flex border-b border-appBorder text-xs font-bold gap-4 overflow-x-auto scrollbar-none font-sans">
                     <button class="pb-2.5 text-terracotta border-b-2 border-terracotta whitespace-nowrap transition-colors" id="tab-cms-orders" onclick="switchCMSTab('orders')">
-                        🛍️ Simulated Orders Pipeline
+                        🛍️ Orders & Bookings
                     </button>
                     <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-feedback" onclick="switchCMSTab('feedback')">
                         🛡️ Review Moderation
+                    </button>
+                    <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-catering" onclick="switchCMSTab('catering')">
+                        🍖 Catering Proposals
                     </button>
                     <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-photos" onclick="switchCMSTab('photos')">
                         📸 Vibe Archives
                     </button>
                     <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-products" onclick="switchCMSTab('products')">
-                        ☕ Catalog Editor
+                        ☕ Catalog & Categories
                     </button>
                     <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-analytics" onclick="switchCMSTab('analytics')">
-                        ⚙️ Settings & Telemetry
+                        ⚙️ Theme & System Settings
                     </button>
                 </div>
 
-                <!-- CMS Sub-Panel 1: Live Orders Pipeline -->
+                <!-- CMS Sub-Panel 1: Live Orders & Bookings -->
                 <div id="cms-orders-subview" class="space-y-4">
                     <div class="flex justify-between items-center">
                         <h4 class="font-serif text-lg font-bold text-appHeading">Simulated Real-Time Orders</h4>
@@ -846,12 +959,12 @@
                         <!-- Dynamically populated via standard cloud HTTP reads -->
                     </div>
 
-                    <!-- Today's Seating Reservations -->
+                    <!-- Seating Reservations -->
                     <div class="border-t border-appBorder pt-6 space-y-4">
                         <div class="flex justify-between items-center">
                             <div>
                                 <h4 class="font-serif text-lg font-bold text-appHeading">Lounge Seating Reservations</h4>
-                                <p class="text-xs text-neutralMuted">View today's table reservation entries stored in Supabase.</p>
+                                <p class="text-xs text-neutralMuted">View reservation entries stored in Supabase.</p>
                             </div>
                             <button onclick="fetchReservations()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2 shadow font-sans" aria-label="Refresh reservations list">
                                 <i class="fa-solid fa-rotate-right" id="refresh-reservations-icon"></i> Refresh Reservations
@@ -879,7 +992,16 @@
                     </div>
                 </div>
 
-                <!-- CMS Sub-Panel 3: Vibe Archives -->
+                <!-- CMS Sub-Panel 3: Catering Proposals -->
+                <div id="cms-catering-subview" class="space-y-4 hidden font-sans">
+                    <h4 class="font-serif text-lg font-bold text-appHeading">Received Event & Catering Inquiries</h4>
+                    <p class="text-xs text-neutralMuted">Manage customer digital proposals, dates, and budget plans.</p>
+                    <div id="admin-catering-inquiries-list" class="grid gap-4 md:grid-cols-2">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- CMS Sub-Panel 4: Vibe Archives -->
                 <div id="cms-photos-subview" class="space-y-4 hidden font-sans">
                     <div class="flex justify-between items-center">
                         <div>
@@ -895,29 +1017,86 @@
                     </div>
                 </div>
 
-                <!-- CMS Sub-Panel 4: Menu Catalog Editor -->
-                <div id="cms-products-subview" class="space-y-4 hidden font-sans">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h4 class="font-serif text-lg font-bold text-appHeading">Manage Catalog Items</h4>
-                            <p class="text-xs text-neutralMuted">Adjust pricing, hide options, or trigger sold out filters.</p>
+                <!-- CMS Sub-Panel 5: Menu Catalog Editor & Categories -->
+                <div id="cms-products-subview" class="space-y-6 hidden font-sans">
+                    <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-serif text-lg font-bold text-appHeading">Customize Food & Beverage Categories</h4>
+                                <p class="text-xs text-neutralMuted">Add entirely new food sections, upload custom categories, and assign icons.</p>
+                            </div>
                         </div>
-                        <div class="flex gap-2">
-                            <button onclick="refreshCMSProducts()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh products list">
-                                <i class="fa-solid fa-rotate-right" id="refresh-products-icon"></i> Refresh Catalog
-                            </button>
-                            <button onclick="openProductEditForm()" class="bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow-md">
-                                <i class="fa-solid fa-circle-plus"></i> Add New Product
-                            </button>
+                        
+                        <form id="category-creation-form" class="grid sm:grid-cols-3 gap-3 text-xs">
+                            <input type="text" id="new-cat-id" placeholder="Category key (e.g., bagels)" required class="bg-appBg border border-terracotta/25 p-2 rounded-xl text-appHeading">
+                            <input type="text" id="new-cat-name" placeholder="Display Name (e.g., Rustic Bagels)" required class="bg-appBg border border-terracotta/25 p-2 rounded-xl text-appHeading">
+                            <div class="flex gap-2">
+                                <input type="text" id="new-cat-icon" placeholder="FA Icon (e.g., fa-cookie)" required class="bg-appBg border border-terracotta/25 p-2 rounded-xl text-appHeading flex-1">
+                                <button type="submit" class="bg-terracotta hover:bg-terracotta/90 text-white font-bold px-4 rounded-xl">Add</button>
+                            </div>
+                        </form>
+
+                        <div id="categories-badge-list" class="flex flex-wrap gap-2 pt-2">
+                            <!-- Dynamic category badges -->
                         </div>
                     </div>
-                    <div id="cms-products-listing-wrapper" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-appText font-sans">
-                        <!-- Dynamic product listings -->
+
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-serif text-lg font-bold text-appHeading">Manage Catalog Items</h4>
+                                <p class="text-xs text-neutralMuted">Adjust pricing, configure categories, flag "Chef's Specials" or "Best Sellers."</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <button onclick="refreshCMSProducts()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh products list">
+                                    <i class="fa-solid fa-rotate-right" id="refresh-products-icon"></i> Refresh Catalog
+                                </button>
+                                <button onclick="openProductEditForm()" class="bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow-md">
+                                    <i class="fa-solid fa-circle-plus"></i> Add New Product
+                                </button>
+                            </div>
+                        </div>
+                        <div id="cms-products-listing-wrapper" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-appText font-sans">
+                            <!-- Dynamic product listings -->
+                        </div>
                     </div>
                 </div>
 
-                <!-- CMS Sub-Panel 5: Telemetry Logs & Credentials Manager -->
+                <!-- CMS Sub-Panel 6: Telemetry Logs & Theme Settings -->
                 <div id="cms-analytics-subview" class="space-y-6 hidden font-sans">
+                    <!-- Theme & Design Customizer Panel -->
+                    <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 transition-colors">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-palette text-terracotta text-lg"></i>
+                            <h4 class="font-serif text-lg font-bold text-appHeading">Storefront Color Scheme Customizer</h4>
+                        </div>
+                        <p class="text-xs text-neutralMuted leading-relaxed">
+                            Personalize the layout design tokens! Enter color values to dynamically adapt the storefront’s system colors.
+                        </p>
+                        <div class="grid gap-4 grid-cols-2 sm:grid-cols-4 text-xs text-appText">
+                            <div class="flex flex-col gap-1">
+                                <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Primary BG</label>
+                                <input type="color" id="theme-color-bg" value="#150A08" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Accent Color</label>
+                                <input type="color" id="theme-color-terracotta" value="#D97757" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Card Panel BG</label>
+                                <input type="color" id="theme-color-card" value="#231511" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Text Color</label>
+                                <input type="color" id="theme-color-text" value="#EEDCC5" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="applyCustomThemeColors()" class="bg-terracotta hover:bg-terracotta/90 text-white font-serif font-bold text-xs py-2 px-4 rounded-xl">Save Brand Palette</button>
+                            <button onclick="resetThemeColorsToDefault()" class="border border-terracotta/20 hover:bg-terracotta/10 text-xs py-2 px-4 rounded-xl text-neutralMuted">Reset Brand Default</button>
+                        </div>
+                    </div>
+
                     <!-- Connection Diagnostics Panel -->
                     <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 transition-colors">
                         <div class="flex items-center gap-2.5">
@@ -969,6 +1148,15 @@
                         </div>
                     </div>
 
+                    <!-- Newsletter Subscriber List -->
+                    <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4">
+                        <h4 class="font-serif text-lg font-bold text-appHeading">Captured Newsletter Leads</h4>
+                        <p class="text-xs text-neutralMuted">Emails registered via the promotional slide popup modal.</p>
+                        <div id="subscriber-emails-container" class="space-y-1.5 font-mono text-xs max-h-48 overflow-y-auto">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
                     <div class="space-y-3">
                         <h4 class="font-serif text-lg font-bold text-appHeading font-sans">Live System Telemetry Logs</h4>
                         <p class="text-xs text-neutralMuted">A non-technical audit ledger documenting interactions on your storefront portal.</p>
@@ -997,9 +1185,9 @@
             <i class="fa-regular fa-calendar-check"></i>
             <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Reserve</span>
         </button>
-        <button onclick="switchPage('feedback')" class="mobile-tab-btn" id="mobile-tab-feedback">
-            <i class="fa-solid fa-comment-dots"></i>
-            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Notes</span>
+        <button onclick="switchPage('catering')" class="mobile-tab-btn" id="mobile-tab-catering">
+            <i class="fa-solid fa-plate-wheat"></i>
+            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Catering</span>
         </button>
         <button onclick="switchPage('heritage')" class="mobile-tab-btn" id="mobile-tab-heritage">
             <i class="fa-solid fa-circle-info"></i>
@@ -1019,6 +1207,26 @@
     </div>
 
     <!-- ================= MODALS & SLIDE DRAWER OVERLAYS ================= -->
+
+    <!-- Brand Newsletter Signup Popup -->
+    <div id="newsletter-popup-modal" class="fixed inset-0 z-[120] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500">
+        <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeNewsletterPopup()"></div>
+        <div class="bg-appCard border border-terracotta/35 p-6 rounded-3xl max-w-sm w-full mx-auto relative z-10 text-center space-y-4 text-appText shadow-2xl transition-all">
+            <button onclick="closeNewsletterPopup()" class="absolute top-4 right-4 text-neutralMuted hover:text-terracotta text-base"><i class="fa-solid fa-xmark"></i></button>
+            <div class="w-14 h-14 bg-terracotta/10 rounded-full flex items-center justify-center text-terracotta text-2xl mx-auto">
+                <i class="fa-solid fa-envelope-open-text"></i>
+            </div>
+            <div>
+                <h3 class="font-serif text-xl font-bold text-appHeading">The Sorghum Society</h3>
+                <p class="text-xs text-neutralMuted mt-1 leading-relaxed">Join our mailing registry for exclusive secret recipe releases, sensory roasting schedules, and private event announcements.</p>
+            </div>
+            <form id="newsletter-signup-form" class="space-y-2.5 text-xs text-appText font-sans">
+                <input type="email" id="news-email-field" placeholder="Enter your email address..." required class="w-full bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-center outline-none focus:border-terracotta transition-all">
+                <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-bold py-3 rounded-xl transition-all shadow-md">Unlock Gourmet Coffee Perks</button>
+            </form>
+            <p class="text-[9px] text-neutralMuted italic">We values your privacy. Zero spam guaranteed.</p>
+        </div>
+    </div>
 
     <!-- 1. Shopping Bag Drawer -->
     <div class="sheet text-appText" id="cart-sheet" role="dialog" aria-modal="true" aria-labelledby="cart-title">
@@ -1154,33 +1362,7 @@
         </div>
     </div>
 
-    <!-- 4. Promo Highlight Overlay Modal -->
-    <div class="promo-modal" id="promo-modal" role="dialog" aria-modal="true">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-md" onclick="closePromoModal()"></div>
-        <div class="bg-appCard border border-terracotta/35 p-6 rounded-3xl max-w-sm w-full mx-auto relative z-10 text-center space-y-4 animate-scaleUp text-appText transition-colors">
-            <div class="w-14 h-14 bg-terracotta/10 rounded-full flex items-center justify-center text-terracotta text-2xl mx-auto">
-                <i class="fa-solid fa-gift"></i>
-            </div>
-            <div>
-                <h3 class="font-serif text-xl font-bold text-appHeading">Viennese Waltz Premium Deal!</h3>
-                <p class="text-xs text-neutralMuted mt-1">Get 10% off on our best-selling white chocolate specialty when configuring your checkout simulation.</p>
-            </div>
-            <div class="bg-appBg border border-terracotta/20 p-3.5 rounded-xl text-left font-mono text-[10px] space-y-1">
-                <p><span class="text-terracotta font-bold">Offer Code:</span> PD_WALTZ10</p>
-                <p><span class="text-terracotta font-bold">Availability:</span> Curbside helper active</p>
-            </div>
-            <div class="grid grid-cols-2 gap-3 text-xs font-bold font-serif">
-                <button onclick="closePromoModal()" class="w-full border border-terracotta/25 hover:bg-terracotta/10 text-appHeading py-2.5 rounded-xl transition-all">
-                    Dismiss
-                </button>
-                <button onclick="addPromoToOrder()" class="w-full bg-terracotta hover:bg-terracotta/90 text-white py-2.5 rounded-xl transition-all shadow-md">
-                    Add to Bag
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 5. CMS Product Modification Modal -->
+    <!-- 5. CMS Product Modification Modal (with dynamic category loading) -->
     <div class="sheet text-appText" id="product-modal-sheet" role="dialog" aria-modal="true">
         <div class="sheet-handle"></div>
         <button class="sheet-close" onclick="closeProductEditForm()"><i class="fa-solid fa-xmark"></i></button>
@@ -1202,13 +1384,25 @@
                     <div class="flex flex-col gap-1.5">
                         <label for="p-form-category">Category Tab</label>
                         <select id="p-form-category" class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none text-sm" required>
-                            <option value="coffee">Brewed & Drip</option>
-                            <option value="espresso">Espresso Drinks</option>
-                            <option value="signature">Signatures</option>
-                            <option value="tea-more">Tea & Other</option>
-                            <option value="breakfast">Breakfast Bites</option>
-                            <option value="lunch">Sandwiches & Salads</option>
+                            <!-- Category choices populated dynamically via JS -->
                         </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="flex flex-col gap-1.5">
+                        <label for="p-form-badge">Interactive Badge Style</label>
+                        <select id="p-form-badge" class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none text-sm">
+                            <option value="">No Special Flag</option>
+                            <option value="Popular">Classic Popular</option>
+                            <option value="Best Seller">Best Seller 🔥</option>
+                            <option value="Chef's Special">Chef’s Special 🍳</option>
+                            <option value="Seasonal Choice">Seasonal Choice 🍁</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label for="p-form-custom-badge">Or Custom Text Badge</label>
+                        <input type="text" id="p-form-custom-badge" placeholder="e.g. Local Organic" class="bg-appBg border border-terracotta/20 rounded-xl p-2.5 text-appHeading focus:outline-none text-sm">
                     </div>
                 </div>
 
@@ -1260,6 +1454,7 @@
             document.getElementById('p-form-id').value = '';
             document.getElementById('product-crud-form').reset();
             document.getElementById('product-form-title').innerText = 'Add New Product Option';
+            populateFormCategorySelect();
             openProductEditForm();
         };
         window.closeProductEditForm = closeProductEditForm;
@@ -1277,6 +1472,10 @@
         window.closeAllSheets = closeAllSheets;
         window.fetchReservations = fetchReservations;
         window.refreshCMSProducts = refreshCMSProducts;
+        window.closeNewsletterPopup = closeNewsletterPopup;
+        window.setReservationMode = setReservationMode;
+        window.applyCustomThemeColors = applyCustomThemeColors;
+        window.resetThemeColorsToDefault = resetThemeColorsToDefault;
 
         // Check URL parameters for fast credentials syncing
         const urlParams = new URLSearchParams(window.location.search);
@@ -1323,12 +1522,23 @@
             };
         }
 
-        // Global State Registry
         let activeOrders = [];
         let activeReservations = [];
+        let cateringInquiries = [];
+        let newsletterEmails = [];
         let telemetryLogs = [
             "☕ Pour Decisions boutique online storefront initialized.",
             "🟢 Theme preset initialized to cozy Dark Espresso."
+        ];
+
+        // Fully Dynamic Category Scheme State
+        let masterCategories = [
+            { id: 'coffee', name: 'Brewed & Drip', icon: 'fa-mug-hot' },
+            { id: 'espresso', name: 'Espresso Drinks', icon: 'fa-bolt' },
+            { id: 'signature', name: 'Signatures', icon: 'fa-star' },
+            { id: 'tea-more', name: 'Tea & Other', icon: 'fa-leaf' },
+            { id: 'breakfast', name: 'Breakfast Bites', icon: 'fa-egg' },
+            { id: 'lunch', name: 'Sandwiches & Salads', icon: 'fa-bread-slice' }
         ];
 
         let masterProducts = [
@@ -1339,16 +1549,16 @@
             { id: 'c5', name: 'Red Eye Shot', price: 4.30, category: 'coffee', desc: 'Double shot of house espresso topped with rich brewed coffee.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
             
             { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, category: 'signature', desc: 'Double espresso, velvet steamed milk, chocolate, vanilla, and sweet Muddy Pond Sorghum syrup.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Best Seller' },
-            { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Barista Rec' },
-            { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600', sold_out: false, hidden: false, badge: 'Classic Signature' },
+            { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Best Seller' },
+            { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600', sold_out: false, hidden: false, badge: 'Popular' },
             
             { id: 'e1', name: 'Espresso Double Shot', price: 3.30, category: 'espresso', desc: 'Perfectly extracted, rich-bodied local espresso blend.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
             { id: 'e2', name: 'Caffe Latte', price: 5.00, category: 'espresso', desc: 'Espresso double shot over steamed milk with thin microfoam layer.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
             { id: 'e3', name: 'Cortado Glass', price: 4.10, category: 'espresso', desc: 'Equal parts extracted espresso and velvet steamed whole milk.', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
             
-            { id: 'b1', name: 'Quiche Slice Special', price: 6.00, category: 'breakfast', desc: 'Choose Ham & Cheddar or rotating vegetarian spinach, tomato, and feta quiche.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Fresh Baked' },
-            { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1626700051175-6518c4793f06?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Local Fav' },
-            { id: 'l1', name: 'Smoked Salmon Bagel Box', price: 13.00, category: 'lunch', desc: 'Smoked wild salmon, toasted bagel with cream cheese, cucumber slices, and hard-boiled egg.', img: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Premium Pick' }
+            { id: 'b1', name: 'Quiche Slice Special', price: 6.00, category: 'breakfast', desc: 'Choose Ham & Cheddar or rotating vegetarian spinach, tomato, and feta quiche.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Chef\'s Special' },
+            { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1626700051175-6518c4793f06?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Popular' },
+            { id: 'l1', name: 'Smoked Salmon Bagel Box', price: 13.00, category: 'lunch', desc: 'Smoked wild salmon, toasted bagel with cream cheese, cucumber slices, and hard-boiled egg.', img: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Popular' }
         ];
 
         let communityPhotos = [
@@ -1367,13 +1577,17 @@
         let cart = [];
         let currentTheme = 'dark';
         const dom = {};
-        let leafletMapInstance; // Global Leaflet Map Instance pointer
+        let leafletMapInstance; 
 
         // Window load triggers
         window.onload = function() {
             initDOMCache();
+            loadCustomThemeColors();
             initSupabasePipeline();
             initInteractiveMap();
+            loadDynamicCategories();
+            loadLocalSubscribers();
+            loadLocalCatering();
             
             const savedTheme = sessionStorage.getItem('pd_theme_mode');
             if (savedTheme) {
@@ -1392,7 +1606,15 @@
                 }, 200));
             }
 
-            // Fire welcome promo code after load delay
+            // Fire marketing newsletter signup popup after 10-second delay
+            setTimeout(() => {
+                const hasSubscribed = localStorage.getItem('pd_has_subscribed');
+                if (!hasSubscribed) {
+                    openNewsletterPopup();
+                }
+            }, 8000);
+
+            // Trigger welcome promo deal popup too
             setTimeout(() => openPromoModal(), 1500);
 
             const fileInput = document.getElementById('file-input');
@@ -1427,6 +1649,306 @@
             dom.builderDisplayPrice = document.getElementById('builder-display-price');
             dom.polaroidCanvasGrid = document.getElementById('polaroid-canvas-grid');
             dom.feedbackBoardCards = document.getElementById('feedback-board-cards');
+        }
+
+        function loadDynamicCategories() {
+            const stored = localStorage.getItem('pd_categories_scheme');
+            if (stored) {
+                try {
+                    masterCategories = JSON.parse(stored);
+                } catch(e) {
+                    console.error("Custom categories restoration failed, default values restored:", e);
+                }
+            }
+            renderCategoryPills();
+            renderCMScategoriesList();
+        }
+
+        function saveDynamicCategories() {
+            localStorage.setItem('pd_categories_scheme', JSON.stringify(masterCategories));
+            renderCategoryPills();
+            renderCMScategoriesList();
+            renderBistroMenu();
+        }
+
+        function renderCategoryPills() {
+            const container = document.getElementById('category-pills');
+            if (!container) return;
+            
+            let html = `<button id="pill-all" onclick="filterCategory('all')" class="category-pill bg-terracotta text-white border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all">All Items</button>`;
+            masterCategories.forEach(cat => {
+                html += `
+                    <button id="pill-${cat.id}" onclick="filterCategory('${cat.id}')" class="category-pill bg-darkCard text-parchment border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all">
+                        ${cat.name}
+                    </button>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function renderCMScategoriesList() {
+            const container = document.getElementById('categories-badge-list');
+            if (!container) return;
+            container.innerHTML = masterCategories.map(cat => `
+                <span class="inline-flex items-center gap-1.5 bg-darkAccent border border-terracotta/20 px-3 py-1.5 rounded-xl text-xs font-semibold text-appHeading">
+                    <i class="fa-solid ${cat.icon} text-terracotta"></i>
+                    <span>${cat.name}</span>
+                    <button onclick="deleteCategory('${cat.id}')" class="text-neutralMuted hover:text-red-400 ml-1"><i class="fa-solid fa-xmark"></i></button>
+                </span>
+            `).join('');
+        }
+
+        // Add Category submission listener
+        const categoryForm = document.getElementById('category-creation-form');
+        if (categoryForm) {
+            categoryForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = document.getElementById('new-cat-id').value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '');
+                const name = document.getElementById('new-cat-name').value.trim();
+                const icon = document.getElementById('new-cat-icon').value.trim();
+
+                if (masterCategories.find(c => c.id === id)) {
+                    showToastNotification("⚠️ Category ID already exists!");
+                    return;
+                }
+
+                masterCategories.push({ id, name, icon });
+                saveDynamicCategories();
+                categoryForm.reset();
+                showToastNotification(`Successfully added custom category: "${name}"`);
+            });
+        }
+
+        window.deleteCategory = function(id) {
+            if (masterCategories.length <= 1) {
+                showToastNotification("⚠️ Must keep at least one category tab!");
+                return;
+            }
+            masterCategories = masterCategories.filter(cat => cat.id !== id);
+            saveDynamicCategories();
+            showToastNotification("Category removed successfully.");
+        };
+
+        function populateFormCategorySelect() {
+            const select = document.getElementById('p-form-category');
+            if (!select) return;
+            select.innerHTML = masterCategories.map(cat => `
+                <option value="${cat.id}">${cat.name}</option>
+            `).join('');
+        }
+
+        function loadLocalSubscribers() {
+            const stored = localStorage.getItem('pd_subscribers_registry');
+            if (stored) {
+                try { newsletterEmails = JSON.parse(stored); } catch(e) {}
+            }
+            renderSubscribersDashboard();
+        }
+
+        function saveLocalSubscribers() {
+            localStorage.setItem('pd_subscribers_registry', JSON.stringify(newsletterEmails));
+            renderSubscribersDashboard();
+        }
+
+        function renderSubscribersDashboard() {
+            const container = document.getElementById('subscriber-emails-container');
+            if (!container) return;
+            if (newsletterEmails.length === 0) {
+                container.innerHTML = `<div class="text-neutralMuted italic py-3 text-center">No active subscribers captured.</div>`;
+                return;
+            }
+            container.innerHTML = newsletterEmails.map((email, i) => `
+                <div class="bg-appBg border border-appBorder p-2.5 rounded-lg flex justify-between items-center">
+                    <span>${email}</span>
+                    <button onclick="removeSubscriber(${i})" class="text-red-400 hover:text-red-500 font-sans"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            `).join('');
+            document.getElementById('metrics-subscribers-count').innerText = newsletterEmails.length;
+        }
+
+        window.removeSubscriber = function(index) {
+            newsletterEmails.splice(index, 1);
+            saveLocalSubscribers();
+            showToastNotification("Subscriber lead discarded.");
+        };
+
+        // Newsletter Modal signup form listener
+        const newsletterForm = document.getElementById('newsletter-signup-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('news-email-field').value.trim();
+                if (!email) return;
+
+                if (newsletterEmails.includes(email)) {
+                    showToastNotification("You are already registered on our Society list!");
+                    closeNewsletterPopup();
+                    return;
+                }
+
+                newsletterEmails.unshift(email);
+                saveLocalSubscribers();
+                localStorage.setItem('pd_has_subscribed', 'true');
+                closeNewsletterPopup();
+                showToastNotification("✨ Welcome to the society! Gourmet perks unlocked!");
+            });
+        }
+
+        function openNewsletterPopup() {
+            const modal = document.getElementById('newsletter-popup-modal');
+            if (modal) {
+                modal.classList.remove('pointer-events-none');
+                modal.classList.add('active', 'opacity-100');
+            }
+        }
+
+        function closeNewsletterPopup() {
+            const modal = document.getElementById('newsletter-popup-modal');
+            if (modal) {
+                modal.classList.remove('active', 'opacity-100');
+                modal.classList.add('pointer-events-none');
+            }
+        }
+
+        function loadLocalCatering() {
+            const stored = localStorage.getItem('pd_catering_registry');
+            if (stored) {
+                try { cateringInquiries = JSON.parse(stored); } catch(e) {}
+            }
+            renderCateringDashboard();
+        }
+
+        function saveLocalCatering() {
+            localStorage.setItem('pd_catering_registry', JSON.stringify(cateringInquiries));
+            renderCateringDashboard();
+        }
+
+        function renderCateringDashboard() {
+            const container = document.getElementById('admin-catering-inquiries-list');
+            if (!container) return;
+            if (cateringInquiries.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center text-neutralMuted font-mono py-10">No digital catering requests received.</div>`;
+                document.getElementById('metrics-catering-pending').innerText = 0;
+                return;
+            }
+            container.innerHTML = cateringInquiries.map((cat, idx) => `
+                <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 flex flex-col justify-between transition-colors">
+                    <div>
+                        <div class="flex justify-between items-baseline border-b border-appBorder pb-2">
+                            <span class="font-serif font-bold text-appHeading text-sm">${cat.name}</span>
+                            <span class="font-mono text-terracotta font-semibold">${cat.guests} guests</span>
+                        </div>
+                        <div class="pt-2 space-y-1 leading-normal text-accentLight">
+                            <p><span class="text-neutralMuted">Email:</span> ${cat.email}</p>
+                            <p><span class="text-neutralMuted">Event Date:</span> <span class="font-semibold font-mono">${cat.date}</span></p>
+                            <p><span class="text-neutralMuted">Budget Tier:</span> <span class="text-terracotta">${cat.budget}</span></p>
+                            <p class="pt-1 italic font-serif text-neutralMuted">"${cat.desc}"</p>
+                        </div>
+                    </div>
+                    <button onclick="discardCateringRequest(${idx})" class="w-full mt-3 py-1.5 bg-red-600/15 hover:bg-red-600/30 text-red-400 rounded text-[9px] uppercase font-bold tracking-wider transition-all font-mono">
+                        Archive Proposal
+                    </button>
+                </div>
+            `).join('');
+            document.getElementById('metrics-catering-pending').innerText = cateringInquiries.length;
+        }
+
+        window.discardCateringRequest = function(index) {
+            cateringInquiries.splice(index, 1);
+            saveLocalCatering();
+            showToastNotification("Catering proposal archived.");
+        };
+
+        const cateringFormEl = document.getElementById('catering-inquiry-form');
+        if (cateringFormEl) {
+            cateringFormEl.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('cat-name').value.trim();
+                const email = document.getElementById('cat-email').value.trim();
+                const guests = document.getElementById('cat-guests').value;
+                const date = document.getElementById('cat-date').value;
+                const budget = document.getElementById('cat-budget').value;
+                const desc = document.getElementById('cat-desc').value.trim();
+
+                cateringInquiries.unshift({ name, email, guests, date, budget, desc });
+                saveLocalCatering();
+                cateringFormEl.reset();
+                showToastNotification("🎉 Digital Catering inquiry successfully dispatched to our team!");
+            });
+        }
+
+        function setReservationMode(mode) {
+            const btnInternal = document.getElementById('btn-booking-internal');
+            const btnWidget = document.getElementById('btn-booking-widget');
+            const containerInternal = document.getElementById('booking-internal-container');
+            const containerWidget = document.getElementById('booking-widget-container');
+
+            if (mode === 'internal') {
+                btnInternal.className = "px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-terracotta text-white";
+                btnWidget.className = "px-4 py-1.5 rounded-full text-xs font-semibold transition-all text-neutralMuted";
+                containerInternal.classList.remove('hidden');
+                containerWidget.classList.add('hidden');
+            } else {
+                btnInternal.className = "px-4 py-1.5 rounded-full text-xs font-semibold transition-all text-neutralMuted";
+                btnWidget.className = "px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-terracotta text-white";
+                containerInternal.classList.add('hidden');
+                containerWidget.classList.remove('hidden');
+            }
+        }
+
+        function applyCustomThemeColors() {
+            const bg = document.getElementById('theme-color-bg').value;
+            const terracotta = document.getElementById('theme-color-terracotta').value;
+            const card = document.getElementById('theme-color-card').value;
+            const text = document.getElementById('theme-color-text').value;
+
+            const overrides = { bg, terracotta, card, text };
+            localStorage.setItem('pd_brand_colors_override', JSON.stringify(overrides));
+            applyOverriddenPaletteTokens(overrides);
+            showToastNotification("Palette changes applied across the portal storefront!");
+        }
+
+        function applyOverriddenPaletteTokens(colors) {
+            const root = document.documentElement;
+            root.style.setProperty('--bg', colors.bg);
+            root.style.setProperty('--terracotta', colors.terracotta);
+            root.style.setProperty('--card', colors.card);
+            root.style.setProperty('--text', colors.text);
+            root.style.setProperty('--text-heading', colors.text === '#ffffff' ? '#ffffff' : colors.text);
+            root.style.setProperty('--border', `${colors.terracotta}33`); // 20% alpha border
+            root.style.setProperty('--espresso', colors.bg);
+            root.style.setProperty('--darkCard', colors.card);
+        }
+
+        function loadCustomThemeColors() {
+            const stored = localStorage.getItem('pd_brand_colors_override');
+            if (stored) {
+                try {
+                    const colors = JSON.parse(stored);
+                    applyOverriddenPaletteTokens(colors);
+                    document.getElementById('theme-color-bg').value = colors.bg;
+                    document.getElementById('theme-color-terracotta').value = colors.terracotta;
+                    document.getElementById('theme-color-card').value = colors.card;
+                    document.getElementById('theme-color-text').value = colors.text;
+                } catch(e) {}
+            }
+        }
+
+        function resetThemeColorsToDefault() {
+            localStorage.removeItem('pd_brand_colors_override');
+            const root = document.documentElement;
+            root.removeAttribute('style'); // Remove inline variables to fallback to dark/light CSS stylesheet definitions
+            
+            // Re-apply light-mode toggles if configured
+            const savedTheme = sessionStorage.getItem('pd_theme_mode');
+            applyTheme(savedTheme || 'dark');
+
+            document.getElementById('theme-color-bg').value = "#150A08";
+            document.getElementById('theme-color-terracotta').value = "#D97757";
+            document.getElementById('theme-color-card').value = "#231511";
+            document.getElementById('theme-color-text').value = "#EEDCC5";
+
+            showToastNotification("Bespoke palette reset back to natural Coffee Roast standards.");
         }
 
         function initInteractiveMap() {
@@ -1910,7 +2432,7 @@
                 card.innerHTML = `
                     <div>
                         <div class="relative h-44 rounded-2xl overflow-hidden mb-3.5 bg-espresso/30">
-                            ${item.badge ? `<span class="absolute top-2 left-2 bg-appBg text-appText border border-appBorder font-mono text-[9px] uppercase px-2 py-0.5 rounded shadow z-10">${item.badge}</span>` : ''}
+                            ${item.badge ? `<span class="absolute top-2 left-2 bg-terracotta text-white font-mono text-[9px] uppercase px-2 py-0.5 rounded shadow z-10 font-bold">${item.badge}</span>` : ''}
                             ${isSoldOut ? `<span class="absolute inset-0 bg-black/60 flex items-center justify-center font-bold text-sm tracking-wider text-red-400 font-serif z-10 uppercase animate-pulse">Sold Out</span>` : ''}
                             <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" loading="lazy" onerror="window.handleImageError(this)">
                         </div>
@@ -1933,29 +2455,20 @@
                 dom.premiumCarousel.appendChild(card);
             });
 
-            const categoryGroups = {
-                coffee: { title: "☕ Brewed & Specialty Drip", icon: "fa-mug-hot" },
-                espresso: { title: "⚡ Traditional Espresso Creations", icon: "fa-bolt" },
-                signature: { title: "🌟 Premium Pour Signatures", icon: "fa-star" },
-                'tea-more': { title: "🍃 Organic Teas & Infusions", icon: "fa-leaf" },
-                breakfast: { title: "🥐 Farm-Fresh Breakfast Bites", icon: "fa-egg" },
-                lunch: { title: "🥪 Rustic Paninis & Lunch Greens", icon: "fa-bread-slice" }
-            };
-
-            Object.keys(categoryGroups).forEach(catId => {
-                const groupItems = filtered.filter(item => item.category === catId);
+            // Map and build Dynamic Category Accordion Blocks
+            masterCategories.forEach(cat => {
+                const groupItems = filtered.filter(item => item.category === cat.id);
                 if (groupItems.length === 0) return;
 
-                const groupMeta = categoryGroups[catId];
                 const accordionDiv = document.createElement('div');
                 accordionDiv.className = 'border border-appBorder rounded-2xl bg-appCard overflow-hidden shadow-sm transition-colors';
-                const isExpanded = selectedCategory === catId;
+                const isExpanded = selectedCategory === cat.id;
 
                 accordionDiv.innerHTML = `
                     <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center p-4 text-left font-serif font-bold text-appHeading focus:outline-none hover:bg-espresso/5 transition-all">
                         <div class="flex items-center gap-2.5">
-                            <i class="fa-solid ${groupMeta.icon} text-terracotta text-sm"></i>
-                            <span class="text-sm tracking-wide">${groupMeta.title}</span>
+                            <i class="fa-solid ${cat.icon} text-terracotta text-sm"></i>
+                            <span class="text-sm tracking-wide">${cat.name}</span>
                         </div>
                         <i class="fa-solid fa-chevron-down text-neutralMuted text-xs transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}"></i>
                     </button>
@@ -1971,7 +2484,10 @@
                                                 ${isSoldOut ? `<div class="absolute inset-0 bg-black/60 flex items-center justify-center"><span class="text-[8px] font-bold text-red-400 uppercase font-serif">Sold</span></div>` : ''}
                                             </div>
                                             <div class="overflow-hidden">
-                                                <h4 class="font-serif font-bold text-appHeading text-xs leading-tight truncate">${item.name}</h4>
+                                                <h4 class="font-serif font-bold text-appHeading text-xs leading-tight truncate">
+                                                    ${item.name}
+                                                    ${item.badge ? `<span class="bg-terracotta text-white font-mono text-[7px] px-1 py-0.5 rounded ml-1 font-bold inline-block">${item.badge}</span>` : ''}
+                                                </h4>
                                                 <p class="text-[10px] text-neutralMuted leading-normal truncate max-w-[150px] font-serif">${item.desc}</p>
                                             </div>
                                         </div>
@@ -2273,7 +2789,7 @@
         }
 
         function switchCMSTab(tab) {
-            const subviews = ['orders', 'feedback', 'photos', 'products', 'analytics'];
+            const subviews = ['orders', 'feedback', 'catering', 'photos', 'products', 'analytics'];
             subviews.forEach(v => {
                 document.getElementById(`cms-${v}-subview`)?.classList.add('hidden');
                 document.getElementById(`tab-cms-${v}`)?.classList.remove('text-terracotta', 'border-terracotta');
@@ -2689,7 +3205,10 @@
                             <div class="w-full h-32 rounded-xl overflow-hidden bg-espresso/20 mb-2">
                                 <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover" onerror="window.handleImageError(this)">
                             </div>
-                            <h4 class="font-bold text-appHeading text-sm">${item.name}</h4>
+                            <h4 class="font-bold text-appHeading text-sm flex items-center gap-1.5">
+                                ${item.name}
+                                ${item.badge ? `<span class="bg-terracotta text-white font-mono text-[7px] px-1 py-0.5 rounded font-bold">${item.badge}</span>` : ''}
+                            </h4>
                             <span class="text-xs text-terracotta font-mono font-bold">$${item.price.toFixed(2)}</span>
                             <p class="text-[10px] text-neutralMuted line-clamp-2 mt-1 leading-normal font-serif">${item.desc}</p>
                         </div>
@@ -2757,12 +3276,22 @@
         window.editProductDetailsCMS = function(id) {
             const item = masterProducts.find(p => p.id === id);
             if (item) {
+                populateFormCategorySelect();
                 document.getElementById('p-form-id').value = item.id;
                 document.getElementById('p-form-name').value = item.name;
                 document.getElementById('p-form-price').value = item.price;
                 document.getElementById('p-form-category').value = item.category;
                 document.getElementById('p-form-desc').value = item.desc;
                 document.getElementById('p-form-image').value = item.img;
+                
+                // Sync customized badge selectors
+                if (['Popular', 'Best Seller', 'Chef\'s Special', 'Seasonal Choice'].includes(item.badge)) {
+                    document.getElementById('p-form-badge').value = item.badge;
+                    document.getElementById('p-form-custom-badge').value = '';
+                } else {
+                    document.getElementById('p-form-badge').value = '';
+                    document.getElementById('p-form-custom-badge').value = item.badge || '';
+                }
                 
                 document.getElementById('product-form-title').innerText = `Edit: ${item.name}`;
                 openProductEditForm();
@@ -2780,6 +3309,11 @@
                 const desc = document.getElementById('p-form-desc').value;
                 const img = document.getElementById('p-form-image').value || 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400';
 
+                // Sync custom layout badges
+                const selectBadge = document.getElementById('p-form-badge').value;
+                const customBadge = document.getElementById('p-form-custom-badge').value.trim();
+                const finalBadge = customBadge || selectBadge || '';
+
                 if (id) {
                     const item = masterProducts.find(p => p.id === id);
                     if (item) {
@@ -2788,13 +3322,14 @@
                         item.category = category;
                         item.desc = desc;
                         item.img = img;
+                        item.badge = finalBadge;
                         showToastNotification(`Details saved successfully for "${name}"`);
                         syncProductToDatabase(item); // Sync details update back to the server
                     }
                 } else {
                     const newId = 'p_' + Date.now();
                     const newProduct = {
-                        id: newId, name, price, category, desc, img, sold_out: false, hidden: false, badge: ''
+                        id: newId, name, price, category, desc, img, sold_out: false, hidden: false, badge: finalBadge
                     };
                     masterProducts.push(newProduct);
                     showToastNotification(`Product "${name}" added to catalog.`);
