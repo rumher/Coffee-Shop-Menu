@@ -69,7 +69,7 @@
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
         
         .overflow-y-auto {
-            -webkit-overflow-scrolling: touch; /* Butter-smooth momentum scrolling on iOS and iPadOS */
+            -webkit-overflow-scrolling: touch;
         }
 
         .toast-container {
@@ -220,7 +220,7 @@
         .corkboard-pin {
             width: 12px;
             height: 12px;
-            background-color: #EF4444; /* Vivid red pushpin indicator */
+            background-color: #EF4444;
             border-radius: 50%;
             position: absolute;
             top: -6px;
@@ -261,7 +261,6 @@
             z-index: 10;
         }
 
-        /* Improved Desktop Navigation Tab Buttons */
         .nav-tab-btn {
             position: relative;
             padding: 0.6rem 1rem;
@@ -294,7 +293,6 @@
             background-color: rgba(217, 119, 87, 0.06);
         }
 
-        /* Improved Mobile Floating Navigation Bar */
         .mobile-nav-container {
             background-color: var(--mobile-nav-bg);
             backdrop-filter: blur(20px);
@@ -338,6 +336,14 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* Upgraded Collapsible Sidebar Transitions */
+        .sidebar-expanded {
+            width: 16rem; /* w-64 */
+        }
+        .sidebar-collapsed {
+            width: 4.5rem; /* w-18 */
+        }
     </style>
 </head>
 <body class="bg-appBg text-appText flex flex-col min-h-screen">
@@ -349,8 +355,7 @@
     <!-- App Backdrops -->
     <div class="sheet-backdrop" id="sheet-backdrop" onclick="closeAllSheets()"></div>
 
-    <!-- Main Site Header -->
-    <header class="fixed top-0 w-full backdrop-blur-md border-b z-40 p-4 flex justify-between items-center transition-all duration-300" style="background-color: var(--header-bg); border-color: var(--border);">
+    <header id="main-site-header" class="fixed top-0 w-full backdrop-blur-md border-b z-45 p-4 flex justify-between items-center transition-all duration-300" style="background-color: var(--header-bg); border-color: var(--border);">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 flex items-center justify-center bg-appBg rounded-xl border border-terracotta/30 shadow-inner">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-6 h-6 fill-none stroke-terracotta" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -388,8 +393,7 @@
         </div>
     </header>
 
-    <!-- Main Content Area -->
-    <main id="app-root" class="pt-24 pb-20 px-4 max-w-6xl mx-auto w-full flex-grow">
+    <main id="app-root" class="pt-24 pb-20 px-4 max-w-6xl mx-auto w-full flex-grow transition-all duration-300">
         
         <!-- ================= PAGE 1: HOME/STOREFRONT ================= -->
         <div id="page-home" class="page-view space-y-10">
@@ -443,17 +447,16 @@
                 </div>
 
                 <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none" id="category-pills" role="tablist">
-                    <!-- Loaded dynamically via JS based on categories state -->
+                    <!-- Loaded dynamically via JS -->
                 </div>
 
                 <div class="space-y-3">
                     <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide" id="carousel-title">Featured Specialties</h3>
                     <div id="premium-carousel" class="flex gap-4 overflow-x-auto pb-4 scrollbar-none snap-x snap-mandatory font-sans">
-                        <!-- Horizontal carousel cards loaded by JS -->
+                        <!-- Loaded dynamically via JS -->
                     </div>
                 </div>
 
-                <!-- Accordions for Category Blocks -->
                 <div class="space-y-4">
                     <div class="flex justify-between items-baseline">
                         <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide">Bistro Catalog</h3>
@@ -466,7 +469,6 @@
                 </div>
             </div>
 
-            <!-- Customizer Zone -->
             <div class="bg-appCard rounded-3xl p-6 md:p-8 border border-terracotta/30 space-y-6 transition-colors font-sans">
                 <div class="text-center max-w-xl mx-auto space-y-2">
                     <span class="font-mono text-xs uppercase tracking-widest text-terracotta">The Brew Lab Customizer</span>
@@ -591,10 +593,8 @@
                 </button>
             </div>
 
-            <!-- Visual Separation Line -->
             <div class="border-t border-appBorder/50 pt-10"></div>
 
-            <!-- Integrated Community Feedback Module -->
             <div class="space-y-8">
                 <div class="text-center max-w-xl mx-auto space-y-2 font-sans">
                     <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Tell Us Your Thoughts</span>
@@ -648,14 +648,13 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 3: LOUNGE BOOKING (RESERVATION OPTIONS) ================= -->
+        <!-- ================= PAGE 3: LOUNGE BOOKING ================= -->
         <div id="page-booking" class="page-view hidden space-y-8 animate-fadeIn">
             <div class="text-center max-w-xl mx-auto space-y-2 font-sans">
                 <span class="font-mono text-xs uppercase tracking-widest text-terracotta">College Street Lounge Space</span>
                 <h2 class="font-serif text-3xl font-bold text-appHeading">Reserve a Lounge Table</h2>
                 <p class="text-sm text-neutralMuted">Book warm hearth niches, quiet study corners, or register on OpenTable/Resy.</p>
                 
-                <!-- Toggle Mode Selector -->
                 <div class="inline-flex rounded-full bg-darkAccent p-1 border border-terracotta/20 mt-4">
                     <button id="btn-booking-internal" onclick="setReservationMode('internal')" class="px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-terracotta text-white">Same-Day Lounge Pass</button>
                     <button id="btn-booking-widget" onclick="setReservationMode('widget')" class="px-4 py-1.5 rounded-full text-xs font-semibold transition-all text-neutralMuted">OpenTable / Resy</button>
@@ -715,7 +714,6 @@
                     <span class="text-[10px] bg-red-500/20 text-red-400 font-bold px-2 py-0.5 rounded font-mono animate-pulse">● Live Streamed Widget</span>
                 </div>
                 <div class="bg-black/40 border border-appBorder rounded-2xl p-2 relative" style="height: 420px;">
-                    <!-- A beautiful high-fidelity mock iframe integration element -->
                     <div class="absolute inset-0 bg-cover bg-center rounded-2xl opacity-20" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800')"></div>
                     <div class="relative z-10 w-full h-full flex flex-col justify-between p-6">
                         <div class="space-y-2 text-center sm:text-left">
@@ -743,7 +741,7 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 4: CATERING & EVENTS (CATERING INQUIRY) ================= -->
+        <!-- ================= PAGE 4: CATERING & EVENTS ================= -->
         <div id="page-catering" class="page-view hidden space-y-8 animate-fadeIn">
             <div class="text-center max-w-xl mx-auto space-y-2 font-sans">
                 <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Sorghum & Smoke Caterings</span>
@@ -752,7 +750,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
-                <!-- Perks column -->
                 <div class="bg-appCard border border-appBorder rounded-3xl p-6 flex flex-col justify-between space-y-6">
                     <div>
                         <h3 class="font-serif text-xl font-bold text-terracotta mb-2">Our Catering Packages</h3>
@@ -779,7 +776,6 @@
                     </div>
                 </div>
 
-                <!-- Inquiry form -->
                 <div class="bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-4">
                     <h4 class="font-serif font-bold text-appHeading text-lg">Inquiry Request Form</h4>
                     <form id="catering-inquiry-form" class="space-y-3 font-sans text-xs">
@@ -861,33 +857,22 @@
                 </div>
             </div>
 
-            <!-- Maps Location -->
             <div class="max-w-4xl mx-auto space-y-4 pt-6 border-t border-appBorder">
                 <div class="text-center font-sans">
                     <h3 class="font-serif text-xl font-bold text-appHeading">Find Our Cozy Sanctuary</h3>
                     <p class="text-xs text-neutralMuted">212 College Street, Maryville, TN 37804 | Phone: (865) 980-8282</p>
                 </div>
                 
-                <!-- OpenStreetMap Wrapper ensuring robust layout dimensions -->
                 <div class="w-full relative rounded-2xl overflow-hidden border border-appBorder shadow-xl" style="height: 320px; max-height: 400px; min-height: 280px; z-index: 10;">
                     <div id="heritage-map" class="w-full h-full"></div>
                 </div>
             </div>
         </div>
 
-        <!-- ================= PAGE 6: ADMIN HUB ================= -->
+        <!-- ================= PAGE 6: ADMIN HUB (UPGRADED COLLAPSIBLE SIDEBAR CMS) ================= -->
         <div id="page-admin" class="page-view hidden space-y-8 animate-fadeIn">
-            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-appBorder pb-4">
-                <div>
-                    <h2 class="font-serif text-2xl font-bold text-appHeading">Admin Control & Operations</h2>
-                    <p class="text-xs text-neutralMuted mt-0.5">Manage database records, approvals, and order pipelines.</p>
-                </div>
-                <button onclick="switchPage('home')" class="bg-terracotta hover:bg-terracotta/90 text-white font-semibold px-4 py-2.5 rounded-xl text-xs transition-all flex items-center gap-2 shadow-md font-sans">
-                    <i class="fa-solid fa-store"></i> Back to Storefront
-                </button>
-            </div>
-
-            <!-- Passcode Check -->
+            
+            <!-- Verification passcode card -->
             <div id="cms-verify-section" class="bg-appCard border border-appBorder rounded-3xl p-8 max-w-md mx-auto text-center space-y-6 font-sans">
                 <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-darkAccent border border-terracotta/30 text-2xl text-terracotta">
                     <i class="fa-solid fa-lock"></i>
@@ -904,286 +889,397 @@
                 </div>
             </div>
 
-            <!-- Authenticated CMS Panel -->
-            <div id="cms-authenticated-view" class="hidden space-y-8">
+            <!-- Upgraded Authenticated Sidebar Workspace Layout -->
+            <div id="cms-authenticated-view" class="hidden flex flex-col md:flex-row gap-6 items-stretch w-full min-h-[75vh] font-sans">
                 
-                <!-- Metrics -->
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-appText font-mono">
-                    <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
-                        <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Live Revenue</span>
-                        <span id="metrics-revenue" class="text-2xl font-serif font-bold text-terracotta mt-2">$0.00</span>
-                    </div>
-                    <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
-                        <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Active Pending Orders</span>
-                        <span id="metrics-orders-active" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
-                    </div>
-                    <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
-                        <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Catering Requests</span>
-                        <span id="metrics-catering-pending" class="text-2xl font-serif font-bold text-yellow-500 mt-2">0</span>
-                    </div>
-                    <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between">
-                        <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Newsletter Subscribers</span>
-                        <span id="metrics-subscribers-count" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
-                    </div>
-                </div>
+                <!-- Collapsible Sidebar Segment -->
+                <aside id="cms-collapsible-sidebar" class="sidebar-expanded flex flex-col bg-appCard border border-appBorder rounded-3xl p-4 transition-all duration-300 gap-6 relative justify-between shrink-0">
+                    
+                    <div class="space-y-6">
+                        <!-- Profile/Logo Title Section -->
+                        <div class="flex items-center gap-3 border-b border-appBorder pb-4 overflow-hidden">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-terracotta to-amber-700 flex items-center justify-center text-white shrink-0 shadow">
+                                <i class="fa-solid fa-mug-hot text-base"></i>
+                            </div>
+                            <div class="sidebar-text-label transition-opacity duration-200">
+                                <h4 class="font-bold text-xs text-appHeading tracking-wider uppercase leading-none">Pour Decisions</h4>
+                                <span class="text-[9px] text-neutralMuted font-mono block mt-1">Maryville Pro HQ</span>
+                            </div>
+                        </div>
 
-                <!-- Navigation tabs -->
-                <div class="flex border-b border-appBorder text-xs font-bold gap-4 overflow-x-auto scrollbar-none font-sans">
-                    <button class="pb-2.5 text-terracotta border-b-2 border-terracotta whitespace-nowrap transition-colors" id="tab-cms-orders" onclick="switchCMSTab('orders')">
-                        🛍️ Orders & Bookings
-                    </button>
-                    <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-feedback" onclick="switchCMSTab('feedback')">
-                        🛡️ Review Moderation
-                    </button>
-                    <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-catering" onclick="switchCMSTab('catering')">
-                        🍖 Catering & Leads
-                    </button>
-                    <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-photos" onclick="switchCMSTab('photos')">
-                        📸 Vibe Archives
-                    </button>
-                    <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-products" onclick="switchCMSTab('products')">
-                        ☕ Catalog & Categories
-                    </button>
-                    <button class="pb-2.5 text-neutralMuted border-b-2 border-transparent whitespace-nowrap transition-colors" id="tab-cms-analytics" onclick="switchCMSTab('analytics')">
-                        ⚙️ Theme & System Settings
-                    </button>
-                </div>
+                        <!-- Sidebar Navigation options -->
+                        <nav class="flex flex-col gap-1.5 font-sans" aria-label="CMS Navigation">
+                            <button id="sidebar-btn-dashboard" onclick="switchCMSTab('dashboard')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 bg-terracotta/10 text-terracotta border-l-2 border-terracotta font-medium text-xs">
+                                <div class="grid h-full w-12 place-content-center shrink-0">
+                                    <i class="fa-solid fa-chart-line text-sm"></i>
+                                </div>
+                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Insights Overview</span>
+                            </button>
 
-                <!-- CMS Sub-Panel 1: Live Orders & Bookings -->
-                <div id="cms-orders-subview" class="space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-serif text-lg font-bold text-appHeading">Simulated Real-Time Orders</h4>
-                        <button onclick="fetchLiveOrders()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2 shadow font-sans" aria-label="Refresh orders list">
-                            <i class="fa-solid fa-rotate-right" id="refresh-orders-icon"></i> Refresh Pipeline
+                            <button id="sidebar-btn-orders" onclick="switchCMSTab('orders')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs">
+                                <div class="grid h-full w-12 place-content-center shrink-0">
+                                    <i class="fa-solid fa-basket-shopping text-sm"></i>
+                                </div>
+                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Pre-orders & Seats</span>
+                            </button>
+
+                            <button id="sidebar-btn-feedback" onclick="switchCMSTab('feedback')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs">
+                                <div class="grid h-full w-12 place-content-center shrink-0">
+                                    <i class="fa-solid fa-user-shield text-sm"></i>
+                                </div>
+                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Note Reviews</span>
+                            </button>
+
+                            <button id="sidebar-btn-catering" onclick="switchCMSTab('catering')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs">
+                                <div class="grid h-full w-12 place-content-center shrink-0">
+                                    <i class="fa-solid fa-envelope-open-text text-sm"></i>
+                                </div>
+                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Catering & Leads</span>
+                            </button>
+
+                            <button id="sidebar-btn-photos" onclick="switchCMSTab('photos')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs">
+                                <div class="grid h-full w-12 place-content-center shrink-0">
+                                    <i class="fa-solid fa-images text-sm"></i>
+                                </div>
+                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Vibe Archives</span>
+                            </button>
+
+                            <button id="sidebar-btn-products" onclick="switchCMSTab('products')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs">
+                                <div class="grid h-full w-12 place-content-center shrink-0">
+                                    <i class="fa-solid fa-mug-saucer text-sm"></i>
+                                </div>
+                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Catalog Matrix</span>
+                            </button>
+
+                            <button id="sidebar-btn-analytics" onclick="switchCMSTab('analytics')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs">
+                                <div class="grid h-full w-12 place-content-center shrink-0">
+                                    <i class="fa-solid fa-gears text-sm"></i>
+                                </div>
+                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Core Sync Settings</span>
+                            </button>
+                        </nav>
+                    </div>
+
+                    <!-- Sidebar Footer Controls Section -->
+                    <div class="space-y-2 pt-4 border-t border-appBorder">
+                        <button onclick="switchPage('home')" class="flex items-center h-10 w-full rounded-xl text-xs text-neutralMuted hover:bg-darkAccent hover:text-appHeading transition-all">
+                            <div class="grid h-full w-12 place-content-center shrink-0">
+                                <i class="fa-solid fa-arrow-left-long"></i>
+                            </div>
+                            <span class="sidebar-text-label transition-opacity duration-200 truncate">Exit to Store</span>
+                        </button>
+                        
+                        <!-- Toggle collapse switch -->
+                        <button onclick="toggleAdminSidebar()" class="hidden md:flex items-center h-10 w-full rounded-xl text-xs text-neutralMuted hover:bg-darkAccent hover:text-appHeading transition-all">
+                            <div class="grid h-full w-12 place-content-center shrink-0">
+                                <i id="sidebar-toggle-arrow-icon" class="fa-solid fa-angles-left transition-transform duration-300"></i>
+                            </div>
+                            <span class="sidebar-text-label transition-opacity duration-200 truncate">Collapse Sidebar</span>
                         </button>
                     </div>
-                    <div id="admin-orders-container" class="grid gap-4 md:grid-cols-2 font-sans">
-                        <!-- Dynamically populated via standard cloud HTTP reads -->
-                    </div>
+                </aside>
 
-                    <!-- Seating Reservations -->
-                    <div class="border-t border-appBorder pt-6 space-y-4">
+                <!-- Main Contents Panel Work Area on the Right -->
+                <div class="flex-1 space-y-6">
+                    
+                    <!-- Tab Sub-panel 0: INSIGHTS LANDING PANEL -->
+                    <div id="cms-dashboard-subview" class="space-y-6 animate-fadeIn">
                         <div class="flex justify-between items-center">
                             <div>
-                                <h4 class="font-serif text-lg font-bold text-appHeading">Lounge Seating Reservations</h4>
-                                <p class="text-xs text-neutralMuted">View reservation entries stored in Supabase.</p>
+                                <h3 class="font-serif text-2xl font-bold text-appHeading">Insights Dashboard</h3>
+                                <p class="text-xs text-neutralMuted">Simulated system health indicators and active tracking metrics.</p>
                             </div>
-                            <button onclick="fetchReservations()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2 shadow font-sans" aria-label="Refresh reservations list">
-                                <i class="fa-solid fa-rotate-right" id="refresh-reservations-icon"></i> Refresh Reservations
+                        </div>
+
+                        <!-- Mini Analytical Metrics Deck -->
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-appText font-mono">
+                            <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Live Revenue</span>
+                                <span id="metrics-revenue" class="text-2xl font-serif font-bold text-terracotta mt-2">$0.00</span>
+                            </div>
+                            <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Pending Orders</span>
+                                <span id="metrics-orders-active" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
+                            </div>
+                            <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Catering Leads</span>
+                                <span id="metrics-catering-pending" class="text-2xl font-serif font-bold text-yellow-500 mt-2">0</span>
+                            </div>
+                            <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Mailing List Leads</span>
+                                <span id="metrics-subscribers-count" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Visual Chart (Custom drawn using scalable SVG nodes) -->
+                        <div class="bg-appCard border border-appBorder rounded-3xl p-6 transition-colors">
+                            <div class="flex justify-between items-baseline border-b border-appBorder pb-4 mb-4">
+                                <h4 class="font-serif font-bold text-base text-appHeading">Storefront Traffic & Coffee Sales Telemetry</h4>
+                                <span class="text-[10px] font-mono text-terracotta uppercase">Real-Time Sandbox Sync</span>
+                            </div>
+
+                            <div class="w-full h-48 relative flex items-end">
+                                <!-- Graph Line Drawn with Vector Graphics -->
+                                <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+                                    <!-- Background Area Gradient -->
+                                    <defs>
+                                        <linearGradient id="chart-grad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="var(--terracotta)" stop-opacity="0.3"></stop>
+                                            <stop offset="100%" stop-color="var(--bg)" stop-opacity="0.0"></stop>
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M0,80 Q15,40 30,65 T60,25 T80,45 T100,20 L100,100 L0,100 Z" fill="url(#chart-grad)"></path>
+                                    <path d="M0,80 Q15,40 30,65 T60,25 T80,45 T100,20" fill="none" stroke="var(--terracotta)" stroke-width="2.5" stroke-linecap="round"></path>
+                                </svg>
+                                
+                                <div class="absolute bottom-2 left-4 text-[10px] font-mono text-neutralMuted">Mon</div>
+                                <div class="absolute bottom-2 left-1/4 text-[10px] font-mono text-neutralMuted">Wed</div>
+                                <div class="absolute bottom-2 left-1/2 text-[10px] font-mono text-neutralMuted">Fri</div>
+                                <div class="absolute bottom-2 left-3/4 text-[10px] font-mono text-neutralMuted">Sat</div>
+                                <div class="absolute bottom-2 right-4 text-[10px] font-mono text-neutralMuted">Sun</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Sub-panel 1: Live Orders & Bookings -->
+                    <div id="cms-orders-subview" class="space-y-4 hidden animate-fadeIn">
+                        <div class="flex justify-between items-center border-b border-appBorder pb-2">
+                            <div>
+                                <h4 class="font-serif text-lg font-bold text-appHeading">Simulated Real-Time Orders</h4>
+                                <p class="text-xs text-neutralMuted mt-0.5">Track and update customer checkout orders from standard local records.</p>
+                            </div>
+                            <button onclick="fetchLiveOrders()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2 shadow font-sans" aria-label="Refresh orders list">
+                                <i class="fa-solid fa-rotate-right" id="refresh-orders-icon"></i> Refresh Pipeline
                             </button>
                         </div>
-                        <div id="admin-reservations-container" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-appText font-sans">
-                            <!-- Dynamically populated bookings list -->
+                        <div id="admin-orders-container" class="grid gap-4 md:grid-cols-2 font-sans">
+                            <!-- Populated dynamically -->
                         </div>
-                    </div>
-                </div>
 
-                <!-- CMS Sub-Panel 2: Review Moderation -->
-                <div id="cms-feedback-subview" class="space-y-4 hidden font-sans">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h4 class="font-serif text-lg font-bold text-appHeading">Pending Customer Note Approvals</h4>
-                            <p class="text-xs text-neutralMuted">Click Approve to publish feedback directly on the storefront.</p>
-                        </div>
-                        <button onclick="fetchFeedbacks()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh feedbacks list">
-                            <i class="fa-solid fa-rotate-right" id="refresh-feedbacks-icon"></i> Refresh Pipeline
-                        </button>
-                    </div>
-                    <div id="admin-feedback-moderation-list" class="grid gap-4 text-appText font-sans">
-                        <!-- Moderation cards -->
-                    </div>
-                </div>
-
-                <!-- CMS Sub-Panel 3: Catering Proposals & Leads -->
-                <div id="cms-catering-subview" class="space-y-6 hidden font-sans">
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <!-- Catering Proposals Column (Col-span 2) -->
-                        <div class="lg:col-span-2 space-y-4">
-                            <div class="flex justify-between items-center border-b border-appBorder pb-2">
+                        <!-- Seating Reservations -->
+                        <div class="border-t border-appBorder pt-6 space-y-4">
+                            <div class="flex justify-between items-center">
                                 <div>
-                                    <h4 class="font-serif text-lg font-bold text-appHeading">Received Event & Catering Inquiries</h4>
-                                    <p class="text-xs text-neutralMuted">Manage customer digital proposals, dates, and budget plans.</p>
+                                    <h4 class="font-serif text-lg font-bold text-appHeading">Lounge Seating Reservations</h4>
+                                    <p class="text-xs text-neutralMuted">View reservation entries stored in Supabase or local state.</p>
                                 </div>
-                                <button onclick="fetchCatering()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh catering list">
-                                    <i class="fa-solid fa-rotate-right" id="refresh-catering-icon"></i> Refresh
+                                <button onclick="fetchReservations()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2 shadow font-sans" aria-label="Refresh reservations list">
+                                    <i class="fa-solid fa-rotate-right" id="refresh-reservations-icon"></i> Refresh Reservations
                                 </button>
                             </div>
-                            <div id="admin-catering-inquiries-list" class="grid gap-4 md:grid-cols-1">
-                                <!-- Loaded dynamically -->
-                            </div>
-                        </div>
-                        
-                        <!-- Captured Newsletter Leads Column (Col-span 1) -->
-                        <div class="space-y-4 bg-appCard border border-appBorder p-6 rounded-3xl h-fit">
-                            <div class="flex justify-between items-center border-b border-appBorder pb-2">
-                                <div>
-                                    <h4 class="font-serif text-lg font-bold text-appHeading">Captured Newsletter Leads</h4>
-                                    <p class="text-xs text-neutralMuted font-serif">Emails registered via the society modal.</p>
-                                </div>
-                                <button onclick="fetchSubscribers()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl p-2.5 text-xs font-bold transition-all" aria-label="Refresh subscriber list">
-                                    <i class="fa-solid fa-rotate-right" id="refresh-subscribers-icon"></i>
-                                </button>
-                            </div>
-                            <div id="subscriber-emails-container" class="space-y-1.5 font-mono text-xs max-h-96 overflow-y-auto">
+                            <div id="admin-reservations-container" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-appText font-sans">
                                 <!-- Populated dynamically -->
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- CMS Sub-Panel 4: Vibe Archives -->
-                <div id="cms-photos-subview" class="space-y-4 hidden font-sans">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h4 class="font-serif text-lg font-bold text-appHeading">Corkboard Polaroid Archive Moderation</h4>
-                            <p class="text-xs text-neutralMuted">Moderate and prune uploaded setup photographs directly on the live wall.</p>
-                        </div>
-                        <button onclick="fetchVibeBoard()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh vibe photos list">
-                            <i class="fa-solid fa-rotate-right" id="refresh-vibes-icon"></i> Refresh Pipeline
-                        </button>
-                    </div>
-                    <div id="admin-photos-moderation-grid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-appText font-sans">
-                        <!-- Grid loaded via JS -->
-                    </div>
-                </div>
-
-                <!-- CMS Sub-Panel 5: Menu Catalog Editor & Categories -->
-                <div id="cms-products-subview" class="space-y-6 hidden font-sans">
-                    <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4">
+                    <!-- Tab Sub-panel 2: Review Moderation -->
+                    <div id="cms-feedback-subview" class="space-y-4 hidden font-sans animate-fadeIn">
                         <div class="flex justify-between items-center">
                             <div>
-                                <h4 class="font-serif text-lg font-bold text-appHeading">Customize Food & Beverage Categories</h4>
-                                <p class="text-xs text-neutralMuted">Add entirely new food sections, upload custom categories, and assign icons.</p>
+                                <h4 class="font-serif text-lg font-bold text-appHeading">Pending Customer Note Approvals</h4>
+                                <p class="text-xs text-neutralMuted">Click Approve to publish feedback directly on the storefront.</p>
                             </div>
-                        </div>
-                        
-                        <form id="category-creation-form" class="grid sm:grid-cols-3 gap-3 text-xs">
-                            <input type="text" id="new-cat-id" placeholder="Category key (e.g., bagels)" required class="bg-appBg border border-terracotta/25 p-2 rounded-xl text-appHeading">
-                            <input type="text" id="new-cat-name" placeholder="Display Name (e.g., Rustic Bagels)" required class="bg-appBg border border-terracotta/25 p-2 rounded-xl text-appHeading">
-                            <div class="flex gap-2">
-                                <input type="text" id="new-cat-icon" placeholder="FA Icon (e.g., fa-cookie)" required class="bg-appBg border border-terracotta/25 p-2 rounded-xl text-appHeading flex-1">
-                                <button type="submit" class="bg-terracotta hover:bg-terracotta/90 text-white font-bold px-4 rounded-xl">Add</button>
-                            </div>
-                        </form>
-
-                        <div id="categories-badge-list" class="flex flex-wrap gap-2 pt-2">
-                            <!-- Dynamic category badges -->
-                        </div>
-                    </div>
-
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h4 class="font-serif text-lg font-bold text-appHeading">Manage Catalog Items</h4>
-                                <p class="text-xs text-neutralMuted">Adjust pricing, configure categories, flag "Chef's Specials" or "Best Sellers."</p>
-                            </div>
-                            <div class="flex gap-2">
-                                <button onclick="refreshCMSProducts()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh products list">
-                                    <i class="fa-solid fa-rotate-right" id="refresh-products-icon"></i> Refresh Catalog
-                                </button>
-                                <button onclick="openProductEditForm()" class="bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow-md">
-                                    <i class="fa-solid fa-circle-plus"></i> Add New Product
-                                </button>
-                            </div>
-                        </div>
-                        <!-- Compact interactive accordion wrapper -->
-                        <div id="cms-products-listing-wrapper" class="space-y-4 text-appText font-sans">
-                            <!-- Dynamic compact products list -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CMS Sub-Panel 6: Telemetry Logs & Theme Settings -->
-                <div id="cms-analytics-subview" class="space-y-6 hidden font-sans">
-                    <!-- Theme & Design Customizer Panel -->
-                    <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 transition-colors">
-                        <div class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-palette text-terracotta text-lg"></i>
-                            <h4 class="font-serif text-lg font-bold text-appHeading">Storefront Color Scheme Customizer</h4>
-                        </div>
-                        <p class="text-xs text-neutralMuted leading-relaxed">
-                            Personalize the layout design tokens! Enter color values to dynamically adapt the storefront’s system colors.
-                        </p>
-                        <div class="grid gap-4 grid-cols-2 sm:grid-cols-4 text-xs text-appText">
-                            <div class="flex flex-col gap-1">
-                                <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Primary BG</label>
-                                <input type="color" id="theme-color-bg" value="#150A08" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
-                            </div>
-                            <div class="flex flex-col gap-1">
-                                <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Accent Color</label>
-                                <input type="color" id="theme-color-terracotta" value="#D97757" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
-                            </div>
-                            <div class="flex flex-col gap-1">
-                                <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Card Panel BG</label>
-                                <input type="color" id="theme-color-card" value="#231511" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
-                            </div>
-                            <div class="flex flex-col gap-1">
-                                <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Text Color</label>
-                                <input type="color" id="theme-color-text" value="#EEDCC5" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
-                            </div>
-                        </div>
-                        <div class="flex gap-2">
-                            <button onclick="applyCustomThemeColors()" class="bg-terracotta hover:bg-terracotta/90 text-white font-serif font-bold text-xs py-2 px-4 rounded-xl">Save Brand Palette</button>
-                            <button onclick="resetThemeColorsToDefault()" class="border border-terracotta/20 hover:bg-terracotta/10 text-xs py-2 px-4 rounded-xl text-neutralMuted">Reset Brand Default</button>
-                        </div>
-                    </div>
-
-                    <!-- Connection Diagnostics Panel -->
-                    <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 transition-colors">
-                        <div class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-gears text-terracotta text-lg animate-spin" style="animation-duration: 8s;"></i>
-                            <h4 class="font-serif text-lg font-bold text-appHeading">Supabase Connection Settings</h4>
-                        </div>
-                        <p class="text-xs text-neutralMuted leading-relaxed">
-                            By default, this storefront uses placeholder credentials. To secure customer pre-orders, lounge reservations, and vibe photos, copy your real credentials from your Supabase Dashboard and paste them below. They are saved privately inside your browser's local secure database.
-                        </p>
-                        <div class="grid gap-4 sm:grid-cols-2 text-xs text-appText">
-                            <div class="flex flex-col gap-1.5">
-                                <label for="db-url-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Project REST Endpoint URL</label>
-                                <input type="text" id="db-url-input" placeholder="https://your-project.supabase.co" class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:border-terracotta transition-colors font-sans font-medium">
-                            </div>
-                            <div class="flex flex-col gap-1.5">
-                                <label for="db-key-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Anon Public Key (Long JWT Token)</label>
-                                <input type="password" id="db-key-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC..." class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:border-terracotta transition-colors font-sans font-medium">
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap items-center gap-3 pt-2 font-serif">
-                            <button onclick="saveSupabaseCredentials()" class="bg-terracotta hover:bg-terracotta/90 text-white font-bold py-2.5 px-5 rounded-xl text-xs transition-all shadow-md">
-                                Save & Reconnect Sync
+                            <button onclick="fetchFeedbacks()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh feedbacks list">
+                                <i class="fa-solid fa-rotate-right" id="refresh-feedbacks-icon"></i> Refresh Pipeline
                             </button>
-                            <button onclick="clearSupabaseCredentials()" class="border border-terracotta/30 text-neutralMuted hover:text-white py-2.5 px-4 rounded-xl text-xs transition-all">
-                                Reset to Local Sandbox Fallback
-                            </button>
-                            <span id="connection-status-pill" class="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-yellow-500/10 text-yellow-500 border border-yellow-500/30 font-sans">
-                                Evaluating Sync...
-                            </span>
                         </div>
+                        <div id="admin-feedback-moderation-list" class="grid gap-4 text-appText font-sans">
+                            <!-- Moderation cards -->
+                        </div>
+                    </div>
 
-                        <!-- Mobile Scan Sync Tool Section -->
-                        <div class="border-t border-appBorder/50 pt-4 mt-2 space-y-3">
-                            <h5 class="font-serif font-bold text-sm text-appHeading">📱 Sync with Phone Browser</h5>
-                            <p class="text-[11px] text-neutralMuted">Generate a dynamic link to sync your database configurations instantly to your mobile browser without retyping keys.</p>
-                            <div class="flex flex-wrap items-center gap-3">
-                                <button onclick="generateMobileSyncQRCode()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 font-sans">
-                                    <i class="fa-solid fa-qrcode"></i> Generate Phone Sync Link
-                                </button>
+                    <!-- Tab Sub-panel 3: Catering Proposals & Leads -->
+                    <div id="cms-catering-subview" class="space-y-6 hidden font-sans animate-fadeIn">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <!-- Catering Proposals Column (Col-span 2) -->
+                            <div class="lg:col-span-2 space-y-4">
+                                <div class="flex justify-between items-center border-b border-appBorder pb-2">
+                                    <div>
+                                        <h4 class="font-serif text-lg font-bold text-appHeading">Received Event & Catering Inquiries</h4>
+                                        <p class="text-xs text-neutralMuted">Manage customer digital proposals, dates, and budget plans.</p>
+                                    </div>
+                                    <button onclick="fetchCatering()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh catering list">
+                                        <i class="fa-solid fa-rotate-right" id="refresh-catering-icon"></i> Refresh
+                                    </button>
+                                </div>
+                                <div id="admin-catering-inquiries-list" class="grid gap-4 md:grid-cols-1">
+                                    <!-- Loaded dynamically -->
+                                </div>
                             </div>
-                            <div id="sync-qr-container" class="hidden bg-appBg border border-appBorder p-4 rounded-2xl flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left transition-colors">
-                                <img id="sync-qr-image" src="" alt="Mobile Sync QR Code" class="w-32 h-32 bg-white p-1 rounded-lg">
-                                <div class="space-y-2">
-                                    <p class="text-xs font-bold text-appHeading">Scan QR to connect your Phone!</p>
-                                    <p class="text-[10px] text-neutralMuted leading-relaxed max-w-xs">Scanning this with your phone's camera will open the portal on your phone browser and automatically configure your API keys securely.</p>
-                                    <button onclick="copySyncLinkToClipboard()" class="text-[10px] text-terracotta underline font-mono hover:text-terracotta/80 block">Copy Direct Sync Link</button>
+                            
+                            <!-- Captured Newsletter Leads Column -->
+                            <div class="space-y-4 bg-appCard border border-appBorder p-6 rounded-3xl h-fit">
+                                <div class="flex justify-between items-center border-b border-appBorder pb-2">
+                                    <div>
+                                        <h4 class="font-serif text-lg font-bold text-appHeading">Captured Newsletter Leads</h4>
+                                        <p class="text-xs text-neutralMuted font-serif font-medium">Emails registered via the society modal.</p>
+                                    </div>
+                                    <button onclick="fetchSubscribers()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl p-2.5 text-xs font-bold transition-all" aria-label="Refresh subscriber list">
+                                        <i class="fa-solid fa-rotate-right" id="refresh-subscribers-icon"></i>
+                                    </button>
+                                </div>
+                                <div id="subscriber-emails-container" class="space-y-1.5 font-mono text-xs max-h-96 overflow-y-auto">
+                                    <!-- Populated dynamically -->
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="space-y-3">
-                        <h4 class="font-serif text-lg font-bold text-appHeading font-sans">Live System Telemetry Logs</h4>
-                        <p class="text-xs text-neutralMuted">A non-technical audit ledger documenting interactions on your storefront portal.</p>
-                        <div class="bg-appBg border border-appBorder rounded-2xl p-4 font-sans text-xs space-y-2.5 max-h-96 overflow-y-auto text-appText transition-colors" id="telemetry-logs-wrapper">
-                            <!-- Logs populated dynamically -->
+                    <!-- Tab Sub-panel 4: Vibe Archives -->
+                    <div id="cms-photos-subview" class="space-y-4 hidden font-sans animate-fadeIn">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-serif text-lg font-bold text-appHeading">Corkboard Polaroid Archive Moderation</h4>
+                                <p class="text-xs text-neutralMuted">Moderate and prune uploaded setup photographs directly on the live wall.</p>
+                            </div>
+                            <button onclick="fetchVibeBoard()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh vibe photos list">
+                                <i class="fa-solid fa-rotate-right" id="refresh-vibes-icon"></i> Refresh Pipeline
+                            </button>
+                        </div>
+                        <div id="admin-photos-moderation-grid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-appText font-sans">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Tab Sub-panel 5: Menu Catalog Editor & Categories -->
+                    <div id="cms-products-subview" class="space-y-6 hidden font-sans animate-fadeIn">
+                        <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-serif text-lg font-bold text-appHeading">Customize Food & Beverage Categories</h4>
+                                    <p class="text-xs text-neutralMuted">Add entirely new food sections, upload custom categories, and assign icons.</p>
+                                </div>
+                            </div>
+                            
+                            <form id="category-creation-form" class="grid sm:grid-cols-3 gap-3 text-xs">
+                                <input type="text" id="new-cat-id" placeholder="Category key (e.g., bagels)" required class="bg-appBg border border-terracotta/25 p-2 rounded-xl text-appHeading">
+                                <input type="text" id="new-cat-name" placeholder="Display Name (e.g., Rustic Bagels)" required class="bg-appBg border border-terracotta/25 p-2 rounded-xl text-appHeading">
+                                <div class="flex gap-2">
+                                    <input type="text" id="new-cat-icon" placeholder="FA Icon (e.g., fa-cookie)" required class="bg-appBg border border-terracotta/25 p-2 rounded-xl text-appHeading flex-1">
+                                    <button type="submit" class="bg-terracotta hover:bg-terracotta/90 text-white font-bold px-4 rounded-xl">Add</button>
+                                </div>
+                            </form>
+
+                            <div id="categories-badge-list" class="flex flex-wrap gap-2 pt-2">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-serif text-lg font-bold text-appHeading">Manage Catalog Items</h4>
+                                    <p class="text-xs text-neutralMuted">Adjust pricing, configure categories, flag "Chef's Specials" or "Best Sellers."</p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button onclick="refreshCMSProducts()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh products list">
+                                        <i class="fa-solid fa-rotate-right" id="refresh-products-icon"></i> Refresh Catalog
+                                    </button>
+                                    <button onclick="openProductEditForm()" class="bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow-md">
+                                        <i class="fa-solid fa-circle-plus"></i> Add New Product
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div id="cms-products-listing-wrapper" class="space-y-4 text-appText font-sans">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Sub-panel 6: Telemetry Logs & Theme Settings -->
+                    <div id="cms-analytics-subview" class="space-y-6 hidden font-sans animate-fadeIn">
+                        <!-- Theme Customizer Panel -->
+                        <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 transition-colors">
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-palette text-terracotta text-lg"></i>
+                                <h4 class="font-serif text-lg font-bold text-appHeading">Storefront Color Scheme Customizer</h4>
+                            </div>
+                            <p class="text-xs text-neutralMuted leading-relaxed">
+                                Personalize the layout design tokens! Enter color values to dynamically adapt the storefront’s system colors.
+                            </p>
+                            <div class="grid gap-4 grid-cols-2 sm:grid-cols-4 text-xs text-appText">
+                                <div class="flex flex-col gap-1">
+                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Primary BG</label>
+                                    <input type="color" id="theme-color-bg" value="#150A08" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Accent Color</label>
+                                    <input type="color" id="theme-color-terracotta" value="#D97757" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Card Panel BG</label>
+                                    <input type="color" id="theme-color-card" value="#231511" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Text Color</label>
+                                    <input type="color" id="theme-color-text" value="#EEDCC5" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button onclick="applyCustomThemeColors()" class="bg-terracotta hover:bg-terracotta/90 text-white font-serif font-bold text-xs py-2 px-4 rounded-xl">Save Brand Palette</button>
+                                <button onclick="resetThemeColorsToDefault()" class="border border-terracotta/20 hover:bg-terracotta/10 text-xs py-2 px-4 rounded-xl text-neutralMuted">Reset Brand Default</button>
+                            </div>
+                        </div>
+
+                        <!-- Connection Diagnostics Panel -->
+                        <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 transition-colors">
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-gears text-terracotta text-lg animate-spin" style="animation-duration: 8s;"></i>
+                                <h4 class="font-serif text-lg font-bold text-appHeading">Supabase Connection Settings</h4>
+                            </div>
+                            <p class="text-xs text-neutralMuted leading-relaxed">
+                                By default, this storefront uses placeholder credentials. To secure customer pre-orders, lounge reservations, and vibe photos, copy your real credentials from your Supabase Dashboard and paste them below. They are saved privately inside your browser's local secure database.
+                            </p>
+                            <div class="grid gap-4 sm:grid-cols-2 text-xs text-appText">
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="db-url-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Project REST Endpoint URL</label>
+                                    <input type="text" id="db-url-input" placeholder="https://your-project.supabase.co" class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:border-terracotta transition-colors font-sans font-medium">
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="db-key-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Anon Public Key (Long JWT Token)</label>
+                                    <input type="password" id="db-key-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC..." class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:border-terracotta transition-colors font-sans font-medium">
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3 pt-2 font-serif">
+                                <button onclick="saveSupabaseCredentials()" class="bg-terracotta hover:bg-terracotta/90 text-white font-bold py-2.5 px-5 rounded-xl text-xs transition-all shadow-md">
+                                    Save & Reconnect Sync
+                                </button>
+                                <button onclick="clearSupabaseCredentials()" class="border border-terracotta/30 text-neutralMuted hover:text-white py-2.5 px-4 rounded-xl text-xs transition-all">
+                                    Reset to Local Sandbox Fallback
+                                </button>
+                                <span id="connection-status-pill" class="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-yellow-500/10 text-yellow-500 border border-yellow-500/30 font-sans">
+                                    Evaluating Sync...
+                                </span>
+                            </div>
+
+                            <!-- Mobile Scan Sync Tool Section -->
+                            <div class="border-t border-appBorder/50 pt-4 mt-2 space-y-3">
+                                <h5 class="font-serif font-bold text-sm text-appHeading">📱 Sync with Phone Browser</h5>
+                                <p class="text-[11px] text-neutralMuted">Generate a dynamic link to sync your database configurations instantly to your mobile browser without retyping keys.</p>
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <button onclick="generateMobileSyncQRCode()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 font-sans">
+                                        <i class="fa-solid fa-qrcode"></i> Generate Phone Sync Link
+                                    </button>
+                                </div>
+                                <div id="sync-qr-container" class="hidden bg-appBg border border-appBorder p-4 rounded-2xl flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left transition-colors">
+                                    <img id="sync-qr-image" src="" alt="Mobile Sync QR Code" class="w-32 h-32 bg-white p-1 rounded-lg">
+                                    <div class="space-y-2">
+                                        <p class="text-xs font-bold text-appHeading">Scan QR to connect your Phone!</p>
+                                        <p class="text-[10px] text-neutralMuted leading-relaxed max-w-xs">Scanning this with your phone's camera will open the portal on your phone browser and automatically configure your API keys securely.</p>
+                                        <button onclick="copySyncLinkToClipboard()" class="text-[10px] text-terracotta underline font-mono hover:text-terracotta/80 block">Copy Direct Sync Link</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h4 class="font-serif text-lg font-bold text-appHeading font-sans">Live System Telemetry Logs</h4>
+                            <p class="text-xs text-neutralMuted">A non-technical audit ledger documenting interactions on your storefront portal.</p>
+                            <div class="bg-appBg border border-appBorder rounded-2xl p-4 font-sans text-xs space-y-2.5 max-h-96 overflow-y-auto text-appText transition-colors" id="telemetry-logs-wrapper">
+                                <!-- Logs populated dynamically -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1193,8 +1289,8 @@
 
     </main>
 
-    <!-- Re-sculpted Glassmorphic Bottom Mobile Navigation Bar -->
-    <nav class="md:hidden fixed bottom-0 left-0 right-0 py-2 px-4 z-40 mobile-nav-container flex justify-around items-center" aria-label="Mobile Navigation">
+    <!-- Glassmorphic Bottom Mobile Navigation Bar -->
+    <nav id="mobile-navigation-bar" class="md:hidden fixed bottom-0 left-0 right-0 py-2 px-4 z-40 mobile-nav-container flex justify-around items-center" aria-label="Mobile Navigation">
         <button onclick="switchPage('home')" class="mobile-tab-btn active" id="mobile-tab-home">
             <i class="fa-solid fa-mug-hot"></i>
             <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Menu</span>
@@ -1229,6 +1325,25 @@
     </div>
 
     <!-- ================= MODALS & SLIDE DRAWER OVERLAYS ================= -->
+
+    <!-- Welcome Promotion Modal Block -->
+    <div id="promo-modal" class="promo-modal">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closePromoModal()"></div>
+        <div class="bg-appCard border border-terracotta/35 p-6 rounded-3xl max-w-sm w-full mx-auto relative z-10 text-center space-y-4 text-appText shadow-2xl transition-all">
+            <button onclick="closePromoModal()" class="absolute top-4 right-4 text-neutralMuted hover:text-terracotta text-base" aria-label="Dismiss Modal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="w-14 h-14 bg-terracotta/15 rounded-xl flex items-center justify-center text-terracotta text-3xl mx-auto shadow-inner border border-terracotta/20">
+                <i class="fa-solid fa-cookie-bite"></i>
+            </div>
+            <div>
+                <h3 class="font-serif text-xl font-bold text-appHeading">Exclusive Welcome Offer</h3>
+                <p class="text-xs text-neutralMuted mt-1 leading-relaxed">Savor Maryville's finest specialty. Enjoy our **Viennese Waltz** crafted premium White Chocolate Mocha for only <strong>$5.80</strong> today!</p>
+            </div>
+            <div class="pt-2">
+                <button onclick="addPromoToOrder()" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif font-bold py-3 rounded-xl transition-all shadow-md text-sm">Add Promo to Order Bag</button>
+                <button onclick="closePromoModal()" class="text-xs text-neutralMuted mt-3 hover:underline block mx-auto">No thanks, I'll browse catalog first</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Brand Newsletter Signup Popup -->
     <div id="newsletter-popup-modal" class="fixed inset-0 z-[120] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500">
@@ -1346,7 +1461,6 @@
                     <input type="file" id="file-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
                 </div>
 
-                <!-- Preset vibe choices -->
                 <div>
                     <label class="block text-[10px] font-mono font-bold uppercase tracking-wider text-terracotta mb-1.5">No snapshot handy? Pick a curated preset vibe:</label>
                     <div class="grid grid-cols-3 gap-2">
@@ -1369,7 +1483,6 @@
                     <input type="text" id="wall-drink" placeholder="e.g. Viennese Waltz" required class="border border-terracotta/30 bg-appBg text-appHeading rounded-xl p-3 text-sm focus:outline-none font-sans">
                 </div>
 
-                <!-- Curation consent checkbox to emphasize social media publishing permission -->
                 <div class="flex items-start gap-2.5 p-3 rounded-xl bg-terracotta/5 border border-terracotta/10 text-[10px] text-accentLight leading-snug">
                     <input type="checkbox" id="social-consent-check" required class="mt-0.5 accent-terracotta cursor-pointer">
                     <label for="social-consent-check" class="cursor-pointer select-none">
@@ -1451,7 +1564,7 @@
     <script type="module">
         import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-        // Exposing routing variables immediately to prevent race conditions on clicks
+        // Expose routing variables immediately
         window.switchPage = switchPage;
         window.toggleTheme = toggleTheme;
         window.openSidebarCart = openSidebarCart;
@@ -1472,6 +1585,7 @@
         window.addPromoToOrder = addPromoToOrder;
         window.verifyAdministrativePasscode = verifyAdministrativePasscode;
         window.switchCMSTab = switchCMSTab;
+        window.toggleAdminSidebar = toggleAdminSidebar;
         window.openProductEditForm = () => {
             document.getElementById('p-form-id').value = '';
             document.getElementById('product-crud-form').reset();
@@ -1517,7 +1631,6 @@
             showToastNotification("Newsletter subscribers list successfully reloaded!");
         };
 
-        // Check URL parameters for fast credentials syncing
         const urlParams = new URLSearchParams(window.location.search);
         const paramUrl = urlParams.get('sb_url');
         const paramKey = urlParams.get('sb_key');
@@ -1562,16 +1675,17 @@
             };
         }
 
+        // State parameters
         let activeOrders = [];
         let activeReservations = [];
         let cateringInquiries = [];
         let newsletterEmails = [];
+        let adminSidebarOpen = true;
         let telemetryLogs = [
             "☕ Pour Decisions boutique online storefront initialized.",
             "🟢 Theme preset initialized to cozy Dark Espresso."
         ];
 
-        // Fully Dynamic Category Scheme State
         let masterCategories = [
             { id: 'coffee', name: 'Brewed & Drip', icon: 'fa-mug-hot' },
             { id: 'espresso', name: 'Espresso Drinks', icon: 'fa-bolt' },
@@ -1619,7 +1733,6 @@
         const dom = {};
         let leafletMapInstance; 
 
-        // Window load triggers
         window.onload = function() {
             initDOMCache();
             loadCustomThemeColors();
@@ -1646,7 +1759,6 @@
                 }, 200));
             }
 
-            // Fire marketing newsletter signup popup after 10-second delay
             setTimeout(() => {
                 const hasSubscribed = localStorage.getItem('pd_has_subscribed');
                 if (!hasSubscribed) {
@@ -1654,7 +1766,6 @@
                 }
             }, 8000);
 
-            // Trigger welcome promo deal popup too
             setTimeout(() => openPromoModal(), 1500);
 
             const fileInput = document.getElementById('file-input');
@@ -1738,7 +1849,6 @@
             `).join('');
         }
 
-        // Add Category submission listener
         const categoryForm = document.getElementById('category-creation-form');
         if (categoryForm) {
             categoryForm.addEventListener('submit', (e) => {
@@ -1812,7 +1922,6 @@
             showToastNotification("Subscriber lead discarded.");
         };
 
-        // Newsletter Modal signup form listener
         const newsletterForm = document.getElementById('newsletter-signup-form');
         if (newsletterForm) {
             newsletterForm.addEventListener('submit', (e) => {
@@ -1955,7 +2064,7 @@
             root.style.setProperty('--card', colors.card);
             root.style.setProperty('--text', colors.text);
             root.style.setProperty('--text-heading', colors.text === '#ffffff' ? '#ffffff' : colors.text);
-            root.style.setProperty('--border', `${colors.terracotta}33`); // 20% alpha border
+            root.style.setProperty('--border', `${colors.terracotta}33`);
             root.style.setProperty('--espresso', colors.bg);
             root.style.setProperty('--darkCard', colors.card);
         }
@@ -1977,9 +2086,8 @@
         function resetThemeColorsToDefault() {
             localStorage.removeItem('pd_brand_colors_override');
             const root = document.documentElement;
-            root.removeAttribute('style'); // Remove inline variables to fallback to dark/light CSS stylesheet definitions
+            root.removeAttribute('style');
             
-            // Re-apply light-mode toggles if configured
             const savedTheme = sessionStorage.getItem('pd_theme_mode');
             applyTheme(savedTheme || 'dark');
 
@@ -2043,7 +2151,7 @@
 
         async function initSupabasePipeline() {
             loadStoredCart(); 
-            await fetchProducts(); // Fetch items first so edits and catalogs sync immediately
+            await fetchProducts();
             fetchLiveOrders();
             fetchVibeBoard();
             fetchFeedbacks();
@@ -2067,7 +2175,7 @@
         }
 
         async function fetchProducts() {
-            loadLocalProducts(); // Read local sandbox copy first to guarantee loss-free updates
+            loadLocalProducts();
             try {
                 const { data, error } = await supabase.from('products').select('*');
                 if (error) throw error;
@@ -2083,7 +2191,7 @@
                         hidden: !!item.hidden,
                         badge: item.badge || ''
                     }));
-                    saveLocalProducts(); // Store on browser storage
+                    saveLocalProducts();
                 }
             } catch (err) {
                 console.warn("Could not fetch remote products catalog, fallback to local sandbox persistence:", err.message);
@@ -2091,7 +2199,7 @@
         }
 
         async function syncProductToDatabase(product) {
-            saveLocalProducts(); // Instantly commit local cache to keep frontend fully reactive
+            saveLocalProducts();
             try {
                 const { error } = await supabase
                     .from('products')
@@ -2341,6 +2449,34 @@
             }
         }
 
+        // Upgraded Collapsible Sidebar Toggle Mechanics
+        function toggleAdminSidebar() {
+            adminSidebarOpen = !adminSidebarOpen;
+            const sidebar = document.getElementById('cms-collapsible-sidebar');
+            const toggleIcon = document.getElementById('sidebar-toggle-arrow-icon');
+            const labels = document.querySelectorAll('.sidebar-text-label');
+
+            if (!sidebar) return;
+
+            if (adminSidebarOpen) {
+                sidebar.className = "sidebar-expanded flex flex-col bg-appCard border border-appBorder rounded-3xl p-4 transition-all duration-300 gap-6 relative justify-between shrink-0";
+                if (toggleIcon) toggleIcon.className = "fa-solid fa-angles-left transition-transform duration-300";
+                
+                labels.forEach(lbl => {
+                    lbl.classList.remove('opacity-0', 'hidden');
+                    lbl.classList.add('opacity-100');
+                });
+            } else {
+                sidebar.className = "sidebar-collapsed flex flex-col bg-appCard border border-appBorder rounded-3xl p-4 transition-all duration-300 gap-6 relative justify-between shrink-0 items-center";
+                if (toggleIcon) toggleIcon.className = "fa-solid fa-angles-right transition-transform duration-300";
+                
+                labels.forEach(lbl => {
+                    lbl.classList.remove('opacity-100');
+                    lbl.classList.add('opacity-0', 'hidden');
+                });
+            }
+        }
+
         function switchPage(pageId) {
             if (pageId === 'feedback') {
                 pageId = 'wall';
@@ -2352,7 +2488,6 @@
             const activePage = document.getElementById('page-' + pageId);
             if (activePage) activePage.classList.remove('hidden');
 
-            // Synchronize active states for Desktop Navigation tab items
             const navTabBtns = document.querySelectorAll('.nav-tab-btn');
             for (let i = 0; i < navTabBtns.length; i++) {
                 navTabBtns[i].classList.remove('active');
@@ -2362,7 +2497,6 @@
                 activeTab.classList.add('active');
             }
 
-            // Synchronize active states for Mobile Navigation bottom bar items
             const mobileTabs = document.querySelectorAll('.mobile-tab-btn');
             for (let i = 0; i < mobileTabs.length; i++) {
                 mobileTabs[i].classList.remove('active');
@@ -2372,17 +2506,24 @@
                 activeMobileTab.classList.add('active');
             }
 
-            // Toggle Mobile sticky view bag visible only on storefront pages, hidden completely on Admin Panel
             const mobileCartContainer = document.getElementById('mobile-cart-bar-container');
-            if (mobileCartContainer) {
-                if (pageId === 'admin') {
-                    mobileCartContainer.classList.add('hidden');
-                } else {
-                    mobileCartContainer.classList.remove('hidden');
-                }
+            const mainHeader = document.getElementById('main-site-header');
+            const mobileNavBar = document.getElementById('mobile-navigation-bar');
+
+            // Hide normal portal headers/footers in verified Admin Space for desktop workspace look
+            if (pageId === 'admin') {
+                if (mobileCartContainer) mobileCartContainer.classList.add('hidden');
+                if (mainHeader) mainHeader.classList.add('md:hidden');
+                
+                // Adjust workspace layout constraints
+                document.getElementById('app-root').className = "pt-6 md:pt-10 pb-20 px-4 max-w-7xl mx-auto w-full flex-grow transition-all duration-300";
+            } else {
+                if (mobileCartContainer) mobileCartContainer.classList.remove('hidden');
+                if (mainHeader) mainHeader.classList.remove('md:hidden');
+                
+                document.getElementById('app-root').className = "pt-24 pb-20 px-4 max-w-6xl mx-auto w-full flex-grow transition-all duration-300";
             }
 
-            // Resolve grey container dimension bugs on tablets and smartphones during Leaflet tab switches
             if (pageId === 'heritage' && leafletMapInstance) {
                 setTimeout(() => {
                     leafletMapInstance.invalidateSize();
@@ -2443,7 +2584,6 @@
                 return matchesCategory && matchesSearch;
             });
 
-            // Waltz special condition mapping
             const waltz = masterProducts.find(p => p.id === 's3');
             const highlightAddBtn = document.getElementById('highlight-add-btn');
             if (highlightAddBtn) {
@@ -2498,7 +2638,6 @@
                 dom.premiumCarousel.appendChild(card);
             });
 
-            // Map and build Dynamic Category Accordion Blocks
             masterCategories.forEach(cat => {
                 const groupItems = filtered.filter(item => item.category === cat.id);
                 if (groupItems.length === 0) return;
@@ -2817,7 +2956,6 @@
                 document.getElementById('cms-verify-section').classList.add('hidden');
                 document.getElementById('cms-authenticated-view').classList.remove('hidden');
                 
-                // Swap lock icon state on verification success
                 const headerLock = document.getElementById('header-admin-lock-icon');
                 if (headerLock) {
                     headerLock.className = "fa-solid fa-unlock text-xl text-terracotta";
@@ -2831,14 +2969,27 @@
             }
         }
 
+        // Upgraded switchCMSTab supporting sidebar highlights
         function switchCMSTab(tab) {
-            const subviews = ['orders', 'feedback', 'catering', 'photos', 'products', 'analytics'];
+            const subviews = ['dashboard', 'orders', 'feedback', 'catering', 'photos', 'products', 'analytics'];
             subviews.forEach(v => {
                 document.getElementById(`cms-${v}-subview`)?.classList.add('hidden');
-                document.getElementById(`tab-cms-${v}`)?.classList.remove('text-terracotta', 'border-terracotta');
+                
+                // Reset sidebar item highlights
+                const btn = document.getElementById(`sidebar-btn-${v}`);
+                if (btn) {
+                    btn.className = "relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs";
+                }
             });
+
+            // Show active views
             document.getElementById(`cms-${tab}-subview`)?.classList.remove('hidden');
-            document.getElementById(`tab-cms-${tab}`)?.classList.add('text-terracotta', 'border-terracotta');
+            
+            // Set active highlights
+            const activeBtn = document.getElementById(`sidebar-btn-${tab}`);
+            if (activeBtn) {
+                activeBtn.className = "relative flex items-center h-10 w-full rounded-xl transition-all duration-200 bg-terracotta/10 text-terracotta border-l-2 border-terracotta font-medium text-xs";
+            }
         }
 
         async function updateOrderStatus(orderId, nextStatus) {
@@ -2866,7 +3017,6 @@
             const container = document.getElementById('admin-orders-container');
             if (!container) return;
             
-            // Only show Pending orders in the Real-Time Orders panel. Cancellations/Order Dones exit this panel.
             const pendingOrders = activeOrders.filter(order => order.status === 'Pending');
 
             if (pendingOrders.length === 0) {
@@ -2984,7 +3134,6 @@
             if (feedPending) feedPending.innerText = communityFeedbacks.filter(f => !f.approved).length;
             if (vibesCnt) vibesCnt.innerText = communityPhotos.length;
             if (rev) {
-                // Deduct cancelled orders from the revenue count
                 let totalSum = activeOrders
                     .filter(o => o.status !== 'Cancelled')
                     .reduce((acc, curr) => acc + parseFloat(curr.totalPrice || curr.total_price || 0), 0);
@@ -2996,7 +3145,6 @@
             if (!dom.polaroidCanvasGrid) return;
             
             dom.polaroidCanvasGrid.innerHTML = communityPhotos.map((photo, idx) => {
-                // ORGANIC ROTATION: Pseudo-random rotation from -5deg to 5deg based on indexing
                 const rot = ((idx * 7) % 11) - 5;
                 return `
                     <div class="relative pt-4 pb-2 px-1">
@@ -3274,7 +3422,6 @@
                                             <span class="text-terracotta font-mono font-bold text-xs flex-shrink-0">$${item.price.toFixed(2)}</span>
                                         </div>
                                         
-                                        <!-- Action controls underneath (small and inline) -->
                                         <div class="grid grid-cols-4 gap-1 pt-1.5 border-t border-appBorder/40 font-mono text-[8px] font-bold">
                                             <button onclick="toggleProductSoldOutStatus('${item.id}')" class="px-1.5 py-1 rounded border text-center transition-all truncate ${item.sold_out ? 'bg-red-600 text-white border-red-500' : 'bg-darkAccent text-terracotta border-terracotta/20'}">
                                                 ${item.sold_out ? 'In Stock' : 'Sold Out'}
@@ -3305,7 +3452,7 @@
                 item.sold_out = !item.sold_out;
                 showToastNotification(`Product "${item.name}" updated: ${item.sold_out ? 'SOLD OUT' : 'IN-STOCK'}`);
                 logTelemetryEvent('product_status_updated', { name: item.name });
-                syncProductToDatabase(item); // Sync changes instantly to server
+                syncProductToDatabase(item);
                 renderCMSProductsList();
                 renderBistroMenu();
             }
@@ -3317,7 +3464,7 @@
                 item.hidden = !item.hidden;
                 showToastNotification(`Product "${item.name}" updated: ${item.hidden ? 'HIDDEN' : 'ACTIVE'}`);
                 logTelemetryEvent('product_status_updated', { name: item.name });
-                syncProductToDatabase(item); // Sync changes instantly to server
+                syncProductToDatabase(item);
                 renderCMSProductsList();
                 renderBistroMenu();
             }
@@ -3329,7 +3476,7 @@
                 item.badge = item.badge === 'Popular' ? '' : 'Popular';
                 showToastNotification(`Product "${item.name}" badge altered.`);
                 logTelemetryEvent('product_status_updated', { name: item.name });
-                syncProductToDatabase(item); // Sync changes instantly to server
+                syncProductToDatabase(item);
                 renderCMSProductsList();
                 renderBistroMenu();
             }
@@ -3346,7 +3493,6 @@
                 document.getElementById('p-form-desc').value = item.desc;
                 document.getElementById('p-form-image').value = item.img;
                 
-                // Sync customized badge selectors
                 if (['Popular', 'Best Seller', 'Chef\'s Special', 'Seasonal Choice'].includes(item.badge)) {
                     document.getElementById('p-form-badge').value = item.badge;
                     document.getElementById('p-form-custom-badge').value = '';
@@ -3371,7 +3517,6 @@
                 const desc = document.getElementById('p-form-desc').value;
                 const img = document.getElementById('p-form-image').value || 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400';
 
-                // Sync custom layout badges
                 const selectBadge = document.getElementById('p-form-badge').value;
                 const customBadge = document.getElementById('p-form-custom-badge').value.trim();
                 const finalBadge = customBadge || selectBadge || '';
@@ -3386,7 +3531,7 @@
                         item.img = img;
                         item.badge = finalBadge;
                         showToastNotification(`Details saved successfully for "${name}"`);
-                        syncProductToDatabase(item); // Sync details update back to the server
+                        syncProductToDatabase(item);
                     }
                 } else {
                     const newId = 'p_' + Date.now();
@@ -3395,7 +3540,7 @@
                     };
                     masterProducts.push(newProduct);
                     showToastNotification(`Product "${name}" added to catalog.`);
-                    syncProductToDatabase(newProduct); // Sync new additions back to the server
+                    syncProductToDatabase(newProduct);
                 }
 
                 closeProductEditForm();
