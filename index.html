@@ -3,46 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#150A08">
+    <meta name="theme-color" content="#110705">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <title>Pour Decisions | Boutique Coffee Portal</title>
     
-    <!-- Unified Brand SVG Favicon for both Desktop and Mobile Browsers -->
+    <!-- Premium Brand SVG Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M12 20h40a4 4 0 0 1 4 4v4a20 20 0 0 1-20 20H28A20 20 0 0 1 8 28v-4a4 4 0 0 1 4-4Z' fill='none' stroke='%23C67C4E' stroke-width='2.5'/%3E%3Cpath d='M18 20V12a6 6 0 0 1 12 0v8M34 20v-5a3 3 0 0 1 6 0v5' fill='none' stroke='%23C67C4E' stroke-width='2.5'/%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M12 20h40a4 4 0 0 1 4 4v4a20 20 0 0 1-20 20H28A20 20 0 0 1 8 28v-4a4 4 0 0 1 4-4Z' fill='none' stroke='%23C67C4E' stroke-width='2.5'/%3E%3Cpath d='M18 20V12a6 6 0 0 1 12 0v8M34 20v-5a3 3 0 0 1 6 0v5' fill='none' stroke='%23C67C4E' stroke-width='2.5'/%3E%3C/svg%3E">
     
+    <!-- External assets: Tailwind, FontAwesome, Google Fonts, and Leaflet Maps -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght=0,600;0,700;1,600&family=Fraunces:ital,wght=0,300;0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Leaflet OpenStreetMap Styling -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
     <script>
-      tailwind.config={theme:{extend:{colors:{espresso:'var(--espresso)',darkCard:'var(--darkCard)',terracotta:'var(--terracotta)',parchment:'var(--parchment)',accentLight:'var(--accentLight)',darkAccent:'var(--darkAccent)',neutralMuted:'var(--neutralMuted)',appBg:'var(--bg)',appCard:'var(--card)',appText:'var(--text)',appHeading:'var(--text-heading)',appBorder:'var(--border)',appGlass:'var(--glass-overlay)'},fontFamily:{serif:['Fraunces','serif'],display:['Playfair Display','serif'],sans:['Inter','sans-serif'],mono:['Space Mono','monospace']}}}}
+      tailwind.config={theme:{extend:{colors:{espresso:'var(--espresso)',darkCard:'var(--darkCard)',terracotta:'var(--terracotta)',parchment:'var(--parchment)',accentLight:'var(--accentLight)',darkAccent:'var(--darkAccent)',neutralMuted:'var(--neutralMuted)',appBg:'var(--bg)',appCard:'var(--card)',appText:'var(--text)',appHeading:'var(--text-heading)',appBorder:'var(--border)',appGlass:'var(--glass-overlay)'},fontFamily:{serif:['Fraunces','serif'],display:['Playfair Display','serif'],sans:['Inter','sans-serif']}}}}
     </script>
 
     <style>
         :root {
-            --espresso: #150A08;
-            --darkCard: #231511;
+            --espresso: #110705;
+            --darkCard: #1A0E0B;
             --terracotta: #D97757;
-            --parchment: #EEDCC5;
-            --accentLight: #EDD6C8;
-            --darkAccent: #342420;
-            --neutralMuted: #9B8D8B;
-            
-            --bg: #150A08;
-            --card: #231511;
-            --text: #EEDCC5;
+            --parchment: #F5EBE1;
+            --accentLight: #E2D1C3;
+            --darkAccent: #2A1713;
+            --neutralMuted: #A3908D;
+            --bg: #110705;
+            --card: #1A0E0B;
+            --text: #F5EBE1;
             --text-heading: #ffffff;
-            --border: rgba(217, 119, 87, 0.15);
-            --glass-overlay: rgba(35, 21, 17, 0.95);
-            --header-bg: rgba(35, 21, 17, 0.85);
-            --mobile-nav-bg: rgba(35, 21, 17, 0.92);
-            --mobile-nav-border: rgba(217, 119, 87, 0.25);
+            --border: rgba(217, 119, 87, 0.25);
+            --glass-overlay: rgba(26, 14, 11, 0.95);
+            --header-bg: rgba(17, 7, 5, 0.85);
+            --mobile-nav-bg: rgba(26, 14, 11, 0.92);
+            --mobile-nav-border: rgba(217, 119, 87, 0.35);
         }
 
         :root.light-mode {
@@ -53,7 +50,6 @@
             --accentLight: #4A3B32;
             --darkAccent: #F3EFE9;
             --neutralMuted: #7A6E6D;
-            
             --bg: #FAF6F0;
             --card: #FFFFFF;
             --text: #3A2312;
@@ -61,15 +57,26 @@
             --border: rgba(217, 119, 87, 0.2);
             --glass-overlay: rgba(255, 255, 255, 0.95);
             --header-bg: rgba(250, 246, 240, 0.9);
-            --mobile-nav-bg: rgba(255, 255, 255, 0.92);
+            --mobile-nav-bg: rgba(255, 255, 255, 0.96);
             --mobile-nav-border: rgba(217, 119, 87, 0.25);
         }
 
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); transition: background-color 0.3s ease, color 0.3s ease; -webkit-font-smoothing: antialiased; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            transition: background-color 0.3s ease, color 0.3s ease; 
+            -webkit-font-smoothing: antialiased; 
+            -webkit-tap-highlight-color: transparent;
+        }
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
         
-        .overflow-y-auto {
-            -webkit-overflow-scrolling: touch;
+        /* Mobile responsive feedback styling */
+        .btn-interactive {
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-interactive:active {
+            transform: scale(0.96);
         }
 
         .toast-container {
@@ -86,18 +93,16 @@
             max-width: 420px;
         }
         @media (min-width: 768px) {
-            .toast-container {
-                bottom: 2.5rem;
-            }
+            .toast-container { bottom: 2.5rem; }
         }
         .toast {
             pointer-events: auto;
             background: var(--darkAccent);
             color: var(--parchment);
             border: 1px solid var(--border);
-            padding: 12px 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            padding: 14px 24px;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
             text-align: center;
             width: 100%;
             transition: all 0.3s ease;
@@ -106,7 +111,7 @@
         .sheet-backdrop {
             position: fixed;
             inset: 0;
-            background: rgba(15, 7, 6, 0.65);
+            background: rgba(10, 4, 3, 0.75);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             opacity: 0;
@@ -124,46 +129,48 @@
             left: 0;
             right: 0;
             bottom: 0;
-            max-height: 88vh;
+            max-height: 90vh;
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 24px 24px 0 0;
+            border-radius: 32px 32px 0 0;
             transform: translateY(100%);
-            transition: transform .4s cubic-bezier(.32,.72,0,1);
+            transition: transform .45s cubic-bezier(.16,1,.3,1);
             z-index: 95;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 -12px 50px rgba(0,0,0,0.45);
+            box-shadow: 0 -15px 60px rgba(0,0,0,0.5);
         }
         .sheet.active { transform: translateY(0); }
 
         .sheet-handle {
-            width: 40px;
-            height: 4px;
-            background: rgba(217,119,87,0.35);
-            border-radius: 2px;
-            margin: 12px auto 8px;
+            width: 48px;
+            height: 5px;
+            background: rgba(217,119,87,0.4);
+            border-radius: 3px;
+            margin: 14px auto 8px;
         }
         .sheet-content {
-            padding: 0 24px 24px;
+            padding: 0 24px 32px;
             overflow-y: auto;
             flex-grow: 1;
         }
         .sheet-close {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 32px;
-            height: 32px;
+            top: 18px;
+            right: 18px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background: rgba(0,0,0,0.08);
+            background: rgba(0,0,0,0.06);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text);
             font-size: 16px;
             z-index: 99;
+            transition: background 0.2s;
         }
+        .sheet-close:active { background: rgba(217,119,87,0.15); }
 
         @media (min-width: 768px) {
             .sheet {
@@ -174,10 +181,10 @@
                 transform: translate(-50%, -40%) scale(0.95);
                 max-width: 580px;
                 width: 90%;
-                border-radius: 24px;
+                border-radius: 32px;
                 opacity: 0;
                 pointer-events: none;
-                transition: transform 0.3s cubic-bezier(.32,.72,0,1), opacity 0.3s ease;
+                transition: transform 0.3s cubic-bezier(.16,1,.3,1), opacity 0.3s ease;
             }
             .sheet.active {
                 transform: translate(-50%, -50%) scale(1);
@@ -206,64 +213,40 @@
         .polaroid-corkboard-card {
             background: #FFFFFF;
             color: #1A0D0A;
-            padding: 12px 12px 28px 12px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35), inset 0 0 12px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0, 0, 0, 0.15);
+            padding: 12px 12px 32px 12px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0, 0, 0, 0.12);
             transform: rotate(var(--rotation, 0deg));
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
         }
         .polaroid-corkboard-card:hover {
-            transform: scale(1.05) rotate(0deg) !important;
-            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+            transform: scale(1.06) rotate(0deg) !important;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
             z-index: 20;
         }
         .corkboard-pin {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             background-color: #EF4444;
             border-radius: 50%;
             position: absolute;
             top: -6px;
             left: 50%;
             transform: translateX(-50%);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.4), inset -1px -1px 3px rgba(0,0,0,0.5);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.4), inset -1px -1px 4px rgba(0,0,0,0.5);
             z-index: 10;
-        }
-        .corkboard-pin::after {
-            content: '';
-            position: absolute;
-            width: 1.5px;
-            height: 5px;
-            background: #94A3B8;
-            bottom: -4px;
-            left: 5px;
-            transform: rotate(15deg);
-        }
-
-        .stamp-slot.stamped {
-            background: var(--darkAccent);
-            border-color: var(--terracotta);
-            transform: scale(1.05);
         }
 
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
+            transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
         }
-        .accordion-content.expanded { max-height: 1000px; }
-
-        .map-responsive {
-            overflow:hidden;
-            position:relative;
-            border-radius:18px;
-            border: 1px solid var(--border);
-            z-index: 10;
-        }
+        .accordion-content.expanded { max-height: 1200px; }
 
         .nav-tab-btn {
             position: relative;
-            padding: 0.6rem 1rem;
+            padding: 0.6rem 1.2rem;
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
@@ -279,30 +262,16 @@
         .nav-tab-btn.active {
             color: #FFFFFF !important;
             background-color: var(--terracotta);
-            box-shadow: 0 4px 12px rgba(217, 119, 87, 0.25);
-        }
-        .light-mode .nav-tab-btn.active {
-            color: #FFFFFF !important;
-            background-color: var(--terracotta);
-        }
-        .light-mode .nav-tab-btn {
-            color: #5C4A42;
-        }
-        .light-mode .nav-tab-btn:hover {
-            color: var(--terracotta) !important;
-            background-color: rgba(217, 119, 87, 0.06);
+            box-shadow: 0 4px 14px rgba(217, 119, 87, 0.3);
         }
 
         .mobile-nav-container {
             background-color: var(--mobile-nav-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border-top: 1px solid var(--mobile-nav-border);
-            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4);
             transition: all 0.3s ease;
-        }
-        .light-mode .mobile-nav-container {
-            box-shadow: 0 -8px 30px rgba(217, 119, 87, 0.1);
         }
         .mobile-tab-btn {
             position: relative;
@@ -310,52 +279,47 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 8px 12px;
+            padding: 8px 10px;
             color: var(--neutralMuted);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            border-radius: 16px;
-        }
-        .mobile-tab-btn i {
-            font-size: 1.15rem;
-            transition: transform 0.25s ease;
+            border-radius: 20px;
         }
         .mobile-tab-btn.active {
             color: var(--terracotta) !important;
             background-color: rgba(217, 119, 87, 0.08);
         }
-        .mobile-tab-btn.active i {
-            transform: translateY(-2px) scale(1.1);
-        }
-        .mobile-tab-btn:active {
-            transform: scale(0.92);
-        }
-        .scrollbar-none::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-none {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+
+        .sidebar-expanded { width: 16rem; }
+        .sidebar-collapsed { width: 4.5rem; }
+
+        .cup-fluid {
+            transition: fill 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), y 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Upgraded Collapsible Sidebar Transitions */
-        .sidebar-expanded {
-            width: 16rem; /* w-64 */
+        .stamp-circle {
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .sidebar-collapsed {
-            width: 4.5rem; /* w-18 */
+        .stamp-circle.stamped {
+            background: var(--darkAccent);
+            border-color: var(--terracotta);
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 0 15px rgba(217,119,87,0.3);
         }
+        
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-appBg text-appText flex flex-col min-h-screen">
+<body class="bg-appBg text-appText flex flex-col min-h-screen pb-16 md:pb-0">
 
     <div id="toast-container" class="toast-container hidden">
         <div id="toast-message" class="toast text-xs font-semibold tracking-wide border border-terracotta/30 flex items-center justify-center gap-2"></div>
     </div>
 
-    <!-- App Backdrops -->
+    <!-- Interactive Backdrop overlay -->
     <div class="sheet-backdrop" id="sheet-backdrop" onclick="closeAllSheets()"></div>
 
-    <header id="main-site-header" class="fixed top-0 w-full backdrop-blur-md border-b z-45 p-4 flex justify-between items-center transition-all duration-300" style="background-color: var(--header-bg); border-color: var(--border);">
+    <header id="main-site-header" class="fixed top-0 w-full backdrop-blur-md border-b z-40 p-4 flex justify-between items-center transition-all duration-300" style="background-color: var(--header-bg); border-color: var(--border);">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 flex items-center justify-center bg-appBg rounded-xl border border-terracotta/30 shadow-inner">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-6 h-6 fill-none stroke-terracotta" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -370,7 +334,7 @@
             </div>
         </div>
 
-        <!-- Desktop Navigation: Premium pill tab system -->
+        <!-- Desktop Navigation tabs -->
         <nav class="hidden md:flex items-center gap-3 font-serif" aria-label="Desktop Navigation">
             <button onclick="switchPage('home')" class="nav-tab-btn active" id="tab-home">Online Menu</button>
             <button onclick="switchPage('wall')" class="nav-tab-btn" id="tab-wall">Vibes & Feedback</button>
@@ -380,54 +344,71 @@
         </nav>
 
         <div class="flex items-center gap-2">
-            <button onclick="toggleTheme()" class="p-2 bg-darkAccent/5 hover:bg-terracotta/10 text-terracotta rounded-full transition-all border border-terracotta/10 relative" id="theme-toggle-btn" aria-label="Toggle Theme">
+            <button onclick="toggleTheme()" class="p-2.5 bg-darkAccent/5 hover:bg-terracotta/10 text-terracotta rounded-full transition-all border border-terracotta/10 relative btn-interactive" id="theme-toggle-btn" aria-label="Toggle Theme">
                 <i class="fa-solid fa-moon text-base" id="theme-toggle-icon"></i>
             </button>
-            <button id="cart-trigger" onclick="openSidebarCart()" class="p-2 hover:bg-gray-100 dark:hover:bg-darkAccent rounded-full transition-all relative">
+            <!-- Desktop Bag icon trigger -->
+            <button id="cart-trigger" onclick="openSidebarCart()" class="hidden md:flex p-2.5 hover:bg-gray-100 dark:hover:bg-darkAccent rounded-full transition-all relative btn-interactive">
                 <i class="fa-solid fa-bag-shopping text-xl text-terracotta"></i>
                 <span class="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow animate-pulse" id="desktop-cart-badge">0</span>
             </button>
-            <button onclick="switchPage('admin')" class="p-2 hover:bg-gray-100 dark:hover:bg-darkAccent rounded-full transition-all" aria-label="Open Admin Dashboard">
+            <button onclick="switchPage('admin')" class="p-2.5 hover:bg-gray-100 dark:hover:bg-darkAccent rounded-full transition-all btn-interactive" aria-label="Open Admin Dashboard">
                 <i class="fa-solid fa-lock text-xl text-neutralMuted" id="header-admin-lock-icon"></i>
             </button>
         </div>
     </header>
 
-    <main id="app-root" class="pt-24 pb-20 px-4 max-w-6xl mx-auto w-full flex-grow transition-all duration-300">
+    <main id="app-root" class="pt-20 md:pt-24 pb-12 px-4 max-w-6xl mx-auto w-full flex-grow transition-all duration-300">
         
-        <!-- ================= PAGE 1: HOME/STOREFRONT ================= -->
+        <!-- ================= PAGE 1: MENU / STOREFRONT ================= -->
         <div id="page-home" class="page-view space-y-10">
-            <!-- Hero banner -->
-            <div class="relative rounded-3xl overflow-hidden bg-appCard text-appHeading py-12 px-6 sm:px-12 shadow-2xl flex flex-col md:flex-row items-center justify-between border border-appBorder transition-colors">
-                <div class="absolute inset-0 bg-cover bg-center opacity-15" style="background-image: url('https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&q=80&w=1200');"></div>
+            
+            <!-- Hero Banner Deck with integrated Loyalty stamp display -->
+            <div class="relative rounded-3xl overflow-hidden bg-appCard text-appHeading py-12 px-6 sm:px-12 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 border border-appBorder transition-colors">
+                <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&q=80&w=1200');"></div>
                 <div class="absolute inset-0 bg-gradient-to-r from-appBg via-appBg/90 to-transparent"></div>
                 
-                <div class="relative z-10 max-w-lg space-y-4">
-                    <span class="bg-terracotta/10 text-terracotta font-mono text-xs uppercase px-3 py-1 rounded-full border border-terracotta/35">Est. Maryville, TN</span>
-                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">Every cup, a beautiful mistake.</h2>
+                <div class="relative z-10 max-w-xl space-y-4">
+                    <span class="bg-terracotta/10 text-terracotta font-mono text-xs uppercase px-3 py-1.5 rounded-full border border-terracotta/35">Est. Maryville, TN</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">Every cup, a beautiful mistake.</h2>
                     <p class="text-sm text-accentLight leading-relaxed">
                         Savor Maryville's finest specialty blends. Add custom items to your digital bag to showcase straight to our baristas at the counter during checkout.
                     </p>
+                    
+                    <!-- Interactive Loyalty Stamp Visual Board -->
+                    <div class="bg-espresso/50 border border-terracotta/20 p-4 rounded-2xl max-w-md space-y-3 font-sans shadow-inner">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] uppercase font-bold tracking-widest text-terracotta">Sorghum Society Stamps</span>
+                            <span class="text-[10px] text-neutralMuted font-mono font-bold" id="stamp-indicator-txt">0 of 5 Completed</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-2.5">
+                            <div class="stamp-circle h-11 border-2 border-dashed border-terracotta/25 rounded-xl flex items-center justify-center text-terracotta/40 bg-appBg/40" id="stamp-slot-1"><i class="fa-solid fa-mug-hot"></i></div>
+                            <div class="stamp-circle h-11 border-2 border-dashed border-terracotta/25 rounded-xl flex items-center justify-center text-terracotta/40 bg-appBg/40" id="stamp-slot-2"><i class="fa-solid fa-mug-hot"></i></div>
+                            <div class="stamp-circle h-11 border-2 border-dashed border-terracotta/25 rounded-xl flex items-center justify-center text-terracotta/40 bg-appBg/40" id="stamp-slot-3"><i class="fa-solid fa-mug-hot"></i></div>
+                            <div class="stamp-circle h-11 border-2 border-dashed border-terracotta/25 rounded-xl flex items-center justify-center text-terracotta/40 bg-appBg/40" id="stamp-slot-4"><i class="fa-solid fa-mug-hot"></i></div>
+                            <div class="stamp-circle h-11 border-2 border-dashed border-terracotta/25 rounded-xl flex items-center justify-center text-terracotta/40 bg-appBg/40" id="stamp-slot-5"><i class="fa-solid fa-gift"></i></div>
+                        </div>
+                    </div>
+
                     <div class="flex flex-wrap gap-3 pt-2">
-                        <button onclick="scrollIntoSection('menu-categories')" class="bg-terracotta hover:bg-terracotta/90 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-all shadow-md">Browse Catalog</button>
-                        <button onclick="claimMysteryStamp()" class="bg-darkAccent hover:bg-terracotta hover:text-white text-terracotta font-semibold px-5 py-2.5 rounded-xl text-sm transition-all shadow-md flex items-center gap-2 border border-terracotta/20">
-                            <i class="fa-solid fa-gift"></i> Virtual Stamp Card
+                        <button onclick="scrollIntoSection('menu-categories')" class="bg-terracotta hover:bg-terracotta/90 text-white font-semibold px-5 py-3 rounded-xl text-xs sm:text-sm transition-all shadow-md btn-interactive">Browse Catalog</button>
+                        <button onclick="claimMysteryStamp()" class="bg-darkAccent hover:bg-terracotta hover:text-white text-terracotta font-semibold px-5 py-3 rounded-xl text-xs sm:text-sm transition-all shadow-md flex items-center gap-2 border border-terracotta/20 btn-interactive">
+                            <i class="fa-solid fa-circle-check"></i> Stamp Loyalty Card
                         </button>
                     </div>
                 </div>
                 
-                <!-- Viennese Waltz Highlight Card -->
-                <div class="relative z-10 mt-8 md:mt-0 bg-appCard p-5 rounded-2xl border border-appBorder max-w-xs w-full shadow-xl transition-colors">
+                <div class="relative z-10 bg-appCard p-5 rounded-2xl border border-appBorder max-w-xs w-full shadow-xl transition-colors shrink-0">
                     <div class="relative rounded-xl overflow-hidden h-40 bg-gray-900 mb-4">
                         <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600" alt="Viennese Waltz Premium Drink" class="object-cover w-full h-full" loading="lazy" onerror="window.handleImageError(this)">
                         <span class="absolute top-2 right-2 bg-terracotta text-white font-mono text-[9px] font-bold uppercase px-2 py-0.5 rounded shadow">Popular</span>
                     </div>
                     <div class="flex justify-between items-baseline">
-                        <h3 class="font-serif font-bold text-appHeading">Viennese Waltz</h3>
-                        <span class="text-terracotta font-mono text-sm">$5.80</span>
+                        <h3 class="font-serif font-bold text-appHeading text-sm sm:text-base">Viennese Waltz</h3>
+                        <span class="text-terracotta font-mono text-xs sm:text-sm">$5.80</span>
                     </div>
-                    <p class="text-[11px] text-accentLight mt-1 font-serif">Rich Espresso, velvet steamed milk, premium white chocolate, and sweet almond syrup.</p>
-                    <button id="highlight-add-btn" onclick="addItemToCart('s3', 'Viennese Waltz', 5.80)" class="w-full mt-4 bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 rounded-xl transition-all">
+                    <p class="text-[11px] text-accentLight mt-1 font-serif leading-relaxed">Rich Espresso, velvet steamed milk, premium white chocolate, and sweet almond syrup.</p>
+                    <button id="highlight-add-btn" onclick="addItemToCart('s3', 'Viennese Waltz', 5.80)" class="w-full mt-4 bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-3 rounded-xl transition-all btn-interactive">
                         <i class="fa-solid fa-cart-plus mr-1"></i> Add to Order
                     </button>
                 </div>
@@ -441,19 +422,20 @@
                     </div>
                     
                     <div class="relative w-full md:w-80">
-                        <input type="text" id="menu-search" placeholder="Search coffee, bagels, quiche..." class="w-full bg-appCard border border-terracotta/30 rounded-xl px-4 py-2.5 pl-10 text-xs text-appHeading focus:outline-none focus:border-terracotta transition-all">
+                        <input type="text" id="menu-search" placeholder="Search coffee, bagels, quiche..." class="w-full bg-appCard border border-terracotta/30 rounded-xl px-4 py-3 pl-10 text-xs text-appHeading focus:outline-none focus:ring-2 focus:ring-terracotta/30 transition-all">
                         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-neutralMuted text-xs"></i>
                     </div>
                 </div>
 
+                <!-- Custom Horizontal slider category triggers -->
                 <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none" id="category-pills" role="tablist">
-                    <!-- Loaded dynamically via JS -->
+                    <!-- Dynamic insertion of tabs via Javascript modules -->
                 </div>
 
                 <div class="space-y-3">
                     <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide" id="carousel-title">Featured Specialties</h3>
                     <div id="premium-carousel" class="flex gap-4 overflow-x-auto pb-4 scrollbar-none snap-x snap-mandatory font-sans">
-                        <!-- Loaded dynamically via JS -->
+                        <!-- Dynamic items layouts -->
                     </div>
                 </div>
 
@@ -464,23 +446,24 @@
                     </div>
                     
                     <div id="bistro-catalog-accordions" class="space-y-4 font-sans">
-                        <!-- Populated dynamically via JS -->
+                        <!-- Populated dynamically via JS modules -->
                     </div>
                 </div>
             </div>
 
-            <div class="bg-appCard rounded-3xl p-6 md:p-8 border border-terracotta/30 space-y-6 transition-colors font-sans">
+            <div class="bg-appCard rounded-3xl p-6 md:p-8 border border-terracotta/30 space-y-6 transition-colors font-sans shadow-lg">
                 <div class="text-center max-w-xl mx-auto space-y-2">
                     <span class="font-mono text-xs uppercase tracking-widest text-terracotta">The Brew Lab Customizer</span>
                     <h3 class="font-serif text-2xl font-bold text-appHeading">Customize Your Perfect Brew</h3>
                     <p class="text-xs text-neutralMuted font-sans">Configure base proportions, milk profiles, and delicious sorghum syrups.</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-8 items-center bg-appBg p-6 rounded-2xl border border-appBorder transition-colors">
-                    <div class="space-y-4 text-xs text-appText">
+                <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+                    <!-- Brew Customizer Controls Panel -->
+                    <div class="lg:col-span-7 space-y-5 text-xs text-appText">
                         <div>
-                            <label class="block font-bold uppercase tracking-wider mb-1.5 font-sans">Select Base Drink</label>
-                            <select id="builder-base" class="w-full border border-terracotta/30 bg-appCard rounded-xl p-2.5 text-appHeading focus:outline-none transition-colors" onchange="calculateCustomPrice()">
+                            <label class="block font-bold uppercase tracking-wider mb-2 font-sans text-neutralMuted">Select Base Drink</label>
+                            <select id="builder-base" class="w-full border border-terracotta/30 bg-appBg text-appHeading rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 transition-all font-sans" onchange="calculateCustomPrice()">
                                 <option value="Cold Brew" data-price="5.50">Cold Brew Coffee ($5.50)</option>
                                 <option value="Latte" data-price="5.00">Premium Caffe Latte ($5.00)</option>
                                 <option value="Viennese Waltz" data-price="5.80">Viennese Waltz ($5.80)</option>
@@ -489,82 +472,92 @@
                         </div>
 
                         <div>
-                            <label class="block font-bold uppercase tracking-wider mb-1.5 font-sans">Size Portion (ml)</label>
+                            <label class="block font-bold uppercase tracking-wider mb-2 font-sans text-neutralMuted">Cup Size Selection</label>
                             <div class="grid grid-cols-3 gap-2">
-                                <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center transition-all">
+                                <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-3 cursor-pointer bg-appCard text-center transition-all select-none hover:border-terracotta">
                                     <input type="radio" name="brew-size" value="250" checked class="sr-only" onchange="calculateCustomPrice()">
-                                    <span class="text-sm font-bold block text-appHeading">250</span>
-                                    <span class="text-[9px] text-neutralMuted">Small</span>
+                                    <span class="text-sm font-bold block text-appHeading">250 ml</span>
+                                    <span class="text-[9px] text-neutralMuted">Small Cup</span>
                                 </label>
-                                <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center transition-all">
+                                <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-3 cursor-pointer bg-appCard text-center transition-all select-none hover:border-terracotta">
                                     <input type="radio" name="brew-size" value="350" class="sr-only" onchange="calculateCustomPrice()">
-                                    <span class="text-sm font-bold block text-appHeading">350</span>
+                                    <span class="text-sm font-bold block text-appHeading">350 ml</span>
                                     <span class="text-[9px] text-neutralMuted">Medium (+$1)</span>
                                 </label>
-                                <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-2.5 cursor-pointer bg-appCard text-center transition-all">
+                                <label class="flex flex-col items-center justify-center border border-terracotta/30 rounded-xl p-3 cursor-pointer bg-appCard text-center transition-all select-none hover:border-terracotta">
                                     <input type="radio" name="brew-size" value="450" class="sr-only" onchange="calculateCustomPrice()">
-                                    <span class="text-sm font-bold block text-appHeading">450</span>
+                                    <span class="text-sm font-bold block text-appHeading">450 ml</span>
                                     <span class="text-[9px] text-neutralMuted">Large (+$2)</span>
                                 </label>
                             </div>
                         </div>
 
                         <div>
-                            <label class="block font-bold uppercase tracking-wider mb-1.5 font-sans">Milk Alternative</label>
+                            <label class="block font-bold uppercase tracking-wider mb-2 font-sans text-neutralMuted">Milk Formulation</label>
                             <div class="grid grid-cols-3 gap-2">
-                                <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard transition-all">
-                                    <input type="radio" name="milk" value="Whole" checked class="accent-terracotta" onchange="calculateCustomPrice()">
+                                <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-3 cursor-pointer bg-appCard transition-all hover:border-terracotta">
+                                    <input type="radio" name="milk" value="Whole" checked class="accent-terracotta scale-11" onchange="calculateCustomPrice()">
                                     <span>Whole</span>
                                 </label>
-                                <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard transition-all">
-                                    <input type="radio" name="milk" value="Oat" class="accent-terracotta" onchange="calculateCustomPrice()">
+                                <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-3 cursor-pointer bg-appCard transition-all hover:border-terracotta">
+                                    <input type="radio" name="milk" value="Oat" class="accent-terracotta scale-11" onchange="calculateCustomPrice()">
                                     <span>Oat (+$1)</span>
                                 </label>
-                                <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-2.5 cursor-pointer bg-appCard transition-all">
-                                    <input type="radio" name="milk" value="Almond" class="accent-terracotta" onchange="calculateCustomPrice()">
+                                <label class="flex items-center justify-center gap-2 border border-terracotta/20 rounded-xl p-3 cursor-pointer bg-appCard transition-all hover:border-terracotta">
+                                    <input type="radio" name="milk" value="Almond" class="accent-terracotta scale-11" onchange="calculateCustomPrice()">
                                     <span>Almond (+$1)</span>
                                 </label>
                             </div>
                         </div>
 
                         <div>
-                            <label class="block font-bold uppercase tracking-wider mb-1.5 font-sans">Syrup Flavor Add-ons</label>
+                            <label class="block font-bold uppercase tracking-wider mb-2 font-sans text-neutralMuted">Syrup & Shot Add-ons</label>
                             <div class="grid grid-cols-2 gap-2">
-                                <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
-                                    <input type="checkbox" id="syrup-vanilla" class="accent-terracotta" onchange="calculateCustomPrice()">
+                                <label class="flex items-center gap-2 p-3 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer hover:border-terracotta">
+                                    <input type="checkbox" id="syrup-vanilla" class="accent-terracotta scale-11" onchange="calculateCustomPrice()">
                                     <span>Vanilla (+$1)</span>
                                 </label>
-                                <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
-                                    <input type="checkbox" id="syrup-sorghum" class="accent-terracotta" onchange="calculateCustomPrice()">
+                                <label class="flex items-center gap-2 p-3 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer hover:border-terracotta">
+                                    <input type="checkbox" id="syrup-sorghum" class="accent-terracotta scale-11" onchange="calculateCustomPrice()">
                                     <span>Sorghum (+$1)</span>
                                 </label>
-                                <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
-                                    <input type="checkbox" id="extra-shot" class="accent-terracotta" onchange="calculateCustomPrice()">
+                                <label class="flex items-center gap-2 p-3 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer hover:border-terracotta">
+                                    <input type="checkbox" id="extra-shot" class="accent-terracotta scale-11" onchange="calculateCustomPrice()">
                                     <span>Extra Shot (+$1)</span>
                                 </label>
-                                <label class="flex items-center gap-2 p-2 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer">
-                                    <input type="checkbox" id="heavy-cream" class="accent-terracotta" onchange="calculateCustomPrice()">
+                                <label class="flex items-center gap-2 p-3 border border-terracotta/20 rounded-xl bg-appCard text-appText cursor-pointer hover:border-terracotta">
+                                    <input type="checkbox" id="heavy-cream" class="accent-terracotta scale-11" onchange="calculateCustomPrice()">
                                     <span>Heavy Cream (+$2)</span>
                                 </label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="bg-appCard text-appHeading p-6 rounded-2xl h-full flex flex-col justify-between border border-terracotta/30 transition-colors">
-                        <div>
-                            <span class="text-terracotta font-mono text-[9px] uppercase tracking-widest block mb-1">Interactive Custom Build</span>
+                    <div class="lg:col-span-5 bg-appBg text-appHeading p-6 rounded-2xl flex flex-col justify-between border border-terracotta/20 shadow-inner">
+                        <div class="text-center space-y-1">
+                            <span class="text-terracotta font-mono text-[9px] uppercase tracking-widest block">Interactive Live Simulator</span>
                             <h4 id="builder-display-name" class="font-serif text-lg font-bold">Custom Cold Brew</h4>
-                            <p id="builder-display-desc" class="text-[11px] text-accentLight mt-2 leading-relaxed font-serif">
+                            <p id="builder-display-desc" class="text-[11px] text-accentLight leading-relaxed font-serif max-w-xs mx-auto">
                                 Premium drip espresso profile with standard whole milk. Add luxury flavors and modifications.
                             </p>
                         </div>
+
+                        <!-- Fluid Visual Canvas Cup -->
+                        <div class="my-6 flex justify-center">
+                            <svg id="simulation-cup-svg" class="w-32 h-44" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M 15,10 L 85,10 L 75,110 L 25,110 Z" fill="none" stroke="currentColor" stroke-width="3" opacity="0.4" stroke-linejoin="round" />
+                                <path id="simulation-liquid" class="cup-fluid" d="M 20,40 L 80,40 L 75,110 L 25,110 Z" fill="#4B2A1E" opacity="0.85" />
+                                <path id="simulation-froth" class="cup-fluid" d="M 20,35 L 80,35 L 80,40 L 20,40 Z" fill="#EADBC8" opacity="0.9" />
+                                <path id="simulation-syrup" d="M 28,35 Q 32,55 35,50 Q 38,40 42,65 Q 46,75 50,55" fill="none" stroke="#2B1612" stroke-width="4" stroke-linecap="round" opacity="0" class="transition-opacity duration-300" />
+                            </svg>
+                        </div>
                         
-                        <div class="mt-6 pt-4 border-t border-appBorder flex justify-between items-center">
+                        <div class="pt-4 border-t border-appBorder flex justify-between items-center font-sans">
                             <div>
-                                <span class="text-[10px] text-neutralMuted block uppercase tracking-wider">Total Est.</span>
+                                <span class="text-[10px] text-neutralMuted block uppercase tracking-wider font-semibold">Total Price</span>
                                 <span id="builder-display-price" class="text-terracotta font-mono text-xl font-bold">$5.50</span>
                             </div>
-                            <button onclick="addCustomBuildToCart()" class="bg-terracotta hover:bg-terracotta/90 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-all shadow-md font-sans">
+                            <button onclick="addCustomBuildToCart()" class="bg-terracotta hover:bg-terracotta/90 text-white font-bold py-3 px-5 rounded-xl text-xs transition-all shadow-md font-sans btn-interactive">
                                 Add Mix to Bag
                             </button>
                         </div>
@@ -573,8 +566,8 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 2: VIBE BOARD & FEEDBACK ================= -->
-        <div id="page-wall" class="page-view hidden space-y-12 animate-fadeIn">
+        <!-- ================= PAGE 2: CORKBOARD & SUGGESTIONS ================= -->
+        <div id="page-wall" class="page-view hidden space-y-12">
             <div class="text-center max-w-xl mx-auto space-y-2">
                 <span class="font-mono text-xs uppercase tracking-widest text-terracotta">The Community Corkboard</span>
                 <h2 class="font-serif text-3xl font-bold text-appHeading">Pour Decisions Vibe Board</h2>
@@ -585,10 +578,11 @@
                 </div>
             </div>
 
+            <!-- Responsive polaroid photo board matrix -->
             <div id="polaroid-canvas-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center font-sans"></div>
 
             <div class="text-center pt-4">
-                <button onclick="openUploadSheet()" class="bg-appCard hover:bg-appCard/90 text-appHeading font-serif px-6 py-3 rounded-xl shadow-lg transition-all border border-terracotta/30">
+                <button onclick="openUploadSheet()" class="bg-appCard hover:bg-appCard/90 text-appHeading font-serif px-6 py-3.5 rounded-xl shadow-lg transition-all border border-terracotta/30 btn-interactive">
                     <i class="fa-solid fa-camera mr-2"></i> Pin Your Vibe on the Board
                 </button>
             </div>
@@ -604,19 +598,17 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
                     
-                    <!-- Published Board Notes -->
+                    <!-- Approved public corkboard notes -->
                     <div class="space-y-5 order-first lg:order-last w-full">
                         <div class="flex justify-between items-baseline border-b border-appBorder pb-2">
                             <h3 class="font-serif text-lg font-bold text-appHeading tracking-wide">Featured Guest Notes</h3>
                             <span class="text-xs text-neutralMuted uppercase tracking-wider font-mono">Maryville, TN</span>
                         </div>
 
-                        <div id="feedback-board-cards" class="grid gap-4">
-                            <!-- Dynamically populated approved Feedbacks -->
-                        </div>
+                        <div id="feedback-board-cards" class="grid gap-4"></div>
                     </div>
 
-                    <!-- Input Panel -->
+                    <!-- Input suggestion panel form -->
                     <div class="bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 transition-colors order-last lg:order-first w-full">
                         <div class="p-4 bg-terracotta/10 border-l-4 border-terracotta rounded-xl text-xs leading-relaxed text-accentLight font-serif">
                             <p class="font-bold text-appHeading mb-1">📢 Important Note</p>
@@ -626,20 +618,20 @@
                         <form id="suggestions-submit-form" class="space-y-4 font-sans">
                             <div class="flex flex-col gap-1.5 text-xs text-appText">
                                 <label for="feedback-user" class="font-semibold text-neutralMuted uppercase tracking-wider">Your Handle / Name</label>
-                                <input type="text" id="feedback-user" required placeholder="e.g. @maryville_regular" class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
+                                <input type="text" id="feedback-user" required placeholder="e.g. @maryville_regular" class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none focus:ring-2 focus:ring-terracotta/30 transition-colors">
                             </div>
 
                             <div class="flex flex-col gap-1.5 text-xs text-appText">
                                 <label for="feedback-topic" class="font-semibold text-neutralMuted uppercase tracking-wider">Favorite Specialty Product</label>
-                                <input type="text" id="feedback-topic" required placeholder="e.g. Muddy Pond Mocha" class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
+                                <input type="text" id="feedback-topic" required placeholder="e.g. Muddy Pond Mocha" class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none focus:ring-2 focus:ring-terracotta/30 transition-colors">
                             </div>
 
                             <div class="flex flex-col gap-1.5 text-xs text-appText">
                                 <label for="feedback-comment" class="font-semibold text-neutralMuted uppercase tracking-wider">Review or Suggestion</label>
-                                <textarea id="feedback-comment" rows="4" required placeholder="Let us know how to make your next visit extraordinary..." class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors"></textarea>
+                                <textarea id="feedback-comment" rows="4" required placeholder="Let us know how to make your next visit extraordinary..." class="border border-terracotta/25 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none focus:ring-2 focus:ring-terracotta/30 transition-colors"></textarea>
                             </div>
 
-                            <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif py-3.5 rounded-xl shadow-md transition-all font-bold tracking-wider text-sm">
+                            <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif py-3.5 rounded-xl shadow-md transition-all font-bold tracking-wider text-sm btn-interactive">
                                 Publish Suggestion
                             </button>
                         </form>
@@ -648,33 +640,33 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 3: LOUNGE BOOKING ================= -->
-        <div id="page-booking" class="page-view hidden space-y-8 animate-fadeIn">
+        <!-- ================= PAGE 3: LOUNGE SEATING BOOKING ================= -->
+        <div id="page-booking" class="page-view hidden space-y-8">
             <div class="text-center max-w-xl mx-auto space-y-2 font-sans">
                 <span class="font-mono text-xs uppercase tracking-widest text-terracotta">College Street Lounge Space</span>
                 <h2 class="font-serif text-3xl font-bold text-appHeading">Reserve a Lounge Table</h2>
                 <p class="text-sm text-neutralMuted">Book warm hearth niches, quiet study corners, or register on OpenTable/Resy.</p>
                 
                 <div class="inline-flex rounded-full bg-darkAccent p-1 border border-terracotta/20 mt-4">
-                    <button id="btn-booking-internal" onclick="setReservationMode('internal')" class="px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-terracotta text-white">Same-Day Lounge Pass</button>
-                    <button id="btn-booking-widget" onclick="setReservationMode('widget')" class="px-4 py-1.5 rounded-full text-xs font-semibold transition-all text-neutralMuted">OpenTable / Resy</button>
+                    <button id="btn-booking-internal" onclick="setReservationMode('internal')" class="px-4 py-2 rounded-full text-xs font-semibold transition-all bg-terracotta text-white btn-interactive">Same-Day Lounge Pass</button>
+                    <button id="btn-booking-widget" onclick="setReservationMode('widget')" class="px-4 py-2 rounded-full text-xs font-semibold transition-all text-neutralMuted btn-interactive">OpenTable / Resy</button>
                 </div>
             </div>
 
-            <!-- Booking Section Content -->
+            <!-- Dynamic internal reservation inputs form -->
             <div id="booking-internal-container" class="max-w-2xl mx-auto bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 transition-colors">
                 <div>
                     <label class="block text-xs font-bold text-appText uppercase tracking-widest text-center mb-3">Choose Seating Area</label>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <button type="button" class="zone-btn text-appHeading p-4 rounded-xl bg-appBg border border-terracotta/20 selected" onclick="selectReserveZone(this, 'Library Hearth Nook', '📚 Book-lined room with warm brick fireplaces, wingback leather chairs, and low coffee tables.')">
+                        <button type="button" class="zone-btn text-appHeading p-4 rounded-xl bg-appBg border border-terracotta/20 selected transition-all hover:border-terracotta/60" onclick="selectReserveZone(this, 'Library Hearth Nook', '📚 Book-lined room with warm brick fireplaces, wingback leather chairs, and low coffee tables.')">
                             <span class="block text-terracotta font-serif font-bold text-sm">Hearth Nook</span>
                             <span class="text-[10px] text-neutralMuted">Cozy & Quiet</span>
                         </button>
-                        <button type="button" class="zone-btn text-appHeading p-4 rounded-xl bg-appBg border border-terracotta/20" onclick="selectReserveZone(this, 'Window Street niche', '🪟 Bright, sun-drenched oak window bar overlooking College Street. Power sockets available.')">
+                        <button type="button" class="zone-btn text-appHeading p-4 rounded-xl bg-appBg border border-terracotta/20 transition-all hover:border-terracotta/60" onclick="selectReserveZone(this, 'Window Street niche', '🪟 Bright, sun-drenched oak window bar overlooking College Street. Power sockets available.')">
                             <span class="block text-terracotta font-serif font-bold text-sm">College Street Niche</span>
                             <span class="text-[10px] text-neutralMuted">Sunny & Powered</span>
                         </button>
-                        <button type="button" class="zone-btn text-appHeading p-4 rounded-xl bg-appBg border border-terracotta/20" onclick="selectReserveZone(this, 'Upstairs Harvest Room', '🪵 Large rustic chestnut harvest tables perfect for business meetings or group study sessions.')">
+                        <button type="button" class="zone-btn text-appHeading p-4 rounded-xl bg-appBg border border-terracotta/20 transition-all hover:border-terracotta/60" onclick="selectReserveZone(this, 'Upstairs Harvest Room', '🪵 Large rustic chestnut harvest tables perfect for business meetings or group study sessions.')">
                             <span class="block text-terracotta font-serif font-bold text-sm">Harvest Room</span>
                             <span class="text-[10px] text-neutralMuted">Group Spaces</span>
                         </button>
@@ -687,27 +679,27 @@
                 <form id="reserve-bistro-form" class="space-y-4 font-sans">
                     <div class="flex flex-col gap-1.5">
                         <label for="reserve-name" class="text-xs font-semibold text-neutralMuted uppercase">Full Reservation Name</label>
-                        <input type="text" id="reserve-name" required placeholder="Hold reservation under what name?" class="border border-terracotta/30 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
+                        <input type="text" id="reserve-name" required placeholder="Hold reservation under what name?" class="border border-terracotta/30 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none focus:ring-2 focus:ring-terracotta/30 transition-colors">
                     </div>
                     
                     <div class="grid grid-cols-2 gap-4">
                         <div class="flex flex-col gap-1.5">
                             <label for="reserve-guests" class="text-xs font-semibold text-neutralMuted uppercase">Total Guests</label>
-                            <input type="number" id="reserve-guests" min="1" max="15" required placeholder="2" class="border border-terracotta/30 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
+                            <input type="number" id="reserve-guests" min="1" max="15" required placeholder="2" class="border border-terracotta/30 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none focus:ring-2 focus:ring-terracotta/30 transition-colors">
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="reserve-time" class="text-xs font-semibold text-neutralMuted uppercase">Arrival Time Slot (Today Only)</label>
-                            <input type="time" id="reserve-time" required class="border border-terracotta/30 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none transition-colors">
+                            <input type="time" id="reserve-time" required class="border border-terracotta/30 rounded-xl bg-appBg p-3 text-sm text-appHeading focus:outline-none focus:ring-2 focus:ring-terracotta/30 transition-colors">
                         </div>
                     </div>
 
-                    <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif py-3.5 rounded-xl shadow-md transition-all font-bold tracking-wider text-sm">
+                    <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif py-3.5 rounded-xl shadow-md transition-all font-bold tracking-wider text-sm btn-interactive">
                         Generate Same-Day Lounge Entry Pass
                     </button>
                 </form>
             </div>
 
-            <!-- Simulated Widget Overlay Container -->
+            <!-- Simulated Reservator widget overlay -->
             <div id="booking-widget-container" class="max-w-2xl mx-auto hidden bg-appCard border border-terracotta/30 p-6 rounded-3xl shadow-xl space-y-4">
                 <div class="flex justify-between items-center border-b border-appBorder pb-3">
                     <h4 class="font-serif font-bold text-appHeading">Resy & OpenTable Network Sync</h4>
@@ -741,8 +733,8 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 4: CATERING & EVENTS ================= -->
-        <div id="page-catering" class="page-view hidden space-y-8 animate-fadeIn">
+        <!-- ================= PAGE 4: CATERING & EVENT LEADS ================= -->
+        <div id="page-catering" class="page-view hidden space-y-8">
             <div class="text-center max-w-xl mx-auto space-y-2 font-sans">
                 <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Sorghum & Smoke Caterings</span>
                 <h2 class="font-serif text-3xl font-bold text-appHeading">Digital Catering Inquiries</h2>
@@ -755,7 +747,7 @@
                         <h3 class="font-serif text-xl font-bold text-terracotta mb-2">Our Catering Packages</h3>
                         <p class="text-xs text-neutralMuted leading-relaxed">We bring Maryville’s supreme coffee and pastries directly to your event venue with staff support.</p>
                         
-                        <div class="mt-4 space-y-3 text-xs text-appText">
+                        <div class="mt-4 space-y-3 text-xs text-appText font-sans">
                             <div class="flex items-start gap-3">
                                 <i class="fa-solid fa-mug-hot text-terracotta mt-0.5"></i>
                                 <div><strong>Espresso Bar Package:</strong> Professional dual-group head machine, custom syrup menu, and 2 dedicated baristas for 4 hours.</div>
@@ -778,7 +770,7 @@
 
                 <div class="bg-appCard border border-terracotta/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-4">
                     <h4 class="font-serif font-bold text-appHeading text-lg">Inquiry Request Form</h4>
-                    <form id="catering-inquiry-form" class="space-y-3 font-sans text-xs">
+                    <form id="catering-inquiry-form" class="space-y-3 font-sans text-xs text-appText">
                         <div class="grid grid-cols-2 gap-3">
                             <div class="flex flex-col gap-1">
                                 <label class="text-neutralMuted uppercase tracking-wider font-semibold">Your Name</label>
@@ -801,7 +793,7 @@
                         </div>
                         <div class="flex flex-col gap-1">
                             <label class="text-neutralMuted uppercase tracking-wider font-semibold">Budget Tier Selection</label>
-                            <select id="cat-budget" class="bg-appBg border border-terracotta/25 rounded-lg p-2.5 text-appHeading focus:outline-none">
+                            <select id="cat-budget" class="bg-appBg border border-terracotta/25 rounded-lg p-2.5 text-appHeading focus:outline-none font-sans">
                                 <option value="Standard Brew (Urns Only)">Standard Brew (Urns Only)</option>
                                 <option value="Full Espresso Station & Pastries">Full Espresso Bar & Pastries</option>
                                 <option value="Executive Full Service & Open Bar">Executive Service & Full Menu</option>
@@ -811,7 +803,7 @@
                             <label class="text-neutralMuted uppercase tracking-wider font-semibold">Event Description / Demands</label>
                             <textarea id="cat-desc" rows="3" required placeholder="Tell us about your catering theme or requirements..." class="bg-appBg border border-terracotta/25 rounded-lg p-2 text-appHeading focus:outline-none"></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif py-3 rounded-lg font-bold shadow transition-all">
+                        <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif py-3 rounded-lg font-bold shadow transition-all btn-interactive">
                             Submit Catering Proposal
                         </button>
                     </form>
@@ -819,8 +811,8 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 5: OUR HERITAGE ================= -->
-        <div id="page-heritage" class="page-view hidden space-y-12 animate-fadeIn">
+        <!-- ================= PAGE 5: HERITAGE & MAPS ================= -->
+        <div id="page-heritage" class="page-view hidden space-y-12">
             <div class="text-center max-w-xl mx-auto space-y-2 font-sans">
                 <span class="font-mono text-xs uppercase tracking-widest text-terracotta">Est. 1999 — Tennessee</span>
                 <h2 class="font-serif text-3xl font-bold text-appHeading">The Pour Decisions Story</h2>
@@ -829,7 +821,7 @@
 
             <div class="grid md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
                 <div class="max-w-sm w-full mx-auto">
-                    <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&q=80&w=600" alt="Pour Decisions Barista Craft" class="border-4 border-appCard shadow-xl rotate-[-2deg] rounded-xl mx-auto" loading="lazy" onerror="window.handleImageError(this)">
+                    <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&q=80&w=600" alt="Pour Decisions Barista Craft" class="border-4 border-appCard shadow-xl rotate-[-2deg] rounded-xl mx-auto transition-colors" loading="lazy" onerror="window.handleImageError(this)">
                 </div>
                 <div class="space-y-4 text-xs sm:text-sm leading-relaxed text-accentLight font-serif">
                     <h3 class="font-serif text-xl font-bold text-terracotta">Roasting for Community</h3>
@@ -869,11 +861,11 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 6: ADMIN HUB (UPGRADED COLLAPSIBLE SIDEBAR CMS) ================= -->
-        <div id="page-admin" class="page-view hidden space-y-8 animate-fadeIn">
+        <!-- ================= PAGE 6: ADMIN HUB CONTROL AREA ================= -->
+        <div id="page-admin" class="page-view hidden space-y-8">
             
-            <!-- Verification passcode card -->
-            <div id="cms-verify-section" class="bg-appCard border border-appBorder rounded-3xl p-8 max-w-md mx-auto text-center space-y-6 font-sans">
+            <!-- Passcode lock portal -->
+            <div id="cms-verify-section" class="bg-appCard border border-appBorder rounded-3xl p-8 max-w-md mx-auto text-center space-y-6 font-sans shadow-xl">
                 <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-darkAccent border border-terracotta/30 text-2xl text-terracotta">
                     <i class="fa-solid fa-lock"></i>
                 </div>
@@ -882,149 +874,124 @@
                     <p class="text-xs text-neutralMuted mt-1">Please enter your passcode to unlock dashboard operations. (Hint: <strong>barako</strong>)</p>
                 </div>
                 <div class="space-y-3">
-                    <input type="password" id="cms-passcode-input" placeholder="Password..." class="w-full text-center bg-appBg border border-terracotta/30 rounded-xl p-3 text-sm text-appHeading focus:outline-none focus:border-terracotta">
-                    <button onclick="verifyAdministrativePasscode()" class="w-full bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-3 rounded-xl transition-all shadow-md">
+                    <input type="password" id="cms-passcode-input" placeholder="Password..." class="w-full text-center bg-appBg border border-terracotta/30 rounded-xl p-3 text-sm text-appHeading focus:outline-none focus:ring-2 focus:ring-terracotta/30">
+                    <button onclick="verifyAdministrativePasscode()" class="w-full bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-3.5 rounded-xl transition-all shadow-md btn-interactive">
                         Authorize Session
                     </button>
                 </div>
             </div>
 
-            <!-- Upgraded Authenticated Sidebar Workspace Layout -->
             <div id="cms-authenticated-view" class="hidden flex flex-col md:flex-row gap-6 items-stretch w-full min-h-[75vh] font-sans">
                 
-                <!-- Collapsible Sidebar Segment -->
-                <aside id="cms-collapsible-sidebar" class="sidebar-expanded flex flex-col bg-appCard border border-appBorder rounded-3xl p-4 transition-all duration-300 gap-6 relative justify-between shrink-0">
-                    
+                <!-- Desktop Sidebar Navigation -->
+                <aside id="cms-collapsible-sidebar" class="hidden md:flex sidebar-expanded flex-col bg-appCard border border-appBorder rounded-3xl p-4 transition-all duration-300 gap-6 relative justify-between shrink-0 shadow-lg">
                     <div class="space-y-6">
-                        <!-- Profile/Logo Title Section -->
                         <div class="flex items-center gap-3 border-b border-appBorder pb-4 overflow-hidden">
                             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-terracotta to-amber-700 flex items-center justify-center text-white shrink-0 shadow">
                                 <i class="fa-solid fa-mug-hot text-base"></i>
                             </div>
                             <div class="sidebar-text-label transition-opacity duration-200">
                                 <h4 class="font-bold text-xs text-appHeading tracking-wider uppercase leading-none">Pour Decisions</h4>
-                                <span class="text-[9px] text-neutralMuted font-mono block mt-1">Maryville Pro HQ</span>
+                                <span class="text-[9px] text-neutralMuted font-mono block mt-1 font-bold">Maryville Pro HQ</span>
                             </div>
                         </div>
 
-                        <!-- Sidebar Navigation options -->
                         <nav class="flex flex-col gap-1.5 font-sans" aria-label="CMS Navigation">
-                            <button id="sidebar-btn-dashboard" onclick="switchCMSTab('dashboard')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 bg-terracotta/10 text-terracotta border-l-2 border-terracotta font-medium text-xs">
-                                <div class="grid h-full w-12 place-content-center shrink-0">
-                                    <i class="fa-solid fa-chart-line text-sm"></i>
-                                </div>
+                            <button id="sidebar-btn-dashboard" onclick="switchCMSTab('dashboard')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 bg-terracotta/10 text-terracotta border-l-2 border-terracotta font-medium text-xs btn-interactive">
+                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-chart-line text-sm"></i></div>
                                 <span class="sidebar-text-label transition-opacity duration-200 truncate">Insights Overview</span>
                             </button>
-
-                            <button id="sidebar-btn-orders" onclick="switchCMSTab('orders')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs">
-                                <div class="grid h-full w-12 place-content-center shrink-0">
-                                    <i class="fa-solid fa-basket-shopping text-sm"></i>
-                                </div>
+                            <button id="sidebar-btn-orders" onclick="switchCMSTab('orders')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
+                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-basket-shopping text-sm"></i></div>
                                 <span class="sidebar-text-label transition-opacity duration-200 truncate">Pre-orders & Seats</span>
                             </button>
-
-                            <button id="sidebar-btn-feedback" onclick="switchCMSTab('feedback')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs">
-                                <div class="grid h-full w-12 place-content-center shrink-0">
-                                    <i class="fa-solid fa-user-shield text-sm"></i>
-                                </div>
+                            <button id="sidebar-btn-feedback" onclick="switchCMSTab('feedback')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
+                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-user-shield text-sm"></i></div>
                                 <span class="sidebar-text-label transition-opacity duration-200 truncate">Note Reviews</span>
                             </button>
-
-                            <button id="sidebar-btn-catering" onclick="switchCMSTab('catering')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs">
-                                <div class="grid h-full w-12 place-content-center shrink-0">
-                                    <i class="fa-solid fa-envelope-open-text text-sm"></i>
-                                </div>
+                            <button id="sidebar-btn-catering" onclick="switchCMSTab('catering')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
+                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-envelope-open-text text-sm"></i></div>
                                 <span class="sidebar-text-label transition-opacity duration-200 truncate">Catering & Leads</span>
                             </button>
-
-                            <button id="sidebar-btn-photos" onclick="switchCMSTab('photos')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs">
-                                <div class="grid h-full w-12 place-content-center shrink-0">
-                                    <i class="fa-solid fa-images text-sm"></i>
-                                </div>
+                            <button id="sidebar-btn-photos" onclick="switchCMSTab('photos')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
+                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-images text-sm"></i></div>
                                 <span class="sidebar-text-label transition-opacity duration-200 truncate">Vibe Archives</span>
                             </button>
-
-                            <button id="sidebar-btn-products" onclick="switchCMSTab('products')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs">
-                                <div class="grid h-full w-12 place-content-center shrink-0">
-                                    <i class="fa-solid fa-mug-saucer text-sm"></i>
-                                </div>
+                            <button id="sidebar-btn-products" onclick="switchCMSTab('products')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
+                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-mug-saucer text-sm"></i></div>
                                 <span class="sidebar-text-label transition-opacity duration-200 truncate">Catalog Matrix</span>
                             </button>
-
-                            <button id="sidebar-btn-analytics" onclick="switchCMSTab('analytics')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs">
-                                <div class="grid h-full w-12 place-content-center shrink-0">
-                                    <i class="fa-solid fa-gears text-sm"></i>
-                                </div>
+                            <button id="sidebar-btn-analytics" onclick="switchCMSTab('analytics')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
+                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-gears text-sm"></i></div>
                                 <span class="sidebar-text-label transition-opacity duration-200 truncate">Core Sync Settings</span>
                             </button>
                         </nav>
                     </div>
 
-                    <!-- Sidebar Footer Controls Section -->
                     <div class="space-y-2 pt-4 border-t border-appBorder">
-                        <button onclick="switchPage('home')" class="flex items-center h-10 w-full rounded-xl text-xs text-neutralMuted hover:bg-darkAccent hover:text-appHeading transition-all">
-                            <div class="grid h-full w-12 place-content-center shrink-0">
-                                <i class="fa-solid fa-arrow-left-long"></i>
-                            </div>
-                            <span class="sidebar-text-label transition-opacity duration-200 truncate">Exit to Store</span>
+                        <button onclick="switchPage('home')" class="flex items-center h-10 w-full rounded-xl text-xs text-neutralMuted hover:bg-darkAccent hover:text-appHeading transition-all btn-interactive">
+                            <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-arrow-left-long"></i></div>
+                            <span class="sidebar-text-label transition-opacity duration-200 truncate font-semibold">Exit to Store</span>
                         </button>
-                        
-                        <!-- Toggle collapse switch -->
-                        <button onclick="toggleAdminSidebar()" class="hidden md:flex items-center h-10 w-full rounded-xl text-xs text-neutralMuted hover:bg-darkAccent hover:text-appHeading transition-all">
-                            <div class="grid h-full w-12 place-content-center shrink-0">
-                                <i id="sidebar-toggle-arrow-icon" class="fa-solid fa-angles-left transition-transform duration-300"></i>
-                            </div>
-                            <span class="sidebar-text-label transition-opacity duration-200 truncate">Collapse Sidebar</span>
+                        <button onclick="toggleAdminSidebar()" class="hidden md:flex items-center h-10 w-full rounded-xl text-xs text-neutralMuted hover:bg-darkAccent hover:text-appHeading transition-all btn-interactive">
+                            <div class="grid h-full w-12 place-content-center shrink-0"><i id="sidebar-toggle-arrow-icon" class="fa-solid fa-angles-left transition-transform duration-300"></i></div>
+                            <span class="sidebar-text-label transition-opacity duration-200 truncate font-semibold">Collapse Sidebar</span>
                         </button>
                     </div>
                 </aside>
 
-                <!-- Main Contents Panel Work Area on the Right -->
+                <!-- Mobile Navigation Slider Carousel -->
+                <div class="flex md:hidden overflow-x-auto gap-2 pb-2 scrollbar-none max-w-full font-sans mb-4 border-b border-appBorder py-1">
+                    <button id="mobile-cms-tab-dashboard" onclick="switchCMSTab('dashboard')" class="bg-terracotta text-white px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap shadow-sm btn-interactive">Insights</button>
+                    <button id="mobile-cms-tab-orders" onclick="switchCMSTab('orders')" class="bg-darkCard text-neutralMuted border border-appBorder px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap btn-interactive">Orders</button>
+                    <button id="mobile-cms-tab-feedback" onclick="switchCMSTab('feedback')" class="bg-darkCard text-neutralMuted border border-appBorder px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap btn-interactive">Reviews</button>
+                    <button id="mobile-cms-tab-catering" onclick="switchCMSTab('catering')" class="bg-darkCard text-neutralMuted border border-appBorder px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap btn-interactive">Catering</button>
+                    <button id="mobile-cms-tab-photos" onclick="switchCMSTab('photos')" class="bg-darkCard text-neutralMuted border border-appBorder px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap btn-interactive">Vibes</button>
+                    <button id="mobile-cms-tab-products" onclick="switchCMSTab('products')" class="bg-darkCard text-neutralMuted border border-appBorder px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap btn-interactive">Catalog</button>
+                    <button id="mobile-cms-tab-analytics" onclick="switchCMSTab('analytics')" class="bg-darkCard text-neutralMuted border border-appBorder px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap btn-interactive">Settings</button>
+                    <button onclick="switchPage('home')" class="bg-darkAccent text-terracotta border border-terracotta/25 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap btn-interactive"><i class="fa-solid fa-arrow-left"></i> Exit</button>
+                </div>
+
+                <!-- Main Contents Workspace Area -->
                 <div class="flex-1 space-y-6">
                     
-                    <!-- Tab Sub-panel 0: INSIGHTS LANDING PANEL -->
-                    <div id="cms-dashboard-subview" class="space-y-6 animate-fadeIn">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-serif text-2xl font-bold text-appHeading">Insights Dashboard</h3>
-                                <p class="text-xs text-neutralMuted">Simulated system health indicators and active tracking metrics.</p>
-                            </div>
+                    <!-- CMS View Segment: INSIGHTS DASHBOARD OVERVIEW -->
+                    <div id="cms-dashboard-subview" class="space-y-6">
+                        <div>
+                            <h3 class="font-serif text-2xl font-bold text-appHeading">Insights Dashboard</h3>
+                            <p class="text-xs text-neutralMuted">Simulated system health indicators and active tracking metrics.</p>
                         </div>
 
-                        <!-- Mini Analytical Metrics Deck -->
                         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-appText font-mono">
                             <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Live Revenue</span>
+                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider font-bold">Live Revenue</span>
                                 <span id="metrics-revenue" class="text-2xl font-serif font-bold text-terracotta mt-2">$0.00</span>
                             </div>
                             <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Pending Orders</span>
+                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider font-bold">Pending Orders</span>
                                 <span id="metrics-orders-active" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
                             </div>
                             <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Catering Leads</span>
+                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider font-bold">Catering Leads</span>
                                 <span id="metrics-catering-pending" class="text-2xl font-serif font-bold text-yellow-500 mt-2">0</span>
                             </div>
                             <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider">Mailing List Leads</span>
+                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider font-bold">Mailing List</span>
                                 <span id="metrics-subscribers-count" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
                             </div>
                         </div>
 
-                        <!-- Dynamic Visual Chart (Custom drawn using scalable SVG nodes) -->
-                        <div class="bg-appCard border border-appBorder rounded-3xl p-6 transition-colors">
+                        <div class="bg-appCard border border-appBorder rounded-3xl p-6 transition-colors shadow">
                             <div class="flex justify-between items-baseline border-b border-appBorder pb-4 mb-4">
                                 <h4 class="font-serif font-bold text-base text-appHeading">Storefront Traffic & Coffee Sales Telemetry</h4>
-                                <span class="text-[10px] font-mono text-terracotta uppercase">Real-Time Sandbox Sync</span>
+                                <span class="text-[10px] font-mono text-terracotta uppercase font-bold">Real-Time Sandbox Sync</span>
                             </div>
 
                             <div class="w-full h-48 relative flex items-end">
-                                <!-- Graph Line Drawn with Vector Graphics -->
                                 <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                                    <!-- Background Area Gradient -->
                                     <defs>
                                         <linearGradient id="chart-grad" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" stop-color="var(--terracotta)" stop-opacity="0.3"></stop>
+                                            <stop offset="0%" stop-color="var(--terracotta)" stop-opacity="0.35"></stop>
                                             <stop offset="100%" stop-color="var(--bg)" stop-opacity="0.0"></stop>
                                         </linearGradient>
                                     </defs>
@@ -1041,157 +1008,141 @@
                         </div>
                     </div>
 
-                    <!-- Tab Sub-panel 1: Live Orders & Bookings -->
-                    <div id="cms-orders-subview" class="space-y-4 hidden animate-fadeIn">
+                    <!-- CMS View Segment: CUSTOMER ORDERS PIPELINE -->
+                    <div id="cms-orders-subview" class="space-y-4 hidden">
                         <div class="flex justify-between items-center border-b border-appBorder pb-2">
                             <div>
                                 <h4 class="font-serif text-lg font-bold text-appHeading">Simulated Real-Time Orders</h4>
                                 <p class="text-xs text-neutralMuted mt-0.5">Track and update customer checkout orders from standard local records.</p>
                             </div>
-                            <button onclick="fetchLiveOrders()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2 shadow font-sans" aria-label="Refresh orders list">
+                            <button onclick="fetchLiveOrders()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 shadow font-sans btn-interactive" aria-label="Refresh orders list">
                                 <i class="fa-solid fa-rotate-right" id="refresh-orders-icon"></i> Refresh Pipeline
                             </button>
                         </div>
-                        <div id="admin-orders-container" class="grid gap-4 md:grid-cols-2 font-sans">
-                            <!-- Populated dynamically -->
-                        </div>
+                        <div id="admin-orders-container" class="grid gap-4 md:grid-cols-2 font-sans"></div>
 
-                        <!-- Seating Reservations -->
+                        <!-- Seating bookings dashboard list -->
                         <div class="border-t border-appBorder pt-6 space-y-4">
                             <div class="flex justify-between items-center">
                                 <div>
                                     <h4 class="font-serif text-lg font-bold text-appHeading">Lounge Seating Reservations</h4>
-                                    <p class="text-xs text-neutralMuted">View reservation entries stored in Supabase or local state.</p>
+                                    <p class="text-xs text-neutralMuted font-sans">View reservation entries stored in Supabase or local state.</p>
                                 </div>
-                                <button onclick="fetchReservations()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2 shadow font-sans" aria-label="Refresh reservations list">
+                                <button onclick="fetchReservations()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 shadow font-sans btn-interactive" aria-label="Refresh reservations list">
                                     <i class="fa-solid fa-rotate-right" id="refresh-reservations-icon"></i> Refresh Reservations
                                 </button>
                             </div>
-                            <div id="admin-reservations-container" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-appText font-sans">
-                                <!-- Populated dynamically -->
-                            </div>
+                            <div id="admin-reservations-container" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-appText font-sans"></div>
                         </div>
                     </div>
 
-                    <!-- Tab Sub-panel 2: Review Moderation -->
-                    <div id="cms-feedback-subview" class="space-y-4 hidden font-sans animate-fadeIn">
+                    <!-- CMS View Segment: REVIEW & FEEDBACK MODERATION -->
+                    <div id="cms-feedback-subview" class="space-y-4 hidden font-sans">
                         <div class="flex justify-between items-center">
                             <div>
                                 <h4 class="font-serif text-lg font-bold text-appHeading">Pending Customer Note Approvals</h4>
-                                <p class="text-xs text-neutralMuted">Click Approve to publish feedback directly on the storefront.</p>
+                                <p class="text-xs text-neutralMuted mt-0.5">Click Approve to publish feedback directly on the storefront.</p>
                             </div>
-                            <button onclick="fetchFeedbacks()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh feedbacks list">
+                            <button onclick="fetchFeedbacks()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 btn-interactive" aria-label="Refresh feedbacks list">
                                 <i class="fa-solid fa-rotate-right" id="refresh-feedbacks-icon"></i> Refresh Pipeline
                             </button>
                         </div>
-                        <div id="admin-feedback-moderation-list" class="grid gap-4 text-appText font-sans">
-                            <!-- Moderation cards -->
-                        </div>
+                        <div id="admin-feedback-moderation-list" class="grid gap-4 text-appText font-sans"></div>
                     </div>
 
-                    <!-- Tab Sub-panel 3: Catering Proposals & Leads -->
-                    <div id="cms-catering-subview" class="space-y-6 hidden font-sans animate-fadeIn">
+                    <!-- CMS View Segment: CATERING LEADS -->
+                    <div id="cms-catering-subview" class="space-y-6 hidden font-sans">
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                            <!-- Catering Proposals Column (Col-span 2) -->
+                            <!-- Catering Proposals list column -->
                             <div class="lg:col-span-2 space-y-4">
                                 <div class="flex justify-between items-center border-b border-appBorder pb-2">
                                     <div>
                                         <h4 class="font-serif text-lg font-bold text-appHeading">Received Event & Catering Inquiries</h4>
-                                        <p class="text-xs text-neutralMuted">Manage customer digital proposals, dates, and budget plans.</p>
+                                        <p class="text-xs text-neutralMuted mt-0.5">Manage customer digital proposals, dates, and budget plans.</p>
                                     </div>
-                                    <button onclick="fetchCatering()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh catering list">
+                                    <button onclick="fetchCatering()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 btn-interactive" aria-label="Refresh catering list">
                                         <i class="fa-solid fa-rotate-right" id="refresh-catering-icon"></i> Refresh
                                     </button>
                                 </div>
-                                <div id="admin-catering-inquiries-list" class="grid gap-4 md:grid-cols-1">
-                                    <!-- Loaded dynamically -->
-                                </div>
+                                <div id="admin-catering-inquiries-list" class="grid gap-4 md:grid-cols-1"></div>
                             </div>
                             
-                            <!-- Captured Newsletter Leads Column -->
+                            <!-- Captured newsletter registry leads -->
                             <div class="space-y-4 bg-appCard border border-appBorder p-6 rounded-3xl h-fit">
                                 <div class="flex justify-between items-center border-b border-appBorder pb-2">
                                     <div>
                                         <h4 class="font-serif text-lg font-bold text-appHeading">Captured Newsletter Leads</h4>
-                                        <p class="text-xs text-neutralMuted font-serif font-medium">Emails registered via the society modal.</p>
+                                        <p class="text-xs text-neutralMuted font-serif font-medium mt-0.5">Emails registered via the society modal.</p>
                                     </div>
-                                    <button onclick="fetchSubscribers()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl p-2.5 text-xs font-bold transition-all" aria-label="Refresh subscriber list">
+                                    <button onclick="fetchSubscribers()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl p-2.5 text-xs font-bold transition-all btn-interactive" aria-label="Refresh subscriber list">
                                         <i class="fa-solid fa-rotate-right" id="refresh-subscribers-icon"></i>
                                     </button>
                                 </div>
-                                <div id="subscriber-emails-container" class="space-y-1.5 font-mono text-xs max-h-96 overflow-y-auto">
-                                    <!-- Populated dynamically -->
-                                </div>
+                                <div id="subscriber-emails-container" class="space-y-1.5 font-mono text-xs max-h-96 overflow-y-auto"></div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tab Sub-panel 4: Vibe Archives -->
-                    <div id="cms-photos-subview" class="space-y-4 hidden font-sans animate-fadeIn">
+                    <!-- CMS View Segment: VIBE BOARD PHOTOS MODERATION -->
+                    <div id="cms-photos-subview" class="space-y-4 hidden font-sans">
                         <div class="flex justify-between items-center">
                             <div>
                                 <h4 class="font-serif text-lg font-bold text-appHeading">Corkboard Polaroid Archive Moderation</h4>
-                                <p class="text-xs text-neutralMuted">Moderate and prune uploaded setup photographs directly on the live wall.</p>
+                                <p class="text-xs text-neutralMuted mt-0.5">Moderate and prune uploaded setup photographs directly on the live wall.</p>
                             </div>
-                            <button onclick="fetchVibeBoard()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh vibe photos list">
+                            <button onclick="fetchVibeBoard()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 btn-interactive" aria-label="Refresh vibe photos list">
                                 <i class="fa-solid fa-rotate-right" id="refresh-vibes-icon"></i> Refresh Pipeline
                             </button>
                         </div>
-                        <div id="admin-photos-moderation-grid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-appText font-sans">
-                            <!-- Populated dynamically -->
-                        </div>
+                        <div id="admin-photos-moderation-grid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-appText font-sans"></div>
                     </div>
 
-                    <!-- Tab Sub-panel 5: Menu Catalog Editor & Categories -->
-                    <div id="cms-products-subview" class="space-y-6 hidden font-sans animate-fadeIn">
-                        <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4">
+                    <!-- CMS View Segment: CATALOG MATRIX & SECTIONS EDITOR -->
+                    <div id="cms-products-subview" class="space-y-6 hidden font-sans">
+                        <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 shadow">
                             <div class="flex justify-between items-center">
                                 <div>
                                     <h4 class="font-serif text-lg font-bold text-appHeading">Customize Food & Beverage Categories</h4>
-                                    <p class="text-xs text-neutralMuted">Add entirely new food sections, upload custom categories, and assign icons.</p>
+                                    <p class="text-xs text-neutralMuted mt-0.5">Add entirely new food sections, upload custom categories, and assign icons.</p>
                                 </div>
                             </div>
                             
                             <form id="category-creation-form" class="grid sm:grid-cols-3 gap-3 text-xs">
-                                <input type="text" id="new-cat-id" placeholder="Category key (e.g., bagels)" required class="bg-appBg border border-terracotta/25 p-2 rounded-xl text-appHeading">
-                                <input type="text" id="new-cat-name" placeholder="Display Name (e.g., Rustic Bagels)" required class="bg-appBg border border-terracotta/25 p-2 rounded-xl text-appHeading">
+                                <input type="text" id="new-cat-id" placeholder="Category key (e.g., bagels)" required class="bg-appBg border border-terracotta/25 p-3 rounded-xl text-appHeading outline-none focus:ring-2 focus:ring-terracotta/30">
+                                <input type="text" id="new-cat-name" placeholder="Display Name (e.g., Rustic Bagels)" required class="bg-appBg border border-terracotta/25 p-3 rounded-xl text-appHeading outline-none focus:ring-2 focus:ring-terracotta/30">
                                 <div class="flex gap-2">
-                                    <input type="text" id="new-cat-icon" placeholder="FA Icon (e.g., fa-cookie)" required class="bg-appBg border border-terracotta/25 p-2 rounded-xl text-appHeading flex-1">
-                                    <button type="submit" class="bg-terracotta hover:bg-terracotta/90 text-white font-bold px-4 rounded-xl">Add</button>
+                                    <input type="text" id="new-cat-icon" placeholder="FA Icon (e.g., fa-cookie)" required class="bg-appBg border border-terracotta/25 p-3 rounded-xl text-appHeading flex-1 outline-none focus:ring-2 focus:ring-terracotta/30">
+                                    <button type="submit" class="bg-terracotta hover:bg-terracotta/90 text-white font-bold px-4 rounded-xl btn-interactive">Add</button>
                                 </div>
                             </form>
 
-                            <div id="categories-badge-list" class="flex flex-wrap gap-2 pt-2">
-                                <!-- Populated dynamically -->
-                            </div>
+                            <div id="categories-badge-list" class="flex flex-wrap gap-2 pt-2"></div>
                         </div>
 
                         <div class="space-y-4">
                             <div class="flex justify-between items-center">
                                 <div>
                                     <h4 class="font-serif text-lg font-bold text-appHeading">Manage Catalog Items</h4>
-                                    <p class="text-xs text-neutralMuted">Adjust pricing, configure categories, flag "Chef's Specials" or "Best Sellers."</p>
+                                    <p class="text-xs text-neutralMuted mt-0.5">Adjust pricing, configure categories, flag "Chef's Specials" or "Best Sellers."</p>
                                 </div>
                                 <div class="flex gap-2">
-                                    <button onclick="refreshCMSProducts()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2 text-xs font-bold transition-all flex items-center gap-2" aria-label="Refresh products list">
+                                    <button onclick="refreshCMSProducts()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 btn-interactive" aria-label="Refresh products list">
                                         <i class="fa-solid fa-rotate-right" id="refresh-products-icon"></i> Refresh Catalog
                                     </button>
-                                    <button onclick="openProductEditForm()" class="bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow-md">
+                                    <button onclick="openProductEditForm()" class="bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow-md btn-interactive">
                                         <i class="fa-solid fa-circle-plus"></i> Add New Product
                                     </button>
                                 </div>
                             </div>
                             
-                            <div id="cms-products-listing-wrapper" class="space-y-4 text-appText font-sans">
-                                <!-- Populated dynamically -->
-                            </div>
+                            <div id="cms-products-listing-wrapper" class="space-y-4 text-appText font-sans"></div>
                         </div>
                     </div>
 
-                    <!-- Tab Sub-panel 6: Telemetry Logs & Theme Settings -->
-                    <div id="cms-analytics-subview" class="space-y-6 hidden font-sans animate-fadeIn">
-                        <!-- Theme Customizer Panel -->
-                        <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 transition-colors">
+                    <!-- CMS View Segment: THEME SCHEMES & CORE SYNC SETTINGS -->
+                    <div id="cms-analytics-subview" class="space-y-6 hidden font-sans">
+                        <!-- Custom Brand Theme Palette Form -->
+                        <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 transition-colors shadow">
                             <div class="flex items-center gap-2.5">
                                 <i class="fa-solid fa-palette text-terracotta text-lg"></i>
                                 <h4 class="font-serif text-lg font-bold text-appHeading">Storefront Color Scheme Customizer</h4>
@@ -1201,52 +1152,52 @@
                             </p>
                             <div class="grid gap-4 grid-cols-2 sm:grid-cols-4 text-xs text-appText">
                                 <div class="flex flex-col gap-1">
-                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Primary BG</label>
-                                    <input type="color" id="theme-color-bg" value="#150A08" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
+                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted font-bold">Primary BG</label>
+                                    <input type="color" id="theme-color-bg" value="#110705" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
                                 </div>
                                 <div class="flex flex-col gap-1">
-                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Accent Color</label>
+                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted font-bold">Accent Color</label>
                                     <input type="color" id="theme-color-terracotta" value="#D97757" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
                                 </div>
                                 <div class="flex flex-col gap-1">
-                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Card Panel BG</label>
-                                    <input type="color" id="theme-color-card" value="#231511" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
+                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted font-bold">Card Panel BG</label>
+                                    <input type="color" id="theme-color-card" value="#1A0E0B" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
                                 </div>
                                 <div class="flex flex-col gap-1">
-                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Text Color</label>
-                                    <input type="color" id="theme-color-text" value="#EEDCC5" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
+                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted font-bold">Text Color</label>
+                                    <input type="color" id="theme-color-text" value="#F5EBE1" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
                                 </div>
                             </div>
                             <div class="flex gap-2">
-                                <button onclick="applyCustomThemeColors()" class="bg-terracotta hover:bg-terracotta/90 text-white font-serif font-bold text-xs py-2 px-4 rounded-xl">Save Brand Palette</button>
-                                <button onclick="resetThemeColorsToDefault()" class="border border-terracotta/20 hover:bg-terracotta/10 text-xs py-2 px-4 rounded-xl text-neutralMuted">Reset Brand Default</button>
+                                <button onclick="applyCustomThemeColors()" class="bg-terracotta hover:bg-terracotta/90 text-white font-serif font-bold text-xs py-2.5 px-4 rounded-xl btn-interactive">Save Brand Palette</button>
+                                <button onclick="resetThemeColorsToDefault()" class="border border-terracotta/20 hover:bg-terracotta/10 text-xs py-2.5 px-4 rounded-xl text-neutralMuted btn-interactive">Reset Brand Default</button>
                             </div>
                         </div>
 
-                        <!-- Connection Diagnostics Panel -->
-                        <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 transition-colors">
+                        <!-- Supabase Connection Config Panel -->
+                        <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 transition-colors shadow">
                             <div class="flex items-center gap-2.5">
                                 <i class="fa-solid fa-gears text-terracotta text-lg animate-spin" style="animation-duration: 8s;"></i>
                                 <h4 class="font-serif text-lg font-bold text-appHeading">Supabase Connection Settings</h4>
                             </div>
-                            <p class="text-xs text-neutralMuted leading-relaxed">
+                            <p class="text-xs text-neutralMuted leading-relaxed font-sans">
                                 By default, this storefront uses placeholder credentials. To secure customer pre-orders, lounge reservations, and vibe photos, copy your real credentials from your Supabase Dashboard and paste them below. They are saved privately inside your browser's local secure database.
                             </p>
                             <div class="grid gap-4 sm:grid-cols-2 text-xs text-appText">
                                 <div class="flex flex-col gap-1.5">
-                                    <label for="db-url-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Project REST Endpoint URL</label>
-                                    <input type="text" id="db-url-input" placeholder="https://your-project.supabase.co" class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:border-terracotta transition-colors font-sans font-medium">
+                                    <label for="db-url-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted font-bold">Project REST Endpoint URL</label>
+                                    <input type="text" id="db-url-input" placeholder="https://your-project.supabase.co" class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:ring-2 focus:ring-terracotta/30 transition-colors font-sans font-medium">
                                 </div>
                                 <div class="flex flex-col gap-1.5">
-                                    <label for="db-key-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted">Anon Public Key (Long JWT Token)</label>
-                                    <input type="password" id="db-key-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC..." class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:border-terracotta transition-colors font-sans font-medium">
+                                    <label for="db-key-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted font-bold">Anon Public Key</label>
+                                    <input type="password" id="db-key-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC..." class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:ring-2 focus:ring-terracotta/30 transition-colors font-sans font-medium">
                                 </div>
                             </div>
                             <div class="flex flex-wrap items-center gap-3 pt-2 font-serif">
-                                <button onclick="saveSupabaseCredentials()" class="bg-terracotta hover:bg-terracotta/90 text-white font-bold py-2.5 px-5 rounded-xl text-xs transition-all shadow-md">
+                                <button onclick="saveSupabaseCredentials()" class="bg-terracotta hover:bg-terracotta/90 text-white font-bold py-2.5 px-5 rounded-xl text-xs transition-all shadow-md btn-interactive">
                                     Save & Reconnect Sync
                                 </button>
-                                <button onclick="clearSupabaseCredentials()" class="border border-terracotta/30 text-neutralMuted hover:text-white py-2.5 px-4 rounded-xl text-xs transition-all">
+                                <button onclick="clearSupabaseCredentials()" class="border border-terracotta/30 text-neutralMuted hover:text-white py-2.5 px-4 rounded-xl text-xs transition-all btn-interactive">
                                     Reset to Local Sandbox Fallback
                                 </button>
                                 <span id="connection-status-pill" class="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-yellow-500/10 text-yellow-500 border border-yellow-500/30 font-sans">
@@ -1254,16 +1205,16 @@
                                 </span>
                             </div>
 
-                            <!-- Mobile Scan Sync Tool Section -->
+                            <!-- Mobile Scan Synchronization Tool -->
                             <div class="border-t border-appBorder/50 pt-4 mt-2 space-y-3">
                                 <h5 class="font-serif font-bold text-sm text-appHeading">📱 Sync with Phone Browser</h5>
-                                <p class="text-[11px] text-neutralMuted">Generate a dynamic link to sync your database configurations instantly to your mobile browser without retyping keys.</p>
+                                <p class="text-[11px] text-neutralMuted leading-relaxed">Generate a dynamic link to sync your database configurations instantly to your mobile browser without retyping keys.</p>
                                 <div class="flex flex-wrap items-center gap-3">
-                                    <button onclick="generateMobileSyncQRCode()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 font-sans">
+                                    <button onclick="generateMobileSyncQRCode()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 font-sans btn-interactive">
                                         <i class="fa-solid fa-qrcode"></i> Generate Phone Sync Link
                                     </button>
                                 </div>
-                                <div id="sync-qr-container" class="hidden bg-appBg border border-appBorder p-4 rounded-2xl flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left transition-colors">
+                                <div id="sync-qr-container" class="hidden bg-appBg border border-appBorder p-4 rounded-2xl flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left transition-colors shadow-inner">
                                     <img id="sync-qr-image" src="" alt="Mobile Sync QR Code" class="w-32 h-32 bg-white p-1 rounded-lg">
                                     <div class="space-y-2">
                                         <p class="text-xs font-bold text-appHeading">Scan QR to connect your Phone!</p>
@@ -1274,12 +1225,11 @@
                             </div>
                         </div>
 
+                        <!-- Telemetry logs database table tracker -->
                         <div class="space-y-3">
                             <h4 class="font-serif text-lg font-bold text-appHeading font-sans">Live System Telemetry Logs</h4>
-                            <p class="text-xs text-neutralMuted">A non-technical audit ledger documenting interactions on your storefront portal.</p>
-                            <div class="bg-appBg border border-appBorder rounded-2xl p-4 font-sans text-xs space-y-2.5 max-h-96 overflow-y-auto text-appText transition-colors" id="telemetry-logs-wrapper">
-                                <!-- Logs populated dynamically -->
-                            </div>
+                            <p class="text-xs text-neutralMuted mt-0.5 leading-relaxed">A non-technical audit ledger documenting interactions on your storefront portal.</p>
+                            <div class="bg-appBg border border-appBorder rounded-2xl p-4 font-sans text-xs space-y-2.5 max-h-96 overflow-y-auto text-appText transition-colors shadow-inner" id="telemetry-logs-wrapper"></div>
                         </div>
                     </div>
                 </div>
@@ -1289,44 +1239,35 @@
 
     </main>
 
-    <!-- Glassmorphic Bottom Mobile Navigation Bar -->
-    <nav id="mobile-navigation-bar" class="md:hidden fixed bottom-0 left-0 right-0 py-2 px-4 z-40 mobile-nav-container flex justify-around items-center" aria-label="Mobile Navigation">
+    <!-- Glassmorphic Mobile Bottom Nav deck with integrated bag toggle action -->
+    <nav id="mobile-navigation-bar" class="md:hidden fixed bottom-0 left-0 right-0 py-2 px-2 z-40 mobile-nav-container flex justify-around items-center" aria-label="Mobile Navigation">
         <button onclick="switchPage('home')" class="mobile-tab-btn active" id="mobile-tab-home">
-            <i class="fa-solid fa-mug-hot"></i>
+            <i class="fa-solid fa-mug-hot text-base"></i>
             <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Menu</span>
         </button>
         <button onclick="switchPage('wall')" class="mobile-tab-btn" id="mobile-tab-wall">
-            <i class="fa-solid fa-images"></i>
-            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Vibes & Feed</span>
+            <i class="fa-solid fa-images text-base"></i>
+            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Vibes</span>
         </button>
+        
+        <!-- Shopping Cart centralized floating button -->
+        <button onclick="openSidebarCart()" class="relative flex flex-col items-center justify-center bg-terracotta text-white w-12 h-12 rounded-full shadow-lg border-2 border-appBg -mt-5 transition-transform duration-200 active:scale-90" aria-label="Open Mobile Cart Bag">
+            <i class="fa-solid fa-bag-shopping text-lg"></i>
+            <span class="absolute -top-1 -right-1 bg-white text-terracotta text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow border border-terracotta" id="mobile-nav-cart-badge">0</span>
+        </button>
+
         <button onclick="switchPage('booking')" class="mobile-tab-btn" id="mobile-tab-booking">
-            <i class="fa-regular fa-calendar-check"></i>
+            <i class="fa-regular fa-calendar-check text-base"></i>
             <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Reserve</span>
         </button>
-        <button onclick="switchPage('catering')" class="mobile-tab-btn" id="mobile-tab-catering">
-            <i class="fa-solid fa-plate-wheat"></i>
-            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Catering</span>
-        </button>
         <button onclick="switchPage('heritage')" class="mobile-tab-btn" id="mobile-tab-heritage">
-            <i class="fa-solid fa-circle-info"></i>
+            <i class="fa-solid fa-circle-info text-base"></i>
             <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Story</span>
         </button>
     </nav>
 
-    <!-- Persistent Mobile Bag Toggle -->
-    <div id="mobile-cart-bar-container" class="md:hidden fixed bottom-16 left-0 right-0 px-4 py-2 z-30 pointer-events-none font-sans">
-        <button onclick="openSidebarCart()" class="w-full bg-terracotta text-white font-serif py-3 px-4 rounded-2xl flex justify-between items-center shadow-2xl pointer-events-auto hover:bg-terracotta/90 transition-all">
-            <span class="text-xs font-bold tracking-wider"><i class="fa-solid fa-basket-shopping mr-2"></i> View Order Bag</span>
-            <div class="flex items-center gap-2 font-mono">
-                <span class="text-xs bg-white/20 px-2 py-0.5 rounded" id="mobile-cart-badge">0</span>
-                <span class="font-bold" id="mobile-cart-total">$0.00</span>
-            </div>
-        </button>
-    </div>
 
-    <!-- ================= MODALS & SLIDE DRAWER OVERLAYS ================= -->
-
-    <!-- Welcome Promotion Modal Block -->
+    <!-- Welcome promotions modal popup block -->
     <div id="promo-modal" class="promo-modal">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closePromoModal()"></div>
         <div class="bg-appCard border border-terracotta/35 p-6 rounded-3xl max-w-sm w-full mx-auto relative z-10 text-center space-y-4 text-appText shadow-2xl transition-all">
@@ -1339,13 +1280,13 @@
                 <p class="text-xs text-neutralMuted mt-1 leading-relaxed">Savor Maryville's finest specialty. Enjoy our **Viennese Waltz** crafted premium White Chocolate Mocha for only <strong>$5.80</strong> today!</p>
             </div>
             <div class="pt-2">
-                <button onclick="addPromoToOrder()" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif font-bold py-3 rounded-xl transition-all shadow-md text-sm">Add Promo to Order Bag</button>
-                <button onclick="closePromoModal()" class="text-xs text-neutralMuted mt-3 hover:underline block mx-auto">No thanks, I'll browse catalog first</button>
+                <button onclick="addPromoToOrder()" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-serif font-bold py-3 rounded-xl transition-all shadow-md text-sm btn-interactive">Add Promo to Order Bag</button>
+                <button onclick="closePromoModal()" class="text-xs text-neutralMuted mt-3 hover:underline block mx-auto btn-interactive">No thanks, I'll browse catalog first</button>
             </div>
         </div>
     </div>
 
-    <!-- Brand Newsletter Signup Popup -->
+    <!-- Newsletter Society Registry Signup Modal -->
     <div id="newsletter-popup-modal" class="fixed inset-0 z-[120] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500">
         <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeNewsletterPopup()"></div>
         <div class="bg-appCard border border-terracotta/35 p-6 rounded-3xl max-w-sm w-full mx-auto relative z-10 text-center space-y-4 text-appText shadow-2xl transition-all">
@@ -1358,14 +1299,14 @@
                 <p class="text-xs text-neutralMuted mt-1 leading-relaxed">Join our mailing registry for exclusive secret recipe releases, sensory roasting schedules, and private event announcements.</p>
             </div>
             <form id="newsletter-signup-form" class="space-y-2.5 text-xs text-appText font-sans">
-                <input type="email" id="news-email-field" placeholder="Enter your email address..." required class="w-full bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-center outline-none focus:border-terracotta transition-all">
-                <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-bold py-3 rounded-xl transition-all shadow-md">Unlock Gourmet Coffee Perks</button>
+                <input type="email" id="news-email-field" placeholder="Enter your email address..." required class="w-full bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-center outline-none focus:ring-2 focus:ring-terracotta/35 transition-all">
+                <button type="submit" class="w-full bg-terracotta hover:bg-terracotta/90 text-white font-bold py-3 rounded-xl transition-all shadow-md btn-interactive">Unlock Gourmet Coffee Perks</button>
             </form>
-            <p class="text-[9px] text-neutralMuted italic">We values your privacy. Zero spam guaranteed.</p>
+            <p class="text-[9px] text-neutralMuted italic">We value your privacy. Zero spam guaranteed.</p>
         </div>
     </div>
 
-    <!-- 1. Shopping Bag Drawer -->
+    <!-- 1. Shopping Bag Sidebar Drawer -->
     <div class="sheet text-appText" id="cart-sheet" role="dialog" aria-modal="true" aria-labelledby="cart-title">
         <div class="sheet-handle"></div>
         <button class="sheet-close" onclick="closeSidebarCart()" aria-label="Close Shopping Cart"><i class="fa-solid fa-xmark"></i></button>
@@ -1378,23 +1319,21 @@
                 <strong>In-House Assistant Only:</strong> This bag serves as a digital table order aggregator for showing the baristas at the counter. **We do not support external online home delivery orders.**
             </div>
             
-            <div id="cart-items-wrapper" class="space-y-4 mb-6 max-h-[40vh] overflow-y-auto font-sans">
-                <!-- Loaded dynamically -->
-            </div>
+            <div id="cart-items-wrapper" class="space-y-4 mb-6 max-h-[40vh] overflow-y-auto font-sans"></div>
 
             <div class="border-t border-appBorder pt-4 space-y-4">
                 <div class="flex justify-between items-baseline font-mono font-bold text-base">
-                    <span>Subtotal Est.</span>
-                    <span class="text-terracotta text-xl" id="cart-drawer-total">$0.00</span>
+                    <span class="text-neutralMuted">Subtotal Est.</span>
+                    <span class="text-terracotta text-2xl" id="cart-drawer-total">$0.00</span>
                 </div>
-                <button onclick="triggerCheckoutCheckout()" class="w-full bg-terracotta text-white font-serif py-3.5 rounded-xl font-bold tracking-wider hover:bg-terracotta/90 transition-all shadow-md" id="cart-action-btn" disabled>
+                <button onclick="triggerCheckoutCheckout()" class="w-full bg-terracotta text-white font-serif py-3.5 rounded-xl font-bold tracking-wider hover:bg-terracotta/90 transition-all shadow-md btn-interactive" id="cart-action-btn" disabled>
                     Confirm Pre-Order Simulation
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- 2. Lounge Boarding Pass -->
+    <!-- 2. Same-Day Seating Boarding Ticket -->
     <div class="sheet text-appText" id="ticket-sheet" role="dialog" aria-modal="true">
         <div class="sheet-handle"></div>
         <button class="sheet-close" onclick="closeReservationTicket()" aria-label="Close Entry Ticket"><i class="fa-solid fa-xmark"></i></button>
@@ -1415,19 +1354,19 @@
                 </div>
                 <div class="grid grid-cols-2 gap-y-3 pt-2 text-appText font-sans">
                     <div>
-                        <span class="text-neutralMuted block text-[9px] uppercase">HOLDER</span>
+                        <span class="text-neutralMuted block text-[9px] uppercase font-bold">HOLDER</span>
                         <span class="font-bold text-xs text-appHeading" id="ticket-holder-name">-</span>
                     </div>
                     <div>
-                        <span class="text-neutralMuted block text-[9px] uppercase">GUESTS</span>
+                        <span class="text-neutralMuted block text-[9px] uppercase font-bold">GUESTS</span>
                         <span class="font-bold text-xs text-appHeading" id="ticket-holder-guests">-</span>
                     </div>
                     <div>
-                        <span class="text-neutralMuted block text-[9px] uppercase">ARRIVAL TIME</span>
+                        <span class="text-neutralMuted block text-[9px] uppercase font-bold">ARRIVAL TIME</span>
                         <span class="font-bold text-xs text-appHeading" id="ticket-holder-time">-</span>
                     </div>
                     <div>
-                        <span class="text-neutralMuted block text-[9px] uppercase">SEATING ZONE</span>
+                        <span class="text-neutralMuted block text-[9px] uppercase font-bold">SEATING ZONE</span>
                         <span class="font-bold text-xs text-terracotta" id="ticket-holder-zone">-</span>
                     </div>
                 </div>
@@ -1452,7 +1391,7 @@
             
             <form id="vibe-upload-form" class="space-y-4">
                 <div class="relative overflow-hidden w-full h-44 rounded-2xl bg-appBg border-2 border-dashed border-terracotta/30 flex flex-col items-center justify-center cursor-pointer hover:border-terracotta transition-all" id="dropzone">
-                    <img class="absolute inset-0 w-full h-full object-cover hidden" id="preview-img" alt="Uploaded polaroid preview image">
+                    <img class="absolute inset-0 w-full h-full object-cover hidden animate-fadeIn" id="preview-img" alt="Uploaded polaroid preview image">
                     <div class="flex flex-col items-center justify-center p-4 text-center" id="dropzone-placeholder">
                         <i class="fa-solid fa-cloud-arrow-up text-3xl mb-2 text-terracotta"></i>
                         <p class="font-serif font-bold text-appText text-sm">Tap to upload your photo</p>
@@ -1464,41 +1403,41 @@
                 <div>
                     <label class="block text-[10px] font-mono font-bold uppercase tracking-wider text-terracotta mb-1.5">No snapshot handy? Pick a curated preset vibe:</label>
                     <div class="grid grid-cols-3 gap-2">
-                        <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate hover:border-terracotta" onclick="applyPresetVibe('https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400')">☕ Drip Brew</button>
-                        <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate hover:border-terracotta" onclick="applyPresetVibe('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400')">🍵 Foam Art</button>
-                        <button type="button" class="border border-terracotta/30 rounded-xl p-1.5 text-[10px] bg-appCard text-appText font-semibold transition-all truncate hover:border-terracotta" onclick="applyPresetVibe('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400')">🥐 Fresh Pastry</button>
+                        <button type="button" class="border border-terracotta/30 rounded-xl p-2 text-[10px] bg-appCard text-appText font-semibold transition-all truncate hover:border-terracotta active:scale-95" onclick="applyPresetVibe('https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400')">☕ Drip Brew</button>
+                        <button type="button" class="border border-terracotta/30 rounded-xl p-2 text-[10px] bg-appCard text-appText font-semibold transition-all truncate hover:border-terracotta active:scale-95" onclick="applyPresetVibe('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400')">🍵 Foam Art</button>
+                        <button type="button" class="border border-terracotta/30 rounded-xl p-2 text-[10px] bg-appCard text-appText font-semibold transition-all truncate hover:border-terracotta active:scale-95" onclick="applyPresetVibe('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400')">🥐 Fresh Pastry</button>
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-1.5 text-xs text-appText">
                     <label for="wall-handle" class="font-semibold uppercase text-neutralMuted">Your Handle Name</label>
-                    <div class="flex items-center border border-terracotta/30 rounded-xl bg-appBg overflow-hidden focus-within:border-terracotta">
-                        <span class="text-neutralMuted px-3 font-mono">@</span>
-                        <input type="text" id="wall-handle" placeholder="pourdecisions_regular" class="border-none bg-transparent focus:ring-0 p-3 text-xs text-appHeading flex-1 outline-none">
+                    <div class="flex items-center border border-terracotta/30 rounded-xl bg-appBg overflow-hidden focus-within:ring-2 focus-within:ring-terracotta/30">
+                        <span class="text-neutralMuted px-3 font-mono text-sm">@</span>
+                        <input type="text" id="wall-handle" placeholder="pourdecisions_regular" class="border-none bg-transparent focus:ring-0 p-3 text-xs text-appHeading flex-1 outline-none font-sans">
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-1.5 text-xs text-appText">
                     <label for="wall-drink" class="font-semibold uppercase text-neutralMuted">What did you order today?</label>
-                    <input type="text" id="wall-drink" placeholder="e.g. Viennese Waltz" required class="border border-terracotta/30 bg-appBg text-appHeading rounded-xl p-3 text-sm focus:outline-none font-sans">
+                    <input type="text" id="wall-drink" placeholder="e.g. Viennese Waltz" required class="border border-terracotta/30 bg-appBg text-appHeading rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 font-sans">
                 </div>
 
-                <div class="flex items-start gap-2.5 p-3 rounded-xl bg-terracotta/5 border border-terracotta/10 text-[10px] text-accentLight leading-snug">
-                    <input type="checkbox" id="social-consent-check" required class="mt-0.5 accent-terracotta cursor-pointer">
+                <div class="flex items-start gap-2.5 p-3 rounded-xl bg-terracotta/5 border border-terracotta/10 text-[10px] text-accentLight leading-snug font-sans">
+                    <input type="checkbox" id="social-consent-check" required class="mt-0.5 accent-terracotta cursor-pointer scale-11">
                     <label for="social-consent-check" class="cursor-pointer select-none">
                         I agree to the <span class="font-bold text-appHeading">Vibe Showcase Policy</span> and consent to letting Pour Decisions curate and publish this photograph across their social media pages.
                     </label>
                 </div>
 
-                <button type="submit" class="w-full bg-terracotta text-white font-serif py-3.5 rounded-xl font-bold tracking-wider transition-all shadow-md text-sm">
+                <button type="submit" class="w-full bg-terracotta text-white font-serif py-3.5 rounded-xl font-bold tracking-wider transition-all shadow-md text-sm btn-interactive">
                     Publish On Cork Board 📌
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- 5. CMS Product Modification Modal (with dynamic category loading) -->
-    <div class="sheet text-appText" id="product-modal-sheet" role="dialog" aria-modal="true">
+    <!-- 4. CMS Catalog Product Modifications Sheet -->
+    <div class="sheet text-appText font-sans" id="product-modal-sheet" role="dialog" aria-modal="true">
         <div class="sheet-handle"></div>
         <button class="sheet-close" onclick="closeProductEditForm()"><i class="fa-solid fa-xmark"></i></button>
         <div class="sheet-content font-sans text-xs">
@@ -1508,18 +1447,18 @@
                 
                 <div class="flex flex-col gap-1.5">
                     <label for="p-form-name">Item Name</label>
-                    <input type="text" id="p-form-name" required placeholder="e.g. Smoked Salmon Bagel Box" class="bg-appBg text-appHeading p-3 rounded-xl border border-terracotta/20 text-sm focus:outline-none focus:border-terracotta">
+                    <input type="text" id="p-form-name" required placeholder="e.g. Smoked Salmon Bagel Box" class="bg-appBg text-appHeading p-3 rounded-xl border border-terracotta/20 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div class="flex flex-col gap-1.5">
                         <label for="p-form-price">Base Price ($)</label>
-                        <input type="number" id="p-form-price" step="0.01" required placeholder="5.50" class="bg-appBg text-appHeading p-3 rounded-xl border border-terracotta/20 text-sm focus:outline-none focus:border-terracotta">
+                        <input type="number" id="p-form-price" step="0.01" required placeholder="5.50" class="bg-appBg text-appHeading p-3 rounded-xl border border-terracotta/20 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30">
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label for="p-form-category">Category Tab</label>
-                        <select id="p-form-category" class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none text-sm" required>
-                            <!-- Category choices populated dynamically via JS -->
+                        <select id="p-form-category" class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta/30 text-sm font-sans" required>
+                            <!-- Dynamically loaded selection options -->
                         </select>
                     </div>
                 </div>
@@ -1527,7 +1466,7 @@
                 <div class="grid grid-cols-2 gap-3">
                     <div class="flex flex-col gap-1.5">
                         <label for="p-form-badge">Interactive Badge Style</label>
-                        <select id="p-form-badge" class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none text-sm">
+                        <select id="p-form-badge" class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta/30 text-sm font-sans">
                             <option value="">No Special Flag</option>
                             <option value="Popular">Classic Popular</option>
                             <option value="Best Seller">Best Seller 🔥</option>
@@ -1537,34 +1476,33 @@
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label for="p-form-custom-badge">Or Custom Text Badge</label>
-                        <input type="text" id="p-form-custom-badge" placeholder="e.g. Local Organic" class="bg-appBg border border-terracotta/20 rounded-xl p-2.5 text-appHeading focus:outline-none text-sm">
+                        <input type="text" id="p-form-custom-badge" placeholder="e.g. Local Organic" class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading focus:outline-none focus:ring-2 focus:ring-terracotta/30 text-sm">
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-1.5">
                     <label for="p-form-desc">Detailed Description</label>
-                    <textarea id="p-form-desc" rows="2" placeholder="Explain ingredients or sizes clearly" required class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none text-sm"></textarea>
+                    <textarea id="p-form-desc" rows="2" placeholder="Explain ingredients or sizes clearly" required class="border border-terracotta/30 p-3 bg-appBg text-appHeading rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta/30 text-sm"></textarea>
                 </div>
 
                 <div class="flex flex-col gap-1.5">
                     <label for="p-form-image">Product Image URL</label>
-                    <input type="text" id="p-form-image" placeholder="https://images.unsplash.com/..." class="border border-terracotta/30 bg-appBg text-appHeading p-3 rounded-xl focus:outline-none text-sm font-sans">
+                    <input type="text" id="p-form-image" placeholder="https://images.unsplash.com/..." class="border border-terracotta/30 bg-appBg text-appHeading p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta/30 text-sm font-sans">
                 </div>
 
-                <button type="submit" class="w-full bg-terracotta text-white font-serif py-3 rounded-xl font-bold uppercase tracking-wider shadow text-sm">
+                <button type="submit" class="w-full bg-terracotta text-white font-serif py-3.5 rounded-xl font-bold uppercase tracking-wider shadow text-sm btn-interactive">
                     Save Catalog Option
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- ================= SYSTEM SCRIPTS & BUSINESS LOGIC ================= -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script type="module">
         import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-        // Expose routing variables immediately
+        // Exposing routing variables to general click events
         window.switchPage = switchPage;
         window.toggleTheme = toggleTheme;
         window.openSidebarCart = openSidebarCart;
@@ -1612,6 +1550,7 @@
         window.setReservationMode = setReservationMode;
         window.applyCustomThemeColors = applyCustomThemeColors;
         window.resetThemeColorsToDefault = resetThemeColorsToDefault;
+        
         window.fetchCatering = function() {
             const icon = document.getElementById('refresh-catering-icon');
             if (icon) icon.classList.add('fa-spin');
@@ -1631,6 +1570,7 @@
             showToastNotification("Newsletter subscribers list successfully reloaded!");
         };
 
+        // QR Code generator and mobile integration functions
         const urlParams = new URLSearchParams(window.location.search);
         const paramUrl = urlParams.get('sb_url');
         const paramKey = urlParams.get('sb_key');
@@ -1675,7 +1615,6 @@
             };
         }
 
-        // State parameters
         let activeOrders = [];
         let activeReservations = [];
         let cateringInquiries = [];
@@ -1701,15 +1640,12 @@
             { id: 'c3', name: 'Nitro Cold Brew', price: 5.50, category: 'coffee', desc: 'Creamy nitrogen-infused local cold brew served chilled.', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
             { id: 'c4', name: 'Palomino Signature Brew', price: 7.00, category: 'coffee', desc: 'Nitro cold brew custom styled with gourmet vanilla and half & half.', img: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
             { id: 'c5', name: 'Red Eye Shot', price: 4.30, category: 'coffee', desc: 'Double shot of house espresso topped with rich brewed coffee.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
-            
             { id: 's1', name: 'Muddy Pond Mocha', price: 5.80, category: 'signature', desc: 'Double espresso, velvet steamed milk, chocolate, vanilla, and sweet Muddy Pond Sorghum syrup.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Best Seller' },
             { id: 's2', name: 'Thunderhead Latte', price: 5.80, category: 'signature', desc: 'Signature espresso, warm steamed milk, raw local honey, dusted with cinnamon and nutmeg.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Best Seller' },
             { id: 's3', name: 'Viennese Waltz', price: 5.80, category: 'signature', desc: 'Bold espresso paired with velvet steamed milk, organic white chocolate chips, and sweet almond syrup.', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600', sold_out: false, hidden: false, badge: 'Popular' },
-            
             { id: 'e1', name: 'Espresso Double Shot', price: 3.30, category: 'espresso', desc: 'Perfectly extracted, rich-bodied local espresso blend.', img: 'https://images.unsplash.com/photo-151097252790b-af4f902c2197?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
             { id: 'e2', name: 'Caffe Latte', price: 5.00, category: 'espresso', desc: 'Espresso double shot over steamed milk with thin microfoam layer.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
             { id: 'e3', name: 'Cortado Glass', price: 4.10, category: 'espresso', desc: 'Equal parts extracted espresso and velvet steamed whole milk.', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: '' },
-            
             { id: 'b1', name: 'Quiche Slice Special', price: 6.00, category: 'breakfast', desc: 'Choose Ham & Cheddar or rotating vegetarian spinach, tomato, and feta quiche.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Chef\'s Special' },
             { id: 'b2', name: 'Burrito Bowl / Wrap', price: 8.50, category: 'breakfast', desc: 'Scrambled farm eggs, local pork sausage, roasted potatoes, red peppers, spinach, red onion, with melted cheddar.', img: 'https://images.unsplash.com/photo-1626700051175-6518c4793f06?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Popular' },
             { id: 'l1', name: 'Smoked Salmon Bagel Box', price: 13.00, category: 'lunch', desc: 'Smoked wild salmon, toasted bagel with cream cheese, cucumber slices, and hard-boiled egg.', img: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400', sold_out: false, hidden: false, badge: 'Popular' }
@@ -1781,6 +1717,7 @@
             }
 
             renderBistroMenu();
+            syncLoyaltyCardUI();
         };
 
         function initDOMCache() {
@@ -1790,8 +1727,7 @@
             dom.carouselTitle = document.getElementById('carousel-title');
             dom.cartItemsWrapper = document.getElementById('cart-items-wrapper');
             dom.desktopCartBadge = document.getElementById('desktop-cart-badge');
-            dom.mobileCartBadge = document.getElementById('mobile-cart-badge');
-            dom.mobileCartTotal = document.getElementById('mobile-cart-total');
+            dom.mobileCartBadge = document.getElementById('mobile-nav-cart-badge');
             dom.cartDrawerTotal = document.getElementById('cart-drawer-total');
             dom.cartActionBtn = document.getElementById('cart-action-btn');
             dom.builderBase = document.getElementById('builder-base');
@@ -1826,10 +1762,10 @@
             const container = document.getElementById('category-pills');
             if (!container) return;
             
-            let html = `<button id="pill-all" onclick="filterCategory('all')" class="category-pill bg-terracotta text-white border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all">All Items</button>`;
+            let html = `<button id="pill-all" onclick="filterCategory('all')" class="category-pill bg-terracotta text-white border border-terracotta/20 px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all active:scale-95">All Items</button>`;
             masterCategories.forEach(cat => {
                 html += `
-                    <button id="pill-${cat.id}" onclick="filterCategory('${cat.id}')" class="category-pill bg-darkCard text-parchment border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all">
+                    <button id="pill-${cat.id}" onclick="filterCategory('${cat.id}')" class="category-pill bg-darkCard text-parchment border border-terracotta/20 px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all active:scale-95">
                         ${cat.name}
                     </button>
                 `;
@@ -1908,7 +1844,7 @@
                 return;
             }
             container.innerHTML = newsletterEmails.map((email, i) => `
-                <div class="bg-appBg border border-appBorder p-2.5 rounded-lg flex justify-between items-center">
+                <div class="bg-appBg border border-appBorder p-2.5 rounded-lg flex justify-between items-center transition-colors">
                     <span>${email}</span>
                     <button onclick="removeSubscriber(${i})" class="text-red-400 hover:text-red-500 font-sans"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
@@ -1981,20 +1917,20 @@
                 return;
             }
             container.innerHTML = cateringInquiries.map((cat, idx) => `
-                <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 flex flex-col justify-between transition-colors">
+                <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 flex flex-col justify-between transition-colors shadow">
                     <div>
                         <div class="flex justify-between items-baseline border-b border-appBorder pb-2">
                             <span class="font-serif font-bold text-appHeading text-sm">${cat.name}</span>
                             <span class="font-mono text-terracotta font-semibold">${cat.guests} guests</span>
                         </div>
-                        <div class="pt-2 space-y-1 leading-normal text-accentLight">
+                        <div class="pt-2 space-y-1 leading-normal text-accentLight font-sans">
                             <p><span class="text-neutralMuted">Email:</span> ${cat.email}</p>
                             <p><span class="text-neutralMuted">Event Date:</span> <span class="font-semibold font-mono">${cat.date}</span></p>
                             <p><span class="text-neutralMuted">Budget Tier:</span> <span class="text-terracotta">${cat.budget}</span></p>
                             <p class="pt-1 italic font-serif text-neutralMuted">"${cat.desc}"</p>
                         </div>
                     </div>
-                    <button onclick="discardCateringRequest(${idx})" class="w-full mt-3 py-1.5 bg-red-600/15 hover:bg-red-600/30 text-red-400 rounded text-[9px] uppercase font-bold tracking-wider transition-all font-mono">
+                    <button onclick="discardCateringRequest(${idx})" class="w-full mt-3 py-2 bg-red-600/15 hover:bg-red-600/30 text-red-400 rounded-lg text-[9px] uppercase font-bold tracking-wider transition-all font-mono btn-interactive">
                         Archive Proposal
                     </button>
                 </div>
@@ -2033,13 +1969,13 @@
             const containerWidget = document.getElementById('booking-widget-container');
 
             if (mode === 'internal') {
-                btnInternal.className = "px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-terracotta text-white";
-                btnWidget.className = "px-4 py-1.5 rounded-full text-xs font-semibold transition-all text-neutralMuted";
+                btnInternal.className = "px-4 py-2 rounded-full text-xs font-semibold transition-all bg-terracotta text-white btn-interactive";
+                btnWidget.className = "px-4 py-2 rounded-full text-xs font-semibold transition-all text-neutralMuted btn-interactive";
                 containerInternal.classList.remove('hidden');
                 containerWidget.classList.add('hidden');
             } else {
-                btnInternal.className = "px-4 py-1.5 rounded-full text-xs font-semibold transition-all text-neutralMuted";
-                btnWidget.className = "px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-terracotta text-white";
+                btnInternal.className = "px-4 py-2 rounded-full text-xs font-semibold transition-all text-neutralMuted btn-interactive";
+                btnWidget.className = "px-4 py-2 rounded-full text-xs font-semibold transition-all bg-terracotta text-white btn-interactive";
                 containerInternal.classList.add('hidden');
                 containerWidget.classList.remove('hidden');
             }
@@ -2091,10 +2027,10 @@
             const savedTheme = sessionStorage.getItem('pd_theme_mode');
             applyTheme(savedTheme || 'dark');
 
-            document.getElementById('theme-color-bg').value = "#150A08";
+            document.getElementById('theme-color-bg').value = "#110705";
             document.getElementById('theme-color-terracotta').value = "#D97757";
-            document.getElementById('theme-color-card').value = "#231511";
-            document.getElementById('theme-color-text').value = "#EEDCC5";
+            document.getElementById('theme-color-card').value = "#1A0E0B";
+            document.getElementById('theme-color-text').value = "#F5EBE1";
 
             showToastNotification("Bespoke palette reset back to natural Coffee Roast standards.");
         }
@@ -2419,7 +2355,7 @@
                     logText = `🎫 Seating reserved: ${eventDetails.zone} for ${eventDetails.guests} guests`;
                     break;
                 case 'loyalty_stamp_claimed':
-                    logText = `🎯 Mystery loyalty stamp registered (${eventDetails.count}/5)`;
+                    logText = `🎯 Loyalty stamp registered (${eventDetails.count}/5)`;
                     break;
                 case 'theme_toggled':
                     logText = `🌗 Swapped theme configuration mode to: ${eventDetails.theme}`;
@@ -2449,7 +2385,6 @@
             }
         }
 
-        // Upgraded Collapsible Sidebar Toggle Mechanics
         function toggleAdminSidebar() {
             adminSidebarOpen = !adminSidebarOpen;
             const sidebar = document.getElementById('cms-collapsible-sidebar');
@@ -2459,7 +2394,7 @@
             if (!sidebar) return;
 
             if (adminSidebarOpen) {
-                sidebar.className = "sidebar-expanded flex flex-col bg-appCard border border-appBorder rounded-3xl p-4 transition-all duration-300 gap-6 relative justify-between shrink-0";
+                sidebar.className = "sidebar-expanded flex flex-col bg-appCard border border-appBorder rounded-3xl p-4 transition-all duration-300 gap-6 relative justify-between shrink-0 shadow-lg";
                 if (toggleIcon) toggleIcon.className = "fa-solid fa-angles-left transition-transform duration-300";
                 
                 labels.forEach(lbl => {
@@ -2467,7 +2402,7 @@
                     lbl.classList.add('opacity-100');
                 });
             } else {
-                sidebar.className = "sidebar-collapsed flex flex-col bg-appCard border border-appBorder rounded-3xl p-4 transition-all duration-300 gap-6 relative justify-between shrink-0 items-center";
+                sidebar.className = "sidebar-collapsed flex flex-col bg-appCard border border-appBorder rounded-3xl p-4 transition-all duration-300 gap-6 relative justify-between shrink-0 items-center shadow-lg";
                 if (toggleIcon) toggleIcon.className = "fa-solid fa-angles-right transition-transform duration-300";
                 
                 labels.forEach(lbl => {
@@ -2506,28 +2441,20 @@
                 activeMobileTab.classList.add('active');
             }
 
-            const mobileCartContainer = document.getElementById('mobile-cart-bar-container');
             const mainHeader = document.getElementById('main-site-header');
-            const mobileNavBar = document.getElementById('mobile-navigation-bar');
 
-            // Hide normal portal headers/footers in verified Admin Space for desktop workspace look
             if (pageId === 'admin') {
-                if (mobileCartContainer) mobileCartContainer.classList.add('hidden');
                 if (mainHeader) mainHeader.classList.add('md:hidden');
-                
-                // Adjust workspace layout constraints
-                document.getElementById('app-root').className = "pt-6 md:pt-10 pb-20 px-4 max-w-7xl mx-auto w-full flex-grow transition-all duration-300";
+                document.getElementById('app-root').className = "pt-4 md:pt-6 pb-20 px-4 max-w-7xl mx-auto w-full flex-grow transition-all duration-300";
             } else {
-                if (mobileCartContainer) mobileCartContainer.classList.remove('hidden');
                 if (mainHeader) mainHeader.classList.remove('md:hidden');
-                
-                document.getElementById('app-root').className = "pt-24 pb-20 px-4 max-w-6xl mx-auto w-full flex-grow transition-all duration-300";
+                document.getElementById('app-root').className = "pt-20 md:pt-24 pb-16 md:pb-12 px-4 max-w-6xl mx-auto w-full flex-grow transition-all duration-300";
             }
 
             if (pageId === 'heritage' && leafletMapInstance) {
                 setTimeout(() => {
                     leafletMapInstance.invalidateSize();
-                }, 250);
+                }, 300);
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2562,11 +2489,11 @@
             selectedCategory = categoryName;
             const categoryPills = document.querySelectorAll('.category-pill');
             for (let i = 0; i < categoryPills.length; i++) {
-                categoryPills[i].className = 'category-pill bg-darkCard text-parchment border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all';
+                categoryPills[i].className = 'category-pill bg-darkCard text-parchment border border-terracotta/20 px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all active:scale-95';
             }
             const currentPill = document.getElementById('pill-' + categoryName);
             if (currentPill) {
-                currentPill.className = 'category-pill bg-terracotta text-white border border-terracotta/20 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all';
+                currentPill.className = 'category-pill bg-terracotta text-white border border-terracotta/20 px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all active:scale-95';
             }
             renderBistroMenu();
         }
@@ -2594,7 +2521,7 @@
                 } else {
                     highlightAddBtn.disabled = false;
                     highlightAddBtn.innerHTML = `<i class="fa-solid fa-cart-plus mr-1"></i> Add to Order`;
-                    highlightAddBtn.className = "w-full mt-4 bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 rounded-xl transition-all";
+                    highlightAddBtn.className = "w-full mt-4 bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 rounded-xl transition-all btn-interactive";
                 }
             }
 
@@ -2629,7 +2556,7 @@
                                 <i class="fa-solid fa-ban text-xs"></i>
                             </button>
                         ` : `
-                            <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-9 h-9 rounded-full bg-terracotta text-white flex items-center justify-center hover:bg-terracotta/90 transition-all shadow" aria-label="Add ${item.name} to order">
+                            <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-9 h-9 rounded-full bg-terracotta text-white flex items-center justify-center hover:bg-terracotta/90 transition-all shadow btn-interactive" aria-label="Add ${item.name} to order">
                                 <i class="fa-solid fa-plus text-xs"></i>
                             </button>
                         `}
@@ -2654,7 +2581,7 @@
                         </div>
                         <i class="fa-solid fa-chevron-down text-neutralMuted text-xs transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}"></i>
                     </button>
-                    <div class="accordion-content px-4 pb-4 space-y-3 ${isExpanded ? 'expanded' : ''}" style="${isExpanded ? 'max-height: 1000px;' : 'max-height: 0px;'}">
+                    <div class="accordion-content px-4 pb-4 space-y-3 ${isExpanded ? 'expanded' : ''}" style="${isExpanded ? 'max-height: 1200px;' : 'max-height: 0px;'}">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
                             ${groupItems.map(item => {
                                 const isSoldOut = item.sold_out;
@@ -2680,7 +2607,7 @@
                                                     <i class="fa-solid fa-ban text-[10px]"></i>
                                                 </button>
                                             ` : `
-                                                <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-7 h-7 rounded-full bg-darkAccent border border-terracotta/40 text-terracotta flex items-center justify-center hover:bg-terracotta hover:text-white transition-all shadow-sm" aria-label="Add ${item.name} to order">
+                                                <button onclick="addItemToCart('${item.id}', '${item.name}', ${item.price})" class="w-7 h-7 rounded-full bg-darkAccent border border-terracotta/40 text-terracotta flex items-center justify-center hover:bg-terracotta hover:text-white transition-all shadow-sm btn-interactive" aria-label="Add ${item.name} to order">
                                                     <i class="fa-solid fa-plus text-[10px]"></i>
                                                 </button>
                                             `}
@@ -2704,8 +2631,49 @@
                 icon.classList.remove('rotate-180');
             } else {
                 content.classList.add('expanded');
-                content.style.maxHeight = '1000px';
+                content.style.maxHeight = '1200px';
                 icon.classList.add('rotate-180');
+            }
+        }
+
+        function claimMysteryStamp() {
+            stampCount = (stampCount % 5) + 1;
+            syncLoyaltyCardUI();
+            
+            const earnedSlot = document.getElementById(`stamp-slot-${stampCount}`);
+            if (earnedSlot) {
+                earnedSlot.classList.add('animate-bounce');
+                setTimeout(() => earnedSlot.classList.remove('animate-bounce'), 1000);
+            }
+
+            if (stampCount === 5) {
+                showToastNotification("🎉 Stamp card fully stamped! Free specialty coffee reward unlocked!");
+                logTelemetryEvent('loyalty_stamp_claimed', { count: stampCount });
+                setTimeout(() => {
+                    stampCount = 0;
+                    syncLoyaltyCardUI();
+                }, 3000);
+            } else {
+                showToastNotification(`Stamp registered! ${stampCount} of 5 completed.`);
+                logTelemetryEvent('loyalty_stamp_claimed', { count: stampCount });
+            }
+        }
+
+        function syncLoyaltyCardUI() {
+            const indTxt = document.getElementById('stamp-indicator-txt');
+            if (indTxt) indTxt.innerText = `${stampCount} of 5 Completed`;
+
+            for (let i = 1; i <= 5; i++) {
+                const slot = document.getElementById(`stamp-slot-${i}`);
+                if (slot) {
+                    if (i <= stampCount) {
+                        slot.className = "stamp-circle h-11 border-2 border-solid border-terracotta rounded-xl flex items-center justify-center text-white bg-terracotta stamped shadow-lg";
+                        slot.innerHTML = `<i class="fa-solid fa-circle-check animate-pulse"></i>`;
+                    } else {
+                        slot.className = "stamp-circle h-11 border-2 border-dashed border-terracotta/25 rounded-xl flex items-center justify-center text-terracotta/40 bg-appBg/40";
+                        slot.innerHTML = i === 5 ? `<i class="fa-solid fa-gift"></i>` : `<i class="fa-solid fa-mug-hot"></i>`;
+                    }
+                }
             }
         }
 
@@ -2756,7 +2724,7 @@
                     totalPrice += item.price * item.quantity;
 
                     const itemRow = document.createElement('div');
-                    itemRow.className = 'flex justify-between items-center bg-appBg border border-appBorder p-3 rounded-xl text-xs transition-colors';
+                    itemRow.className = 'flex justify-between items-center bg-appBg border border-appBorder p-3 rounded-xl text-xs transition-colors shadow-inner';
                     itemRow.innerHTML = `
                         <div class="flex-grow pr-2">
                             <h4 class="font-serif font-bold text-appHeading leading-tight">${item.name}</h4>
@@ -2773,10 +2741,9 @@
                 });
             }
 
-            dom.desktopCartBadge.innerText = totalCount;
-            dom.mobileCartBadge.innerText = totalCount;
-            dom.mobileCartTotal.innerText = `$${totalPrice.toFixed(2)}`;
-            dom.cartDrawerTotal.innerText = `$${totalPrice.toFixed(2)}`;
+            if (dom.desktopCartBadge) dom.desktopCartBadge.innerText = totalCount;
+            if (dom.mobileCartBadge) dom.mobileCartBadge.innerText = totalCount;
+            if (dom.cartDrawerTotal) dom.cartDrawerTotal.innerText = `$${totalPrice.toFixed(2)}`;
         }
 
         function openSidebarCart() {
@@ -2932,7 +2899,36 @@
             const finalSum = basePrice + extraPrice;
             if (dom.builderDisplayPrice) dom.builderDisplayPrice.innerText = `$${finalSum.toFixed(2)}`;
             if (dom.builderDisplayName) dom.builderDisplayName.innerText = `Custom ${chosenOption.value}`;
-            if (dom.builderDisplayDesc) dom.builderDisplayDesc.innerText = `${selectedSize}ml, ${selectedMilk} alternative, Additions: ${optionsText.length ? optionsText.join(', ') : 'None'}.`;
+            if (dom.builderDisplayDesc) dom.builderDisplayDesc.innerText = `${selectedSize}ml, ${selectedMilk} formulation, Additions: ${optionsText.length ? optionsText.join(', ') : 'None'}.`;
+
+            const simulationLiquid = document.getElementById('simulation-liquid');
+            const simulationFroth = document.getElementById('simulation-froth');
+            const simulationSyrup = document.getElementById('simulation-syrup');
+
+            if (simulationLiquid && simulationFroth && simulationSyrup) {
+                let liquidColor = '#4B2A1E'; 
+                if (chosenOption.value === 'Latte') liquidColor = '#C49B76';
+                if (chosenOption.value === 'Matcha') liquidColor = '#739072';
+                if (chosenOption.value === 'Viennese Waltz') liquidColor = '#D4A373';
+
+                simulationLiquid.setAttribute('fill', liquidColor);
+
+                let liquidY = 55; 
+                let frothY = 50; 
+                if (selectedSize === '350') {
+                    liquidY = 40;
+                    frothY = 35;
+                } else if (selectedSize === '450') {
+                    liquidY = 25;
+                    frothY = 20;
+                }
+
+                simulationLiquid.setAttribute('d', `M 18,${liquidY} L 82,${liquidY} L 75,110 L 25,110 Z`);
+                simulationFroth.setAttribute('d', `M 18,${frothY} L 82,${frothY} L 82,${liquidY} L 18,${liquidY} Z`);
+
+                const hasSyrup = document.getElementById('syrup-sorghum').checked || document.getElementById('syrup-vanilla').checked;
+                simulationSyrup.style.opacity = hasSyrup ? '1' : '0';
+            }
         }
 
         function addCustomBuildToCart() {
@@ -2942,12 +2938,6 @@
             const desc = dom.builderDisplayDesc.innerText;
             addItemToCart('custom_mix_' + Date.now(), name, price, desc);
             logTelemetryEvent('custom_mix_added_to_cart', { name, price });
-        }
-
-        function claimMysteryStamp() {
-            stampCount = (stampCount % 5) + 1;
-            showToastNotification(`Stamp Registered! ${stampCount}/5 Complete.`);
-            logTelemetryEvent('loyalty_stamp_claimed', { count: stampCount });
         }
 
         function verifyAdministrativePasscode() {
@@ -2969,26 +2959,32 @@
             }
         }
 
-        // Upgraded switchCMSTab supporting sidebar highlights
         function switchCMSTab(tab) {
             const subviews = ['dashboard', 'orders', 'feedback', 'catering', 'photos', 'products', 'analytics'];
             subviews.forEach(v => {
                 document.getElementById(`cms-${v}-subview`)?.classList.add('hidden');
                 
-                // Reset sidebar item highlights
                 const btn = document.getElementById(`sidebar-btn-${v}`);
                 if (btn) {
-                    btn.className = "relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs";
+                    btn.className = "relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive";
+                }
+
+                const mBtn = document.getElementById(`mobile-cms-tab-${v}`);
+                if (mBtn) {
+                    mBtn.className = "bg-darkCard text-neutralMuted border border-appBorder px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap btn-interactive";
                 }
             });
 
-            // Show active views
             document.getElementById(`cms-${tab}-subview`)?.classList.remove('hidden');
             
-            // Set active highlights
             const activeBtn = document.getElementById(`sidebar-btn-${tab}`);
             if (activeBtn) {
-                activeBtn.className = "relative flex items-center h-10 w-full rounded-xl transition-all duration-200 bg-terracotta/10 text-terracotta border-l-2 border-terracotta font-medium text-xs";
+                activeBtn.className = "relative flex items-center h-10 w-full rounded-xl transition-all duration-200 bg-terracotta/10 text-terracotta border-l-2 border-terracotta font-medium text-xs btn-interactive";
+            }
+
+            const activeMBtn = document.getElementById(`mobile-cms-tab-${tab}`);
+            if (activeMBtn) {
+                activeMBtn.className = "bg-terracotta text-white px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap shadow-sm btn-interactive";
             }
         }
 
@@ -3039,7 +3035,7 @@
                 if (order.status === 'Cancelled') statusClass = "bg-red-500/20 text-red-400";
 
                 return `
-                    <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 flex flex-col justify-between transition-colors">
+                    <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 flex flex-col justify-between transition-colors shadow">
                         <div>
                             <div class="flex justify-between items-center border-b border-appBorder pb-2">
                                 <span class="font-mono text-terracotta font-bold">#ORD-${order.id ? order.id.toString().slice(0,5) : 'SIM'}</span>
@@ -3047,7 +3043,7 @@
                             </div>
                             <div class="space-y-3 pt-2">
                                 ${(rawItems || []).map(item => `
-                                    <div class="flex flex-col border-b border-appBorder/20 pb-1.5 last:border-b-0 last:pb-0">
+                                    <div class="flex flex-col border-b border-appBorder/20 pb-1.5 last:border-b-0 last:pb-0 font-sans">
                                         <div class="flex justify-between text-accentLight font-semibold">
                                             <span>${item.name} <span class="text-neutralMuted font-mono">x${item.quantity}</span></span>
                                             <span>$${(item.price * item.quantity).toFixed(2)}</span>
@@ -3057,20 +3053,20 @@
                                 `).join('')}
                             </div>
                         </div>
-                        <div class="pt-2 border-t border-appBorder space-y-3">
+                        <div class="pt-2 border-t border-appBorder space-y-3 font-sans">
                             <div class="flex justify-between items-baseline font-bold">
                                 <span>Aggregated Est.</span>
                                 <span class="text-terracotta text-sm">$${parseFloat(order.totalPrice || order.total_price || 0).toFixed(2)}</span>
                             </div>
                             
                             <div class="grid grid-cols-3 gap-1 pt-1.5 border-t border-appBorder/40 font-mono">
-                                <button onclick="updateOrderStatus('${order.id}', 'Pending')" class="bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-500 rounded py-1 text-[9px] uppercase tracking-wider transition-all">
+                                <button onclick="updateOrderStatus('${order.id}', 'Pending')" class="bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-500 rounded py-1.5 text-[9px] uppercase tracking-wider transition-all btn-interactive">
                                     Pending
                                 </button>
-                                <button onclick="updateOrderStatus('${order.id}', 'Order Done')" class="bg-green-600/20 hover:bg-green-600/40 text-green-500 rounded py-1 text-[9px] uppercase tracking-wider transition-all">
+                                <button onclick="updateOrderStatus('${order.id}', 'Order Done')" class="bg-green-600/20 hover:bg-green-600/40 text-green-500 rounded py-1.5 text-[9px] uppercase tracking-wider transition-all btn-interactive">
                                     Done
                                 </button>
-                                <button onclick="updateOrderStatus('${order.id}', 'Cancelled')" class="bg-red-600/20 hover:bg-red-600/40 text-red-500 rounded py-1 text-[9px] uppercase tracking-wider transition-all">
+                                <button onclick="updateOrderStatus('${order.id}', 'Cancelled')" class="bg-red-600/20 hover:bg-red-600/40 text-red-500 rounded py-1.5 text-[9px] uppercase tracking-wider transition-all btn-interactive">
                                     Cancel
                                 </button>
                             </div>
@@ -3090,16 +3086,16 @@
             }
 
             container.innerHTML = activeReservations.map(res => `
-                <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 relative transition-colors">
+                <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 relative transition-colors shadow">
                     <div class="flex justify-between items-baseline border-b border-appBorder pb-1.5 font-sans">
                         <span class="font-serif font-bold text-appHeading text-sm">${res.name}</span>
                         <span class="font-mono text-terracotta font-semibold">${res.guests} Guests</span>
                     </div>
                     <div class="space-y-1 pt-1 font-sans">
-                        <p><span class="text-neutralMuted font-sans">Seating Zone:</span> <span class="font-semibold">${res.zone}</span></p>
-                        <p><span class="text-neutralMuted font-sans">Arrival Slot:</span> <span class="font-semibold font-mono">${res.arrival_time}</span></p>
+                        <p><span class="text-neutralMuted">Seating Zone:</span> <span class="font-semibold">${res.zone}</span></p>
+                        <p><span class="text-neutralMuted">Arrival Slot:</span> <span class="font-semibold font-mono">${res.arrival_time}</span></p>
                     </div>
-                    <button onclick="deleteReservation('${res.id}')" class="w-full mt-2 py-1 bg-red-600/15 hover:bg-red-600/30 text-red-400 rounded text-[9px] uppercase font-bold tracking-wider transition-all font-mono">
+                    <button onclick="deleteReservation('${res.id}')" class="w-full mt-2 py-1.5 bg-red-600/15 hover:bg-red-600/30 text-red-400 rounded-lg text-[9px] uppercase font-bold tracking-wider transition-all font-mono btn-interactive">
                         Release Seating
                     </button>
                 </div>
@@ -3127,12 +3123,12 @@
         function updateDashboardMetrics() {
             const rev = document.getElementById('metrics-revenue');
             const cnt = document.getElementById('metrics-orders-active');
-            const feedPending = document.getElementById('metrics-feedback-pending');
-            const vibesCnt = document.getElementById('metrics-vibes-count');
+            const feedPending = document.getElementById('metrics-catering-pending');
+            const vibesCnt = document.getElementById('metrics-subscribers-count');
             
             if (cnt) cnt.innerText = activeOrders.filter(o => o.status === 'Pending').length;
-            if (feedPending) feedPending.innerText = communityFeedbacks.filter(f => !f.approved).length;
-            if (vibesCnt) vibesCnt.innerText = communityPhotos.length;
+            if (feedPending) feedPending.innerText = cateringInquiries.length;
+            if (vibesCnt) vibesCnt.innerText = newsletterEmails.length;
             if (rev) {
                 let totalSum = activeOrders
                     .filter(o => o.status !== 'Cancelled')
@@ -3173,15 +3169,15 @@
             }
 
             grid.innerHTML = communityPhotos.map(p => `
-                <div class="bg-appBg border border-appBorder p-3 rounded-xl space-y-2 flex flex-col justify-between">
+                <div class="bg-appBg border border-appBorder p-3 rounded-xl space-y-2 flex flex-col justify-between shadow">
                     <div class="w-full h-32 rounded overflow-hidden bg-espresso/20">
                         <img src="${p.image}" class="w-full h-full object-cover" onerror="window.handleImageError(this)">
                     </div>
-                    <div>
+                    <div class="font-sans">
                         <p class="font-bold font-mono">@${p.handle}</p>
                         <p class="text-neutralMuted line-clamp-1">${p.drink}</p>
                     </div>
-                    <button onclick="deleteVibePhoto('${p.id}')" class="w-full py-1.5 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded text-[11px] font-bold uppercase transition-all font-serif">
+                    <button onclick="deleteVibePhoto('${p.id}')" class="w-full py-2 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded-lg text-[11px] font-bold uppercase transition-all font-sans btn-interactive">
                         Remove Photo
                     </button>
                 </div>
@@ -3212,7 +3208,7 @@
             const approvedNotes = communityFeedbacks.filter(f => f.approved);
             
             if (approvedNotes.length === 0) {
-                dom.feedbackBoardCards.innerHTML = `<p class="text-xs text-neutralMuted italic text-center py-4 font-serif">No notes published yet.</p>`;
+                dom.feedbackBoardCards.innerHTML = `<p class="text-xs text-neutralMuted italic text-center py-4 font-serif bg-appCard border border-appBorder p-4 rounded-xl shadow-sm">No notes published yet.</p>`;
                 return;
             }
 
@@ -3220,7 +3216,7 @@
                 <div class="bg-appCard border border-appBorder p-4 rounded-2xl shadow-sm transition-colors animate-fadeIn">
                     <div class="flex justify-between items-baseline mb-1">
                         <span class="font-serif font-bold text-appHeading text-xs">${f.user}</span>
-                        <span class="text-[9px] font-mono text-terracotta bg-terracotta/10 px-2 py-0.5 rounded">${f.topic}</span>
+                        <span class="text-[9px] font-mono text-terracotta bg-terracotta/10 px-2 py-0.5 rounded font-bold">${f.topic}</span>
                     </div>
                     <p class="text-[11px] text-accentLight leading-relaxed font-serif italic">"${f.comment}"</p>
                 </div>
@@ -3239,17 +3235,17 @@
             }
 
             container.innerHTML = pendingNotes.map(f => `
-                <div class="bg-appBg border border-appBorder p-4 rounded-xl text-xs space-y-3">
+                <div class="bg-appBg border border-appBorder p-4 rounded-xl text-xs space-y-3 shadow">
                     <div class="flex justify-between items-baseline">
                         <span class="font-bold font-sans">${f.user} <span class="text-neutralMuted font-normal">on</span> ${f.topic}</span>
                         <span class="text-[10px] text-yellow-500 bg-yellow-500/10 px-2 py-0.5 rounded font-mono">Awaiting Review</span>
                     </div>
                     <p class="italic text-accentLight font-serif">"${f.comment}"</p>
                     <div class="flex gap-2 justify-end">
-                        <button onclick="approveFeedback('${f.id}')" class="px-3 py-1.5 bg-green-600/20 hover:bg-green-600/40 text-green-400 rounded text-[10px] font-bold uppercase transition-all font-serif">
+                        <button onclick="approveFeedback('${f.id}')" class="px-3 py-2 bg-green-600/20 hover:bg-green-600/40 text-green-400 rounded-lg text-[10px] font-bold uppercase transition-all font-serif btn-interactive">
                             Approve & Publish
                         </button>
-                        <button onclick="deleteFeedback('${f.id}')" class="px-3 py-1.5 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded text-[10px] font-bold uppercase transition-all font-serif">
+                        <button onclick="deleteFeedback('${f.id}')" class="px-3 py-2 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded-lg text-[10px] font-bold uppercase transition-all font-serif btn-interactive">
                             Reject & Delete
                         </button>
                     </div>
@@ -3391,7 +3387,7 @@
             masterCategories.forEach(cat => {
                 const groupItems = masterProducts.filter(item => item.category === cat.id);
                 const accordionDiv = document.createElement('div');
-                accordionDiv.className = 'border border-appBorder rounded-2xl bg-appCard overflow-hidden shadow-sm transition-colors mb-3';
+                accordionDiv.className = 'border border-appBorder rounded-2xl bg-appCard overflow-hidden shadow mb-3';
                 
                 accordionDiv.innerHTML = `
                     <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center p-4 text-left font-serif font-bold text-appHeading focus:outline-none hover:bg-espresso/5 transition-all">
@@ -3401,7 +3397,7 @@
                         </div>
                         <i class="fa-solid fa-chevron-down text-neutralMuted text-xs transition-transform duration-300 rotate-180"></i>
                     </button>
-                    <div class="accordion-content px-4 pb-4 space-y-3 expanded" style="max-height: 2000px;">
+                    <div class="accordion-content px-4 pb-4 space-y-3 expanded" style="max-height: 2500px;">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
                             ${groupItems.map(item => {
                                 return `
@@ -3411,7 +3407,7 @@
                                                 <div class="w-10 h-10 rounded-lg overflow-hidden bg-espresso/20 flex-shrink-0 relative">
                                                     <img src="${item.img}" alt="${item.name}" class="object-cover w-full h-full" onerror="window.handleImageError(this)">
                                                 </div>
-                                                <div class="overflow-hidden">
+                                                <div class="overflow-hidden font-sans">
                                                     <h4 class="font-serif font-bold text-appHeading text-xs leading-tight truncate">
                                                         ${item.name}
                                                         ${item.badge ? `<span class="bg-terracotta text-white font-mono text-[7px] px-1 py-0.5 rounded ml-1 font-bold inline-block">${item.badge}</span>` : ''}
@@ -3423,16 +3419,16 @@
                                         </div>
                                         
                                         <div class="grid grid-cols-4 gap-1 pt-1.5 border-t border-appBorder/40 font-mono text-[8px] font-bold">
-                                            <button onclick="toggleProductSoldOutStatus('${item.id}')" class="px-1.5 py-1 rounded border text-center transition-all truncate ${item.sold_out ? 'bg-red-600 text-white border-red-500' : 'bg-darkAccent text-terracotta border-terracotta/20'}">
+                                            <button onclick="toggleProductSoldOutStatus('${item.id}')" class="px-1.5 py-2.5 rounded-lg border text-center transition-all truncate btn-interactive ${item.sold_out ? 'bg-red-600 text-white border-red-500' : 'bg-darkAccent text-terracotta border-terracotta/20'}">
                                                 ${item.sold_out ? 'In Stock' : 'Sold Out'}
                                             </button>
-                                            <button onclick="toggleProductHiddenStatus('${item.id}')" class="px-1.5 py-1 rounded border text-center transition-all truncate ${item.hidden ? 'bg-neutral-600 text-white border-neutral-500' : 'bg-darkAccent text-neutralMuted border-terracotta/20'}">
+                                            <button onclick="toggleProductHiddenStatus('${item.id}')" class="px-1.5 py-2.5 rounded-lg border text-center transition-all truncate btn-interactive ${item.hidden ? 'bg-neutral-600 text-white border-neutral-500' : 'bg-darkAccent text-neutralMuted border-terracotta/20'}">
                                                 ${item.hidden ? 'Show' : 'Hide'}
                                             </button>
-                                            <button onclick="toggleProductPopularStatus('${item.id}')" class="px-1.5 py-1 rounded border text-center transition-all truncate ${item.badge === 'Popular' ? 'bg-yellow-600 text-white border-yellow-500' : 'bg-darkAccent text-parchment border-terracotta/20'}">
+                                            <button onclick="toggleProductPopularStatus('${item.id}')" class="px-1.5 py-2.5 rounded-lg border text-center transition-all truncate btn-interactive ${item.badge === 'Popular' ? 'bg-yellow-600 text-white border-yellow-500' : 'bg-darkAccent text-parchment border-terracotta/20'}">
                                                 ${item.badge === 'Popular' ? 'Unmark' : 'Popular'}
                                             </button>
-                                            <button onclick="editProductDetailsCMS('${item.id}')" class="px-1.5 py-1 rounded bg-terracotta hover:bg-terracotta/90 text-white text-center transition-all truncate">
+                                            <button onclick="editProductDetailsCMS('${item.id}')" class="px-1.5 py-2.5 rounded-lg bg-terracotta hover:bg-terracotta/90 text-white text-center transition-all truncate btn-interactive">
                                                 Edit
                                             </button>
                                         </div>
@@ -3552,9 +3548,20 @@
 
         function openProductEditForm() { document.getElementById('product-modal-sheet').classList.add('active'); }
         function closeProductEditForm() { document.getElementById('product-modal-sheet').classList.remove('active'); }
-        function openUploadSheet() { document.getElementById('upload-sheet').classList.add('active'); document.getElementById('sheet-backdrop').classList.add('active'); }
-        function closeUploadSheet() { document.getElementById('upload-sheet').classList.remove('active'); document.getElementById('sheet-backdrop').classList.remove('active'); }
-        function applyPresetVibe(url) { document.getElementById('preview-img').src = url; document.getElementById('preview-img').classList.remove('hidden'); document.getElementById('dropzone-placeholder').classList.add('hidden'); }
+        
+        function openUploadSheet() { 
+            document.getElementById('upload-sheet').classList.add('active'); 
+            document.getElementById('sheet-backdrop').classList.add('active'); 
+        }
+        function closeUploadSheet() { 
+            document.getElementById('upload-sheet').classList.remove('active'); 
+            document.getElementById('sheet-backdrop').classList.remove('active'); 
+        }
+        function applyPresetVibe(url) { 
+            document.getElementById('preview-img').src = url; 
+            document.getElementById('preview-img').classList.remove('hidden'); 
+            document.getElementById('dropzone-placeholder').classList.add('hidden'); 
+        }
 
         function showToastNotification(msg) {
             const toastContainer = document.getElementById('toast-container');
