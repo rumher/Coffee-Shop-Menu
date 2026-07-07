@@ -920,30 +920,37 @@
                             <button id="sidebar-btn-dashboard" onclick="switchCMSTab('dashboard')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 bg-terracotta/10 text-terracotta border-l-2 border-terracotta font-medium text-xs btn-interactive">
                                 <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-chart-line text-sm"></i></div>
                                 <span class="sidebar-text-label transition-opacity duration-200 truncate">Insights Overview</span>
+                                <span id="badge-sidebar-dashboard" class="absolute right-4 w-2 h-2 rounded-full bg-terracotta hidden"></span>
                             </button>
                             <button id="sidebar-btn-orders" onclick="switchCMSTab('orders')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
                                 <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-basket-shopping text-sm"></i></div>
-                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Pre-orders & Seats</span>
+                                <span class="sidebar-text-label transition-opacity duration-200 truncate font-semibold">Pre-orders & Seats</span>
+                                <span id="badge-sidebar-orders" class="absolute right-4 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-terracotta text-white hidden">0</span>
                             </button>
                             <button id="sidebar-btn-feedback" onclick="switchCMSTab('feedback')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
                                 <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-user-shield text-sm"></i></div>
                                 <span class="sidebar-text-label transition-opacity duration-200 truncate">Note Reviews</span>
+                                <span id="badge-sidebar-feedback" class="absolute right-4 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-600 text-white hidden">0</span>
                             </button>
                             <button id="sidebar-btn-catering" onclick="switchCMSTab('catering')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
                                 <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-envelope-open-text text-sm"></i></div>
                                 <span class="sidebar-text-label transition-opacity duration-200 truncate">Catering & Leads</span>
+                                <span id="badge-sidebar-catering" class="absolute right-4 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-yellow-500 text-white hidden">0</span>
                             </button>
                             <button id="sidebar-btn-photos" onclick="switchCMSTab('photos')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
                                 <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-images text-sm"></i></div>
-                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Vibe Archives</span>
+                                <span class="sidebar-text-label transition-opacity duration-200 truncate font-semibold">Vibe Archives</span>
+                                <span id="badge-sidebar-photos" class="absolute right-4 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-indigo-500 text-white hidden">0</span>
                             </button>
                             <button id="sidebar-btn-products" onclick="switchCMSTab('products')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
                                 <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-mug-saucer text-sm"></i></div>
                                 <span class="sidebar-text-label transition-opacity duration-200 truncate">Catalog Matrix</span>
+                                <span id="badge-sidebar-products" class="absolute right-4 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-red-500 text-white hidden">0</span>
                             </button>
                             <button id="sidebar-btn-analytics" onclick="switchCMSTab('analytics')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
                                 <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-gears text-sm"></i></div>
-                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Core Sync Settings</span>
+                                <span class="sidebar-text-label transition-opacity duration-200 truncate font-semibold">Core Sync Settings</span>
+                                <span id="badge-sidebar-analytics" class="absolute right-4 w-2 h-2 rounded-full bg-green-500 hidden"></span>
                             </button>
                         </nav>
                     </div>
@@ -979,35 +986,42 @@
                         </button>
                     </div>
 
-                    <!-- Beautifully adapted Mobile Navigation Bar for CMS, using the cloned vertical icon + text structure of the storefront bottom nav -->
+                    <!-- Beautifully adapted Mobile Navigation Bar for CMS -->
                     <div class="flex md:hidden overflow-x-auto gap-1 pb-2 scrollbar-none max-w-full font-sans mb-4 border-b border-appBorder py-1" aria-label="CMS Mobile Navigation Bar">
-                        <button id="mobile-cms-tab-dashboard" onclick="switchCMSTab('dashboard')" class="mobile-cms-tab-btn active btn-interactive">
+                        <button id="mobile-cms-tab-dashboard" onclick="switchCMSTab('dashboard')" class="mobile-cms-tab-btn active btn-interactive relative">
                             <i class="fa-solid fa-chart-line text-sm"></i>
                             <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Insights</span>
+                            <span id="badge-mobile-dashboard" class="absolute top-1 right-1 w-2 h-2 rounded-full bg-terracotta hidden"></span>
                         </button>
-                        <button id="mobile-cms-tab-orders" onclick="switchCMSTab('orders')" class="mobile-cms-tab-btn btn-interactive">
+                        <button id="mobile-cms-tab-orders" onclick="switchCMSTab('orders')" class="mobile-cms-tab-btn btn-interactive relative">
                             <i class="fa-solid fa-basket-shopping text-sm"></i>
                             <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Orders</span>
+                            <span id="badge-mobile-orders" class="absolute top-1 right-1 px-1 py-0.2 rounded-full text-[7px] font-bold bg-terracotta text-white hidden">0</span>
                         </button>
-                        <button id="mobile-cms-tab-feedback" onclick="switchCMSTab('feedback')" class="mobile-cms-tab-btn btn-interactive">
+                        <button id="mobile-cms-tab-feedback" onclick="switchCMSTab('feedback')" class="mobile-cms-tab-btn btn-interactive relative">
                             <i class="fa-solid fa-user-shield text-sm"></i>
                             <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Reviews</span>
+                            <span id="badge-mobile-feedback" class="absolute top-1 right-1 px-1 py-0.2 rounded-full text-[7px] font-bold bg-amber-600 text-white hidden">0</span>
                         </button>
-                        <button id="mobile-cms-tab-catering" onclick="switchCMSTab('catering')" class="mobile-cms-tab-btn btn-interactive">
+                        <button id="mobile-cms-tab-catering" onclick="switchCMSTab('catering')" class="mobile-cms-tab-btn btn-interactive relative">
                             <i class="fa-solid fa-envelope-open-text text-sm"></i>
                             <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Catering</span>
+                            <span id="badge-mobile-catering" class="absolute top-1 right-1 px-1 py-0.2 rounded-full text-[7px] font-bold bg-yellow-500 text-white hidden">0</span>
                         </button>
-                        <button id="mobile-cms-tab-photos" onclick="switchCMSTab('photos')" class="mobile-cms-tab-btn btn-interactive">
+                        <button id="mobile-cms-tab-photos" onclick="switchCMSTab('photos')" class="mobile-cms-tab-btn btn-interactive relative">
                             <i class="fa-solid fa-images text-sm"></i>
                             <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Vibes</span>
+                            <span id="badge-mobile-photos" class="absolute top-1 right-1 px-1 py-0.2 rounded-full text-[7px] font-bold bg-indigo-500 text-white hidden">0</span>
                         </button>
-                        <button id="mobile-cms-tab-products" onclick="switchCMSTab('products')" class="mobile-cms-tab-btn btn-interactive">
+                        <button id="mobile-cms-tab-products" onclick="switchCMSTab('products')" class="mobile-cms-tab-btn btn-interactive relative">
                             <i class="fa-solid fa-mug-saucer text-sm"></i>
                             <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Catalog</span>
+                            <span id="badge-mobile-products" class="absolute top-1 right-1 px-1 py-0.2 rounded-full text-[7px] font-bold bg-red-500 text-white hidden">0</span>
                         </button>
-                        <button id="mobile-cms-tab-analytics" onclick="switchCMSTab('analytics')" class="mobile-cms-tab-btn btn-interactive">
+                        <button id="mobile-cms-tab-analytics" onclick="switchCMSTab('analytics')" class="mobile-cms-tab-btn btn-interactive relative">
                             <i class="fa-solid fa-gears text-sm"></i>
                             <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Settings</span>
+                            <span id="badge-mobile-analytics" class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-green-500 hidden"></span>
                         </button>
                     </div>
 
@@ -1068,21 +1082,21 @@
                     <div id="cms-orders-subview" class="space-y-4 hidden">
                         <div class="flex justify-between items-center border-b border-appBorder pb-2">
                             <div>
-                                <h4 class="font-serif text-lg font-bold text-appHeading">Simulated Real-Time Orders</h4>
-                                <p class="text-xs text-neutralMuted mt-0.5">Track and update customer checkout orders from standard local records.</p>
+                                <h4 class="font-serif text-lg font-bold text-appHeading">Pending Pre-Orders Queue</h4>
+                                <p class="text-xs text-neutralMuted mt-0.5">Track and update customer checkout orders currently awaiting preparation.</p>
                             </div>
                             <button onclick="fetchLiveOrders()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 shadow font-sans btn-interactive" aria-label="Refresh orders list">
                                 <i class="fa-solid fa-rotate-right" id="refresh-orders-icon"></i> Refresh Pipeline
                             </button>
                         </div>
-                        <div id="admin-orders-container" class="grid gap-4 md:grid-cols-2 font-sans"></div>
+                        <div id="admin-orders-container" class="grid gap-4 md:grid-cols-2 font-sans animate-fadeIn"></div>
 
-                        <!-- Seating bookings dashboard list -->
+                        <!-- Same-Day seating bookings section -->
                         <div class="border-t border-appBorder pt-6 space-y-4">
                             <div class="flex justify-between items-center">
                                 <div>
                                     <h4 class="font-serif text-lg font-bold text-appHeading">Lounge Seating Reservations</h4>
-                                    <p class="text-xs text-neutralMuted font-sans">View reservation entries stored in Supabase or local state.</p>
+                                    <p class="text-xs text-neutralMuted font-sans">View reservation entries stored in local state or custom sync servers.</p>
                                 </div>
                                 <button onclick="fetchReservations()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 shadow font-sans btn-interactive" aria-label="Refresh reservations list">
                                     <i class="fa-solid fa-rotate-right" id="refresh-reservations-icon"></i> Refresh Reservations
@@ -1090,20 +1104,42 @@
                             </div>
                             <div id="admin-reservations-container" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-appText font-sans"></div>
                         </div>
+
+                        <!-- Historical Orders Audit Ledger Section -->
+                        <div class="border-t border-appBorder pt-6 space-y-4">
+                            <div>
+                                <h4 class="font-serif text-lg font-bold text-appHeading">Historical Order Archive & Audit Ledger</h4>
+                                <p class="text-xs text-neutralMuted font-sans">Historical logs of finalized "Done" or "Cancelled" customer orders.</p>
+                            </div>
+                            <div id="admin-orders-archive-container" class="grid gap-4 md:grid-cols-2 font-sans animate-fadeIn"></div>
+                        </div>
                     </div>
 
                     <!-- CMS View Segment: REVIEW & FEEDBACK MODERATION -->
-                    <div id="cms-feedback-subview" class="space-y-4 hidden font-sans">
-                        <div class="flex justify-between items-center">
+                    <div id="cms-feedback-subview" class="space-y-6 hidden font-sans">
+                        <div class="flex justify-between items-center border-b border-appBorder pb-2">
                             <div>
-                                <h4 class="font-serif text-lg font-bold text-appHeading">Pending Customer Note Approvals</h4>
-                                <p class="text-xs text-neutralMuted mt-0.5">Click Approve to publish feedback directly on the storefront.</p>
+                                <h4 class="font-serif text-lg font-bold text-appHeading">Customer Note Moderation Workspace</h4>
+                                <p class="text-xs text-neutralMuted mt-0.5">Moderate incoming guest reviews. Approved notes showcase live on the storefront corkboard.</p>
                             </div>
                             <button onclick="fetchFeedbacks()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 btn-interactive" aria-label="Refresh feedbacks list">
                                 <i class="fa-solid fa-rotate-right" id="refresh-feedbacks-icon"></i> Refresh Pipeline
                             </button>
                         </div>
-                        <div id="admin-feedback-moderation-list" class="grid gap-4 text-appText font-sans"></div>
+                        
+                        <div class="space-y-4">
+                            <h5 class="text-xs uppercase tracking-wider font-bold text-yellow-500 font-mono flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span> Awaiting Moderation Review
+                            </h5>
+                            <div id="admin-feedback-moderation-list" class="grid gap-4 text-appText font-sans animate-fadeIn"></div>
+                        </div>
+
+                        <div class="border-t border-appBorder pt-6 space-y-4">
+                            <h5 class="text-xs uppercase tracking-wider font-bold text-green-500 font-mono flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-green-500"></span> Live Storefront Ledger
+                            </h5>
+                            <div id="admin-feedback-published-list" class="grid gap-4 text-appText font-sans animate-fadeIn"></div>
+                        </div>
                     </div>
 
                     <!-- CMS View Segment: CATERING LEADS -->
@@ -1140,17 +1176,30 @@
                     </div>
 
                     <!-- CMS View Segment: VIBE BOARD PHOTOS MODERATION -->
-                    <div id="cms-photos-subview" class="space-y-4 hidden font-sans">
-                        <div class="flex justify-between items-center">
+                    <div id="cms-photos-subview" class="space-y-6 hidden font-sans">
+                        <div class="flex justify-between items-center border-b border-appBorder pb-2">
                             <div>
-                                <h4 class="font-serif text-lg font-bold text-appHeading">Corkboard Polaroid Archive Moderation</h4>
-                                <p class="text-xs text-neutralMuted mt-0.5">Moderate and prune uploaded setup photographs directly on the live wall.</p>
+                                <h4 class="font-serif text-lg font-bold text-appHeading">Corkboard Polaroid Moderation</h4>
+                                <p class="text-xs text-neutralMuted mt-0.5">Manage customer setup uploads. Approved photos showcase live on the storefront Vibe Board.</p>
                             </div>
                             <button onclick="fetchVibeBoard()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 btn-interactive" aria-label="Refresh vibe photos list">
                                 <i class="fa-solid fa-rotate-right" id="refresh-vibes-icon"></i> Refresh Pipeline
                             </button>
                         </div>
-                        <div id="admin-photos-moderation-grid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-appText font-sans"></div>
+
+                        <div class="space-y-4">
+                            <h5 class="text-xs uppercase tracking-wider font-bold text-yellow-500 font-mono flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span> Pending Guest Uploads
+                            </h5>
+                            <div id="admin-photos-moderation-grid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-appText font-sans animate-fadeIn"></div>
+                        </div>
+
+                        <div class="border-t border-appBorder pt-6 space-y-4">
+                            <h5 class="text-xs uppercase tracking-wider font-bold text-green-500 font-mono flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-green-500"></span> Published Corkboard Ledger
+                            </h5>
+                            <div id="admin-photos-published-grid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-appText font-sans animate-fadeIn"></div>
+                        </div>
                     </div>
 
                     <!-- CMS View Segment: CATALOG MATRIX & SECTIONS EDITOR -->
@@ -1601,12 +1650,14 @@
         window.triggerCheckoutCheckout = triggerCheckoutCheckout;
         window.toggleAccordion = toggleAccordion;
         window.updateOrderStatus = updateOrderStatus;
+        window.deleteOrderPermanently = deleteOrderPermanently;
         window.fetchLiveOrders = fetchLiveOrders;
         window.fetchVibeBoard = fetchVibeBoard;
         window.fetchFeedbacks = fetchFeedbacks;
-        window.deleteVibePhoto = deleteVibePhoto;
-        window.approveFeedback = approveFeedback;
-        window.deleteFeedback = deleteFeedback;
+        window.setVibeApprovalStatus = setVibeApprovalStatus;
+        window.deleteVibePermanently = deleteVibePermanently;
+        window.setFeedbackApprovalStatus = setFeedbackApprovalStatus;
+        window.deleteFeedbackPermanently = deleteFeedbackPermanently;
         window.deleteReservation = deleteReservation;
         window.closeAllSheets = closeAllSheets;
         window.fetchReservations = fetchReservations;
@@ -1615,6 +1666,7 @@
         window.setReservationMode = setReservationMode;
         window.applyCustomThemeColors = applyCustomThemeColors;
         window.resetThemeColorsToDefault = resetThemeColorsToDefault;
+        window.updateCMSBadges = updateCMSBadges;
         
         window.fetchCatering = function() {
             const icon = document.getElementById('refresh-catering-icon');
@@ -1725,8 +1777,8 @@
         ];
 
         let communityPhotos = [
-            { id: 'local_1', handle: 'maryville_academic', drink: 'Viennese Waltz & quiche slice', image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400', timestamp: Date.now() - 100000 },
-            { id: 'local_2', handle: 'college_st_designer', drink: 'Muddy Pond Mocha with extra shot', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400', timestamp: Date.now() - 400000000 }
+            { id: 'local_1', handle: 'maryville_academic', drink: 'Viennese Waltz & quiche slice', image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400', approved: true, timestamp: Date.now() - 100000 },
+            { id: 'local_2', handle: 'college_st_designer', drink: 'Muddy Pond Mocha with extra shot', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400', approved: true, timestamp: Date.now() - 400000000 }
         ];
 
         let communityFeedbacks = [
@@ -1909,6 +1961,7 @@
         function saveLocalSubscribers() {
             localStorage.setItem('pd_subscribers_registry', JSON.stringify(newsletterEmails));
             renderSubscribersDashboard();
+            updateCMSBadges();
         }
 
         function renderSubscribersDashboard() {
@@ -1976,11 +2029,13 @@
                 try { cateringInquiries = JSON.parse(stored); } catch(e) {}
             }
             renderCateringDashboard();
+            updateCMSBadges();
         }
 
         function saveLocalCatering() {
             localStorage.setItem('pd_catering_registry', JSON.stringify(cateringInquiries));
             renderCateringDashboard();
+            updateCMSBadges();
         }
 
         function renderCateringDashboard() {
@@ -2140,6 +2195,59 @@
             }
         }
 
+        function updateCMSBadges() {
+            const pendingOrdersCount = activeOrders.filter(o => o.status === 'Pending').length;
+            const pendingFeedbackCount = communityFeedbacks.filter(f => !f.approved).length;
+            const pendingCateringCount = cateringInquiries.length;
+            const pendingVibesCount = communityPhotos.filter(p => p.approved === false).length;
+            const soldOutProductsCount = masterProducts.filter(p => p.sold_out).length;
+
+            const hasInsightsActivity = pendingOrdersCount > 0 || pendingFeedbackCount > 0 || pendingCateringCount > 0 || pendingVibesCount > 0;
+            toggleBadge('badge-sidebar-dashboard', hasInsightsActivity, null);
+            toggleBadge('badge-mobile-dashboard', hasInsightsActivity, null);
+
+            toggleBadge('badge-sidebar-orders', pendingOrdersCount > 0, pendingOrdersCount);
+            toggleBadge('badge-mobile-orders', pendingOrdersCount > 0, pendingOrdersCount);
+
+            toggleBadge('badge-sidebar-feedback', pendingFeedbackCount > 0, pendingFeedbackCount);
+            toggleBadge('badge-mobile-feedback', pendingFeedbackCount > 0, pendingFeedbackCount);
+
+            toggleBadge('badge-sidebar-catering', pendingCateringCount > 0, pendingCateringCount);
+            toggleBadge('badge-mobile-catering', pendingCateringCount > 0, pendingCateringCount);
+
+            toggleBadge('badge-sidebar-photos', pendingVibesCount > 0, pendingVibesCount);
+            toggleBadge('badge-mobile-photos', pendingVibesCount > 0, pendingVibesCount);
+
+            toggleBadge('badge-sidebar-products', soldOutProductsCount > 0, soldOutProductsCount);
+            toggleBadge('badge-mobile-products', soldOutProductsCount > 0, soldOutProductsCount);
+
+            const isOffline = !supabase || supabaseUrl === DEFAULT_URL || supabaseKey === DEFAULT_KEY || supabaseKey.length < 20;
+            const analyticsBadgeSidebar = document.getElementById('badge-sidebar-analytics');
+            const analyticsBadgeMobile = document.getElementById('badge-mobile-analytics');
+            
+            if (analyticsBadgeSidebar) {
+                analyticsBadgeSidebar.className = isOffline 
+                    ? "absolute right-4 w-2.5 h-2.5 rounded-full bg-yellow-500 block animate-pulse" 
+                    : "absolute right-4 w-2.5 h-2.5 rounded-full bg-green-500 block";
+            }
+            if (analyticsBadgeMobile) {
+                analyticsBadgeMobile.className = isOffline 
+                    ? "absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-yellow-500 block animate-pulse" 
+                    : "absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-green-500 block";
+            }
+        }
+
+        function toggleBadge(id, show, content) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            if (show) {
+                el.classList.remove('hidden');
+                if (content !== null) el.innerText = content;
+            } else {
+                el.classList.add('hidden');
+            }
+        }
+
         async function testDatabaseConnection() {
             const statusPill = document.getElementById('connection-status-pill');
             if (!statusPill) return;
@@ -2158,6 +2266,7 @@
                 statusPill.innerText = "OFFLINE (Sandbox fallback)";
                 console.warn("Database connection verification rejected: ", err.message);
             }
+            updateCMSBadges();
         }
 
         async function initSupabasePipeline() {
@@ -2209,6 +2318,7 @@
                             }
                             renderCMSOrdersPipeline();
                             updateDashboardMetrics();
+                            updateCMSBadges();
                         }
                     )
                     .subscribe();
@@ -2231,6 +2341,7 @@
                             }
                             renderAdminReservations();
                             updateDashboardMetrics();
+                            updateCMSBadges();
                         }
                     )
                     .subscribe();
@@ -2265,6 +2376,7 @@
                             renderFeedbackBoard();
                             renderCMSFeedbackModeration();
                             updateDashboardMetrics();
+                            updateCMSBadges();
                         }
                     )
                     .subscribe();
@@ -2282,6 +2394,7 @@
                                 handle: item.handle,
                                 drink: item.ordered_item,
                                 image: item.image_url,
+                                approved: item.approved !== undefined ? item.approved : true,
                                 timestamp: new Date(item.timestamp).getTime()
                             });
 
@@ -2298,6 +2411,7 @@
                             renderVibeBoard();
                             renderCMSPhotosModeration();
                             updateDashboardMetrics();
+                            updateCMSBadges();
                         }
                     )
                     .subscribe();
@@ -2323,6 +2437,7 @@
 
         function saveLocalProducts() {
             localStorage.setItem('pd_master_products', JSON.stringify(masterProducts));
+            updateCMSBadges();
         }
 
         async function fetchProducts() {
@@ -2347,6 +2462,7 @@
             } catch (err) {
                 console.warn("Could not fetch remote products catalog, fallback to local sandbox persistence:", err.message);
             }
+            updateCMSBadges();
         }
 
         async function syncProductToDatabase(product) {
@@ -2370,6 +2486,7 @@
             } catch (err) {
                 console.warn("Supabase products sync failed, active locally in sandbox persistence:", err.message);
             }
+            updateCMSBadges();
         }
 
         async function fetchLiveOrders() {
@@ -2383,7 +2500,8 @@
                         ...order,
                         items: typeof order.items === 'string' ? JSON.parse(order.items) : order.items,
                         totalPrice: parseFloat(order.total_price || order.totalPrice || 0),
-                        customer_name: order.customer_name || 'Boutique Visitor'
+                        customer_name: order.customer_name || 'Boutique Visitor',
+                        status: order.status
                     }));
                     logTelemetryEvent('supabase_connected', { count: data.length });
                 }
@@ -2407,6 +2525,7 @@
             } finally {
                 renderCMSOrdersPipeline();
                 updateDashboardMetrics();
+                updateCMSBadges();
                 if (refreshIcon) {
                     setTimeout(() => refreshIcon.classList.remove('fa-spin'), 600);
                 }
@@ -2425,6 +2544,7 @@
                         handle: v.handle,
                         drink: v.ordered_item,
                         image: v.image_url,
+                        approved: v.approved !== undefined ? v.approved : true,
                         timestamp: new Date(v.timestamp).getTime()
                     }));
                 }
@@ -2434,6 +2554,7 @@
                 renderVibeBoard();
                 renderCMSPhotosModeration();
                 updateDashboardMetrics();
+                updateCMSBadges();
                 if (refreshIcon) {
                     setTimeout(() => refreshIcon.classList.remove('fa-spin'), 600);
                 }
@@ -2452,7 +2573,7 @@
                         user: f.handle,
                         topic: f.favorite_product,
                         comment: f.comment,
-                        approved: f.approved,
+                        approved: f.approved !== undefined ? f.approved : false,
                         timestamp: new Date(f.timestamp).getTime()
                     }));
                 }
@@ -2462,6 +2583,7 @@
                 renderFeedbackBoard();
                 renderCMSFeedbackModeration();
                 updateDashboardMetrics();
+                updateCMSBadges();
                 if (refreshIcon) {
                     setTimeout(() => refreshIcon.classList.remove('fa-spin'), 600);
                 }
@@ -2481,6 +2603,7 @@
                 console.warn("Lounge bookings loading fallback.", err);
             } finally {
                 renderAdminReservations();
+                updateCMSBadges();
                 if (refreshIcon) {
                     setTimeout(() => refreshIcon.classList.remove('fa-spin'), 600);
                 }
@@ -2985,7 +3108,7 @@
         async function triggerCheckoutCheckout() {
             if (cart.length === 0) return;
 
-            // 1. Collect first name validation
+            // Collect first name validation
             const nameField = document.getElementById('order-guest-name');
             const guestName = nameField ? nameField.value.trim() : "";
             if (!guestName) {
@@ -3005,7 +3128,6 @@
             }));
 
             try {
-                // Incorporate dynamic first name as customer_name inside orders table
                 const { error } = await supabase.from('orders').insert([{
                     customer_name: guestName,
                     items: orderDetails,
@@ -3032,7 +3154,7 @@
             }
 
             cart = [];
-            if (nameField) nameField.value = ""; // Reset name field
+            if (nameField) nameField.value = ""; 
             saveCartToStorage();
             syncCartUI();
             fetchLiveOrders();
@@ -3193,6 +3315,7 @@
                 showToastNotification("Administrative operations authorization successful.");
                 logTelemetryEvent('cms_authenticated', { success: true });
                 renderCMSProductsList();
+                updateCMSBadges();
             } else {
                 showToastNotification("Passcode error. Access denied.");
             }
@@ -3208,10 +3331,9 @@
                     btn.className = "relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive";
                 }
 
-                // Preserve the custom mobile button styling correctly without blowing away classes
                 const mBtn = document.getElementById(`mobile-cms-tab-${v}`);
                 if (mBtn) {
-                    mBtn.className = "mobile-cms-tab-btn btn-interactive";
+                    mBtn.className = "mobile-cms-tab-btn btn-interactive relative";
                 }
             });
 
@@ -3224,126 +3346,167 @@
 
             const activeMBtn = document.getElementById(`mobile-cms-tab-${tab}`);
             if (activeMBtn) {
-                activeMBtn.className = "mobile-cms-tab-btn active btn-interactive";
+                activeMBtn.className = "mobile-cms-tab-btn active btn-interactive relative";
             }
         }
 
         async function updateOrderStatus(orderId, nextStatus) {
             try {
-                if (orderId.toString().startsWith('local_')) {
-                    const targetOrder = activeOrders.find(o => o.id === orderId);
-                    if (targetOrder) targetOrder.status = nextStatus;
-                } else {
+                const targetOrder = activeOrders.find(o => o.id.toString() === orderId.toString());
+                if (targetOrder) {
+                    targetOrder.status = nextStatus;
+                }
+                if (!orderId.toString().startsWith('local_') && !orderId.toString().startsWith('sim_')) {
                     const { error } = await supabase
                         .from('orders')
                         .update({ status: nextStatus })
                         .eq('id', orderId);
                     if (error) throw error;
                 }
-                showToastNotification(`Simulated status updated to: ${nextStatus}`);
+                showToastNotification(`Order Status changed to: ${nextStatus}`);
                 logTelemetryEvent('order_status_updated', { id: orderId, status: nextStatus });
-                fetchLiveOrders();
+                renderCMSOrdersPipeline();
+                updateDashboardMetrics();
+                updateCMSBadges();
             } catch(err) {
-                console.error("Order update failure: ", err);
-                showToastNotification(`⚠️ Fallback sync: Status locally altered.`);
+                console.warn("Could not sync order status change, updated inside local memory: ", err.message);
+                renderCMSOrdersPipeline();
+                updateDashboardMetrics();
+                updateCMSBadges();
+            }
+        }
+
+        async function deleteOrderPermanently(orderId) {
+            try {
+                activeOrders = activeOrders.filter(o => o.id.toString() !== orderId.toString());
+                if (!orderId.toString().startsWith('local_') && !orderId.toString().startsWith('sim_')) {
+                    const { error } = await supabase.from('orders').delete().eq('id', orderId);
+                    if (error) throw error;
+                }
+                showToastNotification("Pre-order deleted permanently.");
+                logTelemetryEvent('order_deleted', { id: orderId });
+                renderCMSOrdersPipeline();
+                updateDashboardMetrics();
+                updateCMSBadges();
+            } catch(err) {
+                console.warn("Deleted locally in Sandbox Mode:", err.message);
+                renderCMSOrdersPipeline();
+                updateDashboardMetrics();
+                updateCMSBadges();
             }
         }
 
         function renderCMSOrdersPipeline() {
             const container = document.getElementById('admin-orders-container');
-            if (!container) return;
+            const archiveContainer = document.getElementById('admin-orders-archive-container');
+            if (!container || !archiveContainer) return;
             
             const pendingOrders = activeOrders.filter(order => order.status === 'Pending');
+            const archiveOrders = activeOrders.filter(order => order.status === 'Order Done' || order.status === 'Cancelled');
 
             if (pendingOrders.length === 0) {
                 container.innerHTML = '<p class="text-xs text-neutralMuted font-mono text-center col-span-full py-12">No pending pre-order simulation cards found.</p>';
-                return;
+            } else {
+                container.innerHTML = pendingOrders.map(order => renderOrderCard(order)).join('');
             }
 
-            container.innerHTML = pendingOrders.map(order => {
-                let rawItems = [];
-                if (order.items) {
-                    if (typeof order.items === 'string') {
-                        try { rawItems = JSON.parse(order.items); } catch(e) {}
-                    } else if (Array.isArray(order.items)) {
-                        rawItems = order.items;
-                    }
-                }
-                
-                let statusClass = "bg-yellow-500/20 text-yellow-400";
-                if (order.status === 'Completed' || order.status === 'Order Done') statusClass = "bg-green-500/20 text-green-400";
-                if (order.status === 'Cancelled') statusClass = "bg-red-500/20 text-red-400";
+            if (archiveOrders.length === 0) {
+                archiveContainer.innerHTML = '<p class="text-xs text-neutralMuted font-mono text-center col-span-full py-12 bg-appBg/40 border border-appBorder/10 rounded-2xl">No archived finalized orders found.</p>';
+            } else {
+                archiveContainer.innerHTML = archiveOrders.map(order => renderOrderCard(order)).join('');
+            }
+        }
 
-                // High quality quality improvement: display Collected First Name prominently in header
-                return `
-                    <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 flex flex-col justify-between transition-colors shadow">
-                        <div>
-                            <div class="flex justify-between items-center border-b border-appBorder pb-2">
-                                <div class="flex flex-col">
-                                    <span class="font-mono text-terracotta font-bold text-[10px]">#ORD-${order.id ? order.id.toString().slice(0,5) : 'SIM'}</span>
-                                    <span class="text-appHeading font-semibold text-xs tracking-tight">Guest: <span class="text-amber-500 font-bold">${order.customer_name || 'Boutique Visitor'}</span></span>
-                                </div>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-bold ${statusClass}">${order.status}</span>
+        function renderOrderCard(order) {
+            let rawItems = [];
+            if (order.items) {
+                if (typeof order.items === 'string') {
+                    try { rawItems = JSON.parse(order.items); } catch(e) {}
+                } else if (Array.isArray(order.items)) {
+                    rawItems = order.items;
+                }
+            }
+            
+            let statusClass = "bg-yellow-500/20 text-yellow-400";
+            if (order.status === 'Completed' || order.status === 'Order Done') {
+                statusClass = "bg-green-500/20 text-green-400";
+            } else if (order.status === 'Cancelled') {
+                statusClass = "bg-red-500/20 text-red-400";
+            }
+
+            const parsedTime = order.timestamp ? new Date(order.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Simulated';
+
+            return `
+                <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 flex flex-col justify-between transition-colors shadow">
+                    <div>
+                        <div class="flex justify-between items-center border-b border-appBorder pb-2">
+                            <div class="flex flex-col">
+                                <span class="font-mono text-terracotta font-bold text-[10px]">#ORD-${order.id ? order.id.toString().slice(0,5) : 'SIM'}</span>
+                                <span class="text-appHeading font-semibold text-xs tracking-tight">Guest: <span class="text-amber-500 font-bold">${order.customer_name || 'Boutique Visitor'}</span></span>
                             </div>
-                            <div class="space-y-3 pt-2">
-                                ${(rawItems || []).map(item => `
-                                    <div class="flex flex-col border-b border-appBorder/20 pb-1.5 last:border-b-0 last:pb-0 font-sans">
-                                        <div class="flex justify-between text-accentLight font-semibold">
-                                            <span>${item.name} <span class="text-neutralMuted font-mono">x${item.quantity}</span></span>
-                                            <span>$${(item.price * item.quantity).toFixed(2)}</span>
-                                        </div>
-                                        ${item.desc ? `<p class="text-[9px] text-neutralMuted italic mt-0.5">${item.desc}</p>` : ''}
-                                    </div>
-                                `).join('')}
-                            </div>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${statusClass}">${order.status}</span>
                         </div>
-                        <div class="pt-2 border-t border-appBorder space-y-3 font-sans">
-                            <div class="flex justify-between items-baseline font-bold">
-                                <span>Aggregated Est.</span>
-                                <span class="text-terracotta text-sm">$${parseFloat(order.totalPrice || order.total_price || 0).toFixed(2)}</span>
-                            </div>
-                            
-                            <div class="grid grid-cols-3 gap-1 pt-1.5 border-t border-appBorder/40 font-mono">
-                                <button onclick="updateOrderStatus('${order.id}', 'Pending')" class="bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-500 rounded py-1.5 text-[9px] uppercase tracking-wider transition-all btn-interactive">
-                                    Pending
-                                </button>
-                                <button onclick="updateOrderStatus('${order.id}', 'Order Done')" class="bg-green-600/20 hover:bg-green-600/40 text-green-500 rounded py-1.5 text-[9px] uppercase tracking-wider transition-all btn-interactive">
-                                    Done
-                                </button>
-                                <button onclick="updateOrderStatus('${order.id}', 'Cancelled')" class="bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded py-1.5 text-[9px] uppercase tracking-wider transition-all btn-interactive">
-                                    Cancel
-                                </button>
-                            </div>
+                        <div class="space-y-3 pt-2">
+                            ${(rawItems || []).map(item => `
+                                <div class="flex flex-col border-b border-appBorder/10 pb-1.5 last:border-b-0 last:pb-0 font-sans">
+                                    <div class="flex justify-between text-accentLight font-semibold">
+                                        <span>${item.name} <span class="text-neutralMuted font-mono">x${item.quantity}</span></span>
+                                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                                    </div>
+                                    ${item.desc ? `<p class="text-[9px] text-neutralMuted italic mt-0.5">${item.desc}</p>` : ''}
+                                </div>
+                            `).join('')}
                         </div>
                     </div>
-                `;
-            }).join('');
+                    <div class="pt-2 border-t border-appBorder space-y-3 font-sans">
+                        <div class="flex justify-between items-baseline font-bold">
+                            <span>Total (Prepared: ${parsedTime})</span>
+                            <span class="text-terracotta text-sm">$${parseFloat(order.totalPrice || order.total_price || 0).toFixed(2)}</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-4 gap-1 pt-1.5 border-t border-appBorder/40 font-mono text-[8px] font-bold">
+                            <button onclick="updateOrderStatus('${order.id}', 'Pending')" class="bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-500 rounded py-1.5 uppercase tracking-wider transition-all btn-interactive">
+                                Pending
+                            </button>
+                            <button onclick="updateOrderStatus('${order.id}', 'Order Done')" class="bg-green-600/20 hover:bg-green-600/40 text-green-500 rounded py-1.5 uppercase tracking-wider transition-all btn-interactive">
+                                Done
+                            </button>
+                            <button onclick="updateOrderStatus('${order.id}', 'Cancelled')" class="bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded py-1.5 uppercase tracking-wider transition-all btn-interactive">
+                                Cancel
+                            </button>
+                            <button onclick="deleteOrderPermanently('${order.id}')" class="bg-red-700/20 hover:bg-red-700/40 text-red-300 rounded py-1.5 uppercase tracking-wider transition-all btn-interactive" title="Delete Permanently">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
 
         function renderAdminReservations() {
             const container = document.getElementById('admin-reservations-container');
-            if (!container) return;
+            if (container) {
+                if (activeReservations.length === 0) {
+                    container.innerHTML = `<p class="col-span-full text-xs text-neutralMuted font-mono py-6 text-center">No reservations submitted today.</p>`;
+                    return;
+                }
 
-            if (activeReservations.length === 0) {
-                container.innerHTML = `<p class="col-span-full text-xs text-neutralMuted font-mono py-6 text-center">No reservations submitted today.</p>`;
-                return;
+                container.innerHTML = activeReservations.map(res => `
+                    <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 relative transition-colors shadow">
+                        <div class="flex justify-between items-baseline border-b border-appBorder pb-1.5 font-sans">
+                            <span class="font-serif font-bold text-appHeading text-sm">${res.name}</span>
+                            <span class="font-mono text-terracotta font-semibold">${res.guests} Guests</span>
+                        </div>
+                        <div class="space-y-1 pt-1 font-sans">
+                            <p><span class="text-neutralMuted">Seating Zone:</span> <span class="font-semibold">${res.zone}</span></p>
+                            <p><span class="text-neutralMuted">Arrival Slot:</span> <span class="font-semibold font-mono">${res.arrival_time}</span></p>
+                        </div>
+                        <button onclick="deleteReservation('${res.id}')" class="w-full mt-2 py-1.5 bg-red-600/15 hover:bg-red-600/30 text-red-400 rounded-lg text-[9px] uppercase font-bold tracking-wider transition-all font-mono btn-interactive">
+                            Release Seating
+                        </button>
+                    </div>
+                `).join('');
             }
-
-            container.innerHTML = activeReservations.map(res => `
-                <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 relative transition-colors shadow">
-                    <div class="flex justify-between items-baseline border-b border-appBorder pb-1.5 font-sans">
-                        <span class="font-serif font-bold text-appHeading text-sm">${res.name}</span>
-                        <span class="font-mono text-terracotta font-semibold">${res.guests} Guests</span>
-                    </div>
-                    <div class="space-y-1 pt-1 font-sans">
-                        <p><span class="text-neutralMuted">Seating Zone:</span> <span class="font-semibold">${res.zone}</span></p>
-                        <p><span class="text-neutralMuted">Arrival Slot:</span> <span class="font-semibold font-mono">${res.arrival_time}</span></p>
-                    </div>
-                    <button onclick="deleteReservation('${res.id}')" class="w-full mt-2 py-1.5 bg-red-600/15 hover:bg-red-600/30 text-red-400 rounded-lg text-[9px] uppercase font-bold tracking-wider transition-all font-mono btn-interactive">
-                        Release Seating
-                    </button>
-                </div>
-            `).join('');
         }
 
         async function deleteReservation(id) {
@@ -3361,6 +3524,7 @@
                 showToastNotification(`⚠️ Bypassed server: removed locally`);
                 activeReservations = activeReservations.filter(r => r.id !== id);
                 renderAdminReservations();
+                updateCMSBadges();
             }
         }
 
@@ -3383,8 +3547,14 @@
 
         function renderVibeBoard() {
             if (!dom.polaroidCanvasGrid) return;
+            const approvedPhotos = communityPhotos.filter(p => p.approved !== false);
             
-            dom.polaroidCanvasGrid.innerHTML = communityPhotos.map((photo, idx) => {
+            if (approvedPhotos.length === 0) {
+                dom.polaroidCanvasGrid.innerHTML = `<div class="col-span-full text-center py-12 text-xs text-neutralMuted font-mono">No lovely setup photographs pinned yet. Pin yours!</div>`;
+                return;
+            }
+
+            dom.polaroidCanvasGrid.innerHTML = approvedPhotos.map((photo, idx) => {
                 const rot = ((idx * 7) % 11) - 5;
                 return `
                     <div class="relative pt-4 pb-2 px-1">
@@ -3404,46 +3574,152 @@
         }
 
         function renderCMSPhotosModeration() {
-            const grid = document.getElementById('admin-photos-moderation-grid');
-            if (!grid) return;
+            const pendingGrid = document.getElementById('admin-photos-moderation-grid');
+            const publishedGrid = document.getElementById('admin-photos-published-grid');
+            if (!pendingGrid || !publishedGrid) return;
             
-            if (communityPhotos.length === 0) {
-                grid.innerHTML = `<p class="col-span-full text-xs text-neutralMuted font-mono py-6 text-center">No photos posted.</p>`;
-                return;
+            const pendingPhotos = communityPhotos.filter(p => p.approved === false);
+            const publishedPhotos = communityPhotos.filter(p => p.approved !== false);
+            
+            if (pendingPhotos.length === 0) {
+                pendingGrid.innerHTML = `<p class="col-span-full text-xs text-neutralMuted font-mono py-6 text-center bg-appCard border border-appBorder/35 rounded-2xl">No pending guest setup uploads awaiting moderation review.</p>`;
+            } else {
+                pendingGrid.innerHTML = pendingPhotos.map(p => `
+                    <div class="bg-appCard border border-appBorder p-3 rounded-xl space-y-2 flex flex-col justify-between shadow">
+                        <div class="w-full h-32 rounded overflow-hidden bg-espresso/20 relative">
+                            <span class="absolute top-2 left-2 bg-yellow-500/80 text-black font-mono text-[8px] font-bold uppercase px-1.5 py-0.5 rounded">Pending Review</span>
+                            <img src="${p.image}" class="w-full h-full object-cover" onerror="window.handleImageError(this)">
+                        </div>
+                        <div class="font-sans text-xs">
+                            <p class="font-bold font-mono">@${p.handle}</p>
+                            <p class="text-neutralMuted line-clamp-1">${p.drink}</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-1.5 pt-1 border-t border-appBorder/40">
+                            <button onclick="setVibeApprovalStatus('${p.id}', true)" class="py-2 bg-green-600/20 hover:bg-green-600/40 text-green-400 rounded-lg text-[10px] font-bold uppercase transition-all font-sans btn-interactive">
+                                Approve & Pin
+                            </button>
+                            <button onclick="deleteVibePermanently('${p.id}')" class="py-2 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded-lg text-[10px] font-bold uppercase transition-all font-sans btn-interactive">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
             }
 
-            grid.innerHTML = communityPhotos.map(p => `
-                <div class="bg-appBg border border-appBorder p-3 rounded-xl space-y-2 flex flex-col justify-between shadow">
-                    <div class="w-full h-32 rounded overflow-hidden bg-espresso/20">
-                        <img src="${p.image}" class="w-full h-full object-cover" onerror="window.handleImageError(this)">
+            if (publishedPhotos.length === 0) {
+                publishedGrid.innerHTML = `<p class="col-span-full text-xs text-neutralMuted font-mono py-6 text-center bg-appCard border border-appBorder/35 rounded-2xl">No published corkboard photographs.</p>`;
+            } else {
+                publishedGrid.innerHTML = publishedPhotos.map(p => `
+                    <div class="bg-appCard border border-appBorder p-3 rounded-xl space-y-2 flex flex-col justify-between shadow-inner">
+                        <div class="w-full h-32 rounded overflow-hidden bg-espresso/20 relative">
+                            <span class="absolute top-2 left-2 bg-green-500/80 text-white font-mono text-[8px] font-bold uppercase px-1.5 py-0.5 rounded">Live Wall</span>
+                            <img src="${p.image}" class="w-full h-full object-cover" onerror="window.handleImageError(this)">
+                        </div>
+                        <div class="font-sans text-xs">
+                            <p class="font-bold font-mono">@${p.handle}</p>
+                            <p class="text-neutralMuted line-clamp-1">${p.drink}</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-1.5 pt-1 border-t border-appBorder/40">
+                            <button onclick="setVibeApprovalStatus('${p.id}', false)" class="py-2 bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-500 rounded-lg text-[10px] font-bold uppercase transition-all font-sans btn-interactive">
+                                Unpublish
+                            </button>
+                            <button onclick="deleteVibePermanently('${p.id}')" class="py-2 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded-lg text-[10px] font-bold uppercase transition-all font-sans btn-interactive">
+                                Delete
+                            </button>
+                        </div>
                     </div>
-                    <div class="font-sans">
-                        <p class="font-bold font-mono">@${p.handle}</p>
-                        <p class="text-neutralMuted line-clamp-1">${p.drink}</p>
-                    </div>
-                    <button onclick="deleteVibePhoto('${p.id}')" class="w-full py-2 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded-lg text-[11px] font-bold uppercase transition-all font-sans btn-interactive">
-                        Remove Photo
-                    </button>
-                </div>
-            `).join('');
+                `).join('');
+            }
         }
 
-        async function deleteVibePhoto(id) {
+        async function setVibeApprovalStatus(id, approved) {
             try {
                 if (id.toString().startsWith('local_')) {
-                    communityPhotos = communityPhotos.filter(p => p.id !== id);
+                    const match = communityPhotos.find(p => p.id.toString() === id.toString());
+                    if (match) match.approved = approved;
                 } else {
+                    const { error } = await supabase.from('vibes').update({ approved: approved }).eq('id', id);
+                    if (error) throw error;
+                }
+                showToastNotification(approved ? "Photograph approved & pinned live!" : "Photograph unpublished/archived successfully.");
+                fetchVibeBoard();
+            } catch(err) {
+                console.warn("Updated locally: ", err.message);
+                const match = communityPhotos.find(p => p.id.toString() === id.toString());
+                if (match) match.approved = approved;
+                renderVibeBoard();
+                renderCMSPhotosModeration();
+                updateCMSBadges();
+            }
+        }
+
+        async function deleteVibePermanently(id) {
+            try {
+                communityPhotos = communityPhotos.filter(p => p.id.toString() !== id.toString());
+                if (!id.toString().startsWith('local_')) {
                     const { error } = await supabase.from('vibes').delete().eq('id', id);
                     if (error) throw error;
                 }
-                showToastNotification("Polaroid archive deleted.");
+                showToastNotification("Vibe snapshot permanently deleted.");
                 fetchVibeBoard();
             } catch(err) {
-                console.error("Vibe deletion error: ", err);
-                showToastNotification(`⚠️ Bypassed server: removed locally`);
-                communityPhotos = communityPhotos.filter(p => p.id !== id);
+                console.warn("Deleted locally inside offline Sandbox:", err.message);
                 renderVibeBoard();
                 renderCMSPhotosModeration();
+                updateCMSBadges();
+            }
+        }
+
+        function renderCMSFeedbackModeration() {
+            const pendingContainer = document.getElementById('admin-feedback-moderation-list');
+            const publishedContainer = document.getElementById('admin-feedback-published-list');
+            if (!pendingContainer || !publishedContainer) return;
+            
+            const pendingNotes = communityFeedbacks.filter(f => !f.approved);
+            const publishedNotes = communityFeedbacks.filter(f => f.approved);
+            
+            if (pendingNotes.length === 0) {
+                pendingContainer.innerHTML = `<p class="text-xs text-neutralMuted font-mono py-6 text-center bg-appCard border border-appBorder/35 rounded-2xl">No pending customer feedback reviews.</p>`;
+            } else {
+                pendingContainer.innerHTML = pendingNotes.map(f => `
+                    <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-3 shadow">
+                        <div class="flex justify-between items-baseline">
+                            <span class="font-bold font-sans">${f.user} <span class="text-neutralMuted font-normal">on</span> ${f.topic}</span>
+                            <span class="text-[10px] text-yellow-500 bg-yellow-500/10 px-2 py-0.5 rounded font-mono">Awaiting Review</span>
+                        </div>
+                        <p class="italic text-accentLight font-serif">"${f.comment}"</p>
+                        <div class="flex gap-2 justify-end">
+                            <button onclick="setFeedbackApprovalStatus('${f.id}', true)" class="px-3 py-2 bg-green-600/20 hover:bg-green-600/40 text-green-400 rounded-lg text-[10px] font-bold uppercase transition-all font-serif btn-interactive">
+                                Approve & Publish
+                            </button>
+                            <button onclick="deleteFeedbackPermanently('${f.id}')" class="px-3 py-2 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded-lg text-[10px] font-bold uppercase transition-all font-serif btn-interactive">
+                                Delete Permanently
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            if (publishedNotes.length === 0) {
+                publishedContainer.innerHTML = `<p class="text-xs text-neutralMuted font-mono py-6 text-center bg-appCard border border-appBorder/35 rounded-2xl">No published storefront customer reviews.</p>`;
+            } else {
+                publishedContainer.innerHTML = publishedNotes.map(f => `
+                    <div class="bg-appCard border border-appBorder/50 p-4 rounded-xl text-xs space-y-3 shadow-inner">
+                        <div class="flex justify-between items-baseline">
+                            <span class="font-bold font-sans">${f.user} <span class="text-neutralMuted font-normal">on</span> ${f.topic}</span>
+                            <span class="text-[10px] text-green-500 bg-green-500/10 px-2 py-0.5 rounded font-mono">Live on Storefront</span>
+                        </div>
+                        <p class="italic text-accentLight font-serif">"${f.comment}"</p>
+                        <div class="flex gap-2 justify-end">
+                            <button onclick="setFeedbackApprovalStatus('${f.id}', false)" class="px-3 py-2 bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-500 rounded-lg text-[10px] font-bold uppercase transition-all font-serif btn-interactive">
+                                Unpublish
+                            </button>
+                            <button onclick="deleteFeedbackPermanently('${f.id}')" class="px-3 py-2 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded-lg text-[10px] font-bold uppercase transition-all font-serif btn-interactive">
+                                Delete Permanently
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
             }
         }
 
@@ -3467,73 +3743,41 @@
             `).join('');
         }
 
-        function renderCMSFeedbackModeration() {
-            const container = document.getElementById('admin-feedback-moderation-list');
-            if (!container) return;
-            
-            const pendingNotes = communityFeedbacks.filter(f => !f.approved);
-            
-            if (pendingNotes.length === 0) {
-                container.innerHTML = `<p class="text-xs text-neutralMuted font-mono py-6 text-center">No pending feedback submissions.</p>`;
-                return;
-            }
-
-            container.innerHTML = pendingNotes.map(f => `
-                <div class="bg-appBg border border-appBorder p-4 rounded-xl text-xs space-y-3 shadow">
-                    <div class="flex justify-between items-baseline">
-                        <span class="font-bold font-sans">${f.user} <span class="text-neutralMuted font-normal">on</span> ${f.topic}</span>
-                        <span class="text-[10px] text-yellow-500 bg-yellow-500/10 px-2 py-0.5 rounded font-mono">Awaiting Review</span>
-                    </div>
-                    <p class="italic text-accentLight font-serif">"${f.comment}"</p>
-                    <div class="flex gap-2 justify-end">
-                        <button onclick="approveFeedback('${f.id}')" class="px-3 py-2 bg-green-600/20 hover:bg-green-600/40 text-green-400 rounded-lg text-[10px] font-bold uppercase transition-all font-serif btn-interactive">
-                            Approve & Publish
-                        </button>
-                        <button onclick="deleteFeedback('${f.id}')" class="px-3 py-2 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded-lg text-[10px] font-bold uppercase transition-all font-serif btn-interactive">
-                            Reject & Delete
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        async function approveFeedback(id) {
+        async function setFeedbackApprovalStatus(id, approved) {
             try {
                 if (id.toString().startsWith('local_')) {
-                    const match = communityFeedbacks.find(f => f.id === id);
-                    if (match) match.approved = true;
+                    const match = communityFeedbacks.find(f => f.id.toString() === id.toString());
+                    if (match) match.approved = approved;
                 } else {
-                    const { error } = await supabase.from('feedback').update({ approved: true }).eq('id', id);
+                    const { error } = await supabase.from('feedback').update({ approved: approved }).eq('id', id);
                     if (error) throw error;
                 }
-                showToastNotification("Guest review approved!");
+                showToastNotification(approved ? "Guest review approved & published live!" : "Review moved back to pending.");
                 fetchFeedbacks();
             } catch(err) {
-                console.error("Approval error: ", err);
-                showToastNotification(`⚠️ Bypassed server: note published locally`);
-                const match = communityFeedbacks.find(f => f.id === id);
-                if (match) match.approved = true;
+                console.warn("Updated inside local Sandbox memory:", err.message);
+                const match = communityFeedbacks.find(f => f.id.toString() === id.toString());
+                if (match) match.approved = approved;
                 renderFeedbackBoard();
                 renderCMSFeedbackModeration();
+                updateCMSBadges();
             }
         }
 
-        async function deleteFeedback(id) {
+        async function deleteFeedbackPermanently(id) {
             try {
-                if (id.toString().startsWith('local_')) {
-                    communityFeedbacks = communityFeedbacks.filter(f => f.id !== id);
-                } else {
+                communityFeedbacks = communityFeedbacks.filter(f => f.id.toString() !== id.toString());
+                if (!id.toString().startsWith('local_')) {
                     const { error } = await supabase.from('feedback').delete().eq('id', id);
                     if (error) throw error;
                 }
-                showToastNotification("Review entry dismissed.");
+                showToastNotification("Feedback permanently removed.");
                 fetchFeedbacks();
             } catch(err) {
-                console.error("Deletion error: ", err);
-                showToastNotification(`⚠️ Bypassed server: removed locally`);
-                communityFeedbacks = communityFeedbacks.filter(f => f.id !== id);
+                console.warn("Removed from local cache state:", err.message);
                 renderFeedbackBoard();
                 renderCMSFeedbackModeration();
+                updateCMSBadges();
             }
         }
 
@@ -3586,10 +3830,11 @@
                         handle: handle,
                         ordered_item: drink,
                         image_url: imageSrc,
+                        approved: false,
                         timestamp: new Date().toISOString()
                     }]);
                     if (error) throw error;
-                    showToastNotification("Vibe pinned directly to the database! 📌");
+                    showToastNotification("Vibe pinned directly! Waiting for admin approval. 📌");
                 } catch(err) {
                     console.warn("Vibe board sandbox upload error, saving locally: ", err.message);
                     communityPhotos.unshift({
@@ -3597,9 +3842,10 @@
                         handle,
                         drink,
                         image: imageSrc,
+                        approved: false,
                         timestamp: Date.now()
                     });
-                    showToastNotification("Pinned local setup photograph directly to Vibe Board!");
+                    showToastNotification("Photo uploaded! Approved state pending moderation check.");
                 }
                 
                 closeUploadSheet();
