@@ -1647,6 +1647,8 @@
         let supabaseKey = storedKey || DEFAULT_KEY;
 
         let supabase;
+        let ordersChannel, bookingsChannel, feedbacksChannel, vibesChannel;
+
         try {
             if (supabaseKey.length < 20) {
                 throw new Error("API key is placeholder, bypassing live connections.");
@@ -1667,7 +1669,13 @@
                     delete: () => ({
                         eq: () => Promise.resolve({ data: [], error: null })
                     })
-                })
+                }),
+                channel: () => ({
+                    on: () => ({
+                        subscribe: () => {}
+                    })
+                }),
+                removeChannel: () => {}
             };
         }
 
@@ -2146,11 +2154,151 @@
         async function initSupabasePipeline() {
             loadStoredCart(); 
             await fetchProducts();
-            fetchLiveOrders();
-            fetchVibeBoard();
-            fetchFeedbacks();
-            fetchReservations();
+            await fetchLiveOrders();
+            await fetchVibeBoard();
+            await fetchFeedbacks();
+            await fetchReservations();
             testDatabaseConnection();
+            setupRealtimeSubscriptions();
+        }
+
+        // Setup real-time listeners utilizing postgres_changes event feeds
+        function setupRealtimeSubscriptions() {
+            if (!supabase || supabaseUrl === DEFAULT_URL || supabaseKey === DEFAULT_KEY || supabaseKey.length < 20) {
+                console.log("Realtime pipelines bypassed. Operating in local-first Sandbox state.");
+                return;
+            }
+
+            try {
+                // Clear active channels before binding fresh subscriptions to avoid duplication
+                if (ordersChannel) supabase.removeChannel(ordersChannel);
+                if (bookingsChannel) supabase.removeChannel(bookingsChannel);
+                if (feedbacksChannel) supabase.removeChannel(feedbacksChannel);
+                if (vibesChannel) supabase.removeChannel(vibesChannel);
+
+                // 1. Live Orders Subscription Handler
+                ordersChannel = supabase
+                    .channel('live-orders')
+                    .on(
+                        'postgres_changes',
+                        { event: '*', schema: 'public', table: 'orders' },
+                        (payload) => {
+                            console.log("Supabase Realtime Orders update:", payload);
+                            const parsedOrder = payload.new ? {
+                                ...payload.new,
+                                items: typeof payload.new.items === 'string' ? JSON.parse(payload.new.items) : payload.new.items,
+                                totalPrice: parseFloat(payload.new.total_price || payload.new.totalPrice || 0)
+                            } : null;
+
+                            if (payload.eventType === 'INSERT') {
+                                activeOrders = [parsedOrder, ...activeOrders.filter(o => o.id !== parsedOrder.id)];
+                                showToastNotification("🔔 Realtime: New customer pre-order checked out!");
+                            } else if (payload.eventType === 'UPDATE') {
+                                activeOrders = activeOrders.map(o => o.id === parsedOrder.id ? parsedOrder : o);
+                            } else if (payload.eventType === 'DELETE') {
+                                activeOrders = activeOrders.filter(o => o.id !== payload.old.id);
+                            }
+                            renderCMSOrdersPipeline();
+                            updateDashboardMetrics();
+                        }
+                    )
+                    .subscribe();
+
+                // 2. Lounge Table Bookings Subscription Handler
+                bookingsChannel = supabase
+                    .channel('live-bookings')
+                    .on(
+                        'postgres_changes',
+                        { event: '*', schema: 'public', table: 'bookings' },
+                        (payload) => {
+                            console.log("Supabase Realtime Bookings update:", payload);
+                            if (payload.eventType === 'INSERT') {
+                                activeReservations = [payload.new, ...activeReservations.filter(r => r.id !== payload.new.id)];
+                                showToastNotification("🎫 Realtime: New same-day lounge seating pass reserved!");
+                            } else if (payload.eventType === 'UPDATE') {
+                                activeReservations = activeReservations.map(r => r.id === payload.new.id ? payload.new : r);
+                            } else if (payload.eventType === 'DELETE') {
+                                activeReservations = activeReservations.filter(r => r.id !== payload.old.id);
+                            }
+                            renderAdminReservations();
+                            updateDashboardMetrics();
+                        }
+                    )
+                    .subscribe();
+
+                // 3. Review / Suggestion Moderation Subscription Handler
+                feedbacksChannel = supabase
+                    .channel('live-feedback')
+                    .on(
+                        'postgres_changes',
+                        { event: '*', schema: 'public', table: 'feedback' },
+                        (payload) => {
+                            console.log("Supabase Realtime Feedback update:", payload);
+                            const mapFeedback = (item) => ({
+                                id: item.id,
+                                user: item.handle,
+                                topic: item.favorite_product,
+                                comment: item.comment,
+                                approved: !!item.approved,
+                                timestamp: new Date(item.timestamp).getTime()
+                            });
+
+                            if (payload.eventType === 'INSERT') {
+                                const formatted = mapFeedback(payload.new);
+                                communityFeedbacks = [formatted, ...communityFeedbacks.filter(f => f.id !== formatted.id)];
+                                showToastNotification("📝 Realtime: Guest suggestion submitted for moderation review!");
+                            } else if (payload.eventType === 'UPDATE') {
+                                const formatted = mapFeedback(payload.new);
+                                communityFeedbacks = communityFeedbacks.map(f => f.id === formatted.id ? formatted : f);
+                            } else if (payload.eventType === 'DELETE') {
+                                communityFeedbacks = communityFeedbacks.filter(f => f.id !== payload.old.id);
+                            }
+                            renderFeedbackBoard();
+                            renderCMSFeedbackModeration();
+                            updateDashboardMetrics();
+                        }
+                    )
+                    .subscribe();
+
+                // 4. Cozy Setup Photos (Vibes Wall) Subscription Handler
+                vibesChannel = supabase
+                    .channel('live-vibes')
+                    .on(
+                        'postgres_changes',
+                        { event: '*', schema: 'public', table: 'vibes' },
+                        (payload) => {
+                            console.log("Supabase Realtime Vibes update:", payload);
+                            const mapVibe = (item) => ({
+                                id: item.id,
+                                handle: item.handle,
+                                drink: item.ordered_item,
+                                image: item.image_url,
+                                timestamp: new Date(item.timestamp).getTime()
+                            });
+
+                            if (payload.eventType === 'INSERT') {
+                                const formatted = mapVibe(payload.new);
+                                communityPhotos = [formatted, ...communityPhotos.filter(p => p.id !== formatted.id)];
+                                showToastNotification("📌 Realtime: New polaroid vibe snapshot pinned on the wall!");
+                            } else if (payload.eventType === 'UPDATE') {
+                                const formatted = mapVibe(payload.new);
+                                communityPhotos = communityPhotos.map(p => p.id === formatted.id ? formatted : p);
+                            } else if (payload.eventType === 'DELETE') {
+                                communityPhotos = communityPhotos.filter(p => p.id !== payload.old.id);
+                            }
+                            renderVibeBoard();
+                            renderCMSPhotosModeration();
+                            updateDashboardMetrics();
+                        }
+                    )
+                    .subscribe();
+
+                console.log("⚡ Supabase Realtime Channels subscribed successfully!");
+                logTelemetryEvent('realtime_sync_activated', {});
+
+            } catch (err) {
+                console.warn("Realtime initialization failed:", err.message);
+            }
         }
 
         function loadLocalProducts() {
@@ -2369,6 +2517,7 @@
                 fetchVibeBoard();
                 fetchFeedbacks();
                 fetchReservations();
+                setupRealtimeSubscriptions();
             });
         };
 
@@ -2390,6 +2539,12 @@
             showToastNotification("Returned back to Sandbox Fallback mode!");
             logTelemetryEvent('supabase_credentials_reset', {});
             testDatabaseConnection();
+            
+            // Remove previous remote streams on local reset
+            if (ordersChannel) supabase.removeChannel(ordersChannel);
+            if (bookingsChannel) supabase.removeChannel(bookingsChannel);
+            if (feedbacksChannel) supabase.removeChannel(feedbacksChannel);
+            if (vibesChannel) supabase.removeChannel(vibesChannel);
         };
 
         function logTelemetryEvent(eventName, eventDetails) {
@@ -2426,6 +2581,9 @@
                     break;
                 case 'product_database_synced':
                     logText = `☕ Catalog synced: "${eventDetails.name}" updated on shared server.`;
+                    break;
+                case 'realtime_sync_activated':
+                    logText = `⚡ Real-time Postgres changes activated. Listening for mutations.`;
                     break;
                 default:
                     logText = `⚡ Action: ${eventName}`;
