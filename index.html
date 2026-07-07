@@ -882,420 +882,206 @@
         </div>
 
         <!-- ================= PAGE 6: ADMIN HUB CONTROL AREA ================= -->
-        <div id="page-admin" class="page-view hidden space-y-8">
-            
-            <!-- Passcode lock portal -->
-            <div id="cms-verify-section" class="bg-appCard border border-appBorder rounded-3xl p-8 max-w-md mx-auto text-center space-y-6 font-sans shadow-xl">
-                <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-darkAccent border border-terracotta/30 text-2xl text-terracotta">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <div>
-                    <h3 class="font-serif text-lg font-bold text-appHeading">Administrative Access Required</h3>
-                    <p class="text-xs text-neutralMuted mt-1">Please enter your passcode to unlock dashboard operations. (Hint: <strong>barako</strong>)</p>
-                </div>
-                <div class="space-y-3">
-                    <input type="password" id="cms-passcode-input" placeholder="Password..." class="w-full text-center bg-appBg border border-terracotta/30 rounded-xl p-3 text-sm text-appHeading focus:outline-none focus:ring-2 focus:ring-terracotta/30">
-                    <button onclick="verifyAdministrativePasscode()" class="w-full bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-3.5 rounded-xl transition-all shadow-md btn-interactive">
-                        Authorize Session
-                    </button>
-                </div>
-            </div>
-
-            <div id="cms-authenticated-view" class="hidden flex flex-col md:flex-row gap-6 items-stretch w-full min-h-[75vh] font-sans">
-                
-                <!-- Desktop Sidebar Navigation -->
-                <aside id="cms-collapsible-sidebar" class="hidden md:flex sidebar-expanded flex-col bg-appCard border border-appBorder rounded-3xl p-4 transition-all duration-300 gap-6 relative justify-between shrink-0 shadow-lg">
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-3 border-b border-appBorder pb-4 overflow-hidden">
-                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-terracotta to-amber-700 flex items-center justify-center text-white shrink-0 shadow">
-                                <i class="fa-solid fa-mug-hot text-base"></i>
-                            </div>
-                            <div class="sidebar-text-label transition-opacity duration-200">
-                                <h4 class="font-bold text-xs text-appHeading tracking-wider uppercase leading-none">Pour Decisions</h4>
-                                <span class="text-[9px] text-neutralMuted font-mono block mt-1 font-bold">Maryville Pro HQ</span>
-                            </div>
-                        </div>
-
-                        <nav class="flex flex-col gap-1.5 font-sans" aria-label="CMS Navigation">
-                            <button id="sidebar-btn-dashboard" onclick="switchCMSTab('dashboard')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 bg-terracotta/10 text-terracotta border-l-2 border-terracotta font-medium text-xs btn-interactive">
-                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-chart-line text-sm"></i></div>
-                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Insights Overview</span>
-                            </button>
-                            <button id="sidebar-btn-orders" onclick="switchCMSTab('orders')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
-                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-basket-shopping text-sm"></i></div>
-                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Pre-orders & Seats</span>
-                            </button>
-                            <button id="sidebar-btn-feedback" onclick="switchCMSTab('feedback')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
-                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-user-shield text-sm"></i></div>
-                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Note Reviews</span>
-                            </button>
-                            <button id="sidebar-btn-catering" onclick="switchCMSTab('catering')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
-                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-envelope-open-text text-sm"></i></div>
-                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Catering & Leads</span>
-                            </button>
-                            <button id="sidebar-btn-photos" onclick="switchCMSTab('photos')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
-                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-images text-sm"></i></div>
-                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Vibe Archives</span>
-                            </button>
-                            <button id="sidebar-btn-products" onclick="switchCMSTab('products')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
-                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-mug-saucer text-sm"></i></div>
-                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Catalog Matrix</span>
-                            </button>
-                            <button id="sidebar-btn-analytics" onclick="switchCMSTab('analytics')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
-                                <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-gears text-sm"></i></div>
-                                <span class="sidebar-text-label transition-opacity duration-200 truncate">Core Sync Settings</span>
-                            </button>
-                        </nav>
-                    </div>
-
-                    <div class="space-y-2 pt-4 border-t border-appBorder">
-                        <button onclick="switchPage('home')" class="flex items-center h-10 w-full rounded-xl text-xs text-neutralMuted hover:bg-darkAccent hover:text-appHeading transition-all btn-interactive">
-                            <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-arrow-left-long"></i></div>
-                            <span class="sidebar-text-label transition-opacity duration-200 truncate font-semibold">Exit to Store</span>
-                        </button>
-                        <button onclick="toggleAdminSidebar()" class="hidden md:flex items-center h-10 w-full rounded-xl text-xs text-neutralMuted hover:bg-darkAccent hover:text-appHeading transition-all btn-interactive">
-                            <div class="grid h-full w-12 place-content-center shrink-0"><i id="sidebar-toggle-arrow-icon" class="fa-solid fa-angles-left transition-transform duration-300"></i></div>
-                            <span class="sidebar-text-label transition-opacity duration-200 truncate font-semibold">Collapse Sidebar</span>
-                        </button>
-                    </div>
-                </aside>
-
-                <!-- Main Contents Workspace Area -->
-                <div class="flex-1 space-y-6">
-                    
-                    <!-- Mobile top welcome header when the default page header is hidden -->
-                    <div class="flex md:hidden justify-between items-center bg-appCard border border-appBorder p-4 rounded-3xl transition-colors shadow">
-                        <div class="flex items-center gap-2.5">
-                            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-terracotta to-amber-700 flex items-center justify-center text-white text-sm shrink-0">
-                                <i class="fa-solid fa-user-shield"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-serif font-bold text-xs text-appHeading tracking-wide">Maryville Admin Pro</h4>
-                                <span class="text-[9px] text-neutralMuted font-mono block">VibeTable Growth Suite</span>
-                            </div>
-                        </div>
-                        <button onclick="switchPage('home')" class="text-[10px] px-3.5 py-2 bg-darkAccent border border-terracotta/20 text-terracotta rounded-xl font-bold uppercase tracking-wider font-sans btn-interactive">
-                            Exit
-                        </button>
-                    </div>
-
-                    <!-- Beautifully adapted Mobile Navigation Bar for CMS, using the cloned vertical icon + text structure of the storefront bottom nav -->
-                    <div class="flex md:hidden overflow-x-auto gap-1 pb-2 scrollbar-none max-w-full font-sans mb-4 border-b border-appBorder py-1" aria-label="CMS Mobile Navigation Bar">
-                        <button id="mobile-cms-tab-dashboard" onclick="switchCMSTab('dashboard')" class="mobile-cms-tab-btn active btn-interactive">
-                            <i class="fa-solid fa-chart-line text-sm"></i>
-                            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Insights</span>
-                        </button>
-                        <button id="mobile-cms-tab-orders" onclick="switchCMSTab('orders')" class="mobile-cms-tab-btn btn-interactive">
-                            <i class="fa-solid fa-basket-shopping text-sm"></i>
-                            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Orders</span>
-                        </button>
-                        <button id="mobile-cms-tab-feedback" onclick="switchCMSTab('feedback')" class="mobile-cms-tab-btn btn-interactive">
-                            <i class="fa-solid fa-user-shield text-sm"></i>
-                            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Reviews</span>
-                        </button>
-                        <button id="mobile-cms-tab-catering" onclick="switchCMSTab('catering')" class="mobile-cms-tab-btn btn-interactive">
-                            <i class="fa-solid fa-envelope-open-text text-sm"></i>
-                            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Catering</span>
-                        </button>
-                        <button id="mobile-cms-tab-photos" onclick="switchCMSTab('photos')" class="mobile-cms-tab-btn btn-interactive">
-                            <i class="fa-solid fa-images text-sm"></i>
-                            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Vibes</span>
-                        </button>
-                        <button id="mobile-cms-tab-products" onclick="switchCMSTab('products')" class="mobile-cms-tab-btn btn-interactive">
-                            <i class="fa-solid fa-mug-saucer text-sm"></i>
-                            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Catalog</span>
-                        </button>
-                        <button id="mobile-cms-tab-analytics" onclick="switchCMSTab('analytics')" class="mobile-cms-tab-btn btn-interactive">
-                            <i class="fa-solid fa-gears text-sm"></i>
-                            <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Settings</span>
-                        </button>
-                    </div>
-
-                    <!-- CMS View Segment: INSIGHTS DASHBOARD OVERVIEW -->
-                    <div id="cms-dashboard-subview" class="space-y-6">
-                        <div>
-                            <h3 class="font-serif text-2xl font-bold text-appHeading">Insights Dashboard</h3>
-                            <p class="text-xs text-neutralMuted">Simulated system health indicators and active tracking metrics.</p>
-                        </div>
-
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-appText font-mono">
-                            <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider font-bold">Live Revenue</span>
-                                <span id="metrics-revenue" class="text-2xl font-serif font-bold text-terracotta mt-2">$0.00</span>
-                            </div>
-                            <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider font-bold">Pending Orders</span>
-                                <span id="metrics-orders-active" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
-                            </div>
-                            <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider font-bold">Catering Leads</span>
-                                <span id="metrics-catering-pending" class="text-2xl font-serif font-bold text-yellow-500 mt-2">0</span>
-                            </div>
-                            <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-                                <span class="text-[10px] text-neutralMuted uppercase tracking-wider font-bold">Mailing List</span>
-                                <span id="metrics-subscribers-count" class="text-2xl font-serif font-bold text-appHeading mt-2">0</span>
-                            </div>
-                        </div>
-
-                        <div class="bg-appCard border border-appBorder rounded-3xl p-6 transition-colors shadow">
-                            <div class="flex justify-between items-baseline border-b border-appBorder pb-4 mb-4">
-                                <h4 class="font-serif font-bold text-base text-appHeading">Storefront Traffic & Coffee Sales Telemetry</h4>
-                                <span class="text-[10px] font-mono text-terracotta uppercase font-bold">Real-Time Sandbox Sync</span>
-                            </div>
-
-                            <div class="w-full h-48 relative flex items-end">
-                                <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                                    <defs>
-                                        <linearGradient id="chart-grad" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" stop-color="var(--terracotta)" stop-opacity="0.35"></stop>
-                                            <stop offset="100%" stop-color="var(--bg)" stop-opacity="0.0"></stop>
-                                        </linearGradient>
-                                    </defs>
-                                    <path d="M0,80 Q15,40 30,65 T60,25 T80,45 T100,20 L100,100 L0,100 Z" fill="url(#chart-grad)"></path>
-                                    <path d="M0,80 Q15,40 30,65 T60,25 T80,45 T100,20" fill="none" stroke="var(--terracotta)" stroke-width="2.5" stroke-linecap="round"></path>
-                                </svg>
-                                
-                                <div class="absolute bottom-2 left-4 text-[10px] font-mono text-neutralMuted">Mon</div>
-                                <div class="absolute bottom-2 left-1/4 text-[10px] font-mono text-neutralMuted">Wed</div>
-                                <div class="absolute bottom-2 left-1/2 text-[10px] font-mono text-neutralMuted">Fri</div>
-                                <div class="absolute bottom-2 left-3/4 text-[10px] font-mono text-neutralMuted">Sat</div>
-                                <div class="absolute bottom-2 right-4 text-[10px] font-mono text-neutralMuted">Sun</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- CMS View Segment: CUSTOMER ORDERS PIPELINE -->
-                    <div id="cms-orders-subview" class="space-y-4 hidden">
-                        <div class="flex justify-between items-center border-b border-appBorder pb-2">
-                            <div>
-                                <h4 class="font-serif text-lg font-bold text-appHeading">Simulated Real-Time Orders</h4>
-                                <p class="text-xs text-neutralMuted mt-0.5">Track and update customer checkout orders from standard local records.</p>
-                            </div>
-                            <button onclick="fetchLiveOrders()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 shadow font-sans btn-interactive" aria-label="Refresh orders list">
-                                <i class="fa-solid fa-rotate-right" id="refresh-orders-icon"></i> Refresh Pipeline
-                            </button>
-                        </div>
-                        <div id="admin-orders-container" class="grid gap-4 md:grid-cols-2 font-sans"></div>
-
-                        <!-- Seating bookings dashboard list -->
-                        <div class="border-t border-appBorder pt-6 space-y-4">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <h4 class="font-serif text-lg font-bold text-appHeading">Lounge Seating Reservations</h4>
-                                    <p class="text-xs text-neutralMuted font-sans">View reservation entries stored in Supabase or local state.</p>
-                                </div>
-                                <button onclick="fetchReservations()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 shadow font-sans btn-interactive" aria-label="Refresh reservations list">
-                                    <i class="fa-solid fa-rotate-right" id="refresh-reservations-icon"></i> Refresh Reservations
-                                </button>
-                            </div>
-                            <div id="admin-reservations-container" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-appText font-sans"></div>
-                        </div>
-                    </div>
-
-                    <!-- CMS View Segment: REVIEW & FEEDBACK MODERATION -->
-                    <div id="cms-feedback-subview" class="space-y-4 hidden font-sans">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h4 class="font-serif text-lg font-bold text-appHeading">Pending Customer Note Approvals</h4>
-                                <p class="text-xs text-neutralMuted mt-0.5">Click Approve to publish feedback directly on the storefront.</p>
-                            </div>
-                            <button onclick="fetchFeedbacks()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 btn-interactive" aria-label="Refresh feedbacks list">
-                                <i class="fa-solid fa-rotate-right" id="refresh-feedbacks-icon"></i> Refresh Pipeline
-                            </button>
-                        </div>
-                        <div id="admin-feedback-moderation-list" class="grid gap-4 text-appText font-sans"></div>
-                    </div>
-
-                    <!-- CMS View Segment: CATERING LEADS -->
-                    <div id="cms-catering-subview" class="space-y-6 hidden font-sans">
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                            <!-- Catering Proposals list column -->
-                            <div class="lg:col-span-2 space-y-4">
-                                <div class="flex justify-between items-center border-b border-appBorder pb-2">
-                                    <div>
-                                        <h4 class="font-serif text-lg font-bold text-appHeading">Received Event & Catering Inquiries</h4>
-                                        <p class="text-xs text-neutralMuted mt-0.5">Manage customer digital proposals, dates, and budget plans.</p>
-                                    </div>
-                                    <button onclick="fetchCatering()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 btn-interactive" aria-label="Refresh catering list">
-                                        <i class="fa-solid fa-rotate-right" id="refresh-catering-icon"></i> Refresh
-                                    </button>
-                                </div>
-                                <div id="admin-catering-inquiries-list" class="grid gap-4 md:grid-cols-1"></div>
-                            </div>
-                            
-                            <!-- Captured newsletter registry leads -->
-                            <div class="space-y-4 bg-appCard border border-appBorder p-6 rounded-3xl h-fit">
-                                <div class="flex justify-between items-center border-b border-appBorder pb-2">
-                                    <div>
-                                        <h4 class="font-serif text-lg font-bold text-appHeading">Captured Newsletter Leads</h4>
-                                        <p class="text-xs text-neutralMuted font-serif font-medium mt-0.5">Emails registered via the society modal.</p>
-                                    </div>
-                                    <button onclick="fetchSubscribers()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl p-2.5 text-xs font-bold transition-all btn-interactive" aria-label="Refresh subscriber list">
-                                        <i class="fa-solid fa-rotate-right" id="refresh-subscribers-icon"></i>
-                                    </button>
-                                </div>
-                                <div id="subscriber-emails-container" class="space-y-1.5 font-mono text-xs max-h-96 overflow-y-auto font-sans"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- CMS View Segment: VIBE BOARD PHOTOS MODERATION -->
-                    <div id="cms-photos-subview" class="space-y-4 hidden font-sans">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h4 class="font-serif text-lg font-bold text-appHeading">Corkboard Polaroid Archive Moderation</h4>
-                                <p class="text-xs text-neutralMuted mt-0.5">Moderate and prune uploaded setup photographs directly on the live wall.</p>
-                            </div>
-                            <button onclick="fetchVibeBoard()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 btn-interactive" aria-label="Refresh vibe photos list">
-                                <i class="fa-solid fa-rotate-right" id="refresh-vibes-icon"></i> Refresh Pipeline
-                            </button>
-                        </div>
-                        <div id="admin-photos-moderation-grid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-appText font-sans"></div>
-                    </div>
-
-                    <!-- CMS View Segment: CATALOG MATRIX & SECTIONS EDITOR -->
-                    <div id="cms-products-subview" class="space-y-6 hidden font-sans">
-                        <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 shadow">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <h4 class="font-serif text-lg font-bold text-appHeading">Customize Food & Beverage Categories</h4>
-                                    <p class="text-xs text-neutralMuted mt-0.5">Add entirely new food sections, upload custom categories, and assign icons.</p>
-                                </div>
-                            </div>
-                            
-                            <form id="category-creation-form" class="grid sm:grid-cols-3 gap-3 text-xs">
-                                <input type="text" id="new-cat-id" placeholder="Category key (e.g., bagels)" required class="bg-appBg border border-terracotta/25 p-3 rounded-xl text-appHeading outline-none focus:ring-2 focus:ring-terracotta/30">
-                                <input type="text" id="new-cat-name" placeholder="Display Name (e.g., Rustic Bagels)" required class="bg-appBg border border-terracotta/25 p-3 rounded-xl text-appHeading outline-none focus:ring-2 focus:ring-terracotta/30">
-                                <div class="flex gap-2">
-                                    <input type="text" id="new-cat-icon" placeholder="FA Icon (e.g., fa-cookie)" required class="bg-appBg border border-terracotta/25 p-3 rounded-xl text-appHeading flex-1 outline-none focus:ring-2 focus:ring-terracotta/30">
-                                    <button type="submit" class="bg-terracotta hover:bg-terracotta/90 text-white font-bold px-4 rounded-xl btn-interactive">Add</button>
-                                </div>
-                            </form>
-
-                            <div id="categories-badge-list" class="flex flex-wrap gap-2 pt-2"></div>
-                        </div>
-
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <h4 class="font-serif text-lg font-bold text-appHeading">Manage Catalog Items</h4>
-                                    <p class="text-xs text-neutralMuted mt-0.5">Adjust pricing, configure categories, flag "Chef's Specials" or "Best Sellers."</p>
-                                </div>
-                                <div class="flex gap-2">
-                                    <button onclick="refreshCMSProducts()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 btn-interactive" aria-label="Refresh products list">
-                                        <i class="fa-solid fa-rotate-right" id="refresh-products-icon"></i> Refresh Catalog
-                                    </button>
-                                    <button onclick="openProductEditForm()" class="bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow-md btn-interactive">
-                                        <i class="fa-solid fa-circle-plus"></i> Add New Product
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div id="cms-products-listing-wrapper" class="space-y-4 text-appText font-sans"></div>
-                        </div>
-                    </div>
-
-                    <!-- CMS View Segment: THEME SCHEMES & CORE SYNC SETTINGS -->
-                    <div id="cms-analytics-subview" class="space-y-6 hidden font-sans">
-                        <!-- Custom Brand Theme Palette Form -->
-                        <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 transition-colors shadow">
-                            <div class="flex items-center gap-2.5">
-                                <i class="fa-solid fa-palette text-terracotta text-lg"></i>
-                                <h4 class="font-serif text-lg font-bold text-appHeading">Storefront Color Scheme Customizer</h4>
-                            </div>
-                            <p class="text-xs text-neutralMuted leading-relaxed">
-                                Personalize the layout design tokens! Enter color values to dynamically adapt the storefront’s system colors.
-                            </p>
-                            <div class="grid gap-4 grid-cols-2 sm:grid-cols-4 text-xs text-appText">
-                                <div class="flex flex-col gap-1">
-                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted font-bold">Primary BG</label>
-                                    <input type="color" id="theme-color-bg" value="#110705" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted font-bold">Accent Color</label>
-                                    <input type="color" id="theme-color-terracotta" value="#D97757" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted font-bold">Card Panel BG</label>
-                                    <input type="color" id="theme-color-card" value="#1A0E0B" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <label class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted font-bold">Text Color</label>
-                                    <input type="color" id="theme-color-text" value="#F5EBE1" class="bg-transparent border border-terracotta/20 rounded w-full h-10 p-1">
-                                </div>
-                            </div>
-                            <div class="flex gap-2">
-                                <button onclick="applyCustomThemeColors()" class="bg-terracotta hover:bg-terracotta/90 text-white font-serif font-bold text-xs py-2.5 px-4 rounded-xl btn-interactive">Save Brand Palette</button>
-                                <button onclick="resetThemeColorsToDefault()" class="border border-terracotta/20 hover:bg-terracotta/10 text-xs py-2.5 px-4 rounded-xl text-neutralMuted btn-interactive">Reset Brand Default</button>
-                            </div>
-                        </div>
-
-                        <!-- Supabase Connection Config Panel -->
-                        <div class="bg-appCard border border-appBorder p-6 rounded-3xl space-y-4 transition-colors shadow">
-                            <div class="flex items-center gap-2.5">
-                                <i class="fa-solid fa-gears text-terracotta text-lg animate-spin" style="animation-duration: 8s;"></i>
-                                <h4 class="font-serif text-lg font-bold text-appHeading">Supabase Connection Settings</h4>
-                            </div>
-                            <p class="text-xs text-neutralMuted leading-relaxed font-sans">
-                                By default, this storefront uses placeholder credentials. To secure customer pre-orders, lounge reservations, and vibe photos, copy your real credentials from your Supabase Dashboard and paste them below. They are saved privately inside your browser's local secure database.
-                            </p>
-                            <div class="grid gap-4 sm:grid-cols-2 text-xs text-appText">
-                                <div class="flex flex-col gap-1.5">
-                                    <label for="db-url-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted font-bold">Project REST Endpoint URL</label>
-                                    <input type="text" id="db-url-input" placeholder="https://your-project.supabase.co" class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:ring-2 focus:ring-terracotta/30 transition-colors font-sans font-medium">
-                                </div>
-                                <div class="flex flex-col gap-1.5">
-                                    <label for="db-key-input" class="font-mono text-[9px] uppercase tracking-wider text-neutralMuted font-bold">Anon Public Key</label>
-                                    <input type="password" id="db-key-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC..." class="bg-appBg border border-terracotta/20 rounded-xl p-3 text-appHeading text-xs focus:outline-none focus:ring-2 focus:ring-terracotta/30 transition-colors font-sans font-medium">
-                                </div>
-                            </div>
-                            <div class="flex flex-wrap items-center gap-3 pt-2 font-serif">
-                                <button onclick="saveSupabaseCredentials()" class="bg-terracotta hover:bg-terracotta/90 text-white font-bold py-2.5 px-5 rounded-xl text-xs transition-all shadow-md btn-interactive">
-                                    Save & Reconnect Sync
-                                </button>
-                                <button onclick="clearSupabaseCredentials()" class="border border-terracotta/30 text-neutralMuted hover:text-white py-2.5 px-4 rounded-xl text-xs transition-all btn-interactive">
-                                    Reset to Local Sandbox Fallback
-                                </button>
-                                <span id="connection-status-pill" class="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-yellow-500/10 text-yellow-500 border border-yellow-500/30 font-sans">
-                                    Evaluating Sync...
-                                </span>
-                            </div>
-
-                            <!-- Mobile Scan Synchronization Tool -->
-                            <div class="border-t border-appBorder/50 pt-4 mt-2 space-y-3">
-                                <h5 class="font-serif font-bold text-sm text-appHeading">📱 Sync with Phone Browser</h5>
-                                <p class="text-[11px] text-neutralMuted leading-relaxed font-sans">Generate a dynamic link to sync your database configurations instantly to your mobile browser without retyping keys.</p>
-                                <div class="flex flex-wrap items-center gap-3">
-                                    <button onclick="generateMobileSyncQRCode()" class="bg-darkAccent hover:bg-terracotta/20 text-terracotta border border-terracotta/30 rounded-xl px-4 py-2.5 text-xs font-bold transition-all flex items-center gap-2 font-sans btn-interactive">
-                                        <i class="fa-solid fa-qrcode"></i> Generate Phone Sync Link
-                                    </button>
-                                </div>
-                                <div id="sync-qr-container" class="hidden bg-appBg border border-appBorder p-4 rounded-2xl flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left transition-colors shadow-inner">
-                                    <img id="sync-qr-image" src="" alt="Mobile Sync QR Code" class="w-32 h-32 bg-white p-1 rounded-lg">
-                                    <div class="space-y-2 font-sans">
-                                        <p class="text-xs font-bold text-appHeading">Scan QR to connect your Phone!</p>
-                                        <p class="text-[10px] text-neutralMuted leading-relaxed max-w-xs">Scanning this with your phone's camera will open the portal on your phone browser and automatically configure your API keys securely.</p>
-                                        <button onclick="copySyncLinkToClipboard()" class="text-[10px] text-terracotta underline font-mono hover:text-terracotta/80 block">Copy Direct Sync Link</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Telemetry logs database table tracker -->
-                        <div class="space-y-3">
-                            <h4 class="font-serif text-lg font-bold text-appHeading font-sans">Live System Telemetry Logs</h4>
-                            <p class="text-xs text-neutralMuted mt-0.5 leading-relaxed font-sans">A non-technical audit ledger documenting interactions on your storefront portal.</p>
-                            <div class="bg-appBg border border-appBorder rounded-2xl p-4 font-sans text-xs space-y-2.5 max-h-96 overflow-y-auto text-appText transition-colors shadow-inner" id="telemetry-logs-wrapper"></div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+<div id="page-admin" class="page-view hidden space-y-8">
+    
+    <!-- Passcode lock portal -->
+    <div id="cms-verify-section" class="bg-appCard border border-appBorder rounded-3xl p-8 max-w-md mx-auto text-center space-y-6 font-sans shadow-xl">
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-darkAccent border border-terracotta/30 text-2xl text-terracotta">
+            <i class="fa-solid fa-lock"></i>
         </div>
+        <div>
+            <h3 class="font-serif text-lg font-bold text-appHeading">Administrative Access Required</h3>
+            <p class="text-xs text-neutralMuted mt-1">Please enter your passcode to unlock dashboard operations. (Hint: <strong>barako</strong>)</p>
+        </div>
+        <div class="space-y-3">
+            <input type="password" id="cms-passcode-input" placeholder="Password..." class="w-full text-center bg-appBg border border-terracotta/30 rounded-xl p-3 text-sm text-appHeading focus:outline-none focus:ring-2 focus:ring-terracotta/30">
+            <button onclick="verifyAdministrativePasscode()" class="w-full bg-terracotta hover:bg-terracotta/90 text-white text-xs font-bold py-3.5 rounded-xl transition-all shadow-md btn-interactive">
+                Authorize Session
+            </button>
+        </div>
+    </div>
 
-    </main>
+    <div id="cms-authenticated-view" class="hidden flex flex-col md:flex-row gap-6 items-stretch w-full min-h-[75vh] font-sans">
+        
+        <!-- Desktop Sidebar Navigation -->
+        <aside id="cms-collapsible-sidebar" class="hidden md:flex sidebar-expanded flex-col bg-appCard border border-appBorder rounded-3xl p-4 transition-all duration-300 gap-6 relative justify-between shrink-0 shadow-lg">
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 border-b border-appBorder pb-4 overflow-hidden">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-terracotta to-amber-700 flex items-center justify-center text-white shrink-0 shadow">
+                        <i class="fa-solid fa-mug-hot text-base"></i>
+                    </div>
+                    <div class="sidebar-text-label transition-opacity duration-200">
+                        <h4 class="font-bold text-xs text-appHeading tracking-wider uppercase leading-none">Pour Decisions</h4>
+                        <span class="text-[9px] text-neutralMuted font-mono block mt-1 font-bold">Maryville Pro HQ</span>
+                    </div>
+                </div>
 
-    <!-- Glassmorphic Mobile Bottom Nav deck with integrated bag toggle action -->
+                <nav class="flex flex-col gap-1.5 font-sans" aria-label="CMS Navigation">
+                    <button id="sidebar-btn-dashboard" onclick="switchCMSTab('dashboard')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 bg-terracotta/10 text-terracotta border-l-2 border-terracotta font-medium text-xs btn-interactive">
+                        <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-chart-line text-sm"></i></div>
+                        <span class="sidebar-text-label transition-opacity duration-200 truncate">Insights Overview</span>
+                        <!-- Notification Badge -->
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 flex h-2 w-2 rounded-full bg-terracotta animate-pulse"></span>
+                    </button>
+                    <button id="sidebar-btn-orders" onclick="switchCMSTab('orders')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
+                        <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-basket-shopping text-sm"></i></div>
+                        <span class="sidebar-text-label transition-opacity duration-200 truncate">Pre-orders & Seats</span>
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 flex h-2 w-2 rounded-full bg-red-500"></span>
+                    </button>
+                    <button id="sidebar-btn-feedback" onclick="switchCMSTab('feedback')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
+                        <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-user-shield text-sm"></i></div>
+                        <span class="sidebar-text-label transition-opacity duration-200 truncate">Note Reviews</span>
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 flex h-2 w-2 rounded-full bg-blue-500"></span>
+                    </button>
+                    <button id="sidebar-btn-catering" onclick="switchCMSTab('catering')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
+                        <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-envelope-open-text text-sm"></i></div>
+                        <span class="sidebar-text-label transition-opacity duration-200 truncate">Catering & Leads</span>
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 flex h-2 w-2 rounded-full bg-yellow-500"></span>
+                    </button>
+                    <button id="sidebar-btn-photos" onclick="switchCMSTab('photos')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
+                        <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-images text-sm"></i></div>
+                        <span class="sidebar-text-label transition-opacity duration-200 truncate">Vibe Archives</span>
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 flex h-2 w-2 rounded-full bg-purple-500"></span>
+                    </button>
+                    <button id="sidebar-btn-products" onclick="switchCMSTab('products')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
+                        <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-mug-saucer text-sm"></i></div>
+                        <span class="sidebar-text-label transition-opacity duration-200 truncate">Catalog Matrix</span>
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                    </button>
+                    <button id="sidebar-btn-analytics" onclick="switchCMSTab('analytics')" class="relative flex items-center h-10 w-full rounded-xl transition-all duration-200 text-neutralMuted hover:bg-darkAccent hover:text-appHeading font-medium text-xs btn-interactive">
+                        <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-gears text-sm"></i></div>
+                        <span class="sidebar-text-label transition-opacity duration-200 truncate">Core Sync Settings</span>
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 flex h-2 w-2 rounded-full bg-orange-500"></span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="space-y-2 pt-4 border-t border-appBorder">
+                <button onclick="switchPage('home')" class="flex items-center h-10 w-full rounded-xl text-xs text-neutralMuted hover:bg-darkAccent hover:text-appHeading transition-all btn-interactive">
+                    <div class="grid h-full w-12 place-content-center shrink-0"><i class="fa-solid fa-arrow-left-long"></i></div>
+                    <span class="sidebar-text-label transition-opacity duration-200 truncate font-semibold">Exit to Store</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Contents Workspace Area -->
+        <div class="flex-1 space-y-6">
+            
+            <!-- Mobile Navigation Bar for CMS with Responsive Notification Badges -->
+            <div class="flex md:hidden overflow-x-auto gap-1 pb-2 scrollbar-none max-w-full font-sans mb-4 border-b border-appBorder py-1" aria-label="CMS Mobile Navigation Bar">
+                <button id="mobile-cms-tab-dashboard" onclick="switchCMSTab('dashboard')" class="mobile-cms-tab-btn active btn-interactive relative">
+                    <i class="fa-solid fa-chart-line text-sm"></i>
+                    <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Insights</span>
+                    <span class="absolute top-1 right-2 flex h-1.5 w-1.5 rounded-full bg-terracotta"></span>
+                </button>
+                <button id="mobile-cms-tab-orders" onclick="switchCMSTab('orders')" class="mobile-cms-tab-btn btn-interactive relative">
+                    <i class="fa-solid fa-basket-shopping text-sm"></i>
+                    <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Orders</span>
+                    <span class="absolute top-1 right-2 flex h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                </button>
+                <button id="mobile-cms-tab-feedback" onclick="switchCMSTab('feedback')" class="mobile-cms-tab-btn btn-interactive relative">
+                    <i class="fa-solid fa-user-shield text-sm"></i>
+                    <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Reviews</span>
+                    <span class="absolute top-1 right-2 flex h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+                </button>
+                <button id="mobile-cms-tab-catering" onclick="switchCMSTab('catering')" class="mobile-cms-tab-btn btn-interactive relative">
+                    <i class="fa-solid fa-envelope-open-text text-sm"></i>
+                    <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Catering</span>
+                    <span class="absolute top-1 right-2 flex h-1.5 w-1.5 rounded-full bg-yellow-500"></span>
+                </button>
+                <button id="mobile-cms-tab-photos" onclick="switchCMSTab('photos')" class="mobile-cms-tab-btn btn-interactive relative">
+                    <i class="fa-solid fa-images text-sm"></i>
+                    <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Vibes</span>
+                    <span class="absolute top-1 right-2 flex h-1.5 w-1.5 rounded-full bg-purple-500"></span>
+                </button>
+                <button id="mobile-cms-tab-products" onclick="switchCMSTab('products')" class="mobile-cms-tab-btn btn-interactive relative">
+                    <i class="fa-solid fa-mug-saucer text-sm"></i>
+                    <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Catalog</span>
+                    <span class="absolute top-1 right-2 flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                </button>
+                <button id="mobile-cms-tab-analytics" onclick="switchCMSTab('analytics')" class="mobile-cms-tab-btn btn-interactive relative">
+                    <i class="fa-solid fa-gears text-sm"></i>
+                    <span class="text-[8px] uppercase tracking-wider font-bold mt-1">Settings</span>
+                    <span class="absolute top-1 right-2 flex h-1.5 w-1.5 rounded-full bg-orange-500"></span>
+                </button>
+            </div>
+
+            <!-- CMS View Segment: INSIGHTS DASHBOARD OVERVIEW -->
+            <div id="cms-dashboard-subview" class="space-y-6">
+                <div>
+                    <h3 class="font-serif text-2xl font-bold text-appHeading">Insights Dashboard</h3>
+                    <p class="text-xs text-neutralMuted">Simulated system health indicators and active tracking metrics.</p>
+                </div>
+                <!-- Core Sandbox Metrics -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-appText font-mono">
+                    <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm">
+                        <span class="text-[10px] text-neutralMuted uppercase tracking-wider font-bold">Live Revenue</span>
+                        <span id="metrics-revenue" class="text-2xl font-serif font-bold text-terracotta mt-2">$342.50</span>
+                    </div>
+                    <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm">
+                        <span class="text-[10px] text-neutralMuted uppercase tracking-wider font-bold">Pending Pre-Orders</span>
+                        <span id="metrics-orders-active" class="text-2xl font-serif font-bold text-appHeading mt-2">2</span>
+                    </div>
+                    <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm">
+                        <span class="text-[10px] text-neutralMuted uppercase tracking-wider font-bold">Catering Leads</span>
+                        <span id="metrics-catering-pending" class="text-2xl font-serif font-bold text-yellow-500 mt-2">1</span>
+                    </div>
+                    <div class="bg-appCard border border-appBorder p-4 rounded-2xl flex flex-col justify-between shadow-sm">
+                        <span class="text-[10px] text-neutralMuted uppercase tracking-wider font-bold">System Alerts</span>
+                        <span class="text-2xl font-serif font-bold text-red-400 mt-2">Active</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CMS View Segment: CUSTOMER ORDERS PIPELINE -->
+            <div id="cms-orders-subview" class="space-y-4 hidden">
+                <div class="flex justify-between items-center border-b border-appBorder pb-2">
+                    <div>
+                        <h4 class="font-serif text-lg font-bold text-appHeading">Active Pre-orders Pipeline</h4>
+                        <p class="text-xs text-neutralMuted mt-0.5">Displays incoming pending table checkouts.</p>
+                    </div>
+                </div>
+                <!-- ONLY Active/Pending Orders show here -->
+                <div id="admin-orders-container" class="grid gap-4 md:grid-cols-2 font-sans"></div>
+
+                <!-- NEW COMPONENT: Historical Order Ledger & Audit Log -->
+                <div class="border-t-2 border-dashed border-appBorder/40 pt-8 mt-10 space-y-4">
+                    <div class="bg-darkAccent/30 border border-appBorder rounded-2xl p-4 flex items-center gap-3">
+                        <i class="fa-solid fa-box-archive text-terracotta text-lg"></i>
+                        <div>
+                            <h4 class="font-serif text-base font-bold text-appHeading">Order History & Audit Vault</h4>
+                            <p class="text-xs text-neutralMuted font-sans">Permanent storage records for completely fulfilled (DONE) or canceled entries.</p>
+                        </div>
+                    </div>
+                    <div id="admin-orders-audit-container" class="grid gap-4 md:grid-cols-2 font-sans opacity-75">
+                        <!-- Done and Canceled orders render down here securely -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- CMS View Segment: REVIEW & FEEDBACK MODERATION -->
+            <div id="cms-feedback-subview" class="space-y-4 hidden font-sans">
+                <div>
+                    <h4 class="font-serif text-lg font-bold text-appHeading">Guest Note Reviews & Moderation</h4>
+                    <p class="text-xs text-neutralMuted mt-0.5">Approve suggestions to post them to the public corkboard, or unpublish active items.</p>
+                </div>
+                <div id="admin-feedback-moderation-list" class="grid gap-4 text-appText font-sans"></div>
+            </div>
+
+            <!-- CMS View Segment: VIBE BOARD PHOTOS MODERATION -->
+            <div id="cms-photos-subview" class="space-y-4 hidden font-sans">
+                <div>
+                    <h4 class="font-serif text-lg font-bold text-appHeading">Corkboard Polaroid Snapshots Moderation</h4>
+                    <p class="text-xs text-neutralMuted mt-0.5">Manage live image assets with unpublish toggles or hard deletion rules.</p>
+                </div>
+                <div id="admin-photos-moderation-grid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-appText font-sans"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+     <!-- Glassmorphic Mobile Bottom Nav deck with integrated bag toggle action -->
     <nav id="mobile-navigation-bar" class="md:hidden fixed bottom-0 left-0 right-0 py-2 px-2 z-40 mobile-nav-container flex justify-around items-center" aria-label="Mobile Navigation">
         <button onclick="switchPage('home')" class="mobile-tab-btn active" id="mobile-tab-home">
             <i class="fa-solid fa-mug-hot text-base"></i>
@@ -3926,6 +3712,230 @@
             document.body.removeChild(tempInput);
             showToastNotification("Sync URL copied to clipboard!");
         };
-    </script>
+    
+        // --- INTEGRATED ADMIN CORE CONTROLLER (Requirements 1-4) ---
+// --- ADMINISTRATIVE STATE MANAGEMENT MOCKS ---
+let orderPipeline = [
+    { id: '101', customer: 'Sarah Jenkins', item: 'Viennese Waltz Mocha', price: '$5.80', status: 'Pending' },
+    { id: '102', customer: 'Michael Chang', item: 'Cold Brew Blend + Oat Milk', price: '$6.50', status: 'Pending' },
+    { id: '103', customer: 'Amanda Ross', item: 'Bistro Quiche Plate', price: '$8.20', status: 'Done' },
+    { id: '104', customer: 'David Miller', item: 'Muddy Pond Latte', price: '$5.50', status: 'Canceled' }
+];
+
+let guestNotes = [
+    { id: 'n1', handle: '@cozy_maryville', favorite: 'Sorghum Drip Coffee', note: 'Absolutely love the fireplace seating zone!', status: 'Published' },
+    { id: 'n2', handle: '@tn_foodie', favorite: 'Smoked Salmon Bagel Box', note: 'The cream cheese formulation is extraordinary.', status: 'Pending' }
+];
+
+let polaroidSnaps = [
+    { id: 'p1', handle: '@latte_artisan', drink: 'Foam Waltz Art', url: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400', status: 'Published' }
+];
+
+// --- AUTHENTICATION REVEAL FUNCTION ---
+function verifyAdministrativePasscode() {
+    const input = document.getElementById('cms-passcode-input').value;
+    if (input.toLowerCase() === 'barako') {
+        document.getElementById('cms-verify-section').classList.add('hidden');
+        document.getElementById('cms-authenticated-view').classList.remove('hidden');
+        showToastNotification("Authorized Session Active.");
+        renderOrdersPipeline();
+        renderFeedbackModeration();
+        renderPhotoModeration();
+    } else {
+        showToastNotification("Access Denied. Incorrect Administrative Code.");
+    }
+}
+
+// --- CMS TAB CONTAINER CONTROLLER ---
+function switchCMSTab(targetTab) {
+    const panels = ['dashboard', 'orders', 'feedback', 'catering', 'photos', 'products', 'analytics'];
+    panels.forEach(p => {
+        const view = document.getElementById(`cms-${p}-subview`);
+        if (view) view.classList.add('hidden');
+        
+        const sideBtn = document.getElementById(`sidebar-btn-${p}`);
+        if (sideBtn) sideBtn.className = "relative flex items-center h-10 w-full rounded-xl transition-all text-neutralMuted hover:bg-darkAccent font-medium text-xs btn-interactive";
+        
+        const mobBtn = document.getElementById(`mobile-cms-tab-${p}`);
+        if (mobBtn) mobBtn.classList.remove('active');
+    });
+
+    const activeView = document.getElementById(`cms-${targetTab}-subview`);
+    if (activeView) activeView.classList.remove('hidden');
+
+    const activeSidebar = document.getElementById(`sidebar-btn-targetTab` || `sidebar-btn-${targetTab}`);
+    if (activeSidebar) activeSidebar.className = "relative flex items-center h-10 w-full rounded-xl transition-all bg-terracotta/10 text-terracotta border-l-2 border-terracotta font-medium text-xs btn-interactive";
+
+    const activeMobile = document.getElementById(`mobile-cms-tab-${targetTab}`);
+    if (activeMobile) activeMobile.classList.add('active');
+}
+
+// --- REQUIREMENTS 3: ORDERS MANAGEMENT CONTROLLER & BADGE FIX ---
+function renderOrdersPipeline() {
+    const container = document.getElementById('admin-orders-container');
+    const auditContainer = document.getElementById('admin-orders-audit-container');
+    
+    container.innerHTML = '';
+    auditContainer.innerHTML = '';
+
+    orderPipeline.forEach(order => {
+        // Dynamic construction of badge colors based on accurate string matches
+        let badgeClass = "bg-yellow-500/10 text-yellow-500 border-yellow-500/30";
+        if (order.status === 'Done') badgeClass = "bg-emerald-500/10 text-emerald-500 border-emerald-500/30";
+        if (order.status === 'Canceled') badgeClass = "bg-red-500/10 text-red-500 border-red-500/30";
+
+        const cardHtml = `
+            <div class="bg-appBg border border-appBorder p-4 rounded-2xl space-y-3 shadow-inner">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-mono font-bold text-neutralMuted">Order ID: #${order.id}</span>
+                    <span class="px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider rounded-full border ${badgeClass}">
+                        ${order.status}
+                    </span>
+                </div>
+                <div class="text-xs space-y-1">
+                    <p class="text-appHeading font-bold">${order.customer}</p>
+                    <p class="text-neutralMuted">${order.item} — <span class="text-terracotta font-mono font-bold">${order.price}</span></p>
+                </div>
+                ${order.status === 'Pending' ? `
+                <div class="flex gap-2 pt-1 font-sans">
+                    <button onclick="updateOrderStatus('${order.id}', 'Done')" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold py-2 rounded-lg transition-colors">Mark Done</button>
+                    <button onclick="updateOrderStatus('${order.id}', 'Canceled')" class="flex-1 bg-darkAccent border border-red-500/30 hover:bg-red-500/10 text-red-400 text-[11px] font-bold py-2 rounded-lg transition-colors">Cancel</button>
+                </div>
+                ` : `
+                    <p class="text-[10px] italic text-neutralMuted text-right font-mono"><i class="fa-solid fa-circle-check"></i> Audited Ledger Entry</p>
+                `}
+            </div>
+        `;
+
+        // Direct filtering separating active processing pipelines from historic records
+        if (order.status === 'Pending') {
+            container.innerHTML += cardHtml;
+        } else {
+            auditContainer.innerHTML += cardHtml;
+        }
+    });
+
+    // Update global dashboard metrics
+    const pendingCount = orderPipeline.filter(o => o.status === 'Pending').length;
+    document.getElementById('metrics-orders-active').innerText = pendingCount;
+}
+
+function updateOrderStatus(id, nextStatus) {
+    const order = orderPipeline.find(o => o.id === id);
+    if (order) {
+        order.status = nextStatus; // Fixed label bug dynamically inside model array mapping
+        showToastNotification(`Order #${id} marked as ${nextStatus.toUpperCase()}`);
+        renderOrdersPipeline();
+    }
+}
+
+// --- REQUIREMENT 2: REVIEWS, CORKBOARDS & HARD PURGE LOGIC ---
+function renderFeedbackModeration() {
+    const container = document.getElementById('admin-feedback-moderation-list');
+    container.innerHTML = '';
+
+    guestNotes.forEach(item => {
+        let statusBadge = "bg-yellow-500/10 text-yellow-500 border-yellow-500/20";
+        if (item.status === 'Published') statusBadge = "bg-emerald-500/10 text-emerald-500 border-emerald-500/20";
+        if (item.status === 'Unpublished') statusBadge = "bg-orange-500/10 text-orange-400 border-orange-500/20";
+
+        container.innerHTML += `
+            <div class="bg-appBg border border-appBorder p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+                <div class="space-y-1.5 max-w-xl">
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-appHeading text-xs">${item.handle}</span>
+                        <span class="text-[9px] px-2 py-0.2 rounded border font-mono uppercase tracking-wider ${statusBadge}">${item.status}</span>
+                    </div>
+                    <p class="text-xs italic text-accentLight font-serif">"${item.note}"</p>
+                    <p class="text-[10px] text-neutralMuted font-sans">Product Choice: <strong class="text-terracotta">${item.favorite}</strong></p>
+                </div>
+                <div class="flex flex-wrap sm:flex-col gap-1.5 shrink-0 justify-end">
+                    ${item.status !== 'Published' ? `
+                        <button onclick="changeNoteStatus('${item.id}', 'Published')" class="bg-terracotta text-white font-bold text-[11px] px-4 py-2 rounded-lg hover:bg-terracotta/90 transition-all">Publish</button>
+                    ` : `
+                        <button onclick="changeNoteStatus('${item.id}', 'Unpublished')" class="bg-darkAccent text-amber-500 border border-amber-500/20 font-bold text-[11px] px-4 py-2 rounded-lg hover:bg-amber-500/10 transition-all">Unpublish / Draft</button>
+                    `}
+                    <button onclick="purgeNotePermanently('${item.id}')" class="bg-red-950/40 hover:bg-red-900/40 text-red-400 border border-red-500/20 font-bold text-[11px] px-4 py-2 rounded-lg transition-all"><i class="fa-solid fa-trash-can"></i> Hard Delete</button>
+                </div>
+            </div>
+        `;
+    });
+}
+
+function changeNoteStatus(id, nextStatus) {
+    const note = guestNotes.find(n => n.id === id);
+    if (note) {
+        note.status = nextStatus;
+        showToastNotification(`Guest Note status shifted to: ${nextStatus}`);
+        renderFeedbackModeration();
+    }
+}
+
+function purgeNotePermanently(id) {
+    if (confirm("Confirm Permanent Deletion? This record will be wiped completely from administrative cache parameters.")) {
+        guestNotes = guestNotes.filter(n => n.id !== id);
+        showToastNotification("Record permanently deleted.");
+        renderFeedbackModeration();
+    }
+}
+
+// --- PHOTO ARCHIVE SPECIFIC EXTENSION MODULATOR ---
+function renderPhotoModeration() {
+    const grid = document.getElementById('admin-photos-moderation-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    polaroidSnaps.forEach(snap => {
+        grid.innerHTML += `
+            <div class="bg-appBg border border-appBorder p-3 rounded-2xl space-y-3 shadow-md flex flex-col justify-between">
+                <div class="relative h-28 bg-black rounded-xl overflow-hidden border border-appBorder">
+                    <img src="${snap.url}" class="object-cover w-full h-full opacity-80">
+                    <span class="absolute top-2 left-2 text-[9px] bg-black/70 px-2 py-0.5 rounded text-parchment border border-appBorder">${snap.status}</span>
+                </div>
+                <div class="text-[11px] space-y-0.5">
+                    <p class="font-bold text-appHeading">${snap.handle}</p>
+                    <p class="text-neutralMuted truncate">Ordered: ${snap.drink}</p>
+                </div>
+                <div class="grid grid-cols-2 gap-1.5 pt-1">
+                    ${snap.status === 'Published' ? `
+                        <button onclick="updatePhotoStatus('${snap.id}', 'Unpublished')" class="bg-darkAccent text-amber-500 border border-amber-500/20 font-bold text-[10px] py-1.5 rounded-lg hover:bg-amber-500/10">Unpublish</button>
+                    ` : `
+                        <button onclick="updatePhotoStatus('${snap.id}', 'Published')" class="bg-terracotta text-white font-bold text-[10px] py-1.5 rounded-lg hover:bg-terracotta/90">Publish</button>
+                    `}
+                    <button onclick="purgePhotoPermanently('${snap.id}')" class="bg-red-950/20 border border-red-500/20 text-red-400 font-bold text-[10px] py-1.5 rounded-lg hover:bg-red-500/20"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                </div>
+            </div>
+        `;
+    });
+}
+
+function updatePhotoStatus(id, nextStatus) {
+    const snap = polaroidSnaps.find(p => p.id === id);
+    if (snap) {
+        snap.status = nextStatus;
+        showToastNotification(`Vibe Asset status: ${nextStatus}`);
+        renderPhotoModeration();
+    }
+}
+
+function purgePhotoPermanently(id) {
+    if (confirm("Permanently discard this layout photograph from storage matrices?")) {
+        polaroidSnaps = polaroidSnaps.filter(p => p.id !== id);
+        showToastNotification("Asset completely purged.");
+        renderPhotoModeration();
+    }
+}
+
+// Global utility connector helper 
+function showToastNotification(msg) {
+    const el = document.getElementById('toast-container');
+    const inner = document.getElementById('toast-message');
+    if (el && inner) {
+        inner.innerHTML = `<i class="fa-solid fa-circle-info text-terracotta"></i> ` + msg;
+        el.classList.remove('hidden');
+        setTimeout(() => { el.classList.add('hidden'); }, 4000);
+    }
+}
+</script>
 </body>
 </html>
