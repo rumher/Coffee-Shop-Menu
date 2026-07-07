@@ -1375,7 +1375,16 @@
                 <strong>In-House Assistant Only:</strong> This bag serves as a digital table order aggregator for showing the baristas at the counter. **We do not support external online home delivery orders.**
             </div>
             
-            <div id="cart-items-wrapper" class="space-y-4 mb-6 max-h-[40vh] overflow-y-auto font-sans"></div>
+            <div id="cart-items-wrapper" class="space-y-4 mb-4 max-h-[35vh] overflow-y-auto font-sans border-b border-appBorder/50 pb-2"></div>
+
+            <!-- Enhanced Guest Name collector for active telemetry tracking -->
+            <div class="mb-4 space-y-1.5 text-xs text-appText font-sans">
+                <label for="order-guest-name" class="font-semibold text-neutralMuted uppercase tracking-wider block">First Name (For Pickup)</label>
+                <div class="relative rounded-xl focus-within:ring-2 focus-within:ring-terracotta/30 transition-all border border-terracotta/25 overflow-hidden">
+                    <input type="text" id="order-guest-name" required placeholder="Enter your first name..." class="w-full bg-appBg text-appHeading p-3 pl-10 text-xs focus:outline-none font-medium">
+                    <i class="fa-solid fa-user absolute left-3.5 top-3.5 text-neutralMuted text-xs"></i>
+                </div>
+            </div>
 
             <div class="border-t border-appBorder pt-4 space-y-4">
                 <div class="flex justify-between items-baseline font-mono font-bold text-base">
@@ -2192,7 +2201,7 @@
 
                             if (payload.eventType === 'INSERT') {
                                 activeOrders = [parsedOrder, ...activeOrders.filter(o => o.id !== parsedOrder.id)];
-                                showToastNotification("🔔 Realtime: New customer pre-order checked out!");
+                                showToastNotification(`🔔 Realtime: New preorder pickup from ${parsedOrder.customer_name || 'Boutique Visitor'}!`);
                             } else if (payload.eventType === 'UPDATE') {
                                 activeOrders = activeOrders.map(o => o.id === parsedOrder.id ? parsedOrder : o);
                             } else if (payload.eventType === 'DELETE') {
@@ -2373,7 +2382,8 @@
                     activeOrders = data.map(order => ({
                         ...order,
                         items: typeof order.items === 'string' ? JSON.parse(order.items) : order.items,
-                        totalPrice: parseFloat(order.total_price || order.totalPrice || 0)
+                        totalPrice: parseFloat(order.total_price || order.totalPrice || 0),
+                        customer_name: order.customer_name || 'Boutique Visitor'
                     }));
                     logTelemetryEvent('supabase_connected', { count: data.length });
                 }
@@ -2562,7 +2572,7 @@
                     logText = `☕ Crafted custom ${eventDetails.name} ($${eventDetails.price.toFixed(2)})`;
                     break;
                 case 'order_placed':
-                    logText = `🛍️ Checked out pre-order with ${eventDetails.itemCount} items`;
+                    logText = `🛍️ Checked out pre-order for ${eventDetails.guestName} with ${eventDetails.itemCount} items`;
                     break;
                 case 'reservation_created':
                     logText = `🎫 Seating reserved: ${eventDetails.zone} for ${eventDetails.guests} guests`;
@@ -2689,6 +2699,7 @@
             if (el) el.scrollIntoView({ behavior: 'smooth' });
         }
 
+        // Welcome Promo Modal Popup Handler
         function openPromoModal() {
             document.getElementById('promo-modal').classList.add('active');
         }
@@ -2972,9 +2983,18 @@
         }
 
         async function triggerCheckoutCheckout() {
-            closeSidebarCart();
             if (cart.length === 0) return;
 
+            // 1. Collect first name validation
+            const nameField = document.getElementById('order-guest-name');
+            const guestName = nameField ? nameField.value.trim() : "";
+            if (!guestName) {
+                showToastNotification("⚠️ Please enter your first name before checkout simulation!");
+                nameField?.focus();
+                return;
+            }
+
+            closeSidebarCart();
             let totalPrice = cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
             const orderDetails = cart.map(i => ({
                 id: i.id,
@@ -2985,8 +3005,9 @@
             }));
 
             try {
+                // Incorporate dynamic first name as customer_name inside orders table
                 const { error } = await supabase.from('orders').insert([{
-                    customer_name: 'Boutique Visitor',
+                    customer_name: guestName,
                     items: orderDetails,
                     total_price: totalPrice,
                     status: 'Pending',
@@ -2994,22 +3015,24 @@
                 }]);
                 
                 if (error) throw error;
-                showToastNotification("Pre-order simulation successfully saved to database!");
-                logTelemetryEvent('order_placed', { itemCount: cart.length });
+                showToastNotification(`Pre-order simulation confirmed! Thank you, ${guestName}.`);
+                logTelemetryEvent('order_placed', { guestName, itemCount: cart.length });
             } catch(err) {
                 console.warn("Supabase insert failure, saving simulated checkout locally: ", err.message);
                 activeOrders.unshift({
                     id: 'local_' + Date.now(),
-                    customer_name: 'Boutique Visitor',
+                    customer_name: guestName,
                     items: orderDetails,
                     totalPrice: totalPrice,
                     status: 'Pending',
                     timestamp: new Date().toISOString()
                 });
-                showToastNotification("Saved pre-order to local sandbox fallback ledger!");
+                showToastNotification(`Offline Fallback: Pre-order simulation saved locally as ${guestName}!`);
+                logTelemetryEvent('order_placed', { guestName, itemCount: cart.length });
             }
 
             cart = [];
+            if (nameField) nameField.value = ""; // Reset name field
             saveCartToStorage();
             syncCartUI();
             fetchLiveOrders();
@@ -3251,11 +3274,15 @@
                 if (order.status === 'Completed' || order.status === 'Order Done') statusClass = "bg-green-500/20 text-green-400";
                 if (order.status === 'Cancelled') statusClass = "bg-red-500/20 text-red-400";
 
+                // High quality quality improvement: display Collected First Name prominently in header
                 return `
                     <div class="bg-appCard border border-appBorder p-4 rounded-xl text-xs space-y-2 flex flex-col justify-between transition-colors shadow">
                         <div>
                             <div class="flex justify-between items-center border-b border-appBorder pb-2">
-                                <span class="font-mono text-terracotta font-bold">#ORD-${order.id ? order.id.toString().slice(0,5) : 'SIM'}</span>
+                                <div class="flex flex-col">
+                                    <span class="font-mono text-terracotta font-bold text-[10px]">#ORD-${order.id ? order.id.toString().slice(0,5) : 'SIM'}</span>
+                                    <span class="text-appHeading font-semibold text-xs tracking-tight">Guest: <span class="text-amber-500 font-bold">${order.customer_name || 'Boutique Visitor'}</span></span>
+                                </div>
                                 <span class="px-2 py-0.5 rounded text-[10px] font-bold ${statusClass}">${order.status}</span>
                             </div>
                             <div class="space-y-3 pt-2">
@@ -3283,7 +3310,7 @@
                                 <button onclick="updateOrderStatus('${order.id}', 'Order Done')" class="bg-green-600/20 hover:bg-green-600/40 text-green-500 rounded py-1.5 text-[9px] uppercase tracking-wider transition-all btn-interactive">
                                     Done
                                 </button>
-                                <button onclick="updateOrderStatus('${order.id}', 'Cancelled')" class="bg-red-600/20 hover:bg-red-600/40 text-red-500 rounded py-1.5 text-[9px] uppercase tracking-wider transition-all btn-interactive">
+                                <button onclick="updateOrderStatus('${order.id}', 'Cancelled')" class="bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded py-1.5 text-[9px] uppercase tracking-wider transition-all btn-interactive">
                                     Cancel
                                 </button>
                             </div>
